@@ -6,13 +6,31 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
+import { InitPageComponent } from './components/layout/init-page/init-page.component';
+import { ParquesComponent } from './pages/parques/parques.component';
+import { HorariosComponent } from './pages/horarios/horarios.component';
+import { PromocionesComponent } from './pages/promociones/promociones.component';
+import { CumpleaniosComponent } from './pages/cumpleanios/cumpleanios.component';
+import { ContactoComponent } from './pages/contacto/contacto.component';
+import { LoginComponent } from './pages/login/login.component';
+import { BioseguridadComponent } from './pages/bioseguridad/bioseguridad.component';
+import { CompraEntradasComponent } from './pages/compra-entradas/compra-entradas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    InitPageComponent,
+    ParquesComponent,
+    HorariosComponent,
+    PromocionesComponent,
+    CumpleaniosComponent,
+    ContactoComponent,
+    LoginComponent,
+    BioseguridadComponent,
+    CompraEntradasComponent
   ],
   imports: [
     BrowserModule,
