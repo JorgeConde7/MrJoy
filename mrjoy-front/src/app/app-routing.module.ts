@@ -18,7 +18,7 @@ const routes: Routes = [
     component: InitPageComponent,
     children: [
       {
-        path: '',
+        path: 'index',
         component: HomeComponent
       },
       {
