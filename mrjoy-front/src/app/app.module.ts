@@ -15,6 +15,7 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BioseguridadComponent } from './pages/bioseguridad/bioseguridad.component';
 import { CompraEntradasComponent } from './pages/compra-entradas/compra-entradas.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CompraEntradasComponent } from './pages/compra-entradas/compra-entradas
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
