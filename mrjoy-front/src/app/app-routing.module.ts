@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FooterComponent } from './components/layout/footer/footer.component';
-import { InitPageComponent } from './components/layout/init-page/init-page.component';
-import { BioseguridadComponent } from './pages/bioseguridad/bioseguridad.component';
-import { CompraEntradasComponent } from './pages/compra-entradas/compra-entradas.component';
-import { ContactoComponent } from './pages/contacto/contacto.component';
-import { CumpleaniosComponent } from './pages/cumpleanios/cumpleanios.component';
-import { HomeComponent } from './pages/home/home.component';
-import { HorariosComponent } from './pages/horarios/horarios.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ParquesComponent } from './pages/parques/parques.component';
-import { PromocionesComponent } from './pages/promociones/promociones.component';
+import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inicio.component';
+import { FooterComponent } from './components/cliente/footer/footer.component';
+import { InitPageComponent } from './components/cliente/init-page/init-page.component';
+import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente.component';
+import { BioseguridadComponent } from './pages/cliente/bioseguridad/bioseguridad.component';
+import { CompraEntradasComponent } from './pages/cliente/compra-entradas/compra-entradas.component';
+import { ContactoComponent } from './pages/cliente/contacto/contacto.component';
+import { CumpleaniosComponent } from './pages/cliente/cumpleanios/cumpleanios.component';
+import { HomeComponent } from './pages/cliente/home/home.component';
+import { HorariosComponent } from './pages/cliente/horarios/horarios.component';
+import { LoginComponent } from './pages/cliente/login/login.component';
+import { ParquesComponent } from './pages/cliente/parques/parques.component';
+import { PromocionesComponent } from './pages/cliente/promociones/promociones.component';
+
 
 const routes: Routes = [
   {
@@ -54,6 +57,16 @@ const routes: Routes = [
         component: BioseguridadComponent
       },
 
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminInicioComponent,
+    children:[
+      {
+        path: '',
+        component: AdminClienteComponent
+      },
     ]
   },
   {
