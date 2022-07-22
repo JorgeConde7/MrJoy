@@ -24,7 +24,7 @@ export class AdminClienteComponent implements OnDestroy, OnInit {
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
       // pagingType: "full_numbers"
-      pageLength: 5
+      pageLength:10
     };
 
     this.getData.obtenerPersonajeXId("")

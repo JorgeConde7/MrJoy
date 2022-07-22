@@ -1,16 +1,45 @@
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="style">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>First name</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let employee of data">
-      <td>{{ employee.id }}</td>
-      <td>{{ employee.name }}</td>
-      <td>{{ employee.status }}</td>
-    </tr>
-  </tbody>
-</table>
+<main style="margin-top: 48px">
+  <div class="container-fluid pt-4">
+    <a
+      id="btnNuevoCliente"
+      class="btn btn-success float-right my-2"
+      data-bs-toggle="modal"
+      data-bs-target="#modalCliente"
+      ><i class="ion-plus-round"></i> Nuevo</a
+    >
+    <div class="card" style="min-height: 720px">
+      <div class="card-body">
+        <table
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+          id="tablaCliente"
+          class="table table-hover table-dark text-light table-responsive-lg table-bordered"
+          style="width: 100%"
+        >
+          <thead>
+            <tr>
+              <th colspan="5" class="text-center">LISTA DE EMPLEADOS</th>
+            </tr>
+            <tr>
+              <th class="text-center">id</th>
+              <th class="text-center">Apellidos</th>
+              <th class="text-center">status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of data">
+              <td>{{ e.id }}</td>
+              <td>{{ e.name }}</td>
+              <td>{{ e.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <app-admin-footer></app-admin-footer>
+    <!-- Button trigger modal -->
+  </div>
+</main>
+
