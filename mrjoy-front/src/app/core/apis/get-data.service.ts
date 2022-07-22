@@ -12,13 +12,13 @@ export class GetDataService {
   constructor(private httpClient: HttpClient) { }
 
   // 2 Función para obtener un character por id
-  obtenerPersonajeXId(character_id: number) {
+  obtenerPersonajeXId(character_id: string = "") {
     // URL_BASE del back "https://rickandmortyapi.com/api/"
     const URL = `${environment.API_URL_BASE}/character/${character_id}`;
 
     // 3 Devolvemos el obserbable (similar a las promesas que usa fetch, axios... pero mejor)
     // "CharacterResponse" es una interfaz que nos ayuda a saber que campos tiene la respuesta
-    return this.httpClient.get<CharacterResponse>(URL)
+    return this.httpClient.get<{ info: any, results: CharacterResponse[] }>(URL)
   }
 
   // Servicio para obtener data creado!.
