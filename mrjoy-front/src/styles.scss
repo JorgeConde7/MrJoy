@@ -87,3 +87,21 @@ body {
   border-radius: 0;
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding:0 !important;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.table>:not(caption)>*>* {
+   padding: 0.8rem 1rem !important; 
+}
+
+.form-select {
+
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem !important;
+  }

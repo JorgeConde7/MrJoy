@@ -1,22 +1,13 @@
-<main style="margin-top: 48px">
+<main style="margin-top: 35px">
   <div class="container-fluid pt-4">
-    <a
-      id="btnNuevoCliente"
-      class="btn btn-success float-right my-2"
-      data-bs-toggle="modal"
-      data-bs-target="#modalCliente"
-      ><i class="ion-plus-round"></i> Nuevo</a
-    >
+    <a id="btnNuevoCliente" class="btn btn-success float-right my-2" data-bs-toggle="modal" data-bs-target="#modalCliente">
+      <i class="ion-plus-round"></i> Nuevo</a>
     <div class="card" style="min-height: 720px">
       <div class="card-body">
-        <table
-          datatable
-          [dtOptions]="dtOptions"
-          [dtTrigger]="dtTrigger"
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
           id="tablaCliente"
           class="table table-hover table-dark text-light table-responsive-lg table-bordered"
-          style="width: 100%"
-        >
+          style="width: 100%">
           <thead>
             <tr>
               <th colspan="5" class="text-center">LISTA DE EMPLEADOS</th>
@@ -41,5 +32,69 @@
     <app-admin-footer></app-admin-footer>
     <!-- Button trigger modal -->
   </div>
+<!--Modal para CRUD-->
+  <section class="body-main" >
+    <div class="modal fade" id="modalCliente" data-bs-backdrop="static"  data-bs-keyboard="false"  tabindex="-1"  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                </div>
+                <form id="formCliente">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="idCliente" class="col-form-label">IdCliente:</label>
+                            <input type="text" class="form-control" id="idCliente">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombres" class="col-form-label">Nombres:</label>
+                            <input type="text" class="form-control" id="nombres">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidos" class="col-form-label">Apellidos:</label>
+                            <input type="text" class="form-control" id="apellidos">
+                        </div>
+                        <div class="form-group">
+                            <label for="dni" class="col-form-label">Dni:</label>
+                            <input type="text" class="form-control" id="dni">
+                        </div>
+                        <div class="form-group">
+                            <label for="edad" class="col-form-label">Edad:</label>
+                            <input type="number" class="form-control" id="edad">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="body-main" >
+    <form id="frmEliminarCliente" action="" method="POST">
+
+        <div class="modal fade" id="modalEliminarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 >Eliminar Cliente</h4>
+                    </div>
+                    <div class="modal-body">
+                        ¿Esta seguro de eliminar al cliente?<strong data-name=""></strong>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnAceptarEliminar" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        <button type="button" id="btnCancelarEliminar" class="btn btn-default">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
 </main>
 
