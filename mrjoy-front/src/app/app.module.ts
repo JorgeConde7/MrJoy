@@ -26,6 +26,9 @@ import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inic
 import { DataTablesModule } from 'angular-datatables';
 import { LoginModalComponent } from './components/login-modal/login-modal/login-modal.component';
 import { TipoentradaComponent } from './pages/admin/tipoentrada/tipoentrada.component';
+import { FormularioReservaComponent } from './components/cliente/formulario-reserva/formulario-reserva.component';
+import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva.component';
+
 
 @NgModule({
   declarations: [
@@ -48,13 +51,16 @@ import { TipoentradaComponent } from './pages/admin/tipoentrada/tipoentrada.comp
     AdminEmpleadoComponent,
     AdminInicioComponent,
     LoginModalComponent,
-    TipoentradaComponent
+    TipoentradaComponent,
+    FormularioReservaComponent,
+    AdminReservaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

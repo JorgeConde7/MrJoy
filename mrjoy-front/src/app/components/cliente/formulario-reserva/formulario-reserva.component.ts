@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-cumpleanios',
-  templateUrl: './cumpleanios.component.html',
-  styleUrls: ['./cumpleanios.component.scss']
+  selector: 'app-formulario-reserva',
+  templateUrl: './formulario-reserva.component.html',
+  styleUrls: ['./formulario-reserva.component.scss']
 })
-export class CumpleaniosComponent implements OnInit {
+export class FormularioReservaComponent implements OnInit {
+  @Input()
+  habilitar: boolean = false;
   week: any = [
     "Lunes",
     "Martes",
@@ -24,8 +26,8 @@ export class CumpleaniosComponent implements OnInit {
   constructor() {
     this.monthSelect=new Array;
    }
-  
-  habilitar: boolean = true;
+
+
 
   ngOnInit(): void {
     this.getDaysFromDate(12, 2022)
@@ -46,11 +48,11 @@ export class CumpleaniosComponent implements OnInit {
         name: dayObject.format("dddd"),
         value: a,
         indexWeek: dayObject.isoWeekday()
-        
+
       };
     });
 
-    
+
 
     this.monthSelect = arrayDays;
   }
@@ -73,3 +75,4 @@ export class CumpleaniosComponent implements OnInit {
   }
 
 }
+

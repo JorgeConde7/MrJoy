@@ -1,0 +1,59 @@
+<div class="container "*ngIf="habilitar">
+    <h2 class="text-center">Registro de Reserva</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">Fecha de la Reserva:</label><br>
+        <input class="form-control" type="Date" placeholder="Ingrese la Fecha de la Reserva"><br>
+        <label for="">Hora de la Reserva:</label><br>
+        <input class="form-control" type="time" placeholder="Ingrese la Hora de la Reserva"><br>
+        <label for="">Nombre:</label><br>
+        <input class="form-control" type="text" placeholder="Ingrese su Nombre">
+        <label for="">Apellido:</label><br>
+        <input class="form-control" type="text" placeholder="Ingrese su Apellido"><br>
+        <label for="">Telefono:</label><br>
+        <input class="form-control" type="number" placeholder="Ingrese su telefono"><br>
+        <label for="chocolates">Tipo de Paquete</label>
+        <select class="form-control">
+          <option value="">SELECCIONA PAQUETE</option>
+          <option value="PASAPORTE">PAQUETE NITO</option>
+          <option value="DNI">PAQUETE MR JOY</option>
+          <option value="CARNET">PAQUETE SUPER MR JOY</option>
+        </select><br>
+        <label for="">Cantidad de Persona:</label><br>
+        <input class="form-control" type="number" placeholder="Ingrese su cantidad de persona"><br>
+        <label for="">Acompañante:</label><br>
+        <input class="form-control" type="number" placeholder="Ingrese su cantidad de acompañante"><br>
+        <label for="">Telefono::</label><br>
+        <input class="form-control" type="number" placeholder="Ingrese su telefono"><br>
+        <label for="">Total a Pagar ::</label><br>
+        <input type="text" readonly placeholder="" class="form-control"><br>
+        <button class="boton" class="btn-reserva" type="button">Registrar</button> <br>
+      </div>
+      <div class="col-md-6">
+        <div class="wrapper-calendar">
+          <div class="header-calendar">
+            <div>
+              <button (click)="changeMonth(-1)" class="btn-prev">Antes</button>
+            </div>
+            <h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
+            <div>
+              <button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
+            </div>
+          </div>
+          <ol>
+            <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
+        
+                <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+                 *ngFor="let day of monthSelect;let first = first">
+              <span>{{day?.value}}</span>
+            </li>
+          </ol>
+        </div>
+        
+        <hr>
+        <div>
+          Fecha: {{dateValue | date}}
+        </div>
+      </div>
+    </div>
+  </div>
