@@ -24,6 +24,8 @@ import { CompraEntradasComponent } from './pages/cliente/compra-entradas/compra-
 import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente.component';
 import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inicio.component';
 import { DataTablesModule } from 'angular-datatables';
+import { LoginModalComponent } from './components/login-modal/login-modal/login-modal.component';
+import { TipoentradaComponent } from './pages/admin/tipoentrada/tipoentrada.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { DataTablesModule } from 'angular-datatables';
     AdminFooterComponent,
     AdminHeaderComponent,
     AdminEmpleadoComponent,
-    AdminInicioComponent
+    AdminInicioComponent,
+    LoginModalComponent,
+    TipoentradaComponent
   ],
   imports: [
     BrowserModule,
