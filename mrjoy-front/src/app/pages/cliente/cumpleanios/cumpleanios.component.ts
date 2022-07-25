@@ -33,10 +33,9 @@ export class CumpleaniosComponent implements OnInit {
   getDaysFromDate(month:any, year:any) {
 
 
-    const startDate = moment.utc(`${year}/${month}/01`)
+    const startDate = moment(`${year}/${month}/01`)
     const endDate = startDate.clone().endOf('month')
-    this.dateSelect = startDate;
-    console.log(this.dateSelect);
+    this.dateSelect = startDate ;
     const diffDays = endDate.diff(startDate, 'days', true)
     const numberDays = Math.round(diffDays);
 
