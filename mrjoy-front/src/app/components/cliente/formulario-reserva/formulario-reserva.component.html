@@ -1,6 +1,6 @@
 <div class="container "*ngIf="habilitar">
     <h2 class="text-center">Registro de Reserva</h2>
-    <div class="row">
+    <div class="row mt-4">
       <div class="col-md-6">
         <label for="">Fecha de la Reserva:</label><br>
         <input class="form-control" type="Date" placeholder="Ingrese la Fecha de la Reserva"><br>
@@ -28,12 +28,13 @@
         <button class="boton" class="btn-reserva" type="button">Registrar</button> <br>
       </div>
       <div class="col-md-6">
+        <h5 class="text-center">Consulta Reservas disponibles</h5>
         <div class="wrapper-calendar">
           <div class="header-calendar">
             <div>
               <button (click)="changeMonth(-1)" class="btn-prev">Antes</button>
             </div>
-            <h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
+            <h1>{{dateSelect | date:'MMMM, yyyy, dd'}}</h1>
             <div>
               <button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
             </div>
@@ -51,6 +52,12 @@
         <hr>
         <div>
           Fecha: {{dateValue | date}}
+        </div>
+        <br>
+        <div class="reservas">
+          <p>10:00 am </p>
+          <p>12:00 am </p>
+          <p>14:00 am </p>
         </div>
       </div>
     </div>

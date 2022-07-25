@@ -9,7 +9,7 @@ import { Paquete } from './Paquete';
 })
 export class PaqueteServiceService {
 
-  private urlAPI : string = "http://localhost:8080/apireserva/paquetes";
+  private urlAPI : string = "http://localhost:8090/apireserva/paquetes";
 
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'})
 
