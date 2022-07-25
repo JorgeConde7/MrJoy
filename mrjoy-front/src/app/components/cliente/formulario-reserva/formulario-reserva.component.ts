@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { PaqueteServiceService } from 'src/app/components/cliente/formulario-reserva/paquete-service.service';
+import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 
 @Component({
   selector: 'app-formulario-reserva',
@@ -22,15 +24,18 @@ export class FormularioReservaComponent implements OnInit {
   dateSelect: any;
   dateValue: any;
 
+  paquetes:Paquete[]=[];
 
-  constructor() {
+  constructor(private paqueteService:PaqueteServiceService) {
     this.monthSelect=new Array;
+    
    }
 
 
 
   ngOnInit(): void {
     this.getDaysFromDate(12, 2022)
+    this.paqueteService.getPaquete().subscribe( paquetes=>{ this.paquetes=paquetes; } ); 
   }
   getDaysFromDate(month:any, year:any) {
 

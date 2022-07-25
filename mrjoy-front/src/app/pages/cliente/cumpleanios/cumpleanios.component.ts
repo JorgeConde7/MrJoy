@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
+
 @Component({
   selector: 'app-cumpleanios',
   templateUrl: './cumpleanios.component.html',
@@ -20,15 +21,18 @@ export class CumpleaniosComponent implements OnInit {
   dateSelect: any;
   dateValue: any;
 
+  
 
   constructor() {
     this.monthSelect=new Array;
+    
    }
   
   habilitar: boolean = true;
 
   ngOnInit(): void {
-    this.getDaysFromDate(12, 2022)
+    this.getDaysFromDate(12, 2022);
+    
   }
   getDaysFromDate(month:any, year:any) {
 
