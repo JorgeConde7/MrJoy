@@ -63,11 +63,11 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminInicioComponent,
-    children:[
+    children: [
       {
         path: 'clientes',
         component: AdminClienteComponent
-      },  {
+      }, {
         path: 'reservas',
         component: AdminReservaComponent
       }

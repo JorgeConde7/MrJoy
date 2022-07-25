@@ -25,6 +25,7 @@ import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente
 import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inicio.component';
 import { DataTablesModule } from 'angular-datatables';
 import { FormularioReservaComponent } from './components/cliente/formulario-reserva/formulario-reserva.component';
+import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva.component';
 
 
 @NgModule({
@@ -47,14 +48,15 @@ import { FormularioReservaComponent } from './components/cliente/formulario-rese
     AdminHeaderComponent,
     AdminEmpleadoComponent,
     AdminInicioComponent,
-    FormularioReservaComponent
+    FormularioReservaComponent,
+    AdminReservaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     DataTablesModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
