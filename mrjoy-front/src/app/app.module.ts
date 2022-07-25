@@ -28,6 +28,8 @@ import { LoginModalComponent } from './components/login-modal/login-modal/login-
 import { TipoentradaComponent } from './pages/admin/tipoentrada/tipoentrada.component';
 import { FormularioReservaComponent } from './components/cliente/formulario-reserva/formulario-reserva.component';
 import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -60,6 +62,7 @@ import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva
     AppRoutingModule,
     HttpClientModule,
     DataTablesModule,
+    FormsModule
 
   ],
   providers: [],

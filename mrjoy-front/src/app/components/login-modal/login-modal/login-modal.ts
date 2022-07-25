@@ -1,5 +1,5 @@
 export class Login{
-    id:number|undefined;
+    id?:number;
     usuario:string|undefined;
-    contraseña:string|undefined;
+    contrasenia:string|undefined;
 }

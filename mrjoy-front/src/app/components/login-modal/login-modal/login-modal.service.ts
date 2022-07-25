@@ -7,14 +7,15 @@ import { Login} from './login-modal'
   providedIn: 'root'
 })
 export class LoginModalService {
-  private urlEndPoint:string="http://localhost:8090/apilogin/login"
+  private urlEndPoint:string="http://localhost:8090/apilogin"
 
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'});
 
   constructor(private http:HttpClient) {}
 
-    getLogin(user:string):Observable<Login>{
-      return this.http.get<Login>(this.urlEndPoint+"/"+user);
+    getLogin(login:Login):Observable<Login>{
+      
+      return this.http.get<Login>(this.urlEndPoint+"/"+login.usuario+"/"+login.contrasenia);
     }
 
    
