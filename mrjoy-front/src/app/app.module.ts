@@ -24,6 +24,7 @@ import { CompraEntradasComponent } from './pages/cliente/compra-entradas/compra-
 import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente.component';
 import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inicio.component';
 import { DataTablesModule } from 'angular-datatables';
+import { FormularioReservaComponent } from './components/cliente/formulario-reserva/formulario-reserva.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { DataTablesModule } from 'angular-datatables';
     AdminFooterComponent,
     AdminHeaderComponent,
     AdminEmpleadoComponent,
-    AdminInicioComponent
+    AdminInicioComponent,
+    FormularioReservaComponent
   ],
   imports: [
     BrowserModule,

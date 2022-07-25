@@ -4,6 +4,7 @@ import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inic
 import { FooterComponent } from './components/cliente/footer/footer.component';
 import { InitPageComponent } from './components/cliente/init-page/init-page.component';
 import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente.component';
+import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva.component';
 import { BioseguridadComponent } from './pages/cliente/bioseguridad/bioseguridad.component';
 import { CompraEntradasComponent } from './pages/cliente/compra-entradas/compra-entradas.component';
 import { ContactoComponent } from './pages/cliente/contacto/contacto.component';
@@ -64,9 +65,12 @@ const routes: Routes = [
     component: AdminInicioComponent,
     children:[
       {
-        path: '',
+        path: 'clientes',
         component: AdminClienteComponent
-      },
+      },  {
+        path: 'reservas',
+        component: AdminReservaComponent
+      }
     ]
   },
   {
