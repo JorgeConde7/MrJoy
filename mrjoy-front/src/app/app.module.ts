@@ -25,6 +25,7 @@ import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente
 import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inicio.component';
 import { DataTablesModule } from 'angular-datatables';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { DataTablesModule } from 'angular-datatables';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

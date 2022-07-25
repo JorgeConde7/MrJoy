@@ -26,6 +26,7 @@
     "datatables.net-bs5": "^1.11.3",
     "datatables.net-dt": "^1.12.1",
     "jquery": "^3.6.0",
+    "moment": "^2.29.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
