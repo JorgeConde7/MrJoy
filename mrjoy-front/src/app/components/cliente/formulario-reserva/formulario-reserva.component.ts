@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { PaqueteServiceService } from 'src/app/components/cliente/formulario-reserva/paquete-service.service';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
+import { ReservaServiceService } from './reserva-service.service';
+import { reserva } from './reserva';
+
 
 @Component({
   selector: 'app-formulario-reserva',
@@ -25,20 +28,29 @@ export class FormularioReservaComponent implements OnInit {
   dateValue: any;
 
   paquetes:Paquete[]=[];
+  reservas:reserva[]=[];
 
-  constructor(private paqueteService:PaqueteServiceService) {
+  constructor(private paqueteService:PaqueteServiceService, private reseraService:ReservaServiceService) {
     this.monthSelect=new Array;
+    
     
    }
 
 
 
   ngOnInit(): void {
-    this.getDaysFromDate(12, 2022)
+    var fecha = new Date();
+    var hoy = fecha.getDate();
+    var mesActual = fecha.getMonth()+1;
+    var anioActual = fecha.getFullYear();
+    console.log(hoy);
+    console.log(mesActual);
+    console.log(anioActual);
+    this.getDaysFromDate(mesActual, anioActual)
+    this.clickDayInicial(hoy)
     this.paqueteService.getPaquete().subscribe( paquetes=>{ this.paquetes=paquetes; } ); 
   }
   getDaysFromDate(month:any, year:any) {
-
 
     const startDate = moment(`${year}/${month}/01`)
     const endDate = startDate.clone().endOf('month')
@@ -57,8 +69,9 @@ export class FormularioReservaComponent implements OnInit {
       };
     });
 
-
-
+    /*var fecha = new Date();
+    var hoy = fecha.getDate();
+    this.clickDay(hoy);*/
     this.monthSelect = arrayDays;
   }
 
@@ -72,9 +85,20 @@ export class FormularioReservaComponent implements OnInit {
     }
   }
 
-  clickDay(day:any) {
+  clickDay(day:any) 
+  {
     const monthYear = this.dateSelect.format('YYYY-MM')
     const parse = `${monthYear}-${day.value}`
+    this.reseraService.getReserva(parse).subscribe( reservas => { this.reservas = reservas});
+    const objectDate = moment(parse)
+    this.dateValue = objectDate;
+  }
+
+  clickDayInicial(day:any)
+  {
+    const monthYear = this.dateSelect.format('YYYY-MM')
+    const parse = `${monthYear}-${day}`
+    this.reseraService.getReserva(parse).subscribe( reservas => { this.reservas = reservas});
     const objectDate = moment(parse)
     this.dateValue = objectDate;
   }

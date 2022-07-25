@@ -13,7 +13,7 @@
         <label for="">Telefono:</label><br>
         <input class="form-control" type="number" placeholder="Ingrese su telefono"><br>
         <label for="chocolates">Tipo de Paquete</label>
-        <select class="form-control">
+        <select class="form-control" ngModel="paqueteSeleccionado">
           <option value="">SELECCIONA PAQUETE</option>
           <option *ngFor="let items of paquetes" [value]="items.idPaquete">{{ items.descripcion }}</option>
         </select><br>
@@ -55,9 +55,7 @@
         </div>
         <br>
         <div class="reservas">
-          <p>10:00 am </p>
-          <p>12:00 am </p>
-          <p>14:00 am </p>
+          <p *ngFor="let re of reservas">{{re.hora}} </p>
         </div>
       </div>
     </div>
