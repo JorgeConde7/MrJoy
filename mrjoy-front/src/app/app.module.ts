@@ -24,7 +24,12 @@ import { CompraEntradasComponent } from './pages/cliente/compra-entradas/compra-
 import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente.component';
 import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inicio.component';
 import { DataTablesModule } from 'angular-datatables';
+import { LoginModalComponent } from './components/login-modal/login-modal/login-modal.component';
+import { TipoentradaComponent } from './pages/admin/tipoentrada/tipoentrada.component';
 import { FormularioReservaComponent } from './components/cliente/formulario-reserva/formulario-reserva.component';
+import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -47,14 +52,18 @@ import { FormularioReservaComponent } from './components/cliente/formulario-rese
     AdminHeaderComponent,
     AdminEmpleadoComponent,
     AdminInicioComponent,
-    FormularioReservaComponent
+    LoginModalComponent,
+    TipoentradaComponent,
+    FormularioReservaComponent,
+    AdminReservaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     DataTablesModule,
-    
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

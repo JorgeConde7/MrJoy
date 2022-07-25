@@ -7,7 +7,8 @@ import * as moment from 'moment';
   styleUrls: ['./formulario-reserva.component.scss']
 })
 export class FormularioReservaComponent implements OnInit {
-
+  @Input()
+  habilitar: boolean = false;
   week: any = [
     "Lunes",
     "Martes",
@@ -25,9 +26,8 @@ export class FormularioReservaComponent implements OnInit {
   constructor() {
     this.monthSelect=new Array;
    }
-  
-  @Input()
-  habilitar: boolean = false;
+
+
 
   ngOnInit(): void {
     this.getDaysFromDate(12, 2022)
@@ -48,11 +48,11 @@ export class FormularioReservaComponent implements OnInit {
         name: dayObject.format("dddd"),
         value: a,
         indexWeek: dayObject.isoWeekday()
-        
+
       };
     });
 
-    
+
 
     this.monthSelect = arrayDays;
   }
