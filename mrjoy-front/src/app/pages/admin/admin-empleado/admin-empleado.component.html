@@ -1,111 +1,113 @@
 <main style="margin-top: 35px">
-    <div class="container-fluid pt-4">
-      <a id="btnNuevoCliente" class="btn btn-success float-right my-2" data-bs-toggle="modal" data-bs-target="#modalCliente">
-        <i class="ion-plus-round"></i> Nuevo</a>
-      <div class="card" style="min-height: 720px">
-        <div class="card-body">
-          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-            id="tablaCliente"
-            class="table table-hover table-dark text-light table-responsive-lg table-bordered"
-            style="width: 100%">
-            <thead>
-              <tr>
-                <th colspan="6" class="text-center">LISTA DE EMPLEADOS</th>
-              </tr>
-              <tr>
-                <th class="text-center">Codigo</th>
-                <th class="text-center">Nombre</th>
-                <th class="text-center">Apellido</th>
-                <th class="text-center">Telefono</th>
-                <th class="text-center">Correo</th>
-                <th class="text-center">Fecha de Nacimiento</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let empleado of data">
-                <td>{{ empleado.id_empleados }}</td>
-                <td>{{ empleado.nombres }}</td>
-                <td>{{ empleado.apellidos }}</td>
-                <td>{{ empleado.telefono }}</td>
-                <td>{{ empleado.correo }}</td>
-                <td>{{ empleado.fechaNacimiento }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="container-fluid pt-4">
+    <a id="btnNuevoCliente" class="btn btn-success float-right my-2" data-bs-toggle="modal"
+      data-bs-target="#modalCliente">
+      <i class="ion-plus-round"></i> Nuevo</a>
+    <div class="card" style="min-height: 720px">
+      <div class="card-body">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaCliente"
+          class="table table-hover table-dark text-light table-responsive-lg table-bordered" style="width: 100%">
+          <thead>
+            <tr>
+              <th colspan="7" class="text-center">LISTA DE EMPLEADOS</th>
+            </tr>
+            <tr>
+              <th class="text-center">Codigo</th>
+              <th class="text-center">Nombre</th>
+              <th class="text-center">Apellido</th>
+              <th class="text-center">Telefono</th>
+              <th class="text-center">Correo</th>
+              <th class="text-center">Fecha de Nacimiento</th>
+              <th class="text-center">Turno</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let empleado of data">
+              <td>{{ empleado.id_empleados }}</td>
+              <td>{{ empleado.nombres }}</td>
+              <td>{{ empleado.apellidos }}</td>
+              <td>{{ empleado.telefono }}</td>
+              <td>{{ empleado.correo }}</td>
+              <td>{{ empleado.fechaNacimiento }}</td>
+              <td>{{ empleado.turno }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-  
-      <app-admin-footer></app-admin-footer>
-       <!-- Button trigger modal -->
+    </div>
+
+    <app-admin-footer></app-admin-footer>
+    <!-- Button trigger modal -->
   </div>
   <!--Modal para CRUD-->
-    <section class="body-main" >
-      <div class="modal fade" id="modalCliente" data-bs-backdrop="static"  data-bs-keyboard="false"  tabindex="-1"  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog" >
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"></h5>
-                  </div>
-                  <form id="formCliente">
-                      <div class="modal-body">
-                          <div class="form-group">
-                              <label for="idCliente" class="col-form-label">Codigo:</label>
-                              <input type="text" class="form-control" id="id_empleados">
-                          </div>
-                          <div class="form-group">
-                              <label for="nombres" class="col-form-label">Nombres:</label>
-                              <input type="text" class="form-control" id="nombres">
-                          </div>
-                          <div class="form-group">
-                              <label for="apellidos" class="col-form-label">Apellidos:</label>
-                              <input type="text" class="form-control" id="apellidos">
-                          </div>
-                          <div class="form-group">
-                              <label for="telefono" class="col-form-label">Telefono:</label>
-                              <input type="number" class="form-control" id="telefono">
-                          </div>
-                          <div class="form-group">
-                              <label for="correo" class="col-form-label">Correo:</label>
-                              <input type="email" class="form-control" id="email">
-                          </div>
-                          <div class="form-group">
-                            <label for="fechaNacimiento" class="col-form-label">Fecha de  Nacimiento:</label>
-                            <input type="date" class="form-control" id="fechaNacimiento">
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-                          <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
-                      </div>
-                  </form>
-              </div>
+  <section class="body-main">
+    <div class="modal fade" id="modalCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
           </div>
+          <form (ngSubmit)="create()">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="nombres" class="col-form-label">Nombres:</label>
+                <input type="text" name="nom"required [(ngModel)]="empleado.nombres" class="form-control" id="nombres">
+              </div>
+              <div class="form-group">
+                <label for="apellidos" class="col-form-label">Apellidos:</label>
+                <input type="text" name="ape"required [(ngModel)]="empleado.apellidos"class="form-control" id="apellidos">
+              </div>
+              <div class="form-group">
+                <label for="telefono" class="col-form-label">Telefono:</label>
+                <input type="number" name="tele"required [(ngModel)]="empleado.telefono" class="form-control" id="telefono">
+              </div>
+              <div class="form-group">
+                <label for="correo" class="col-form-label">Correo:</label>
+                <input type="email" name="cor" required [(ngModel)]="empleado.correo"class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="fechaNacimiento" class="col-form-label">Fecha de Nacimiento:</label>
+                <input type="date" name="fecna" required [(ngModel)]="empleado.fechaNacimiento"class="form-control" id="fechaNacimiento">
+              </div>
+              <div class="form-group">
+                <label  for="validationDefault01"class="col-form-label">Turno:</label>
+                <input id="validationDefault01"type="text" name="turno"class="form-control" required [(ngModel)]="empleado.turno" >
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" id="btnGuardar" class="btn btn-dark"   >  Guardar</button>
+            </div>
+          </form>
+        </div>
       </div>
+    </div>
   </section>
-  
-  <section class="body-main" >
-      <form id="frmEliminarCliente" action="" method="POST">
-  
-          <div class="modal fade" id="modalEliminarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h4 >Eliminar Empleado</h4>
-                      </div>
-                      <div class="modal-body">
-                          ¿Esta seguro de eliminar al empleado?<strong data-name=""></strong>
-  
-  
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" id="btnAceptarEliminar" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                          <button type="button" id="btnCancelarEliminar" class="btn btn-default">Cancelar</button>
-                      </div>
-                  </div>
-              </div>
+
+  <section class="body-main">
+    <form id="frmEliminarCliente" action="" method="POST">
+
+      <div class="modal fade" id="modalEliminarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Eliminar Empleado</h4>
+            </div>
+            <div class="modal-body">
+              ¿Esta seguro de eliminar al empleado?<strong data-name=""></strong>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnAceptarEliminar" class="btn btn-primary"
+                data-dismiss="modal">Aceptar</button>
+              <button type="button" id="btnCancelarEliminar" class="btn btn-default">Cancelar</button>
+            </div>
           </div>
-      </form>
+        </div>
+      </div>
+    </form>
   </section>
-  </main>
-  
-  
+</main>

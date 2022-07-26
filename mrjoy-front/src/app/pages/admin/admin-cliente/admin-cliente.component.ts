@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { GetDataService } from 'src/app/core/apis/get-data.service';
 import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
+import { ClienteService } from './admin-cliente.service';
+import { Cliente } from './admin-cliente';
 
 @Component({
   selector: 'app-admin-cliente',
@@ -18,7 +20,7 @@ export class AdminClienteComponent implements OnDestroy, OnInit {
   dtTrigger = new Subject<ADTSettings>()
   data: any
 
-  constructor(private httpClient: HttpClient, private getData: GetDataService) { }
+  constructor(private clienteService:ClienteService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -27,10 +29,10 @@ export class AdminClienteComponent implements OnDestroy, OnInit {
       pageLength:10
     };
 
-    this.getData.obtenerPersonajeXId("")
+    this.clienteService.getCliente()
       .subscribe(result => {
-        console.log(result.results);
-        this.data = result.results;
+        console.log(result);
+        this.data = result;
         this.dtTrigger.next(this.dtOptions)
       })
   }
