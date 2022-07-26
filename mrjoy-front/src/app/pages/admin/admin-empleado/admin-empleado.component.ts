@@ -63,6 +63,10 @@ export class AdminEmpleadoComponent implements OnInit {
 
 
   create() {
+    this.empleado.login.usuario = this.empleado.correo;
+    this.empleado.login.contrasenia = this.empleado.nombres[0] + this.empleado.apellidos;
+    this.empleado.login.tipouser = "empleado"
+
     this.empleadoService.create(this.empleado).subscribe({
       next: (empleado) => this.createEmpleadoNext.bind(empleado),
       error: (err) => console.log("Error al crear empleado: ", err)
