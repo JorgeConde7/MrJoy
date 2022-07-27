@@ -7,8 +7,8 @@ import { Subject } from 'rxjs';
 import { GetDataService } from 'src/app/core/apis/get-data.service';
 import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
-import { Empleado } from './admin-empleado';
-import { EmpleadoService} from './admin-empleado.Service';
+import { Empleado, IEmpleado } from './admin-empleado';
+import { EmpleadoService } from './admin-empleado.Service';
 
 @Component({
   selector: 'app-admin-empleado',
@@ -20,13 +20,15 @@ export class AdminEmpleadoComponent implements OnInit {
   dtTrigger = new Subject<ADTSettings>()
   data: any
 
-  constructor(private empleadoService:EmpleadoService,private router:Router ) { }
+
+
+  constructor(private empleadoService: EmpleadoService, private router: Router) { }
 
   ngOnInit(): void {
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
       // pagingType: "full_numbers"
-      pageLength:10
+      pageLength: 10
 
 
     };
@@ -44,23 +46,37 @@ export class AdminEmpleadoComponent implements OnInit {
 
 
   }
-  empleado: Empleado={
-     
-    "nombres":"",
-    "apellidos":"",
-    "telefono":0,
-    "correo":"",
-    "fechaNacimiento":"",
-    "turno":""
-  }    
-  create(){
-    this.empleadoService.create(this.empleado).subscribe(emp=>{
-      //response=>this.router.nagivate(['/admin/empleados']
-         
-    }) 
+  empleado: IEmpleado =
+    {
+      nombres: "",
+      apellidos: "",
+      telefono: "",
+      correo: "",
+      turno: "",
+      fechaNacimiento: "",
+      login: {
+        usuario: "",
+        contrasenia: "",
+        tipouser: ""
+      },
+    }
 
-    
+
+  create() {
+    this.empleado.login.usuario = this.empleado.correo;
+    this.empleado.login.contrasenia = this.empleado.nombres[0] + this.empleado.apellidos;
+    this.empleado.login.tipouser = "empleado"
+
+    this.empleadoService.create(this.empleado).subscribe({
+      next: (empleado) => this.createEmpleadoNext.bind(empleado),
+      error: (err) => console.log("Error al crear empleado: ", err)
+    })
   }
+
+  protected createEmpleadoNext(empleado: IEmpleado) {
+    console.log("Empleado creado: ", empleado);
+  }
+
 
 
 
