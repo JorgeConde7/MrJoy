@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { RoutesRecognized } from '@angular/router';
 import { Login} from './login-modal';
 import { LoginModalService } from './login-modal.service';
 
@@ -13,7 +14,8 @@ export class LoginModalComponent implements OnInit {
 
   login:Login={
     "contrasenia":"",
-    "usuario":""
+    "usuario":"",
+    "tipouser":""
   }
 
   validacion:boolean=false;
@@ -23,11 +25,19 @@ export class LoginModalComponent implements OnInit {
   
   accesoLogin(){
     this.loginservice.getLogin(this.login).subscribe(usuario=>{
-      if (usuario==null){this.validacion=true
+      if (usuario==null){
+      this.validacion=true
       this.login.contrasenia="";
       this.login.usuario="";
       }
-      else{this.validacion=false}
+      else{
+        this.validacion=false
+        if (usuario.tipouser=="Empleado"){
+          console.log(typeof(usuario.tipouser))
+          window.location.href="admin/empleados"
+          
+        }
+      }
 
       console.log(usuario);
 
