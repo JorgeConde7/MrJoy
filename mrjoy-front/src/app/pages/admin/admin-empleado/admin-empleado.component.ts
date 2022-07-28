@@ -1,11 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
-
 import { Subject } from 'rxjs';
-import { GetDataService } from 'src/app/core/apis/get-data.service';
-import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
 import { Empleado, IEmpleado } from './admin-empleado';
 import { EmpleadoService } from './admin-empleado.Service';
@@ -15,7 +11,7 @@ import { EmpleadoService } from './admin-empleado.Service';
   templateUrl: './admin-empleado.component.html',
   styleUrls: ['./admin-empleado.component.scss'],
 })
-export class AdminEmpleadoComponent implements OnInit {
+export class AdminEmpleadoComponent implements OnDestroy,OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject<ADTSettings>();
   data: any;
@@ -23,51 +19,36 @@ export class AdminEmpleadoComponent implements OnInit {
   constructor(
     private empleadoService: EmpleadoService,
     private router: Router
-  ) { }
+  ) {}
 
-  obtenerEmpleado(){
-    this.empleadoService.getEmpleado()
-    .subscribe(result => {
-      console.log(result);
-      this.data = result;
-      this.dtTrigger.next(this.dtOptions)
-    })
-  }
   ngOnInit(): void {
-    this.dtOptions = {
-      language: { url: environment.DATATABLE_LANGUAJE },
-      // pagingType: "full_numbers"
-      pageLength: 10,
-    };
-    this.dtTrigger.next(this.dtOptions);
-    this.getEmpleados();
+    this.obtenerEmpleadoInit();
   }
-
-  getEmpleados() {
-    this.empleadoService.getEmpleado().subscribe((result) => {
-      setTimeout(() => {
-        console.log(result);
-        this.data = result;
-      }, 2000);
-    });
-  }
-
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
 
-  empleado: IEmpleado = {
-    nombres: '',
-    apellidos: '',
-    telefono: '',
-    correo: '',
-    turno: '',
-    fechaNacimiento: '',
-    usuario: '',
-    contrasenia: '',
-    tipouser: '',
-  };
+  obtenerEmpleadoInit() {
+    this.dtOptions = {
+      language: { url: environment.DATATABLE_LANGUAJE },
+      //pagingType: "full_numbers",
+      pageLength: 10,
+    };
+    this.empleadoService.getEmpleado().subscribe((result) => {
+        this.data = result;
+        this.dtTrigger.next(this.dtOptions);
+    });
+  }
+  
 
+  getEmpleados() {
+    this.empleadoService.getEmpleado().subscribe((result) => {
+    this.data = result;
+    });
+  }
+
+  
+/*Inicio Crear Empleado */
   create() {
     this.empleado.usuario = this.empleado.correo;
     this.empleado.contrasenia =
@@ -76,12 +57,56 @@ export class AdminEmpleadoComponent implements OnInit {
 
     this.empleadoService.create(this.empleado).subscribe({
       next: this.createEmpleadoNext.bind(this),
-      error: (err) => console.log('Error al crear empleado: ', err)
+      error: (err) => console.log('Error al crear empleado: ', err),
     });
   }
 
   protected createEmpleadoNext(empleado: IEmpleado) {
     console.log('Empleado creado: ', empleado);
     this.getEmpleados();
+    this.limpiarModal();
+  }
+/*Fin Crear Empleado */
+
+/*Inicio Eliminar Empleado */
+  eliminarEmpleado(id: number) {
+    console.log(typeof id);
+    this.empleadoService.deleteEmpleado(id).subscribe(()=>{
+      this.getEmpleados();
+      
+    }
+      
+    )
+  }
+
+  editarEmpleado(empleado:IEmpleado){
+    console.log(empleado);
+    this.empleado=empleado
+    this.empleadoService.actualizarEmpleado(empleado).subscribe((result)=>{
+      this.getEmpleados();
+      this.limpiarModal();
+      console.log(result);
+    })
+  }
+
+  /*no tocar mrd:v */ 
+  empleado: IEmpleado = this.templateEmpleado() 
+
+  templateEmpleado() {
+    return {
+      nombres: '',
+      apellidos: '',
+      telefono: '',
+      correo: '',
+      turno: '',
+      fechaNacimiento: '',
+      usuario: '',
+      contrasenia: '',
+      tipouser: '',
+    };
+  }
+
+  limpiarModal() {
+    this.empleado = this.templateEmpleado() 
   }
 }

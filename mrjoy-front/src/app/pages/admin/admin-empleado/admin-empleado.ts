@@ -11,7 +11,7 @@ export class Empleado {
 }
 
 export interface IEmpleado {
-    id_empleado?: number;
+    id_empleado?: number|'';
     nombres: string;
     apellidos: string;
     telefono: string;

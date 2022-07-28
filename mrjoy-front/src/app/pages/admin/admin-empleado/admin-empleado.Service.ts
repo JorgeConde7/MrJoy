@@ -3,26 +3,32 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Empleado, IEmpleado } from './admin-empleado';
 import { environment } from 'src/environments/environment';
-const URL = `${environment.URL_BASE}/api/guardarEmpleado`;
-const obtEmpleado = `${environment.URL_BASE}/api/empleados`;
+const URL = `${environment.URL_BASE}/api`;
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmpleadoService {
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  constructor(private http: HttpClient) {}
 
-  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
-  constructor(private http: HttpClient) { }
-
-
-  //Observable: Convertir el flujo de InformaciÃ³n a partir de Los objetos: CLIENTES
+  
   getEmpleado(): Observable<Empleado[]> {
-    return this.http.get<Empleado[]>(obtEmpleado);
+    return this.http.get<Empleado[]>(URL + '/empleados');
   }
 
   create(empleado: IEmpleado): Observable<IEmpleado> {
-    const URL = `${environment.URL_BASE}/api/guardarEmpleado`;
+    return this.http.post<IEmpleado>(URL + '/guardarEmpleado', empleado, {
 
-    return this.http.post<IEmpleado>(URL, empleado, { headers: this.httpHeaders })
+    });
   }
 
+  deleteEmpleado(id: number) {
+    return this.http.delete<any>(URL + '/empleados/' + id);
+  }
+
+  actualizarEmpleado(empleado: IEmpleado) {
+    const id = empleado.id_empleado || '';
+    return this.http.put<any>(URL + '/empleados/' + id, empleado);
+  }
 }
