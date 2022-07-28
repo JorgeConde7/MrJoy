@@ -18,11 +18,15 @@ export interface IEmpleado {
     correo: string;
     fechaNacimiento: string;
     turno: string;
-    login: ILogin;
+    login?: ILogin;
+    //
+    usuario: string,
+    contrasenia: string,
+    tipouser: string
 }
 
 export interface ILogin {
-    id?: number,
+    idLogin?: number | undefined,
     usuario: string,
     contrasenia: string,
     tipouser: string

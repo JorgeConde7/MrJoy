@@ -13,71 +13,67 @@ import { EmpleadoService } from './admin-empleado.Service';
 @Component({
   selector: 'app-admin-empleado',
   templateUrl: './admin-empleado.component.html',
-  styleUrls: ['./admin-empleado.component.scss']
+  styleUrls: ['./admin-empleado.component.scss'],
 })
 export class AdminEmpleadoComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  dtTrigger = new Subject<ADTSettings>()
-  data: any
+  dtTrigger = new Subject<ADTSettings>();
+  data: any;
 
-
-
-  constructor(private empleadoService: EmpleadoService, private router: Router) { }
+  constructor(
+    private empleadoService: EmpleadoService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
       // pagingType: "full_numbers"
-      pageLength: 10
-
-
+      pageLength: 10,
     };
+    this.dtTrigger.next(this.dtOptions);
+    this.getEmpleados();
+  }
 
-    this.empleadoService.getEmpleado()
-      .subscribe(result => {
+  getEmpleados() {
+    this.empleadoService.getEmpleado().subscribe((result) => {
+      setTimeout(() => {
         console.log(result);
         this.data = result;
-        this.dtTrigger.next(this.dtOptions)
-      })
+      }, 2000);
+    });
   }
+
   ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe()
-
-
-
+    this.dtTrigger.unsubscribe();
   }
-  empleado: IEmpleado =
-    {
-      nombres: "",
-      apellidos: "",
-      telefono: "",
-      correo: "",
-      turno: "",
-      fechaNacimiento: "",
-      login: {
-        usuario: "",
-        contrasenia: "",
-        tipouser: ""
-      },
-    }
 
+  empleado: IEmpleado = {
+    nombres: '',
+    apellidos: '',
+    telefono: '',
+    correo: '',
+    turno: '',
+    fechaNacimiento: '',
+    usuario: '',
+    contrasenia: '',
+    tipouser: '',
+  };
 
   create() {
-    this.empleado.login.usuario = this.empleado.correo;
-    this.empleado.login.contrasenia = this.empleado.nombres[0] + this.empleado.apellidos;
-    this.empleado.login.tipouser = "empleado"
+    this.empleado.usuario = this.empleado.correo;
+    this.empleado.contrasenia =
+      this.empleado.nombres[0] + this.empleado.apellidos;
+    this.empleado.tipouser = 'empleado';
 
     this.empleadoService.create(this.empleado).subscribe({
-      next: (empleado) => this.createEmpleadoNext.bind(empleado),
-      error: (err) => console.log("Error al crear empleado: ", err)
-    })
+      next: this.createEmpleadoNext.bind(this),
+      error: (err) => console.log('Error al crear empleado: ', err)
+    });
   }
 
   protected createEmpleadoNext(empleado: IEmpleado) {
-    console.log("Empleado creado: ", empleado);
+    console.log('Empleado creado: ', empleado);
+    this.getEmpleados();
   }
-
-
-
-
 }
