@@ -107,6 +107,8 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
   }
 
   limpiarModal() {
+    console.log("Limpiando")
     this.empleado = this.templateEmpleado() 
   }
+  
 }
