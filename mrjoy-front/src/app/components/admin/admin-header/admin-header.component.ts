@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHeaderComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+    
+  }
+
+  isUrlEqualTo(currentURL: string) {
+    const url = this.router.url
+
+    return url === currentURL;
   }
 
 }

@@ -1,7 +1,8 @@
+
 <div class="container "*ngIf="habilitar">
     <h2 class="text-center">Registro de Reserva</h2>
     <div class="row mt-4">
-      <div class="col-md-6 ">
+      <div class="col-md-6">
         <form class="fomurlarioReserva">
           <label for="">Fecha de la Reserva:</label>
           <input class="form-control" type="Date" placeholder="Ingrese la Fecha de la Reserva">
@@ -26,38 +27,46 @@
           <input class="form-control" type="number" placeholder="Ingrese su telefono">
           <label for="">Total a Pagar :</label>
           <input type="text" readonly placeholder="" class="form-control">
-          <button class="boton" class="btn-reserva" type="button">Registrar</button>
+          <button class="btn btn-primary mt-4 botonRegistrar"  type="button">Registrar</button>
+
         </form>
       </div>
       <div class="col-md-6">
         <div class="wrapper-calendar mt-4">
           <div class="header-calendar">
             <div>
-              <button (click)="changeMonth(-1)" class="btn-prev">Atras</button>
+              <button (click)="changeMonth(-1)" class="btn-prev"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
             <h1>{{dateSelect | date:'MMMM, yyyy, dd'}}</h1>
             <div>
-              <button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
+              <button (click)="changeMonth(1)" class="btn-next"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
           </div>
           <ol>
             <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
-        
                 <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
                  *ngFor="let day of monthSelect;let first = first">
               <span>{{day?.value}}</span>
             </li>
           </ol>
-        </div>
-        
+        </div>    
         <hr>
         <div class="fechaActual">
           <p>Horario de reservas ocupadas: {{dateValue | date}}</p>
         </div>
-
         <div class="reservas">
           <div *ngFor="let re of reservas">{{re.hora}} </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 iconoReserva"><i class="fa-solid fa-circle-exclamation"></i></div>
+          <div class="col-md-10">
+            <ul class="infReserva">
+              <li>Posterior a agendar tu cita, se enviara tu contrato al correo asociado</li>
+              <li>Tienes opción de reagendar tu reserva 24 horas antes de tu cita. Comunicate a nuestra central de Atencion al Cliente</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <br>

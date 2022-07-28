@@ -84,24 +84,39 @@
   box-shadow: 0 0 10px  rgb(40, 56, 144);
   margin:1rem;
   padding: .5rem;
-  height: 100px;
+  display: flex;
+  min-height: 100px;
+  flex-wrap: wrap;
 }
 
 .reservas div{
   border: solid 0px #EAEAEA;
-  padding: 10px 5px;
+  padding: 12px;
   margin:10px;
-  width: 140px;
+  width: 170px;
   border-radius: 5px;
   text-align: center;
   background-color: #E5E7EA;
   text-decoration: line-through 2px solid rgb(40, 56, 144);;
-  min-height: 20px;
+  height: 50px;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
   float: left;
 }
 
+.iconoReserva i{
+  padding-top: 10px;
+  padding-left: 50px;
+  font-size: 50px;
+}
+.infReserva li{
+  text-decoration: none;
+  list-style:none
+}
 .fomurlarioReserva label{
   padding: 5px;
+}
+
+.botonRegistrar{
+  margin-left: 38%;
 }

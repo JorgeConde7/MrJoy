@@ -25,6 +25,14 @@ export class AdminEmpleadoComponent implements OnInit {
     private router: Router
   ) { }
 
+  obtenerEmpleado(){
+    this.empleadoService.getEmpleado()
+    .subscribe(result => {
+      console.log(result);
+      this.data = result;
+      this.dtTrigger.next(this.dtOptions)
+    })
+  }
   ngOnInit(): void {
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },

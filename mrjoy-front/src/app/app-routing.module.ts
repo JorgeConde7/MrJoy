@@ -12,14 +12,14 @@ import { ContactoComponent } from './pages/cliente/contacto/contacto.component';
 import { CumpleaniosComponent } from './pages/cliente/cumpleanios/cumpleanios.component';
 import { HomeComponent } from './pages/cliente/home/home.component';
 import { HorariosComponent } from './pages/cliente/horarios/horarios.component';
-import { LoginComponent } from './pages/cliente/login/login.component';
 import { ParquesComponent } from './pages/cliente/parques/parques.component';
 import { PromocionesComponent } from './pages/cliente/promociones/promociones.component';
+import { RegistroComponent } from './pages/cliente/registro/registro.component';
 
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'cliente',
     component: InitPageComponent,
     children: [
       {
@@ -27,8 +27,8 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: 'login',
-        component: LoginComponent
+        path: 'registro',
+        component: RegistroComponent
       },
       {
         path: 'parques',
