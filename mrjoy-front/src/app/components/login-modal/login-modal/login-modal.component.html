@@ -26,7 +26,7 @@
                 
                         <br>
             
-                            <button [disabled]="login.usuario=='' || login.contrasenia==''" type="submit" class="btn-compra fas fa-sign-in-alt">   Ingresar</button>
+                            <button [disabled]="login.usuario=='' || login.contrasenia==''" type="submit" class="btn btn-primary">   Ingresar</button>
                         
                         
                         
@@ -36,7 +36,7 @@
                         <a href="#">Recordar contraseña?</a>
                     </div>
                     <div class="col-12 forgot">
-                        <a href="registro.html">Registrarse</a>
+                        <a routerLink="registro" data-bs-dismiss="modal">Registrarse</a>
                     </div>
                     <br>
                 </div>

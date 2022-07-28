@@ -18,7 +18,6 @@ import { HorariosComponent } from './pages/cliente/horarios/horarios.component';
 import { PromocionesComponent } from './pages/cliente/promociones/promociones.component';
 import { CumpleaniosComponent } from './pages/cliente/cumpleanios/cumpleanios.component';
 import { ContactoComponent } from './pages/cliente/contacto/contacto.component';
-import { LoginComponent } from './pages/cliente/login/login.component';
 import { BioseguridadComponent } from './pages/cliente/bioseguridad/bioseguridad.component';
 import { CompraEntradasComponent } from './pages/cliente/compra-entradas/compra-entradas.component';
 import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente.component';
@@ -29,6 +28,7 @@ import { TipoentradaComponent } from './pages/admin/tipoentrada/tipoentrada.comp
 import { FormularioReservaComponent } from './components/cliente/formulario-reserva/formulario-reserva.component';
 import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva.component';
 import { FormsModule } from '@angular/forms';
+import { RegistroComponent } from './pages/cliente/registro/registro.component';
 
 
 
@@ -44,7 +44,6 @@ import { FormsModule } from '@angular/forms';
     PromocionesComponent,
     CumpleaniosComponent,
     ContactoComponent,
-    LoginComponent,
     BioseguridadComponent,
     CompraEntradasComponent,
     AdminClienteComponent,
@@ -55,7 +54,8 @@ import { FormsModule } from '@angular/forms';
     LoginModalComponent,
     TipoentradaComponent,
     FormularioReservaComponent,
-    AdminReservaComponent
+    AdminReservaComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,14 @@ export class AdminEmpleadoComponent implements OnInit {
 
   constructor(private empleadoService: EmpleadoService, private router: Router) { }
 
+  obtenerEmpleado(){
+    this.empleadoService.getEmpleado()
+    .subscribe(result => {
+      console.log(result);
+      this.data = result;
+      this.dtTrigger.next(this.dtOptions)
+    })
+  }
   ngOnInit(): void {
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
@@ -32,18 +40,11 @@ export class AdminEmpleadoComponent implements OnInit {
 
 
     };
-
-    this.empleadoService.getEmpleado()
-      .subscribe(result => {
-        console.log(result);
-        this.data = result;
-        this.dtTrigger.next(this.dtOptions)
-      })
+    this.obtenerEmpleado()
+  
   }
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe()
-
-
 
   }
   empleado: IEmpleado =
@@ -66,7 +67,7 @@ export class AdminEmpleadoComponent implements OnInit {
     this.empleado.login.usuario = this.empleado.correo;
     this.empleado.login.contrasenia = this.empleado.nombres[0] + this.empleado.apellidos;
     this.empleado.login.tipouser = "empleado"
-
+    window.location.href="admin/empleados"
     this.empleadoService.create(this.empleado).subscribe({
       next: (empleado) => this.createEmpleadoNext.bind(empleado),
       error: (err) => console.log("Error al crear empleado: ", err)
@@ -76,8 +77,4 @@ export class AdminEmpleadoComponent implements OnInit {
   protected createEmpleadoNext(empleado: IEmpleado) {
     console.log("Empleado creado: ", empleado);
   }
-
-
-
-
 }
