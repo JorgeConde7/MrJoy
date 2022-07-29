@@ -96,6 +96,7 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
     return {
       nombres: '',
       apellidos: '',
+      dni:'',
       telefono: '',
       correo: '',
       turno: '',

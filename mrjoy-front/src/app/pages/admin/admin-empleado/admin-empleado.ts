@@ -6,6 +6,7 @@ export class Empleado {
     correo: string | undefined;
     fechaNacimiento: string | undefined;
     turno: string | undefined;
+    dni:string|undefined;
     idLogin?: number | undefined;
 
 }
@@ -16,6 +17,7 @@ export interface IEmpleado {
     apellidos: string;
     telefono: string;
     correo: string;
+    dni:string;
     fechaNacimiento: string;
     turno: string;
     login?: ILogin;

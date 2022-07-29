@@ -1,7 +1,7 @@
 <main style="margin-top: 35px">
   <div class="container-fluid pt-4">
     <a id="btnNuevoEmpleado" class="btn btn-success float-right my-2" data-bs-toggle="modal"
-      data-bs-target="#modalEmpleado" (click)="limpiarModal()">
+      data-bs-target="#modalEmpleado" >
       <i class="ion-plus-round"></i> Nuevo</a>
     <div class="card" style="min-height: 720px">
       <div class="card-body">
@@ -15,6 +15,7 @@
               <th class="text-center">Codigo</th>
               <th class="text-center">Nombre</th>
               <th class="text-center">Apellido</th>
+              <th class="text-center">Dni</th>
               <th class="text-center">Telefono</th>
               <th class="text-center">Correo</th>
               <th class="text-center">Fecha de Nacimiento</th>
@@ -28,6 +29,7 @@
               <td>{{ empleado.id_empleados }}</td>
               <td>{{ empleado.nombres }}</td>
               <td>{{ empleado.apellidos }}</td>
+              <td>{{ empleado.dni }}</td>
               <td>{{ empleado.telefono }}</td>
               <td>{{ empleado.correo }}</td>
               <td>{{ empleado.fechaNacimiento }}</td>
@@ -62,6 +64,10 @@
               <div class="form-group">
                 <label for="apellidos" class="col-form-label">Apellidos:</label>
                 <input type="text" name="ape"required [(ngModel)]="empleado.apellidos"class="form-control" id="apellidos">
+              </div>
+              <div class="form-group">
+                <label for="dni" class="col-form-label">Dni:</label>
+                <input type="text" name="dni"required [(ngModel)]="empleado.dni"class="form-control" id="dni">
               </div>
               <div class="form-group">
                 <label for="telefono" class="col-form-label">Telefono:</label>
