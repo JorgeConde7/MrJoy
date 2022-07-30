@@ -12,7 +12,7 @@ export class Empleado {
 }
 
 export interface IEmpleado {
-    id_empleado?: number|'';
+    id_empleados?: number|'';
     nombres: string;
     apellidos: string;
     telefono: string;

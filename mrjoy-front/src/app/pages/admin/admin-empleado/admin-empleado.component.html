@@ -1,7 +1,7 @@
 <main style="margin-top: 35px">
   <div class="container-fluid pt-4">
     <a id="btnNuevoEmpleado" class="btn btn-success float-right my-2" data-bs-toggle="modal"
-      data-bs-target="#modalEmpleado" >
+      data-bs-target="#modalEmpleado" (click)="btnNuevoEmpleado()">
       <i class="ion-plus-round"></i> Nuevo</a>
     <div class="card" style="min-height: 720px">
       <div class="card-body">
@@ -20,8 +20,7 @@
               <th class="text-center">Correo</th>
               <th class="text-center">Fecha de Nacimiento</th>
               <th class="text-center">Turno</th>
-              <th class="text-center">Acciones</th>
-              <th class="text-center">Acciones</th>
+              <th class="text-center">acciones</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -34,9 +33,11 @@
               <td>{{ empleado.correo }}</td>
               <td>{{ empleado.fechaNacimiento }}</td>
               <td>{{ empleado.turno }}</td>
-              <td><a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt"(click)="editarEmpleado(empleado)" data-bs-toggle="modal"
-                data-bs-target="#modalEmpleado"></i></a></td>
-              <td><a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt" (click)="eliminarEmpleado(empleado.id_empleados)"></i> </a></td>
+              <td>
+                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt"(click)="btnSetEmpleadoModal(empleado)" data-bs-toggle="modal"
+                data-bs-target="#modalEmpleado"></i></a>
+                <a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt" (click)="eliminarEmpleado(empleado.id_empleados)"></i> </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -52,11 +53,18 @@
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <div *ngIf="isInsert" class="modal-headerCrear">
+            <h5  class="modal-title" id="exampleModalLabel">Crear Empleado</h5> 
           </div>
-          <form (ngSubmit)="create()">
+          <div *ngIf="!isInsert" class="modal-headerActualizar">  
+            <h5  class="modal-title" id="exampleModalLabel">Actualizar Empleado</h5>
+          </div>
+          <form (ngSubmit)="formularioEmpleado()">
             <div class="modal-body">
+              <div class="form-group" hidden>
+                <label for="nombres" class="col-form-label">Nombres:</label>
+                <input type="text" name="nom"required [(ngModel)]="empleado.id_empleados" class="form-control" id="nombres">
+              </div>
               <div class="form-group">
                 <label for="nombres" class="col-form-label">Nombres:</label>
                 <input type="text" name="nom"required [(ngModel)]="empleado.nombres" class="form-control" id="nombres">
@@ -67,15 +75,15 @@
               </div>
               <div class="form-group">
                 <label for="dni" class="col-form-label">Dni:</label>
-                <input type="text" name="dni"required [(ngModel)]="empleado.dni"class="form-control" id="dni">
+                <input maxlength="8" type="text" name="dni"required [(ngModel)]="empleado.dni"class="form-control" id="dni">
               </div>
               <div class="form-group">
                 <label for="telefono" class="col-form-label">Telefono:</label>
-                <input type="number" name="tele"required [(ngModel)]="empleado.telefono" class="form-control" id="telefono">
+                <input maxlength="9"  type="text" name="tele"required [(ngModel)]="empleado.telefono" class="form-control" id="telefono">
               </div>
               <div class="form-group">
                 <label for="correo" class="col-form-label">Correo:</label>
-                <input type="email" name="cor" required [(ngModel)]="empleado.correo"class="form-control" id="email">
+                <input maxlength="50" type="email" name="cor" required [(ngModel)]="empleado.correo"class="form-control" id="email">
               </div>
               <div class="form-group">
                 <label for="fechaNacimiento" class="col-form-label">Fecha de Nacimiento:</label>
@@ -87,7 +95,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal" (click)="btnCancelarModal()">Cancelar</button>
               <button type="submit" id="btnGuardar" class="btn btn-dark" data-bs-dismiss="modal">  Guardar</button>
             </div>
           </form>

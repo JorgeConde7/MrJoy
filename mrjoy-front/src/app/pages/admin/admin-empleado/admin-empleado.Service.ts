@@ -28,7 +28,7 @@ export class EmpleadoService {
   }
 
   actualizarEmpleado(empleado: IEmpleado) {
-    const id = empleado.id_empleado || '';
+    const id = empleado.id_empleados || '';
     return this.http.put<any>(URL + '/empleados/' + id, empleado);
   }
 }

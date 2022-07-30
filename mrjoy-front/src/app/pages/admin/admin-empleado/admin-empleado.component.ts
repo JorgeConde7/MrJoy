@@ -15,12 +15,12 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject<ADTSettings>();
   data: any;
+  isInsert=true;
+  
 
-  constructor(
-    private empleadoService: EmpleadoService,
-    private router: Router
-  ) {}
 
+  constructor(private empleadoService: EmpleadoService, private router: Router) {  
+  }
   ngOnInit(): void {
     this.obtenerEmpleadoInit();
   }
@@ -28,10 +28,22 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
     this.dtTrigger.unsubscribe();
   }
 
+  formularioEmpleado(){
+    if(!this.empleado.id_empleados){
+      this.registrarEmpleado();
+      console.log("Empleado guardado");
+    }
+    else{
+      this.empleadoService.actualizarEmpleado(this.empleado).subscribe((result)=>{
+          this.getEmpleados();
+        })
+      console.log("Empleado Actualizar");
+    }
+  }
+
   obtenerEmpleadoInit() {
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
-      //pagingType: "full_numbers",
       pageLength: 10,
     };
     this.empleadoService.getEmpleado().subscribe((result) => {
@@ -40,56 +52,43 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
     });
   }
   
-
   getEmpleados() {
     this.empleadoService.getEmpleado().subscribe((result) => {
     this.data = result;
     });
   }
 
-  
-/*Inicio Crear Empleado */
-  create() {
+  registrarEmpleado() {
     this.empleado.usuario = this.empleado.correo;
     this.empleado.contrasenia =
-      this.empleado.nombres[0] + this.empleado.apellidos;
+    this.empleado.nombres[0] + this.empleado.apellidos;
     this.empleado.tipouser = 'empleado';
 
-    this.empleadoService.create(this.empleado).subscribe({
-      next: this.createEmpleadoNext.bind(this),
-      error: (err) => console.log('Error al crear empleado: ', err),
+    this.empleadoService.create(this.empleado).subscribe(()=>{
+      this.getEmpleados();
     });
   }
 
-  protected createEmpleadoNext(empleado: IEmpleado) {
-    console.log('Empleado creado: ', empleado);
-    this.getEmpleados();
-    this.limpiarModal();
-  }
-/*Fin Crear Empleado */
-
-/*Inicio Eliminar Empleado */
   eliminarEmpleado(id: number) {
     console.log(typeof id);
     this.empleadoService.deleteEmpleado(id).subscribe(()=>{
       this.getEmpleados();
-      
-    }
-      
-    )
-  }
-
-  editarEmpleado(empleado:IEmpleado){
-    console.log(empleado);
-    this.empleado=empleado
-    this.empleadoService.actualizarEmpleado(empleado).subscribe((result)=>{
-      this.getEmpleados();
-      this.limpiarModal();
-      console.log(result);
     })
   }
 
-  /*no tocar mrd:v */ 
+  btnNuevoEmpleado(){
+    this.limpiarModal();
+    this.isInsert=true
+  }
+  btnSetEmpleadoModal(empleado:IEmpleado){
+    this.empleado=empleado
+    this.isInsert=false;
+  }
+  btnCancelarModal(){
+    this.getEmpleados()
+    console.log("cancelar ModalEmpleado")
+  }
+
   empleado: IEmpleado = this.templateEmpleado() 
 
   templateEmpleado() {
