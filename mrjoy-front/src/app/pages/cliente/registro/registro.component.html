@@ -18,10 +18,10 @@
       <div class="form-group">
         <div class="row">
           <div class="col">
-            <input type="text" required [(ngModel)]="registro.dni"class="form-control" name="dni" placeholder="Dni" >
+            <input maxlength="8" type="text" required [(ngModel)]="registro.dni"class="form-control" name="dni" placeholder="Dni" >
           </div>
           <div class="col">
-            <input type="text"required [(ngModel)]="registro.telefono"class="form-control" name="telefono" placeholder="Telefono" >
+            <input maxlength="9" type="text"required [(ngModel)]="registro.telefono"class="form-control" name="telefono" placeholder="Telefono" >
           </div>
         </div>
       </div>
@@ -40,13 +40,14 @@
           >
       </div>
       <div class="form-group">
-        <input type="usuario" required [(ngModel)]="registro.usuario"class="form-control" name="usuario" placeholder="Ingrese Nombre de Usuario"
-          >
-      </div>
-      <div class="form-group">
         <input type="email" required [(ngModel)]="registro.correo"class="form-control" name="email" placeholder="Ingrese Correo Electronico"
         >
       </div>
+      <div class="form-group">
+        <input type="usuario" required [(ngModel)]="registro.usuario"class="form-control" name="usuario" placeholder="Ingrese Usuario"
+          >
+      </div>
+
       <div class="form-group">
         <input type="password" required [(ngModel)]="registro.contrasenia"class="form-control" name="password" placeholder="Ingrese Contraseña"
           >

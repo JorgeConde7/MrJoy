@@ -32,10 +32,13 @@ export class LoginModalComponent implements OnInit {
       }
       else{
         this.validacion=false
-        if (usuario.tipouser=="Empleado"){
+        if (usuario.tipouser?.toLowerCase()=="empleado"){
           console.log(typeof(usuario.tipouser))
           window.location.href="admin/empleados"
           
+        }
+        else if(usuario.tipouser?.toLowerCase()=="cliente"){
+          window.location.href="cliente/index"
         }
       }
 
