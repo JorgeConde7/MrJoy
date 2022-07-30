@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { IRegistro } from './registro';
+import { RegistroService } from './registro.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -7,9 +10,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private registroService: RegistroService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  registroUsuario() {
+    this.registro.tipouser = 'cliente';
+    this.registroService.registroUsuario(this.registro).subscribe({
+      next: this.createEmpleadoNext.bind(this),
+      error: (err) => console.log('Error al crear registro: ', err),
+      
+    });
+  }
+
+  protected createEmpleadoNext(registro: IRegistro) {
+    console.log('Empleado creado: ', registro);
+    window.location.href="cliente/index"
+  }
+  registro: IRegistro = 
+  {
+      nombres: '',
+      apePaterno: '',
+      apeMaterno: '',
+      dni: '',
+      telefono: '',
+      direccion:'',
+      genero:'',
+      correo: '',
+      fechaNacimiento: '',
+      usuario: '',
+      contrasenia: '',
+      tipouser: '',
   }
 
 }

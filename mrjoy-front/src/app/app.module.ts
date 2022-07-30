@@ -55,7 +55,7 @@ import { RegistroComponent } from './pages/cliente/registro/registro.component';
     TipoentradaComponent,
     FormularioReservaComponent,
     AdminReservaComponent,
-    RegistroComponent
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,

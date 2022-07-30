@@ -1,33 +1,60 @@
 <body>
   <div class="signup-form">
-    <form action="" method="">
-      <h1 class="text-center">Registro de Login</h1>
+    <form (ngSubmit)="registroUsuario()">
+      <h1 class="text-center">Registro de Usuario</h1>
+      <div class="form-group">
+        <input type="text" required [(ngModel)]="registro.nombres"class="form-control" name="nombre" placeholder="Nombre" >
+      </div>
       <div class="form-group">
         <div class="row">
           <div class="col">
-            <input type="text" class="form-control" name="nombre" placeholder="Ingrese Nombre" required="required">
+            <input type="text" required [(ngModel)]="registro.apePaterno" class="form-control" name="apePaterno" placeholder="Apellido Paterno" >
           </div>
           <div class="col">
-            <input type="text" class="form-control" name="apellido" placeholder="Ingrese Apellido" required="required">
+            <input type="text"required [(ngModel)]="registro.apeMaterno" class="form-control" name="apeMaterno" placeholder="Apellido Materno" >
           </div>
         </div>
       </div>
       <div class="form-group">
-        <input type="usuario" class="form-control" name="usuario" placeholder="Ingrese Nombre de Usuario"
-          required="required">
+        <div class="row">
+          <div class="col">
+            <input type="text" required [(ngModel)]="registro.dni"class="form-control" name="dni" placeholder="Dni" >
+          </div>
+          <div class="col">
+            <input type="text"required [(ngModel)]="registro.telefono"class="form-control" name="telefono" placeholder="Telefono" >
+          </div>
+        </div>
       </div>
       <div class="form-group">
-        <input type="email" class="form-control" name="email" placeholder="Ingrese Correo Electronico"
-          required="required">
+        <div class="row">
+          <div class="col">
+            <input type="text" required [(ngModel)]="registro.direccion"class="form-control" name="direccion" placeholder="Direccion" >
+          </div>
+          <div class="col">
+            <input type="text"required [(ngModel)]="registro.genero"class="form-control" name="genero" placeholder="Genero" >
+          </div>
+        </div>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" name="password" placeholder="Ingrese Contraseña"
-          required="required">
+        <input type="date"required [(ngModel)]="registro.fechaNacimiento" class="form-control" name="fechaNacimiento" placeholder="Fecha de Nacimiento"
+          >
       </div>
       <div class="form-group">
+        <input type="usuario" required [(ngModel)]="registro.usuario"class="form-control" name="usuario" placeholder="Ingrese Nombre de Usuario"
+          >
+      </div>
+      <div class="form-group">
+        <input type="email" required [(ngModel)]="registro.correo"class="form-control" name="email" placeholder="Ingrese Correo Electronico"
+        >
+      </div>
+      <div class="form-group">
+        <input type="password" required [(ngModel)]="registro.contrasenia"class="form-control" name="password" placeholder="Ingrese Contraseña"
+          >
+      </div>
+      <!-- <div class="form-group">
         <input type="password" class="form-control" name="confirm_password" placeholder="Confirme La Contraseña"
           required="required">
-      </div>
+      </div> -->
       <div class="form-group">
         <label class="form-check-label">
           <input type="checkbox" required="required"> I accept the
