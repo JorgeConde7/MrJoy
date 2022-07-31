@@ -63,31 +63,31 @@
             <div class="modal-body">
               <div class="form-group">
                 <label for="nombres" class="col-form-label">Nombres:</label>
-                <input type="text" name="nom"required [(ngModel)]="empleado.nombres" class="form-control" id="nombres">
+                <input type="text" required [(ngModel)]="empleado.nombres" class="form-control" name="nombres">
               </div>
               <div class="form-group">
                 <label for="apellidos" class="col-form-label">Apellidos:</label>
-                <input type="text" name="ape"required [(ngModel)]="empleado.apellidos"class="form-control" id="apellidos">
+                <input type="text" required [(ngModel)]="empleado.apellidos"class="form-control" name="apellidos">
               </div>
               <div class="form-group">
                 <label for="dni" class="col-form-label">Dni:</label>
-                <input maxlength="8" type="text" name="dni"required [(ngModel)]="empleado.dni"class="form-control" id="dni">
+                <input maxlength="8" type="text" required [(ngModel)]="empleado.dni"class="form-control" name="dni">
               </div>
               <div class="form-group">
                 <label for="telefono" class="col-form-label">Telefono:</label>
-                <input maxlength="9"  type="text" name="tele"required [(ngModel)]="empleado.telefono" class="form-control" id="telefono">
+                <input maxlength="9"  type="text" required [(ngModel)]="empleado.telefono" class="form-control" name="telefono">
               </div>
               <div class="form-group">
                 <label for="correo" class="col-form-label">Correo:</label>
-                <input maxlength="50" type="email" name="cor" required [(ngModel)]="empleado.correo"class="form-control" id="email">
+                <input maxlength="50" type="email"  required [(ngModel)]="empleado.correo"class="form-control" name="email">
               </div>
               <div class="form-group">
                 <label for="fechaNacimiento" class="col-form-label">Fecha de Nacimiento:</label>
-                <input type="date" name="fecna" required [(ngModel)]="empleado.fechaNacimiento"class="form-control" id="fechaNacimiento">
+                <input type="date" required [(ngModel)]="empleado.fechaNacimiento"class="form-control" name="fechaNacimiento">
               </div>
               <div class="form-group">
                 <label  for="validationDefault01"class="col-form-label">Turno:</label>
-                <input id="validationDefault01"type="text" name="turno"class="form-control" required [(ngModel)]="empleado.turno" >
+                <input id="validationDefault01"type="text" class="form-control" required [(ngModel)]="empleado.turno" name="turno">
               </div>
             </div>
             <div class="modal-footer">

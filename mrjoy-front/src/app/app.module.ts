@@ -29,6 +29,7 @@ import { FormularioReservaComponent } from './components/cliente/formulario-rese
 import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva.component';
 import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './pages/cliente/registro/registro.component';
+import { CalendarioReservaComponent } from './components/cliente/calendario-reserva/calendario-reserva.component';
 
 
 
@@ -56,6 +57,7 @@ import { RegistroComponent } from './pages/cliente/registro/registro.component';
     FormularioReservaComponent,
     AdminReservaComponent,
     RegistroComponent,
+    CalendarioReservaComponent,
   ],
   imports: [
     BrowserModule,

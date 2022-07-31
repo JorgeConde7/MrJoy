@@ -1,0 +1,122 @@
+/*calendario*/
+*{
+    outline: none !important
+  }
+  
+  .wrapper-calendar{
+    margin:1rem;
+    padding: .5rem;
+    border: solid 1px #eaeaea;
+    box-shadow: 0 0 10px #1c0875;
+  }
+  
+ .header-calendar div{
+      text-align: center;
+      width: 300px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    
+  ol {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin: 0;
+      padding: 0;
+
+    }
+    
+    li {
+      padding: .25rem;
+      font-size: 1.5ch;
+      cursor: pointer;
+      text-align: center;
+    }
+    li:hover{
+      font-weight: 600;
+    }
+    h2 {
+      margin-bottom: 4px;
+      padding: 0;
+    }
+    
+    .first-day {
+      grid-column-start: var(--first-day-start, 0);
+    }
+    
+    .day-name {
+      background: #283890;
+      font-weight: bold;
+      font-size: 12px;
+      margin-bottom: 2px;
+      padding: 4px;
+      text-align: center;
+      color:#fff;
+    }
+    
+    .header-calendar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+    }
+    
+    .header-calendar h1 {
+      width: 100%;
+      font-size: 13px;
+      text-align: center;
+    }
+    
+    .header-calendar button {
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+    }
+
+.fechaActual{
+  padding-left: 20px;
+  
+}
+
+.reservas{
+  padding: 10px;
+  border: solid 1px #eaeaea;
+  box-shadow: 0 0 10px  rgb(40, 56, 144);
+  margin:1rem;
+  padding: .5rem;
+  display: flex;
+  min-height: 100px;
+  flex-wrap: wrap;
+}
+
+.reservas div{
+  border: solid 0px #EAEAEA;
+  padding: 12px;
+  margin:10px;
+  width: 170px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #E5E7EA;
+  text-decoration: line-through 2px solid rgb(40, 56, 144);;
+  height: 50px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  float: left;
+}
+
+.iconoReserva i{
+  padding-top: 10px;
+  padding-left: 50px;
+  font-size: 50px;
+}
+.infReserva li{
+  text-decoration: none;
+  list-style:none
+}
+.fomurlarioReserva label{
+  padding: 5px;
+}
+
+.botonRegistrar{
+  margin-left: 38%;
+}

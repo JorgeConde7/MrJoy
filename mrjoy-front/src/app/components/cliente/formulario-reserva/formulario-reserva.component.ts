@@ -2,8 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { PaqueteServiceService } from 'src/app/components/cliente/formulario-reserva/paquete-service.service';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
-import { ReservaServiceService } from './reserva-service.service';
-import { reserva } from './reserva';
+
+// RESERVA
+import { ReservaServiceService } from '../calendario-reserva/reserva-service.service';
+import { Reserva, IReserva } from '../calendario-reserva/reserva';
 
 
 @Component({
@@ -14,93 +16,74 @@ import { reserva } from './reserva';
 export class FormularioReservaComponent implements OnInit {
   @Input()
   habilitar: boolean = false;
-  week: any = [
-    "Lunes",
-    "Martes",
-    "Miercoles",
-    "Jueves",
-    "Viernes",
-    "Sabado",
-    "Domingo"
-  ];
-  monthSelect: any[];
-  dateSelect: any;
-  dateValue: any;
-
+  
+  total : number = 0;
+  
+  reserva:IReserva = {
+    idPaquete: 0,
+    fechaRegistro: '',
+    fechaReserva: '',
+    hora: '',
+    cantPersonas: 20,
+    idLogin: -1,
+    nombres: '',
+    apellido: '',
+    telefono: '',
+    flagTipoReserva: 0,
+    acompaniante: 0,
+    totalPago: this.total
+  };
+  
+  
+  
   paquetes:Paquete[]=[];
-  reservas:reserva[]=[];
+  
 
-  constructor(private paqueteService:PaqueteServiceService, private reseraService:ReservaServiceService) {
-    this.monthSelect=new Array;
+  constructor(private paqueteService:PaqueteServiceService, private reservaServiceService:ReservaServiceService) 
+  {
     
+    let total = this.reserva.acompaniante * 10;
     
    }
 
 
 
   ngOnInit(): void {
-    var fecha = new Date();
-    var hoy = fecha.getDate();
-    var mesActual = fecha.getMonth()+1;
-    var anioActual = fecha.getFullYear();
-    console.log(hoy);
-    console.log(mesActual);
-    console.log(anioActual);
-    this.getDaysFromDate(mesActual, anioActual)
-    this.clickDayInicial(hoy)
-    this.paqueteService.getPaquete().subscribe( paquetes=>{ this.paquetes=paquetes; } ); 
+    this.paqueteService.getPaquete().subscribe( 
+      paquetes=>
+      { 
+        this.paquetes=paquetes; 
+        
+      } ); 
   }
-  getDaysFromDate(month:any, year:any) {
 
-    const startDate = moment(`${year}/${month}/01`)
-    const endDate = startDate.clone().endOf('month')
-    this.dateSelect = startDate ;
-    const diffDays = endDate.diff(startDate, 'days', true)
-    const numberDays = Math.round(diffDays);
-
-    const arrayDays = Object.keys([...Array(numberDays)]).map((a: any) => {
-      a = parseInt(a) + 1;
-      const dayObject = moment(`${year}-${month}-${a}`);
-      return {
-        name: dayObject.format("dddd"),
-        value: a,
-        indexWeek: dayObject.isoWeekday()
-
-      };
+  RegistrarReserva()
+  {
+    //console.log(this.reserva);
+    let guardandoidPaquete = this.reserva.idPaquete;
+    let pruebita = guardandoidPaquete.toString().split(" ");
+    this.reserva.idPaquete = parseInt(pruebita[0]);
+    this.reservaServiceService.CrearReserva(this.reserva).subscribe(()=>{
+      
     });
-
-    /*var fecha = new Date();
-    var hoy = fecha.getDate();
-    this.clickDay(hoy);*/
-    this.monthSelect = arrayDays;
+    this.reserva.idPaquete = 0;
+    //console.log("Creando Reserva test...")
   }
 
-  changeMonth(flag:any) {
-    if (flag < 0) {
-      const prevDate = this.dateSelect.clone().subtract(1, "month");
-      this.getDaysFromDate(prevDate.format("MM"), prevDate.format("YYYY"));
-    } else {
-      const nextDate = this.dateSelect.clone().add(1, "month");
-      this.getDaysFromDate(nextDate.format("MM"), nextDate.format("YYYY"));
-    }
-  }
-
-  clickDay(day:any) 
+  ValueDelPaquete(xd : any)
   {
-    const monthYear = this.dateSelect.format('YYYY-MM')
-    const parse = `${monthYear}-${day.value}`
-    this.reseraService.getReserva(parse).subscribe( reservas => { this.reservas = reservas});
-    const objectDate = moment(parse)
-    this.dateValue = objectDate;
+    
   }
 
-  clickDayInicial(day:any)
+  aea()
   {
-    const monthYear = this.dateSelect.format('YYYY-MM')
-    const parse = `${monthYear}-${day}`
-    this.reseraService.getReserva(parse).subscribe( reservas => { this.reservas = reservas});
-    const objectDate = moment(parse)
-    this.dateValue = objectDate;
+    console.log("aea funcionando")
+    //this.total = this.reserva.acompaniante; //* this.reserva.idPaquete
+  }
+
+  parse(aea : any)
+  {
+    return parseInt(aea);
   }
 
 }

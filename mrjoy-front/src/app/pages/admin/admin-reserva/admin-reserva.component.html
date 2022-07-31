@@ -1,4 +1,4 @@
-<div class="row">
+<!--<div class="row">
   <div class="col-md-4 col-center">
     <div
       class="boton"
@@ -10,5 +10,79 @@
       }}</a>
     </div>
   </div>
-</div>
-<app-formulario-reserva [habilitar]="true"></app-formulario-reserva>
+</div>-->
+<main style="margin-top: 35px">
+  <div class="container-fluid pt-4">
+    <a id="btnNuevoEmpleado" class="btn btn-success float-right my-2" data-bs-toggle="modal"
+      data-bs-target="#modalEmpleado">
+      <i class="ion-plus-round"></i> Nuevo</a>
+    <div class="card" style="min-height: 720px">
+      <div class="card-body">
+        <app-calendario-reserva></app-calendario-reserva>
+      </div>
+    </div>
+
+    <app-admin-footer></app-admin-footer>
+    <!-- Button trigger modal -->
+  </div>
+
+
+
+
+  <!--Modal para CRUD-->
+  <section class="body-main">
+    <div class="modal fade" id="modalEmpleado" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <app-formulario-reserva [habilitar]="true"></app-formulario-reserva>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="body-main">
+    <form id="frmEliminarCliente" action="" method="POST">
+
+      <div class="modal fade" id="modalEliminarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Eliminar Empleado</h4>
+            </div>
+            <div class="modal-body">
+              ¿Esta seguro de eliminar al empleado?<strong data-name=""></strong>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnAceptarEliminar" class="btn btn-primary"
+                data-dismiss="modal">Aceptar</button>
+              <button type="button" id="btnCancelarEliminar" class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+
+
