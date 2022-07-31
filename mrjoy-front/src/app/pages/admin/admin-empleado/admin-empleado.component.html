@@ -61,10 +61,6 @@
           </div>
           <form (ngSubmit)="formularioEmpleado()">
             <div class="modal-body">
-              <div class="form-group" hidden>
-                <label for="nombres" class="col-form-label">Nombres:</label>
-                <input type="text" name="nom"required [(ngModel)]="empleado.id_empleados" class="form-control" id="nombres">
-              </div>
               <div class="form-group">
                 <label for="nombres" class="col-form-label">Nombres:</label>
                 <input type="text" name="nom"required [(ngModel)]="empleado.nombres" class="form-control" id="nombres">
