@@ -2,7 +2,7 @@
 
         <form class="fomurlarioReserva">
           <label for="">Fecha de la Reserva:</label>
-          <input class="form-control" type="Date" placeholder="Ingrese la Fecha de la Reserva" [(ngModel)]="reserva.fechaReserva" name = "fechaReserva">
+          <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva" [(ngModel)]="reserva.fechaReserva" name = "fechaReserva" (change)="fechaprobando()">
           <label for="">Hora de la Reserva:</label>
           <input class="form-control" type="time" placeholder="Ingrese la Hora de la Reserva" [(ngModel)]="reserva.hora" name = "hora">
           <label for="">Nombre:</label>
@@ -24,6 +24,6 @@
           <input class="form-control" type="number" placeholder="Ingrese su telefono" [(ngModel)]="reserva.telefono">-->
           <label for="">Total a Pagar :</label>
           <input type="text" readonly placeholder="" class="form-control" [value]="total" name="total">
-          <button class="btn btn-primary mt-4 botonRegistrar"  type="button" (click)="RegistrarReserva()">Registrar</button>
+          <button class="btn btn-primary mt-4 botonRegistrar" data-bs-dismiss="modal" type="button" (click)="RegistrarReserva()">Registrar</button>
 
         </form>

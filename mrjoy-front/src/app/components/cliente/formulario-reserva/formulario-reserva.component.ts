@@ -56,7 +56,7 @@ export class FormularioReservaComponent implements OnInit {
   }
 
   RegistrarReserva() {
-    //console.log(this.reserva);
+    console.log(this.reserva);
     let guardandoidPaquete = this.reserva.idPaquete;
     let pruebita = guardandoidPaquete.toString().split(" ");
     this.reserva.idPaquete = parseInt(pruebita[0]);
@@ -95,14 +95,22 @@ export class FormularioReservaComponent implements OnInit {
     {
       this.total = 0
       console.log("No selecciono paquete")
-      return;
+      
     }
-    precio = Number(paqueteSplit[1])
-    console.log("paquete: ", precio);
-    const precioAcompaniante = 6
-    this.total = cantPersona * Number(precio) + acompaniante * precioAcompaniante
+    else
+    {
+      precio = Number(paqueteSplit[1])
+      console.log("paquete: ", precio);
+      const precioAcompaniante = 6
+      this.total = cantPersona * Number(precio) + acompaniante * precioAcompaniante
+    }
+    this.reserva.totalPago = this.total;
     
   }
 
+  fechaprobando()
+  {
+    console.log(this.reserva.fechaReserva)
+  }
 }
 

@@ -27,31 +27,40 @@
     border-color: #d2d3d4;
     padding-top: 10px;
 }
-.tarjeta{
-
-    position:relative;
-    overflow: hidden;
+.imagen-entrada{
+    width: 90px;
+}
+.precio-entrada{
+color:rgb(40, 56, 144);
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}
+.cantidad{
+    width: 30px;
+    border-color: #d2d3d4;
+    font-size: 22px;
+    height: 40px;
+}
+.sube-baja{
+    width: 15px;
+    border-color: #d2d3d4;
+    font-size: 22px;
+    height: 40px;
 }
 
-.cont-tarjeta{
-    position: absolute;
-    padding: 10px;
-    bottom: 0;
-    left:0;
-    background:rgba(0, 65, 241, 0.5);
-    width:100%;
-    height:100%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color:white;
-    transform:translateY(100%);
-    transition:0.5s ease-out;
+.signup-form {
+    width: 450px;
+    margin: 0 auto;
+    padding: 30px 0;
+    font-size: 15px;
 }
-
-.tarjeta:hover .cont-tarjeta{
-    transform:translateY(0%);
-    transition:0.5s ease-out;
-    
+.image{
+    width: 40px;
 }
-
+.ka{
+    font-size:10px;
+}
