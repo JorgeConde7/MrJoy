@@ -137,5 +137,10 @@ export class FormularioReservaComponent implements OnInit {
   {
     console.log(this.reserva.fechaReserva)
   }
+
+  /*darValores(oa : any)
+  {
+    this.reserva = oa;
+  }*/
 }
 

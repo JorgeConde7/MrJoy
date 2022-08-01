@@ -22,7 +22,7 @@
       <p>Horario de reservas ocupadas: {{dateValue | date}}</p>
     </div>
     <div class="reservas">
-      <div *ngFor="let re of reservas">{{re.hora}} </div>
+      <div *ngFor="let re of reservas" (click)="verDetallesReserva(re.hora)" >{{re.hora}} </div>
     </div>
     <div class="row">
       <div class="col-md-2 iconoReserva"><i class="fa-solid fa-circle-exclamation"></i></div>
@@ -33,4 +33,57 @@
         </ul>
       </div>
     </div>
+
+    <div class="row" *ngIf="isUrlEqualTo('/admin/reservas')">
+      <div class="col-md-10">
+        <table class="table table-hover table-dark text-light table-responsive-lg table-bordered text-center" style="width: 100%">
+          <thead>
+            <tr><th colspan="12">Detalle de Reserva</th></tr>
+            <tr>
+              <th>Fecha de Registro</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Telefono</th>
+              <th>Fecha de Reserva</th>
+              <th>Hora</th>
+              <th>Cant. Personas</th>
+              <th>Cant. Acompañantes</th>
+              <th>Paquete</th>
+              <th>Precio total</th>
+              <th colspan="2">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{listar.fechaRegistro}}</td>
+              <td>{{listar.nombres}}</td>
+              <td>{{listar.apellido}}</td>
+              <td>{{listar.telefono}}</td>
+              <td>{{listar.fechaReserva}}</td>
+              <td>{{listar.hora}}</td>
+              <td>{{listar.cantPersonas}}</td>
+              <td>{{listar.acompaniante}}</td>
+              <td>{{listar.idPaquete}}</td>
+              <td>{{listar.totalPago}}</td>
+              <td>
+                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt" data-bs-toggle="modal"
+                data-bs-target="#modalEmpleado" ></i></a>
+              </td>
+              <td><a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt"></i> </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <section class="body-main">
+      <div class="modal fade" id="modalEmpleado" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <app-formulario-reserva [habilitar]="true"></app-formulario-reserva>
+          </div>
+        </div>
+      </div>
+    </section>
   

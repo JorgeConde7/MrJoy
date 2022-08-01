@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ReservaServiceService } from './reserva-service.service';
 import { Reserva } from './reserva';
+import { Route, Router } from '@angular/router';
+import { IReserva } from './reserva';
+//import { FormularioReservaComponent } from '../formulario-reserva/formulario-reserva.component';
 
 @Component({
   selector: 'app-calendario-reserva',
@@ -26,10 +29,12 @@ export class CalendarioReservaComponent implements OnInit {
   dateSelect: any;
   reservas:Reserva[]=[];
 
+  listar:Reserva;
 
   // iniciando datos de variables
-  constructor(private reseraService:ReservaServiceService) {
+  constructor(private reseraService:ReservaServiceService, private router:Router) {
     this.monthSelect=new Array;
+    this.listar = new Reserva();
    }
 
   // la misma vaina :v
@@ -97,9 +102,51 @@ export class CalendarioReservaComponent implements OnInit {
   {
     const monthYear = this.dateSelect.format('YYYY-MM')
     const parse = `${monthYear}-${day}`
-    this.reseraService.getReserva(parse).subscribe( reservas => { this.reservas = reservas});
+    this.reseraService.getReserva(parse).subscribe( reservas => { this.reservas = reservas; });
     const objectDate = moment(parse)
     this.dateValue = objectDate;
   }
 
+  
+
+  verDetallesReserva(hora : any)
+  {
+    //console.log('diste clic en la hora: ' + hora)
+    for (let i=0 ; this.reservas.length; i++)
+    {
+      if (this.reservas[i].hora === hora)
+      {
+        this.listar = this.reservas[i];
+      }
+    }
+  }
+
+  isUrlEqualTo(currentURL: string) {
+    const url = this.router.url
+
+    return url === currentURL;
+  }
+
+  ireserva: IReserva = {
+    idPaquete: 0,
+    fechaRegistro: '',
+    fechaReserva: '',
+    hora: '',
+    cantPersonas: 0,
+    idLogin: -1,
+    nombres: '',
+    apellido: '',
+    telefono: '',
+    flagTipoReserva: 0,
+    acompaniante: 0,
+    totalPago: 0
+  };
+
+  /*obtenerDatosModal(objecto : any)
+  {
+    this.ireserva = objecto;
+    this.formularioReservaComponent.darValores(this.ireserva);
+  }*/
+
+  
 }
