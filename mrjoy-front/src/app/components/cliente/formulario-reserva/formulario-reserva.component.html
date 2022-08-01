@@ -11,6 +11,8 @@
           <input class="form-control" type="text" placeholder="Ingrese su Apellido" [(ngModel)]="reserva.apellido" name = "apellido">
           <label for="">Telefono:</label>
           <input class="form-control" type="number" placeholder="Ingrese su telefono" [(ngModel)]="reserva.telefono" name = "telefono">
+          <label for="">Correo:</label>
+          <input class="form-control" type="number" placeholder="Ingrese su correo"  name = "correo">
           <label for="chocolates">Tipo de Paquete</label>
           <select class="form-control" [(ngModel)]="reserva.idPaquete"  name = "idPaquete" #idPaquetes (change)="onchangeValues(reserva.cantPersonas,reserva.acompaniante,idPaquetes.value)" >
             <option  value="0">Seleccione paquete</option>

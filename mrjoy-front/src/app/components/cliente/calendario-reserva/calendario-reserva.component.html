@@ -24,7 +24,7 @@
     <div class="reservas">
       <div *ngFor="let re of reservas" (click)="verDetallesReserva(re.hora)" >{{re.hora}} </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="isUrlEqualTo('/cliente/cumpleanios')">
       <div class="col-md-2 iconoReserva"><i class="fa-solid fa-circle-exclamation"></i></div>
       <div class="col-md-10">
         <ul class="infReserva">
@@ -35,22 +35,27 @@
     </div>
 
     <div class="row" *ngIf="isUrlEqualTo('/admin/reservas')">
-      <div class="col-md-10">
+      <hr>
+      <div class="col-md-12">
         <table class="table table-hover table-dark text-light table-responsive-lg table-bordered text-center" style="width: 100%">
           <thead>
-            <tr><th colspan="12">Detalle de Reserva</th></tr>
+            <tr><th colspan="14">DETALLE DE RESERVA</th></tr>
             <tr>
               <th>Fecha de Registro</th>
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Telefono</th>
+              <th>Correo</th>
               <th>Fecha de Reserva</th>
               <th>Hora</th>
               <th>Cant. Personas</th>
               <th>Cant. Acompañantes</th>
               <th>Paquete</th>
               <th>Precio total</th>
+              <th>Estado</th>
+              <th>Pagado</th>
               <th colspan="2">Acciones</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -59,17 +64,20 @@
               <td>{{listar.nombres}}</td>
               <td>{{listar.apellido}}</td>
               <td>{{listar.telefono}}</td>
+              <td></td>
               <td>{{listar.fechaReserva}}</td>
               <td>{{listar.hora}}</td>
               <td>{{listar.cantPersonas}}</td>
               <td>{{listar.acompaniante}}</td>
               <td>{{listar.idPaquete}}</td>
               <td>{{listar.totalPago}}</td>
+              <td></td>
+              <td></td>
               <td>
                 <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt" data-bs-toggle="modal"
                 data-bs-target="#modalEmpleado" ></i></a>
               </td>
-              <td><a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt"></i> </a></td>
+              <td><a class="btn btn-danger" style='padding:0 10px'><i class="fa-solid fa-print"></i> </a></td>
             </tr>
           </tbody>
         </table>

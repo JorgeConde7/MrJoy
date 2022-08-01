@@ -148,10 +148,10 @@
   </div>
 </div>
 <br>
-<!--<app-formulario-reserva [habilitar]="!habilitar"></app-formulario-reserva> -->
-<div class="container "*ngIf="habilitar">
+
+<div class="container "*ngIf="habilitar==false">
   <h2 class="text-center">Registro de Reserva</h2>
-  <div class="row mt-4">
+  <div class="row mt-4" >
     <div class="col-md-6">
      <app-formulario-reserva [habilitar]="true"></app-formulario-reserva>
     </div>
