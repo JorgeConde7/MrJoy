@@ -24,6 +24,6 @@
           <input class="form-control" type="number" placeholder="Ingrese su telefono" [(ngModel)]="reserva.telefono">-->
           <label for="">Total a Pagar :</label>
           <input type="text" readonly placeholder="" class="form-control" [value]="total" name="total">
-          <button class="btn btn-primary mt-4 botonRegistrar" data-bs-dismiss="modal" type="button" (click)="RegistrarReserva()">Registrar</button>
+          <button class="btn btn-primary mt-4 botonRegistrar" data-bs-dismiss="modal" type="button" (click)="NoRepetir()">Registrar</button>
 
         </form>

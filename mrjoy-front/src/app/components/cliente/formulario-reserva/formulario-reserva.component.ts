@@ -24,13 +24,13 @@ export class FormularioReservaComponent implements OnInit {
     fechaRegistro: '',
     fechaReserva: '',
     hora: '',
-    cantPersonas: 1,
+    cantPersonas: 0,
     idLogin: -1,
     nombres: '',
     apellido: '',
     telefono: '',
     flagTipoReserva: 0,
-    acompaniante: 1,
+    acompaniante: 0,
     totalPago: 0
   };
 
@@ -55,15 +55,40 @@ export class FormularioReservaComponent implements OnInit {
       });
   }
 
-  RegistrarReserva() {
+
+  NoRepetir()
+  {
+    //console.log('Llamando a fecha reserva ' + this.reserva.fechaReserva)
+    this.reservaServiceService.getReserva(this.reserva.fechaReserva).subscribe
+    (
+      reservas => 
+      {
+        for (let i = 0; i < reservas.length; i++)
+        {
+          //console.log(reservas[i].hora);
+          if (this.reserva.hora === reservas[i].hora)
+          {
+            alert("El horario escogido se encuentra reservado. Por favor elija otra horario!!")
+            return;
+          }
+        }
+        this.RegistrarReserva()
+      }
+    )
+  }
+
+  RegistrarReserva()
+  {
     console.log(this.reserva);
+    console.log("aaaaeaaaaa")
     let guardandoidPaquete = this.reserva.idPaquete;
     let pruebita = guardandoidPaquete.toString().split(" ");
     this.reserva.idPaquete = parseInt(pruebita[0]);
     this.reservaServiceService.CrearReserva(this.reserva).subscribe(() => {
-
+      alert("Reserva registrada correctamente!!")
     });
     this.reserva.idPaquete = 0;
+    
     //console.log("Creando Reserva test...")
   }
 
