@@ -16,74 +16,78 @@ import { Reserva, IReserva } from '../calendario-reserva/reserva';
 export class FormularioReservaComponent implements OnInit {
   @Input()
   habilitar: boolean = false;
-  
-  total : number = 0;
-  
-  reserva:IReserva = {
+  total: number = 0;
+
+
+  reserva: IReserva = {
     idPaquete: 0,
     fechaRegistro: '',
     fechaReserva: '',
     hora: '',
-    cantPersonas: 20,
+    cantPersonas: 1,
     idLogin: -1,
     nombres: '',
     apellido: '',
     telefono: '',
     flagTipoReserva: 0,
-    acompaniante: 0,
-    totalPago: this.total
+    acompaniante: 1,
+    totalPago: 0
   };
-  
-  
-  
-  paquetes:Paquete[]=[];
-  
 
-  constructor(private paqueteService:PaqueteServiceService, private reservaServiceService:ReservaServiceService) 
-  {
-    
-    let total = this.reserva.acompaniante * 10;
-    
-   }
+
+
+  paquetes: Paquete[] = [];
+
+
+  constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService) {
+
+    // let total = this.reserva.acompaniante * 10;
+
+  }
 
 
 
   ngOnInit(): void {
-    this.paqueteService.getPaquete().subscribe( 
-      paquetes=>
-      { 
-        this.paquetes=paquetes; 
-        
-      } ); 
+    this.paqueteService.getPaquete().subscribe(
+      paquetes => {
+        this.paquetes = paquetes;
+
+      });
   }
 
-  RegistrarReserva()
-  {
+  RegistrarReserva() {
     //console.log(this.reserva);
     let guardandoidPaquete = this.reserva.idPaquete;
     let pruebita = guardandoidPaquete.toString().split(" ");
     this.reserva.idPaquete = parseInt(pruebita[0]);
-    this.reservaServiceService.CrearReserva(this.reserva).subscribe(()=>{
-      
+    this.reservaServiceService.CrearReserva(this.reserva).subscribe(() => {
+
     });
     this.reserva.idPaquete = 0;
     //console.log("Creando Reserva test...")
   }
 
-  ValueDelPaquete(xd : any)
-  {
-    
+  ValueDelPaquete(xd: any) {
+
   }
 
-  aea()
-  {
+  aea() {
     console.log("aea funcionando")
     //this.total = this.reserva.acompaniante; //* this.reserva.idPaquete
   }
 
-  parse(aea : any)
-  {
+  parse(aea: any) {
     return parseInt(aea);
+  }
+
+
+  onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
+    console.log("cantPersona: ", cantPersona);
+    console.log("acompaniante: ", acompaniante);
+    console.log("paquete: ", paquete);
+
+    this.total = cantPersona * acompaniante * Number(paquete)
+
   }
 
 }
