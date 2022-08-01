@@ -84,10 +84,24 @@ export class FormularioReservaComponent implements OnInit {
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
     console.log("cantPersona: ", cantPersona);
     console.log("acompaniante: ", acompaniante);
-    console.log("paquete: ", paquete);
+    /*if (Number(paquete) == 0)
+    {
+      this.total = 0
+    }*/
 
-    this.total = cantPersona * acompaniante * Number(paquete)
-
+    const paqueteSplit = paquete.split(" ")
+    let precio = 0
+    if (paqueteSplit.length <= 1)
+    {
+      this.total = 0
+      console.log("No selecciono paquete")
+      return;
+    }
+    precio = Number(paqueteSplit[1])
+    console.log("paquete: ", precio);
+    const precioAcompaniante = 6
+    this.total = cantPersona * Number(precio) + acompaniante * precioAcompaniante
+    
   }
 
 }
