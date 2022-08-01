@@ -10,45 +10,161 @@
     <h2 class="text-center">Compra de Entradas</h2>
     <p class="text-center">Pago Unico con tarjeta</p>
     <hr />
+    <!--<img src="/assets/images/entradas/venta.png" alt="" class="img-fluid">-->
+    <br />
 
-    <img src="/assets/images/entradas/venta.png" alt="" class="img-fluid">
+    <div class="card">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
 
+                <tr>
+                    <td><img src="/assets/images/entradas/entrada 3.png" alt="" class="imagen-entrada">
+                        <p><b>Joy Star 90 Min.</b></p>
+                    </td>
+                    <td class="precio-entrada"><br />
+                        <h5>s/. 16.00</h5>
+                    </td>
+                    <td>
+                        <input type="button" class="sube-baja" value="-">
+                        <input type="number" class="cantidad" step="1" min="0" max="" value="1">
+                        <input type="button" class="sube-baja" value="+">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><img src="/assets/images/entradas/entrada 2.png" alt="" class="imagen-entrada">
+                        <p><b>Joy Planet 90 Min..</b></p>
+                    </td>
+                    <td class="precio-entrada"><br />
+                        <h5>s/. 20.00</h5>
+                    </td>
+                    <td>
+                        <input type="button" class="sube-baja" value="-">
+                        <input type="number" class="cantidad" step="1" min="0" max="" value="1">
+                        <input type="button" class="sube-baja" value="+">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><img src="/assets/images/entradas/entrada 1.png" alt="" class="imagen-entrada">
+                        <p><b>Visitantes Puruchuco</b></p>
+                    </td>
+                    <td class="precio-entrada"><br />
+                        <h5>s/. 6.00</h5>
+                    </td>
+                    <td>
+                        <input type="button" class="sube-baja" value="-">
+                        <input type="number" class="cantidad" step="1" min="0" max="" value="1">
+                        <input type="button" class="sube-baja" value="+">
+                    </td>
+                    <td>hola</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br />
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card">
-                <div class="tarjeta">
-                    <img src="/assets/images/entradas/entrada 3.png" alt="" class="img-fluid">
-                    <div class="cont-tarjeta text-center">
-                        <h3>Comprar</h3>
+                <div class="card-body ">
+                    <h6>Ingresa tu código de descuento aquí</h6>
+                    <hr />
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Codigo de cupon">
+                        <button class="btn btn-primary" type="submit">Aplicar Cupon</button>
                     </div>
                 </div>
-                <p >Joy Star 90 Min. <br />
-                    S/16.00 </p>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card">
-                <div class="tarjeta">
-                    <img src="/assets/images/entradas/entrada 2.png" alt="" class="img-fluid">
-                    <div class="cont-tarjeta text-center">
-                        <h3>Comprar</h3>
+                <div class="card-body">
+                    <h6>Total de la orden</h6>
+                    <hr />
+                    <div class="row">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="left">Subtotal</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Descuento</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Total</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="right">
+                            <a href=""><i class="fas fa-arrow-left"></i> Continuar comprando</a><br />
+                            <button class="btn btn-primary mt-4 " type="button" id="" data-bs-toggle="modal" data-bs-target="#modalLEntradas">Proceder con la
+                                Compra</button>
+                        </div>
                     </div>
                 </div>
-                <p >Joy Star 90 Min. <br />
-                    S/20.00 </p>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="tarjeta">
-                <img src="/assets/images/entradas/entrada 1.png" alt="" class="img-fluid">
-                <div class="cont-tarjeta text-center">
-                    <h3>Comprar</h3>
-                </div>
-            </div>
-            <p >Visitantes Puruchuco<br />
-                S/60.00 </p>
-        </div>
-        <br/>
+        </div><br />
     </div>
 </div>
+<div class="modal fade" id="modalLEntradas" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog text-center">
+        <div class=" main-section">
+            <div class="modal-content">
+                <div class="signup-form">
+                    <div class="form">
+                        <h5 class="text-center ">Tarjeta de crédito o débito</h5>
+                        <hr />
+                        <div class="text-center">
+                            <img src="/assets/images/entradas/card_visa.png" alt="icon" class="image">
+                            <img src="/assets/images/entradas/card_master.png" alt="icon" class="image">
+                            <img src="/assets/images/entradas/america_express.png" alt="icon" class="image">
+                            <img src="/assets/images/entradas/card_diners.png" alt="icon" class="image">
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Nombre y Apelido" class="form-control ">
+                        </div><br />
+                        <div class="form-group">
+                            <input type="text" placeholder="Numero de Tarjeta" class="form-control ">
+                        </div><br />
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="MM/AA">
+                                </div>
+                                <div class="col-md-6">
+                                    <input placeholder="CVC" type="password" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <button class="btn btn-primary form-control" data-bs-toggle="modal"
+                                data-bs-target="#myModal">PAGAR</button>
+                        </div>
+                        <br />
+                        <div class="text-center ka">
+                            <img src="/assets/images/entradas/logo_ksh.png" alt="icon" class="image">
+                            <p>Este pago es procesado de forma segura por Kushki, un proveedor de pagos PCI de nivel 1
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
