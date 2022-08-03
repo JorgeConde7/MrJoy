@@ -4,7 +4,10 @@
           <label for="">Fecha de la Reserva:</label>
           <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva" [(ngModel)]="reserva.fechaReserva" name = "fechaReserva" (change)="fechaprobando()">
           <label for="">Hora de la Reserva:</label>
-          <input class="form-control" type="time" placeholder="Ingrese la Hora de la Reserva" [(ngModel)]="reserva.hora" name = "hora">
+          <select class="form-control" [(ngModel)]="reserva.hora"  name = "hora">
+            <option  value="0">Seleccione Hora</option>
+            <option *ngFor="let items of horaCadena" [value]="items">{{ items }}</option>
+          </select>
           <label for="">Nombre:</label>
           <input class="form-control" type="text" placeholder="Ingrese su Nombre" [(ngModel)]="reserva.nombres" name = "nombres">
           <label for="">Apellido:</label>
