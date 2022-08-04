@@ -1,0 +1,50 @@
+<main style="margin-top: 35px">
+    <div class="container-fluid pt-4">
+        <a id="btnNuevoCliente" class="btn btn-success float-right my-2" data-bs-toggle="modal"
+            data-bs-target="#modalCliente">
+            <i class="ion-plus-round"></i> Nuevo</a>
+        <div class="card" style="min-height: 720px">
+            <div class="card-body">
+                <table id="tablaCliente"
+                    class="table table-hover table-dark text-light table-responsive-lg table-bordered"
+                    style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th colspan="8" class="text-center">LISTA DE PREGUNTAS</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center">idContacto</th>
+                            <th class="text-center">Nombres</th>
+                            <th class="text-center">Correo</th>
+                            <th class="text-center">Teléfono</th>
+                            <th class="text-center">Asunto</th>
+                            <th class="text-center">Descripción</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr *ngFor="let contacto of data">
+                            <td>{{contacto.idContacto}}</td>
+                            <td>{{contacto.nombres}}</td>
+                            <td>{{contacto.correo}}</td>
+                            <td>{{contacto.telefono}}</td>
+                            <td>{{contacto.asunto}}</td>
+                            <td>{{contacto.descripcion}}</td>
+                            <td>{{contacto.estado}}</td>
+                            <td>
+                                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt" data-bs-toggle="modal"
+                                data-bs-target="#modalEmpleado"></i></a>
+                                <a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt" (click)="eliminarContacto(contacto.idContacto)"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+       
+    </div>
+
+
+</main>

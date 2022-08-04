@@ -15,6 +15,7 @@ import { HorariosComponent } from './pages/cliente/horarios/horarios.component';
 import { ParquesComponent } from './pages/cliente/parques/parques.component';
 import { PromocionesComponent } from './pages/cliente/promociones/promociones.component';
 import { RegistroComponent } from './pages/cliente/registro/registro.component';
+import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-contacto.component';
 
 
 const routes: Routes = [
@@ -75,7 +76,11 @@ const routes: Routes = [
       {
         path: 'empleados',
         component: AdminEmpleadoComponent
-      }
+      },
+      {
+        path: 'contacto',
+        component: AdminContactoComponent
+      } 
     ]
   },
   {

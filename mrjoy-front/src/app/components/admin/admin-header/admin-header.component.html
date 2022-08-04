@@ -33,9 +33,9 @@
           <a href="#" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-calendar fa-fw me-3"></i><span>Promociones</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-              <i class="fas fa-calendar fa-fw me-3"></i><span>Preguntas Clientes</span>
-          </a>
+          <a [routerLink]="['/admin/contacto']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/contacto')}" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-book fa-fw me-3"></i><span>Preguntas Clientes</span>
+        </a>
         </div>
       </div>
     </nav>
