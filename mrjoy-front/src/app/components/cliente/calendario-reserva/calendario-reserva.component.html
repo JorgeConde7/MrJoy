@@ -1,0 +1,97 @@
+
+    <div class="wrapper-calendar mt-4">
+      <div class="header-calendar">
+        <div>
+          <button (click)="changeMonth(-1)" class="btn-prev"><i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+        <h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
+        <div>
+          <button (click)="changeMonth(1)" class="btn-next"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+      <ol>
+        <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
+            <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+             *ngFor="let day of monthSelect;let first = first">
+          <span>{{day?.value}}</span>
+        </li>
+      </ol>
+    </div>    
+    <hr>
+    <div class="fechaActual">
+      <p>Horario de reservas ocupadas: {{dateValue | date}}</p>
+    </div>
+    <div class="reservas">
+      <div *ngFor="let re of reservas" (click)="verDetallesReserva(re.hora)" >{{re.hora}} </div>
+    </div>
+    <div class="row" *ngIf="isUrlEqualTo('/cliente/cumpleanios')">
+      <div class="col-md-2 iconoReserva"><i class="fa-solid fa-circle-exclamation"></i></div>
+      <div class="col-md-10">
+        <ul class="infReserva">
+          <li>Posterior a agendar tu cita, se enviara tu contrato al correo asociado</li>
+          <li>Tienes opción de reagendar tu reserva 24 horas antes de tu cita. Comunicate a nuestra central de Atencion al Cliente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="isUrlEqualTo('/admin/reservas')">
+      <hr>
+      <div class="col-md-12">
+        <table class="table table-hover table-dark text-light table-responsive-lg table-bordered text-center" style="width: 100%">
+          <thead>
+            <tr><th colspan="14">DETALLE DE RESERVA</th></tr>
+            <tr>
+              <th>Fecha de Registro</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Telefono</th>
+              <th>Correo</th>
+              <th>Fecha de Reserva</th>
+              <th>Hora</th>
+              <th>Cant. Personas</th>
+              <th>Cant. Acompañantes</th>
+              <th>Paquete</th>
+              <th>Precio total</th>
+              <th>Estado</th>
+              <th>Pagado</th>
+              <th colspan="2">Acciones</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{listar.fechaRegistro}}</td>
+              <td>{{listar.nombres}}</td>
+              <td>{{listar.apellido}}</td>
+              <td>{{listar.telefono}}</td>
+              <td></td>
+              <td>{{listar.fechaReserva}}</td>
+              <td>{{listar.hora}}</td>
+              <td>{{listar.cantPersonas}}</td>
+              <td>{{listar.acompaniante}}</td>
+              <td>{{listar.idPaquete}}</td>
+              <td>{{listar.totalPago}}</td>
+              <td></td>
+              <td></td>
+              <td>
+                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt" data-bs-toggle="modal"
+                data-bs-target="#modalEmpleado" ></i></a>
+              </td>
+              <td><a class="btn btn-danger" style='padding:0 10px'><i class="fa-solid fa-print"></i> </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <section class="body-main">
+      <div class="modal fade" id="modalEmpleado" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <app-formulario-reserva [habilitar]="true"></app-formulario-reserva>
+          </div>
+        </div>
+      </div>
+    </section>
+  

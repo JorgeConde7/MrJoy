@@ -139,7 +139,7 @@
     </div>
   </div>
   <br>
-  <!-- <div class="row">
+<div class="row">
     <div class="col-md-4 col-center">
       <div class="boton" type="button" (click)="habilitar=(habilitar==false)?true:false;">
         <a class="btn-reserva">{{habilitar==false?'Reserva tu Paquete':'¿Desea Reservar?' }}</a>
@@ -148,6 +148,19 @@
   </div>
 </div>
 <br>
-<app-formulario-reserva [habilitar]="!habilitar"></app-formulario-reserva> -->
 
-<app-formulario-reserva [habilitar]="true"></app-formulario-reserva>
+<div class="container "*ngIf="habilitar==false">
+  <h2 class="text-center">Registro de Reserva</h2>
+  <div class="row mt-4" >
+    <div class="col-md-6">
+     <app-formulario-reserva [habilitar]="true"></app-formulario-reserva>
+    </div>
+    <div class="col-md-6">
+     <app-calendario-reserva></app-calendario-reserva>
+    </div>
+  </div>
+</div>
+<br>
+<!--<app-formulario-reserva  [ngClass]="{mostrar:habilitar}" ></app-formulario-reserva> -->
+
+<!--<app-formulario-reserva [habilitar]="true"></app-formulario-reserva>-->

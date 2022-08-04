@@ -1,4 +1,4 @@
-export class reserva
+export class Reserva
 {
     idPaquete: number | undefined;
     idReserva: number | undefined;
@@ -13,4 +13,21 @@ export class reserva
     flagTipoReserva: number | undefined;
     acompaniante: number | undefined;
     totalPago: number | undefined;
+};
+
+export interface IReserva
+{
+    idPaquete: number ;
+    //idReserva: number | undefined;
+    fechaRegistro: string;
+    fechaReserva: string;
+    hora: string;
+    cantPersonas: number;
+    idLogin: number;
+    nombres: string;
+    apellido: string;
+    telefono: string;
+    flagTipoReserva: number;
+    acompaniante: number;
+    totalPago: number;
 };
