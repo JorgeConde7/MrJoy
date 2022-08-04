@@ -40,11 +40,19 @@ color:rgb(40, 56, 144);
     text-align: right;
 }
 .cantidad{
-    width: 30px;
+    width: 50px;
     border-color: #d2d3d4;
-    font-size: 22px;
+    font-size: 20px;
     height: 40px;
+    
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .sube-baja{
     width: 15px;
     border-color: #d2d3d4;

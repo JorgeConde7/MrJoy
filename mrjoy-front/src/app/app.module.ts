@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from "@angular/common/http";
-
+import { CalendarioReservaComponent } from './components/cliente/calendario-reserva/calendario-reserva.component';
 import { AdminFooterComponent } from './components/admin/admin-footer/admin-footer.component';
 import { AdminHeaderComponent } from './components/admin/admin-header/admin-header.component';
 import { AdminEmpleadoComponent } from './pages/admin/admin-empleado/admin-empleado.component';
@@ -58,6 +58,7 @@ import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-conta
     AdminReservaComponent,
     RegistroComponent,
     AdminContactoComponent,
+    CalendarioReservaComponent
   ],
   imports: [
     BrowserModule,

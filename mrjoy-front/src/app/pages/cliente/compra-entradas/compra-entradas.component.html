@@ -24,48 +24,19 @@
                 </tr>
             </thead>
             <tbody>
-
-                <tr>
-                    <td><img src="/assets/images/entradas/entrada 3.png" alt="" class="imagen-entrada">
-                        <p><b>Joy Star 90 Min.</b></p>
+                <tr *ngFor="let item of data">
+                    <td><img [src]="item.rutaImg" alt="" class="imagen-entrada">
+                        <p><b>{{item.descripcion}}</b></p>
                     </td>
                     <td class="precio-entrada"><br />
-                        <h5>s/. 16.00</h5>
+                        <h5>{{'S/.' + item.precioUnitario}}</h5>
                     </td>
                     <td>
-                        <input type="button" class="sube-baja" value="-">
-                        <input type="number" class="cantidad" step="1" min="0" max="" value="1">
-                        <input type="button" class="sube-baja" value="+">
+                        <input type="button" class="sube-baja" value="-" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 0)">
+                        <input type="number" class="cantidad" step="1" min="0" max="" value="1" [id]="item.descripcion">
+                        <input type="button" class="sube-baja" value="+" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 1)">
                     </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/images/entradas/entrada 2.png" alt="" class="imagen-entrada">
-                        <p><b>Joy Planet 90 Min..</b></p>
-                    </td>
-                    <td class="precio-entrada"><br />
-                        <h5>s/. 20.00</h5>
-                    </td>
-                    <td>
-                        <input type="button" class="sube-baja" value="-">
-                        <input type="number" class="cantidad" step="1" min="0" max="" value="1">
-                        <input type="button" class="sube-baja" value="+">
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/images/entradas/entrada 1.png" alt="" class="imagen-entrada">
-                        <p><b>Visitantes Puruchuco</b></p>
-                    </td>
-                    <td class="precio-entrada"><br />
-                        <h5>s/. 6.00</h5>
-                    </td>
-                    <td>
-                        <input type="button" class="sube-baja" value="-">
-                        <input type="number" class="cantidad" step="1" min="0" max="" value="1">
-                        <input type="button" class="sube-baja" value="+">
-                    </td>
-                    <td>hola</td>
+                    <td><input [id]="item.id" value=0 readonly></td>
                 </tr>
             </tbody>
         </table>
