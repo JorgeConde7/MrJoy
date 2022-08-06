@@ -33,7 +33,7 @@
                     </td>
                     <td>
                         <input type="button" class="sube-baja" value="-" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 0)">
-                        <input type="number" class="cantidad" step="1" min="0" max="" value="1" [id]="item.descripcion">
+                        <input type="number" class="cantidad" step="1" min="0" max="" value="0" [id]="item.descripcion" (input)="Aumentar(item.descripcion, item.precioUnitario, item.id, 2)" (keydown)="keydown($event)">
                         <input type="button" class="sube-baja" value="+" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 1)">
                     </td>
                     <td><input [id]="item.id" value=0 readonly></td>
@@ -65,15 +65,15 @@
                             <tbody>
                                 <tr>
                                     <td class="left">Subtotal</td>
-                                    <td></td>
+                                    <td>{{this.subTotal}}</td>
                                 </tr>
                                 <tr>
                                     <td class="left">Descuento</td>
-                                    <td></td>
+                                    <td>{{this.desCuento}}</td>
                                 </tr>
                                 <tr>
                                     <td class="left">Total</td>
-                                    <td></td>
+                                    <td>{{this.totals}}</td>
                                 </tr>
                             </tbody>
                         </table>
