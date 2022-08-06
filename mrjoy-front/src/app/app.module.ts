@@ -30,6 +30,7 @@ import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva
 import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './pages/cliente/registro/registro.component';
 import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-contacto.component';
+import { ModalPagoComponent } from './components/cliente/modal-pago/modal-pago.component';
 
 
 
@@ -58,7 +59,8 @@ import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-conta
     AdminReservaComponent,
     RegistroComponent,
     AdminContactoComponent,
-    CalendarioReservaComponent
+    CalendarioReservaComponent,
+    ModalPagoComponent
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,8 @@ export class FormularioReservaComponent implements OnInit {
   habilitar: boolean = false;
   total: number = 0;
 
+  
+
   horaCadena: string[] = ['10:00',
     '11:00',
     '12:00',
@@ -36,6 +38,7 @@ export class FormularioReservaComponent implements OnInit {
     fechaReserva: '',
     hora: '',
     cantPersonas: 0,
+    correo:"",
     idLogin: -1,
     nombres: '',
     apellido: '',
@@ -67,6 +70,7 @@ export class FormularioReservaComponent implements OnInit {
   }
 
 
+
   NoRepetir()
   {
     //console.log('Llamando a fecha reserva ' + this.reserva.fechaReserva)
@@ -83,7 +87,7 @@ export class FormularioReservaComponent implements OnInit {
             return;
           }
         }
-        this.RegistrarReserva()
+        //this.RegistrarReserva()
       }
     )
   }
@@ -118,8 +122,10 @@ export class FormularioReservaComponent implements OnInit {
 
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
-    console.log("cantPersona: ", cantPersona);
-    console.log("acompaniante: ", acompaniante);
+    // console.log("cantPersona: ", cantPersona);
+    // console.log("acompaniante: ", acompaniante);
+
+
     /*if (Number(paquete) == 0)
     {
       this.total = 0

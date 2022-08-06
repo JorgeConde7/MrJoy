@@ -1,0 +1,72 @@
+.contenido h3{
+    color:rgb(40, 56, 144);
+    font-family: Arial black;
+}
+.contenido-banner-bio{
+    display: inline-block;
+    background: #1774b9;
+    padding: 10px 10px;
+    transform: skew(0deg, -5deg) translateY(0px);
+    color: white;
+    font-size: 22px;
+    width: 105px;
+    top: 110px;
+    margin: 8px 20px;
+}
+.banner{
+    clear: both;
+    padding: 0 10px;
+    height: 80px;
+    background-position: center center;
+    background-origin: border-box;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    background-image: url(/assets/images/entradas/banner_tickts.jpg);
+    border-color: #d2d3d4;
+    padding-top: 10px;
+}
+.imagen-entrada{
+    width: 90px;
+}
+.precio-entrada{
+color:rgb(40, 56, 144);
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}
+.cantidad{
+    width: 50px;
+    border-color: #d2d3d4;
+    font-size: 20px;
+    height: 40px;
+    
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.sube-baja{
+    width: 15px;
+    border-color: #d2d3d4;
+    font-size: 22px;
+    height: 40px;
+}
+
+.signup-form {
+    width: 450px;
+    margin: 0 auto;
+    padding: 30px 0;
+    font-size: 15px;
+}
+.image{
+    width: 40px;
+}
+.ka{
+    font-size:10px;
+}

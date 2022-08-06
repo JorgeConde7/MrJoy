@@ -133,6 +133,7 @@ export class CalendarioReservaComponent implements OnInit {
     fechaReserva: '',
     hora: '',
     cantPersonas: 0,
+    correo:"",
     idLogin: -1,
     nombres: '',
     apellido: '',

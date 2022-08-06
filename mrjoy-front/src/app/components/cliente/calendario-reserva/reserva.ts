@@ -7,6 +7,7 @@ export class Reserva
     hora: string | undefined;
     cantPersonas: number | undefined;
     idLogin: number | undefined;
+    correo:string|undefined;
     nombres: string | undefined;
     apellido: string | undefined;
     telefono: string | undefined;
@@ -24,6 +25,7 @@ export interface IReserva
     hora: string;
     cantPersonas: number;
     idLogin: number;
+    correo: string;
     nombres: string;
     apellido: string;
     telefono: string;
