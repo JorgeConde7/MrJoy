@@ -35,14 +35,17 @@ export class LoginModalComponent implements OnInit {
         if (usuario.tipouser?.toLowerCase()=="empleado"){
           console.log(typeof(usuario.tipouser))
           window.location.href="admin/empleados"
+          //this.router.navigate(['/admin/empleados'])
           
         }
         else if(usuario.tipouser?.toLowerCase()=="cliente"){
           window.location.href="cliente/index"
+          //this.router.navigate(['/cliente/index'])
         }
       }
 
       console.log(usuario);
+      console.log('aea')
 
       
     });

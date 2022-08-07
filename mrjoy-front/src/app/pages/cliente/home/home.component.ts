@@ -18,14 +18,14 @@ export class HomeComponent implements OnInit {
 
   // 2 Creamos nuestra función para buscar personaje por id
   buscarCharacterXId() {
-    const personaje_id = "32";
+    /*const personaje_id = "32";
     // 3 usamos nuestro servicio creado y buscamos por un id
     this.getDataService.obtenerPersonajeXId(personaje_id)
       // 4 Nos suscribimos para obtener los datos de la respuesta
       .subscribe(personajeResponse => {
         // Y hacemos lo que queremos con nuestra respuesta
         console.log("Data: ", personajeResponse);
-      })
+      })*/
   }
 
 }

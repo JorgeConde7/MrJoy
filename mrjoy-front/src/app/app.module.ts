@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './pages/cliente/registro/registro.component';
 import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-contacto.component';
 import { ModalPagoComponent } from './components/cliente/modal-pago/modal-pago.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -67,7 +68,8 @@ import { ModalPagoComponent } from './components/cliente/modal-pago/modal-pago.c
     AppRoutingModule,
     HttpClientModule,
     DataTablesModule,
-    FormsModule
+    FormsModule,
+    NgbModule
 
   ],
   providers: [],

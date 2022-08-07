@@ -41,7 +41,7 @@ export class FormularioReservaComponent implements OnInit {
     hora: 'inicio',
     cantPersonas: 0,
     correo:"",
-    idLogin: -1,
+    idLogin: 1,
     nombres: '',
     apellido: '',
     telefono: '',
