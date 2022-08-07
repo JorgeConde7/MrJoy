@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ReservaServiceService } from '../calendario-reserva/reserva-service.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormularioReservaComponent } from '../formulario-reserva/formulario-reserva.component';
-import { PaqueteServiceService } from '../formulario-reserva/paquete-service.service';
+import { ModalPagoService } from './modal-pago.service';
 
 @Component({
   selector: 'app-modal-pago',
@@ -9,17 +8,62 @@ import { PaqueteServiceService } from '../formulario-reserva/paquete-service.ser
   styleUrls: ['./modal-pago.component.scss']
 })
 export class ModalPagoComponent implements OnInit {
+  @Input() datoReservaFormulario : any;
 
-  private formulario:FormularioReservaComponent=new FormularioReservaComponent(this.paqueteService,this.reservaServiceService);
+  numeroTarjeta : String = '';
+  mesTarjeta : String = '';
+  codSeguridad : String = '';
 
-  constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService) { }
+  public validar : boolean = false;
 
-  ngOnInit(): void {
-  }
-
-  registrar(){
+  constructor(private formularioReservaComponent: FormularioReservaComponent, private modalPagoService: ModalPagoService) 
+  { 
     
   }
+
+  ngOnInit(): void {
+
+    
+  }
+
+  validarPago()
+  {
+    this.validar = true;
+    console.log('Entro en validar pago ')
+
+    if(this.validar)
+    {
+      if (this.numeroTarjeta.trim() !== '' && this.mesTarjeta.trim() !== '' && this.codSeguridad.trim() !== '')
+      {
+        this.modalPagoService.getTarjeta(this.numeroTarjeta, this.mesTarjeta, this.codSeguridad).subscribe( result => {
+          /*console.log(this.datoReservaFormulario.totalPago)
+          console.log(result.saldo)*/
+          if (result)
+          {
+            if (result.saldo >= this.datoReservaFormulario.totalPago)
+            {
+              this.formularioReservaComponent.RegistrarReservaClass(this.datoReservaFormulario)
+              //console.log(result.saldo - this.datoReservaFormulario.totalPago)
+              this.modalPagoService.putTarjeta(this.numeroTarjeta, (result.saldo - this.datoReservaFormulario.totalPago)).subscribe()
+            }
+            else
+            {
+              const audio = new Audio('assets/audios/pipipiii.mp3')
+              audio.volume = 0.4;
+              audio.play();
+              alert('Mano no tienes plata. pipipi ( ͡ಥ ͜ʖ ͡ಥ)')
+            }
+          }
+        })
+      }
+      else alert('Datos vacíos')
+    }
+    else
+    {
+      alert('Error Papu :V')
+    }
+  }
+  
 
 
 }

@@ -19,22 +19,22 @@
                             <input type="text" placeholder="Nombre y Apelido" class="form-control ">
                         </div><br />
                         <div class="form-group">
-                            <input type="text" placeholder="Numero de Tarjeta" class="form-control ">
+                            <input type="text" [(ngModel)]="numeroTarjeta" name="numeroTarjeta" placeholder="Numero de Tarjeta" class="form-control ">
                         </div><br />
 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="MM/AA">
+                                    <input type="text" [(ngModel)]="mesTarjeta" name="mesTarjeta" class="form-control" placeholder="MM/AA">
                                 </div>
                                 <div class="col-md-6">
-                                    <input placeholder="CVC" type="password" class="form-control">
+                                    <input placeholder="CVC" [(ngModel)]="codSeguridad" name="codSeguridad" type="password" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <br />
                         <div class="form-group">
-                            <button class="btn btn-primary form-control" data-bs-toggle="modal" (click)="registrar()"
+                            <button class="btn btn-primary form-control" data-bs-toggle="modal" (click)="validarPago()"
                                 data-bs-target="#myModal">PAGAR</button>
                         </div>
                         <br />

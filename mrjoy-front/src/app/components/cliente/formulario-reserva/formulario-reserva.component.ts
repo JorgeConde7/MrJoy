@@ -31,12 +31,14 @@ export class FormularioReservaComponent implements OnInit {
     '18:00',
     '19:00']
 
+  horaOcupada: string[] = [] ;
 
-  reserva: IReserva = {
+
+  public reserva: IReserva = {
     idPaquete: 0,
     fechaRegistro: '',
     fechaReserva: '',
-    hora: '',
+    hora: 'inicio',
     cantPersonas: 0,
     correo:"",
     idLogin: -1,
@@ -55,8 +57,6 @@ export class FormularioReservaComponent implements OnInit {
 
   constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService) {
 
-    // let total = this.reserva.acompaniante * 10;
-
   }
 
 
@@ -71,7 +71,7 @@ export class FormularioReservaComponent implements OnInit {
 
 
 
-  NoRepetir()
+  validarHorario()
   {
     //console.log('Llamando a fecha reserva ' + this.reserva.fechaReserva)
     this.reservaServiceService.getReserva(this.reserva.fechaReserva).subscribe
@@ -92,10 +92,9 @@ export class FormularioReservaComponent implements OnInit {
     )
   }
 
-  RegistrarReserva()
+  RegistrarReservaClass(datoReserva : any)
   {
-    console.log(this.reserva);
-    console.log("aaaaeaaaaa")
+    this.reserva = datoReserva;
     let guardandoidPaquete = this.reserva.idPaquete;
     let pruebita = guardandoidPaquete.toString().split(" ");
     this.reserva.idPaquete = parseInt(pruebita[0]);
@@ -103,33 +102,10 @@ export class FormularioReservaComponent implements OnInit {
       alert("Reserva registrada correctamente!!")
     });
     this.reserva.idPaquete = 0;
-    
-    //console.log("Creando Reserva test...")
-  }
-
-  ValueDelPaquete(xd: any) {
-
-  }
-
-  aea() {
-    console.log("aea funcionando")
-    //this.total = this.reserva.acompaniante; //* this.reserva.idPaquete
-  }
-
-  parse(aea: any) {
-    return parseInt(aea);
   }
 
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
-    // console.log("cantPersona: ", cantPersona);
-    // console.log("acompaniante: ", acompaniante);
-
-
-    /*if (Number(paquete) == 0)
-    {
-      this.total = 0
-    }*/
 
     const paqueteSplit = paquete.split(" ")
     let precio = 0
@@ -150,14 +126,30 @@ export class FormularioReservaComponent implements OnInit {
     
   }
 
-  fechaprobando()
+  validandoCambioDeFecha()
   {
-    console.log(this.reserva.fechaReserva)
-  }
+    //console.log(this.reserva.fechaReserva)
+    this.horaCadena = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
+    this.reserva.hora = 'inicio'
+    if (this.reserva.fechaReserva === '') return;
 
-  /*darValores(oa : any)
-  {
-    this.reserva = oa;
-  }*/
+    this.reservaServiceService.getReserva(this.reserva.fechaReserva).subscribe( cuerpo =>
+      {
+        this.horaOcupada = [];
+        for(let i=0; i<cuerpo.length; i++)
+        {
+          this.horaOcupada.push(cuerpo[i].hora)
+        }
+        this.horaOcupada.sort()
+        //console.log(this.horaOcupada)
+        for(let i=0; i<this.horaOcupada.length; i++)
+        {
+          //console.log(this.horaCadena.indexOf(this.horaOcupada[i]))
+          this.horaCadena.splice(this.horaCadena.indexOf(this.horaOcupada[i]), 1)
+        }
+        //console.log(this.horaCadena)
+      })
+  }
+  
 }
 

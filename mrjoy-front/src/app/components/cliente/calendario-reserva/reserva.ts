@@ -4,7 +4,7 @@ export class Reserva
     idReserva: number | undefined;
     fechaRegistro: Date | undefined;
     fechaReserva: Date | undefined;
-    hora: string | undefined;
+    hora: string = '';
     cantPersonas: number | undefined;
     idLogin: number | undefined;
     correo:string|undefined;
