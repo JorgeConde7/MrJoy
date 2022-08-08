@@ -10,8 +10,28 @@
             <ul>
               <li>
                 
-                <a id="" data-bs-toggle="modal" data-bs-target="#modalLogin" class="login">
-                  Ingresar</a>
+                <a id="" data-bs-toggle="modal" data-bs-target="#modalLogin" class="login" *ngIf="nombre == 'Ingresar' ; else UsuarioIngresado">
+                  {{nombre}}</a>
+                <ng-template #UsuarioIngresado>
+                  
+                  <!--<select (change)="cambioSelect()" id="selectuser">
+                    <option value="perfil">Perfil</option>
+                    <option value="cerrar">Cerrar Sesión</option>
+                  </select>-->
+                  <div class="dropdown">
+
+                    <span class="formudatos dropbtn" (click)="nombreClick()">{{datosCompletos.usuario}} 🡣
+                    
+                    
+                    </span>
+                    <div class="dropdown-content">
+                      <a >Perfil</a>
+                      <a >Configuración</a>
+                      <a (click)="cambioSelect()">Cerrar Sesión</a>
+                    </div>
+                  </div>
+                  
+                </ng-template>
               </li>
               <li>
                 <a class="" ><i class="fas fa-cart-plus"> </i>ORDENES</a>

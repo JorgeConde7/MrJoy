@@ -18,7 +18,7 @@ export class LoginModalComponent implements OnInit {
 
   validacion:boolean=false;
 
-  constructor(private loginservice:LoginModalService) { }
+  constructor(private loginservice:LoginModalService) { /*this.obtener_localstore()*/ }
 
   
   accesoLogin(){
@@ -31,12 +31,15 @@ export class LoginModalComponent implements OnInit {
       else{
         this.validacion=false
         if (usuario.tipouser?.toLowerCase()=="empleado"){
-          console.log(typeof(usuario.tipouser))
+          //console.log(typeof(usuario))
+          this.grabar_localstore(usuario)
           window.location.href="admin/empleados"
           //this.router.navigate(['/admin/empleados'])
           
         }
         else if(usuario.tipouser?.toLowerCase()=="cliente"){
+          //console.log(typeof(usuario))
+          this.grabar_localstore(usuario)
           window.location.href="cliente/index"
           //this.router.navigate(['/cliente/index'])
         }
@@ -48,6 +51,18 @@ export class LoginModalComponent implements OnInit {
       
     });
     
+  }
+
+  /*obtener_localstore()
+  {
+    console.log(localStorage.getItem("datos"))
+    console.log('xd')
+  }*/
+
+  grabar_localstore(objeto : any)
+  {
+    if (objeto)
+    localStorage.setItem("datos", JSON.stringify( objeto ))
   }
 
   ngOnInit(): void {
