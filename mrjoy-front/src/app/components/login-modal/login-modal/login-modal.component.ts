@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModel } from '@angular/forms';
-import { RoutesRecognized } from '@angular/router';
 import { Login} from './login-modal';
 import { LoginModalService } from './login-modal.service';
 
