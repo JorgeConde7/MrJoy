@@ -16,6 +16,13 @@ import { ParquesComponent } from './pages/cliente/parques/parques.component';
 import { PromocionesComponent } from './pages/cliente/promociones/promociones.component';
 import { RegistroComponent } from './pages/cliente/registro/registro.component';
 import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-contacto.component';
+import { AdminMenuComponent } from './pages/admin/admin-menu/admin-menu.component';
+import { AdminVentaBoletoComponent } from './pages/admin/admin-venta-boleto/admin-venta-boleto.component';
+import { AdminCalendarioComponent } from './pages/admin/admin-calendario/admin-calendario.component';
+import { AdminReportesComponent } from './pages/admin/admin-reportes/admin-reportes.component';
+import { AdminProveedoresComponent } from './pages/admin/admin-proveedores/admin-proveedores.component';
+import { AdminPaquetesComponent } from './pages/admin/admin-paquetes/admin-paquetes.component';
+import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin-promociones.component';
 
 
 const routes: Routes = [
@@ -80,7 +87,35 @@ const routes: Routes = [
       {
         path: 'contacto',
         component: AdminContactoComponent
-      } 
+      },
+      {
+        path: 'menu',
+        component: AdminMenuComponent
+      },
+      {
+        path: 'ventaBoletos',
+        component: AdminVentaBoletoComponent
+      },
+      {
+        path: 'calendario',
+        component: AdminCalendarioComponent
+      },
+      {
+        path: 'reporte',
+        component: AdminReportesComponent
+      },
+      {
+        path: 'proveedores',
+        component: AdminProveedoresComponent
+      },
+      {
+        path: 'paquetes',
+        component: AdminPaquetesComponent
+      },
+      {
+        path: 'promociones',
+        component: AdminPromocionesComponent
+      }
     ]
   },
   {

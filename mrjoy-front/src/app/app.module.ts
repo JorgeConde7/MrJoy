@@ -24,13 +24,19 @@ import { AdminClienteComponent } from './pages/admin/admin-cliente/admin-cliente
 import { AdminInicioComponent } from './components/admin/admin-inicio/admin-inicio.component';
 import { DataTablesModule } from 'angular-datatables';
 import { LoginModalComponent } from './components/login-modal/login-modal/login-modal.component';
-import { TipoentradaComponent } from './pages/admin/tipoentrada/tipoentrada.component';
 import { FormularioReservaComponent } from './components/cliente/formulario-reserva/formulario-reserva.component';
 import { AdminReservaComponent } from './pages/admin/admin-reserva/admin-reserva.component';
 import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './pages/cliente/registro/registro.component';
 import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-contacto.component';
 import { ModalPagoComponent } from './components/cliente/modal-pago/modal-pago.component';
+import { AdminMenuComponent } from './pages/admin/admin-menu/admin-menu.component';
+import { AdminVentaBoletoComponent } from './pages/admin/admin-venta-boleto/admin-venta-boleto.component';
+import { AdminCalendarioComponent } from './pages/admin/admin-calendario/admin-calendario.component';
+import { AdminReportesComponent } from './pages/admin/admin-reportes/admin-reportes.component';
+import { AdminProveedoresComponent } from './pages/admin/admin-proveedores/admin-proveedores.component';
+import { AdminPaquetesComponent } from './pages/admin/admin-paquetes/admin-paquetes.component';
+import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin-promociones.component';
 
 
 
@@ -54,13 +60,19 @@ import { ModalPagoComponent } from './components/cliente/modal-pago/modal-pago.c
     AdminEmpleadoComponent,
     AdminInicioComponent,
     LoginModalComponent,
-    TipoentradaComponent,
     FormularioReservaComponent,
     AdminReservaComponent,
     RegistroComponent,
     AdminContactoComponent,
     CalendarioReservaComponent,
-    ModalPagoComponent
+    ModalPagoComponent,
+    AdminMenuComponent,
+    AdminVentaBoletoComponent,
+    AdminCalendarioComponent,
+    AdminReportesComponent,
+    AdminProveedoresComponent,
+    AdminPaquetesComponent,
+    AdminPromocionesComponent
   ],
   imports: [
     BrowserModule,

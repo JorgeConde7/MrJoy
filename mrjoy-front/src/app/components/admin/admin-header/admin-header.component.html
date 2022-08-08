@@ -4,7 +4,7 @@
          id="sidebarMenu" class="collapse d-lg-block sidebar collapse" >
       <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+          <a [routerLink]="['/admin/menu']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/menu')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fas fa-home fa-fw me-3"></i><span>Menu</span>
           </a>
           <a [routerLink]="['/admin/empleados']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/empleados')}"  class="list-group-item list-group-item-action py-2 ripple">
@@ -16,21 +16,21 @@
           <a [routerLink]="['/admin/reservas']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/reservas')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-book fa-fw me-3"></i><span>Reservas Cumpleaños</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+          <a [routerLink]="['/admin/ventaBoletos']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/ventaBoletos')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-shopping-bag fa-fw me-3"></i><span>Venta Boletos</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+          <a [routerLink]="['/admin/calendario']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/calendario')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-calendar fa-fw me-3"></i><span>Calendario</span></a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+          <a [routerLink]="['/admin/reporte']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/reporte')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-chart-bar fa-fw me-3"></i><span>Reportes</span>
           </a>
-          <a href="#"class="list-group-item list-group-item-action py-2 ripple">
+          <a [routerLink]="['/admin/proveedores']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/proveedores')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-shipping-fast fa-fw me-3"></i><span>Provedores</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-              <i class="fas fa-calendar fa-fw me-3"></i><span>Productos</span>
+          <a [routerLink]="['/admin/paquetes']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/paquetes')}" class="list-group-item list-group-item-action py-2 ripple">
+              <i class="fas fa-calendar fa-fw me-3"></i><span>Paquetes</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+          <a [routerLink]="['/admin/promociones']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/promociones')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-calendar fa-fw me-3"></i><span>Promociones</span>
           </a>
           <a [routerLink]="['/admin/contacto']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/contacto')}" class="list-group-item list-group-item-action py-2 ripple">
