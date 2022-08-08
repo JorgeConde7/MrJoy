@@ -30,6 +30,7 @@ import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from './pages/cliente/registro/registro.component';
 import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-contacto.component';
 import { ModalPagoComponent } from './components/cliente/modal-pago/modal-pago.component';
+<<<<<<< HEAD
 import { AdminMenuComponent } from './pages/admin/admin-menu/admin-menu.component';
 import { AdminVentaBoletoComponent } from './pages/admin/admin-venta-boleto/admin-venta-boleto.component';
 import { AdminCalendarioComponent } from './pages/admin/admin-calendario/admin-calendario.component';
@@ -37,6 +38,9 @@ import { AdminReportesComponent } from './pages/admin/admin-reportes/admin-repor
 import { AdminProveedoresComponent } from './pages/admin/admin-proveedores/admin-proveedores.component';
 import { AdminPaquetesComponent } from './pages/admin/admin-paquetes/admin-paquetes.component';
 import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin-promociones.component';
+=======
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+>>>>>>> 8fa209c194a67a8392010e550f7f5c643230d18e
 
 
 
@@ -79,7 +83,8 @@ import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin
     AppRoutingModule,
     HttpClientModule,
     DataTablesModule,
-    FormsModule
+    FormsModule,
+    NgbModule
 
   ],
   providers: [],

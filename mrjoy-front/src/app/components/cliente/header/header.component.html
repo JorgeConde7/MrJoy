@@ -10,11 +10,11 @@
             <ul>
               <li>
                 
-                <a id="" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                  Login</a>
+                <a id="" data-bs-toggle="modal" data-bs-target="#modalLogin" class="login">
+                  Ingresar</a>
               </li>
               <li>
-                <a class="" ><i class="fas fa-cart-plus"> </i>CARRITO</a>
+                <a class="" ><i class="fas fa-cart-plus"> </i>ORDENES</a>
               </li>
             </ul> 
           </div>
@@ -33,22 +33,22 @@
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav navegacion" style="--bs-scroll-height: 100px;">
           <li class="nav-item" >
-            <a class="nav-link" aria-current="page"  routerLink="index" [ngClass]="{active: isUrlEqualTo('/index')}">Inicio</a>
+            <a class="nav-link" aria-current="page"  routerLink="index" [ngClass]="{active: isUrlEqualTo('/cliente/index')}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="parques" [ngClass]="{active: isUrlEqualTo('/parques')}">Parques</a>
+            <a class="nav-link" routerLink="parques" [ngClass]="{active: isUrlEqualTo('/cliente/parques')}">Parques</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="horarios" [ngClass]="{active: isUrlEqualTo('/horarios')}">Horarios</a>
+            <a class="nav-link" routerLink="horarios" [ngClass]="{active: isUrlEqualTo('/cliente/horarios')}">Horarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="promociones" [ngClass]="{active: isUrlEqualTo('/promociones')}">Promociones</a>
+            <a class="nav-link" routerLink="promociones" [ngClass]="{active: isUrlEqualTo('/cliente/promociones')}">Promociones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="cumpleanios" [ngClass]="{active: isUrlEqualTo('/cumpleanios')}">Cumpleaños</a>
+            <a class="nav-link" routerLink="cumpleanios" [ngClass]="{active: isUrlEqualTo('/cliente/cumpleanios')}">Cumpleaños</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/contacto')}">
+            <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/cliente/contacto')}">
               Contacto</a>
           </li>
         </ul>

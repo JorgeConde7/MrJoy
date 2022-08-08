@@ -67,6 +67,43 @@ const routes: Routes = [
         component: BioseguridadComponent
       },
 
+
+      {
+        path: 'index/:id',
+        component: HomeComponent
+      },
+      {
+        path: 'registro/:id',
+        component: RegistroComponent
+      },
+      {
+        path: 'parques/:id',
+        component: ParquesComponent
+      },
+      {
+        path: 'horarios/:id',
+        component: HorariosComponent
+      },
+      {
+        path: 'cumpleanios/:id',
+        component: CumpleaniosComponent
+      },
+      {
+        path: 'promociones/:id',
+        component: PromocionesComponent
+      },
+      {
+        path: 'contacto/:id',
+        component: ContactoComponent
+      },
+      {
+        path: 'compra-entradas/:id',
+        component: CompraEntradasComponent
+      },
+      {
+        path: 'bioseguridad/:id',
+        component: BioseguridadComponent
+      },
     ]
   },
   {
