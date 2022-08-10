@@ -14,8 +14,8 @@
           <input class="form-control" type="text" placeholder="Ingrese su Apellido" [(ngModel)]="reserva.apellido" name = "apellido">
           <label for="">Telefono:</label>
           <input  max=9 class="form-control" type="text" placeholder="Ingrese su telefono" [(ngModel)]="reserva.telefono" name = "telefono">
-          <label for="">Correo:</label>
-          <input class="form-control" type="email" [(ngModel)]="reserva.correo" placeholder="Ingrese su correo"  name = "correo">
+          <!--<label for="">Correo:</label>
+          <input class="form-control" type="email" [(ngModel)]="reserva.correo" placeholder="Ingrese su correo"  name = "correo">-->
           <label for="chocolates">Tipo de Paquete</label>
           <select class="form-control" [(ngModel)]="reserva.idPaquete"  name = "idPaquete" #idPaquetes (change)="onchangeValues(reserva.cantPersonas,reserva.acompaniante,idPaquetes.value)" >
             <option  value="0">Seleccione paquete</option>
@@ -30,8 +30,11 @@
           <label for="">Total a Pagar :</label>
           <input type="text" readonly placeholder="" class="form-control" [value]="total" name="total">
           <button 
+           id="btnRegistrar" class="btn btn-primary mt-4 botonRegistrar" 
+           type="button"  *ngIf="isUrlEqualTo('/admin/reservas')" (click)="RegistrarReservaEmpleado()">Registrar</button>
+          <button 
            id="btnRegistrar" data-bs-toggle="modal" data-bs-target="#modalLEntradas" class="btn btn-primary mt-4 botonRegistrar" 
-           data-bs-dismiss="modal" type="button"  >Registrar</button>
+           data-bs-dismiss="modal" type="button"  *ngIf="isUrlEqualTo('/cliente/cumpleanios')">Registrar</button>
 
         </form>
-        <app-modal-pago *ngIf="" [datoReservaFormulario]="reserva"></app-modal-pago>
+        <app-modal-pago [datoReservaFormulario]="reserva"></app-modal-pago>

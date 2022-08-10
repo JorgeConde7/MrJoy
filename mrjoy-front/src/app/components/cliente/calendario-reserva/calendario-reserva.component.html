@@ -45,7 +45,7 @@
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Telefono</th>
-              <th>Correo</th>
+              <!--<th>Correo</th>-->
               <th>Fecha de Reserva</th>
               <th>Hora</th>
               <th>Cant. Personas</th>
@@ -64,7 +64,7 @@
               <td>{{listar.nombres}}</td>
               <td>{{listar.apellido}}</td>
               <td>{{listar.telefono}}</td>
-              <td></td>
+              <!--<td></td>-->
               <td>{{listar.fechaReserva}}</td>
               <td>{{listar.hora}}</td>
               <td>{{listar.cantPersonas}}</td>
@@ -74,8 +74,8 @@
               <td></td>
               <td></td>
               <td>
-                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt" data-bs-toggle="modal"
-                data-bs-target="#modalEmpleado" ></i></a>
+                <a class="btn btn-warning" style='padding:0 10px' data-bs-toggle="modal"
+                data-bs-target="#modalEmpleado"><i class="fas fa-pencil-alt"  ></i></a>
               </td>
               <td><a class="btn btn-danger" style='padding:0 10px'><i class="fa-solid fa-print"></i> </a></td>
             </tr>
@@ -89,7 +89,8 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <app-formulario-reserva [habilitar]="true"></app-formulario-reserva>
+            <!--<app-formulario-reserva [total]="ireserva.totalPago" [reserva]="ireserva"></app-formulario-reserva>-->
+            <app-formulario-reserva [reserva]="ireserva"></app-formulario-reserva>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 // RESERVA
 import { ReservaServiceService } from '../calendario-reserva/reserva-service.service';
 import { Reserva, IReserva } from '../calendario-reserva/reserva';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,8 +15,8 @@ import { Reserva, IReserva } from '../calendario-reserva/reserva';
   styleUrls: ['./formulario-reserva.component.scss']
 })
 export class FormularioReservaComponent implements OnInit {
-  @Input()
-  habilitar: boolean = false;
+  
+  //habilitar: boolean = false;
   total: number = 0;
 
   
@@ -34,7 +35,7 @@ export class FormularioReservaComponent implements OnInit {
   horaOcupada: string[] = [] ;
 
 
-  public reserva: IReserva = {
+  @Input() reserva: IReserva = {
     idPaquete: 0,
     fechaRegistro: '',
     fechaReserva: '',
@@ -55,7 +56,7 @@ export class FormularioReservaComponent implements OnInit {
   paquetes: Paquete[] = [];
 
 
-  constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService) {
+  constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService, private router:Router) {
 
   }
 
@@ -104,6 +105,18 @@ export class FormularioReservaComponent implements OnInit {
     this.reserva.idPaquete = 0;
   }
 
+  RegistrarReservaEmpleado()
+  {
+    let guardandoidPaquete = this.reserva.idPaquete;
+    let pruebita = guardandoidPaquete.toString().split(" ");
+    this.reserva.idPaquete = parseInt(pruebita[0]);
+    this.reservaServiceService.CrearReserva(this.reserva).subscribe(() => {
+      alert("Reserva registrada correctamente!!")
+    });
+    this.reserva.idPaquete = 0;
+    window.location.href='admin/reservas'
+  }
+
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
 
@@ -149,6 +162,12 @@ export class FormularioReservaComponent implements OnInit {
         }
         //console.log(this.horaCadena)
       })
+  }
+
+  isUrlEqualTo(currentURL: string) {
+    const url = this.router.url
+
+    return url === currentURL;
   }
   
 }

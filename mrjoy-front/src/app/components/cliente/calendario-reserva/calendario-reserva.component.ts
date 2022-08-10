@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ReservaServiceService } from './reserva-service.service';
 import { Reserva } from './reserva';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IReserva } from './reserva';
+//import { PaqueteServiceService } from '../formulario-reserva/paquete-service.service';
 //import { FormularioReservaComponent } from '../formulario-reserva/formulario-reserva.component';
 
 @Component({
@@ -29,10 +30,11 @@ export class CalendarioReservaComponent implements OnInit {
   dateSelect: any;
   reservas:Reserva[]=[];
 
-  listar:Reserva;
+  //listar:Reserva;
+  listar:any;
 
   // iniciando datos de variables
-  constructor(private reseraService:ReservaServiceService, private router:Router) {
+  constructor(private reseraService:ReservaServiceService/*, private paqueteService: PaqueteServiceService*/, private router:Router) {
     this.monthSelect=new Array;
     this.listar = new Reserva();
    }
@@ -107,18 +109,32 @@ export class CalendarioReservaComponent implements OnInit {
     this.dateValue = objectDate;
   }
 
-  
+  //paquete:any;
 
   verDetallesReserva(hora : any)
   {
     //console.log('diste clic en la hora: ' + hora)
-    for (let i=0 ; this.reservas.length; i++)
+    for (let i=0 ; i < this.reservas.length; i++)
     {
       if (this.reservas[i].hora === hora)
       {
         this.listar = this.reservas[i];
       }
     }
+    this.ireserva = this.listar;
+    /*this.paqueteService.getPaquete().subscribe( paquetes => 
+      { 
+        this.paquete = paquetes;  
+        for (let i=0; i<this.paquete.length; i++)
+        {
+          if (this.paquete[i].idPaquete === this.ireserva.idPaquete)
+          {
+            this.ireserva.idPaquete = this.ireserva.idPaquete + ' ' + this.paquete[i].precio;
+          }
+        }
+      });*/
+    //this.ireserva.idPaquete = this.ireserva.idPaquete + ' ' + this.ireserva.precio
+    //console.log(this.ireserva)
   }
 
   isUrlEqualTo(currentURL: string) {
@@ -134,7 +150,7 @@ export class CalendarioReservaComponent implements OnInit {
     hora: '',
     cantPersonas: 0,
     correo:"",
-    idLogin: -1,
+    idLogin: 1,
     nombres: '',
     apellido: '',
     telefono: '',
