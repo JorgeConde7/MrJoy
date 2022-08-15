@@ -3,24 +3,26 @@
         <div class="perfil-usuario-portada">
             <div class="perfil-usuario-avatar">
 
-                <img src={{icliente.rutaImg}} alt="" >
-            
+                <img src={{icliente.rutaImg}} alt="">
+
             </div>
             <button type="button" class="boton-portada">
                 <i class="far fa-image"></i> Cambiar fondo
             </button>
         </div>
     </div>
-    <div class="perfil-usuario-body " >
+    <div class="perfil-usuario-body ">
         <div class="perfil-usuario-bio">
             <h3 class="titulo">{{nombre}}</h3>
-            <p class="texto ">Adrian Bellido  jugador profesional de  left 4 dead 2 :
-            PapaLuchon , porsupuesteishon , pongan en avanzado los infectados me la hacen facil</p>
+            <p class="texto ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci dolorem quam, corrupti
+                officiis repellendus expedita ipsa fugit consequuntur, reprehenderit doloremque harum minima velit porro
+                aperiam facere iure quas. Vitae, harum.</p>
         </div>
         <div class="perfil-usuario-footer">
             <ul class="lista-datos">
-                <li><i class="icono fas fa-user-check"></i> Nombre :  {{icliente.nombres}}</li>
-                <li><i class="icono fas fa-phone-alt"></i> Apellido:{{icliente.apePaterno+ " "+icliente.apePaterno}}</li>
+                <li><i class="icono fas fa-user-check"></i> Nombre : {{icliente.nombres}}</li>
+                <li><i class="icono fas fa-phone-alt"></i> Apellido:{{icliente.apePaterno+ " "+icliente.apePaterno}}
+                </li>
                 <li><i class="icono fas fa-briefcase"></i> Genero: {{icliente.genero}}</li>
                 <li><i class="icono fas fa-briefcase"></i> Dni: {{icliente.dni}} </li>
             </ul>
@@ -29,7 +31,7 @@
                 <li><i class="icono fas fa-phone-alt"></i> Telefono:{{icliente.telefono}}</li>
                 <li><i class="icono fas fa-calendar-alt"></i> Fecha nacimiento:{{icliente.fechaNacimiento}}</li>
                 <li><i class="icono fas fa-user-check"></i> Direccion: {{icliente.direccion}}</li>
-                
+
             </ul>
         </div>
     </div>

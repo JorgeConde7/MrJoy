@@ -46,5 +46,9 @@ export class RegistroComponent implements OnInit {
       contrasenia: '',
       tipouser: '',
   }
+ redireccionar(){
+  console.log('pipipipippi si llamo')
+  window.location.href="cliente/terminos"
+ }
 
 }

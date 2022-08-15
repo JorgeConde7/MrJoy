@@ -24,7 +24,7 @@ import { AdminProveedoresComponent } from './pages/admin/admin-proveedores/admin
 import { AdminPaquetesComponent } from './pages/admin/admin-paquetes/admin-paquetes.component';
 import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin-promociones.component';
 import { PerfilComponent } from './pages/cliente/perfil/perfil.component';
-
+import { TerminosComponent } from './pages/cliente/terminos/terminos.component';
 const routes: Routes = [
   {
     path: 'cliente',
@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'registro',
-        component: RegistroComponent
+        component: RegistroComponent,
       },
       {
         path: 'parques',
@@ -69,6 +69,9 @@ const routes: Routes = [
       {path: 'perfil',
       component: PerfilComponent
     },
+    {path: 'terminos',
+    component: TerminosComponent
+  },
 
 
       {
@@ -111,8 +114,13 @@ const routes: Routes = [
         path: 'perfil/:id',
         component: PerfilComponent
       },
+      {
+        path: 'terminos/:id',
+        component: TerminosComponent
+      },
     ]
   },
+  
   {
     path: 'admin',
     component: AdminInicioComponent,
