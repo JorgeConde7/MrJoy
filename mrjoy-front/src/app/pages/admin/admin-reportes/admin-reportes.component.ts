@@ -43,7 +43,7 @@ export class AdminReportesComponent  implements  OnInit{
 
     
   paquetes: any []=[];
-  entradas1: any[] = [];
+  entradas: any[] = [];
   info: any[] = [];
   
 
@@ -60,8 +60,8 @@ export class AdminReportesComponent  implements  OnInit{
   showYAxisLabel = true;
   showLabels: boolean = false;
   isDoughnut: boolean = false;
-  xAxisLabel1 = 'Ventas';
-  xAxisLabel = 'Datos de la Empresa';
+  xAxisLabel1 = 'Ventas por Paquetes';
+  xAxisLabel = 'Ventar por entradas';
   yAxisLabel = 'Cantidad';
   yAxisLabel1 = 'Cantidad';
 

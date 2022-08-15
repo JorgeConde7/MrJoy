@@ -18,4 +18,7 @@ export class CompraEntradasService {
   {
     return this.http.get<any>(URL+'/tipoentrada');
   }
+
+  postEntradas(): Observable<TipoEntrada>
+
 }

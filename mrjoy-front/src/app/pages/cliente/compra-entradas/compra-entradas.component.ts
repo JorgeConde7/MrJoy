@@ -36,6 +36,10 @@ export class CompraEntradasComponent implements OnInit {
     })
   }
 
+  registrar(){
+    
+  }
+
   Aumentar(idString:string, precio:any, itemid:any, suma:number)
   {
     const id = (<HTMLInputElement>document.getElementById(idString))

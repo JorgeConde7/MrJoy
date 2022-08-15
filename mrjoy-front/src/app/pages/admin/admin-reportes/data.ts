@@ -11,11 +11,11 @@ export class Info{
 export var entradas =[
   {
     "name":"JoyStart",
-    "value":200
+    "value":20000
   },
   {
     "name":"JoyPlanet",
-    "value":1000
+    "value":6000
   },
   {
     "name":"Visitantes",
