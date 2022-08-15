@@ -5,3 +5,10 @@ export class Promociones{
     foto: string|undefined;
     
 }
+
+export interface IPromociones{
+    id_promociones:number;
+    descripcion:string;
+    promociones:string;
+    foto: string;
+}

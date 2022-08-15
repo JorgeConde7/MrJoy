@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AdminPromocionesService } from './admin-promociones.service';
 import { Router } from '@angular/router';
-import { Promociones } from './admin-promociones';
+import { Promociones, IPromociones } from './admin-promociones';
 
 @Component({
   selector: 'app-admin-promociones',
@@ -18,6 +18,13 @@ export class AdminPromocionesComponent implements OnInit {
   dtTrigger = new Subject<ADTSettings>();
   data: any;
   isInsert=true;
+  ipromocion: IPromociones = 
+  {
+    id_promociones: 0,
+    descripcion: '',
+    promociones: '',
+    foto: ''
+  }
 
   constructor(private promocionService:AdminPromocionesService, private router: Router) { }
 
@@ -30,21 +37,63 @@ export class AdminPromocionesComponent implements OnInit {
 
     this.promocionService.getPromocion()
       .subscribe(result => {
-        console.log(result);
+        //console.log(result);
         this.data = result;
         this.dtTrigger.next(this.dtOptions)
       })
   }
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe()
   }
+
   getPromociones() {
     this.promocionService.getPromocion().subscribe((result) => {
     this.data = result;
     });
   }
-  
+
+  eliminarPromociones(id : number)
+  {
+    this.promocionService.deletePromocion(id).subscribe(
+      result => {
+        this.getPromociones()
+      }  
+    )
   }
+
+  editarPromociones(data : any)
+  {
+    this.ipromocion = data;
+  }
+  
+  limpiarModal()
+  {
+    this.ipromocion.id_promociones = 0;
+    this.ipromocion.promociones = '';
+    this.ipromocion.descripcion = '';
+    this.ipromocion.foto = '';
+  }
+
+  guardarDatos()
+  {
+    if (!this.ipromocion.id_promociones)
+    {
+      this.promocionService.create(this.ipromocion).subscribe(
+        datos => { this.getPromociones() }
+      )
+      //console.log('e')
+      
+    }
+    else
+    {
+      this.promocionService.actualizarPromocion(this.ipromocion, this.ipromocion.id_promociones).subscribe(
+        datos => { this.getPromociones() }
+      )
+      //console.log('a')
+    }
+  }
+}
 
 
 

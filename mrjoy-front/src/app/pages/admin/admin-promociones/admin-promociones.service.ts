@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient ,HttpHeaders} from '@angular/common/http';
-import { Promociones } from './admin-promociones';
+import { Promociones, IPromociones } from './admin-promociones';
 import { environment } from 'src/environments/environment';
 const URL = `${environment.URL_BASE}/api/promociones`;
 @Injectable({
@@ -15,15 +15,17 @@ export class AdminPromocionesService {
     return this.http.get<Promociones[]>(URL);
   }
 
-  create(promociones:Promociones):Observable<Promociones>{
-    return this.http.post<Promociones>(URL,promociones,{headers:this.httpHeaders})
-  }
-  deletePromocion(id: number) {
-    return this.http.delete<any>(URL + '/promociones/' + id);
+  create(ipromociones:IPromociones):Observable<IPromociones>{
+    return this.http.post<IPromociones>(URL,ipromociones,{headers:this.httpHeaders})
   }
 
-  actualizarPromocion(promociones: Promociones) {
-    const id = promociones.id_promociones || '';
-    return this.http.put<any>(URL + '/promociones/' + id, promociones);
+  deletePromocion(id: number) {
+    return this.http.delete<any>(URL + `/${id}`);
+  }
+
+  actualizarPromocion(ipromociones: IPromociones, id : any) {
+    //console.log(ipromociones)
+    //const id = ipromociones.id_promociones;
+    return this.http.put<any>(URL + '/' + id, ipromociones);
   }
 }
