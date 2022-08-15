@@ -1,0 +1,101 @@
+<main style="margin-top: 35px">
+  <div class="container-fluid pt-4">
+    <a id="btnNuevoPromocion" class="btn btn-success float-right my-2" data-bs-toggle="modal"
+    data-bs-target="#modalPromocion" (click)="limpiarModal()">
+    <i class="ion-plus-round"></i> Nuevo</a>
+    <div class="card" style="min-height: 720px">
+      <div class="card-body">
+        <table id="tablaPromocion" class="table table-hover table-dark text-light table-responsive-lg table-bordered"
+          style="width: 100%">
+          <thead>
+            <tr>
+              <th colspan="4" class="text-center">LISTA DE PROMOCIONES</th>
+            </tr>
+            <tr>
+              <th class="text-center">Codigo</th>
+              <th class="text-center">Promocion</th>
+              <th class="text-center">Descripcion</th>
+              <th class="text-center">acciones</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let Promocion of data">
+              <td>{{ Promocion.id_promociones }}</td>
+              <td>{{ Promocion.promociones }}</td>
+              <td>{{ Promocion.descripcion }}</td>
+              <td>
+                <a class="btn btn-warning" style='padding:0 10px' (click)="editarPromociones(Promocion)" data-bs-toggle="modal"
+                data-bs-target="#modalPromocion"><i class="fas fa-pencil-alt"></i></a>
+                <a class="btn btn-danger" style='padding:0 10px' (click)="eliminarPromociones(Promocion.id_promociones)"><i class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <app-admin-footer></app-admin-footer>
+       <!-- Button trigger modal -->
+  </div>
+  <!--Modal para CRUD-->
+  <section class="body-main">
+    <div class="modal fade" id="modalPromocion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div *ngIf="isInsert" class="modal-headerCrear">
+            <h5  class="modal-title" id="exampleModalLabel">Crear Promociones</h5> 
+          </div>
+          <div *ngIf="!isInsert" class="modal-headerActualizar">  
+            <h5  class="modal-title" id="exampleModalLabel">Actualizar Promociones</h5>
+          </div>
+          <form >
+            <div class="modal-body">
+              <div class="form-group" hidden>
+                <label for="nombres" class="col-form-label">Codigo:</label>
+                <input type="text"  class="form-control" [(ngModel)]="ipromocion.id_promociones" name="id_promociones">
+              </div>
+              <div class="form-group">
+                <label for="apellidos" class="col-form-label">Promocion:</label>
+                <input type="text" class="form-control" [(ngModel)]="ipromocion.promociones" name="promociones">
+              </div>
+              <div class="form-group">
+                <label for="apellidos" class="col-form-label">Descripcion:</label>
+                <input type="text" class="form-control" [(ngModel)]="ipromocion.descripcion" name="descripcion">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal" >Cancelar</button>
+              <button type="submit" id="btnGuardar" class="btn btn-dark" data-bs-dismiss="modal" (click)="guardarDatos()">  Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="body-main">
+    <form id="frmEliminarCliente" action="" method="POST">
+
+      <div class="modal fade" id="modalEliminarPromocion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Eliminar Promocion</h4>
+            </div>
+            <div class="modal-body">
+              ¿Esta seguro de eliminar al promocion?<strong data-name=""></strong>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnAceptarEliminar" class="btn btn-primary"
+                data-dismiss="modal">Aceptar</button>
+              <button type="button" id="btnCancelarEliminar" class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+>>>>>>> 520605c530ac755e7a9489cda278cb412f5ea582

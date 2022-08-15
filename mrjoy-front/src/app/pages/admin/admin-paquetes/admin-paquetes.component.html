@@ -1,1 +1,38 @@
-<p>admin-paquetes works!</p>
+<main style="margin-top: 35px">
+    <div class="container-fluid pt-4">
+      <a id="btnNuevoPaquete" class="btn btn-success float-right my-2" data-bs-toggle="modal"
+      data-bs-target="#modalPaquete" >
+      <i class="ion-plus-round"></i> Nuevo</a>
+      <div class="card" style="min-height: 720px">
+        <div class="card-body">
+          <table id="tablaPaquete" class="table table-hover table-dark text-light table-responsive-lg table-bordered"
+            style="width: 100%">
+            <thead>
+              <tr>
+                <th colspan="4" class="text-center">LISTA DE PAQUETES</th>
+              </tr>
+              <tr>
+                <th class="text-center">Codigo</th>
+                <th class="text-center">Paquete</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">acciones</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let Paquete of data">
+                <td>{{ Paquete.idPaquete }}</td>
+                <td>{{ Paquete.descripcion }}</td>
+                <td>{{ Paquete.precio }}</td>
+                <td>
+                  <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt"></i></a>
+                  <a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt"></i> </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      <app-admin-footer></app-admin-footer>
+         <!-- Button trigger modal -->
+    </div>

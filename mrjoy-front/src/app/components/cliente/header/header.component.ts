@@ -24,16 +24,16 @@ export class HeaderComponent implements OnInit {
 
   obtener_localstore()
   {
-    console.log('abriendo ga')
+   // console.log('abriendo ga')
     let nombrelocal = localStorage.getItem("datos");
     if (nombrelocal != null)
     {
-      console.log(JSON.parse(nombrelocal))
+      //console.log(JSON.parse(nombrelocal))
       let objeto = JSON.parse(nombrelocal)
-      console.log(objeto.usuario)
+      //console.log(objeto.usuario)
       this.nombre = objeto.usuario
       this.datosCompletos = objeto;
-      console.log(this.datosCompletos.usuario)
+      //console.log(this.datosCompletos.usuario)
       //this.nombre = JSON.parse(nombrelocal);
     }
   }
