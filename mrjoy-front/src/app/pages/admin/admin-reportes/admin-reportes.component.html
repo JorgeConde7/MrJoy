@@ -1,1 +1,70 @@
-<p>admin-reportes works!</p>
+<main style="margin-top: 35px">
+    <div class="container-fluid pt-4">
+      <div class="card" style="min-height: 720px">
+        <div class="card-body">
+            <!-- <div style="width:600px; height:600px;">
+                <canvas id="myChart"></canvas>
+            </div> -->
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <ngx-charts-advanced-pie-chart
+                  [view]="view1"
+                  scheme="ocean"
+                  [results]="single"
+                  [gradient]="gradient"
+                  (select)="onSelect2($event)"
+                  (activate)="onActivate($event)"
+                  (deactivate)="onDeactivate($event)">
+                </ngx-charts-advanced-pie-chart>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <ngx-charts-bar-vertical
+                [view]="view2"
+                scheme="ocean"
+                [results]="single"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
+              </div>
+              
+              <div class="col-12 col-md-6">
+                <ngx-charts-bar-horizontal
+                  [view]="view3"
+                  scheme="ocean"
+                  [results]="single"
+                  [gradient]="gradient"
+                  [xAxis]="showXAxis"
+                  [yAxis]="showYAxis"
+                  [legend]="showLegend"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxisLabel]="xAxisLabel"
+                  [yAxisLabel]="yAxisLabel"
+                  (select)="onSelect($event)"
+                  (activate)="onActivate($event)"
+                  (deactivate)="onDeactivate($event)">
+                </ngx-charts-bar-horizontal>
+              </div>
+            </div>
+            
+        </div>
+      </div>
+  
+      <app-admin-footer></app-admin-footer>
+
+    </div>
+
+    
+  
+    
+  </main>
