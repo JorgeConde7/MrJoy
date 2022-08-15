@@ -1,16 +1,50 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+
 
 //import { Chart,LinearScale, BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip } from 'chart.js';
 //import Chart from 'chart.js/auto';
-import { single } from './data';
+
+import { ReporteServiceService } from './reporte-service.service';
+
+import {entradas} from './data'
+
 
 @Component({
   selector: 'app-admin-reportes',
   templateUrl: './admin-reportes.component.html',
   styleUrls: ['./admin-reportes.component.scss']
 })
-export class AdminReportesComponent {
-  single: any[] = [];
+export class AdminReportesComponent  implements  OnInit{
+
+
+
+  ngOnInit(): void{
+    Object.assign(this, {entradas});
+
+
+
+    this.reporte.getListar().subscribe(
+      result=>{
+        //var paquete=result;
+        this.paquetes=result.map(datum  => ({name: datum.nombre, value: datum.total }));
+        //console.log(typeof(result))
+        //console.log(paquete)
+        
+      }
+    )
+
+    this.reporte.getListarInfo().subscribe(
+      result=>{
+        this.info=result.map(datum  => ({name: datum.dato, value: datum.cantidad }));
+      }
+    )
+
+  }
+
+    
+  paquetes: any []=[];
+  entradas1: any[] = [];
+  info: any[] = [];
   
 
   view1:[number,number] = [1400, 400];
@@ -26,21 +60,22 @@ export class AdminReportesComponent {
   showYAxisLabel = true;
   showLabels: boolean = false;
   isDoughnut: boolean = false;
-  xAxisLabel = 'Venta Entradas';
+  xAxisLabel1 = 'Ventas';
+  xAxisLabel = 'Datos de la Empresa';
   yAxisLabel = 'Cantidad';
+  yAxisLabel1 = 'Cantidad';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', 'red', '#C7B42C', '#AAAAAA']
   };
 
-  constructor() {
-    Object.assign(this, { single })
+  constructor(private reporte: ReporteServiceService) {
+    
   }
 
   onSelect(event:any) {
     console.log(event);
   }
-
 
 
   onSelect2(data:any): void {

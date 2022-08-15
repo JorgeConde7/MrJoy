@@ -7,10 +7,16 @@
             </div> -->
             <div class="row">
               <div class="col-12 col-md-12">
+                <div class="col-md-6">
+                  <div class="alert alert-info">
+                    <h2 align="center">Reporte de Paquetes MrJoy</h2>
+                  </div>
+                </div>
+
                 <ngx-charts-advanced-pie-chart
                   [view]="view1"
                   scheme="ocean"
-                  [results]="single"
+                  [results]="info"
                   [gradient]="gradient"
                   (select)="onSelect2($event)"
                   (activate)="onActivate($event)"
@@ -24,7 +30,7 @@
                 <ngx-charts-bar-vertical
                 [view]="view2"
                 scheme="ocean"
-                [results]="single"
+                [results]="entradas1"
                 [gradient]="gradient"
                 [xAxis]="showXAxis"
                 [yAxis]="showYAxis"
@@ -41,15 +47,15 @@
                 <ngx-charts-bar-horizontal
                   [view]="view3"
                   scheme="ocean"
-                  [results]="single"
+                  [results]="paquetes"
                   [gradient]="gradient"
                   [xAxis]="showXAxis"
                   [yAxis]="showYAxis"
                   [legend]="showLegend"
                   [showXAxisLabel]="showXAxisLabel"
                   [showYAxisLabel]="showYAxisLabel"
-                  [xAxisLabel]="xAxisLabel"
-                  [yAxisLabel]="yAxisLabel"
+                  [xAxisLabel]="xAxisLabel1"
+                  [yAxisLabel]="yAxisLabel1"
                   (select)="onSelect($event)"
                   (activate)="onActivate($event)"
                   (deactivate)="onDeactivate($event)">

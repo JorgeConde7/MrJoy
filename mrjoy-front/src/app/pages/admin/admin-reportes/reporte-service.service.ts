@@ -1,20 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { VentasPaquete,Info } from './data';
+import { Observable } from 'rxjs';
 
-import { map } from 'rxjs/operators';
+
+//import { map } from 'rxjs/operators';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class ReporteServiceService {
 
-  constructor(private  _http:HttpClient) { }
+  private urlEndPoint:string="http://localhost:8090/apireserva/totalPaquetes"
 
-  daysWeather() {
-    const urlAPI =
-      "https://rickandmortyapi.com/api/character/1";
-    return this._http.get(urlAPI).pipe(map(res => res));
+  constructor(private http:HttpClient) { }
+
+    getListar():Observable<VentasPaquete[]>{
+
+      
+      
+      return this.http.get<VentasPaquete[]>(this.urlEndPoint);
+    
+    
+  }
+
+  getListarInfo():Observable<Info[]>{
+    return this.http.get<Info[]>("http://localhost:8090/data/datosEmpresa")
   }
 }
