@@ -40,6 +40,7 @@ import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin
 import { ReporteServiceService } from './pages/admin/admin-reportes/reporte-service.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PerfilComponent } from './pages/cliente/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminReportesComponent,
     AdminProveedoresComponent,
     AdminPaquetesComponent,
-    AdminPromocionesComponent
+    AdminPromocionesComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

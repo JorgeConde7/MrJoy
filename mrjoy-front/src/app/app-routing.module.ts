@@ -23,7 +23,7 @@ import { AdminReportesComponent } from './pages/admin/admin-reportes/admin-repor
 import { AdminProveedoresComponent } from './pages/admin/admin-proveedores/admin-proveedores.component';
 import { AdminPaquetesComponent } from './pages/admin/admin-paquetes/admin-paquetes.component';
 import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin-promociones.component';
-
+import { PerfilComponent } from './pages/cliente/perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -66,6 +66,9 @@ const routes: Routes = [
         path: 'bioseguridad',
         component: BioseguridadComponent
       },
+      {path: 'perfil',
+      component: PerfilComponent
+    },
 
 
       {
@@ -103,6 +106,10 @@ const routes: Routes = [
       {
         path: 'bioseguridad/:id',
         component: BioseguridadComponent
+      },
+      {
+        path: 'perfil/:id',
+        component: PerfilComponent
       },
     ]
   },
