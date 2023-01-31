@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { ReservaServiceService } from './reserva-service.service';
+import { ReservaServiceService } from '../../../core/apis/client/reserva-service.service';
 import { Reserva } from './reserva';
 import { Router } from '@angular/router';
 import { IReserva } from './reserva';
@@ -41,13 +41,13 @@ export class CalendarioReservaComponent implements OnInit {
 
   // la misma vaina :v
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     var fecha = new Date();
     var hoy = fecha.getDate();
     var mesActual = fecha.getMonth()+1;
     var anioActual = fecha.getFullYear();
-    /* Test 
+    /* Test
     /* console.log(hoy);
     /* console.log(mesActual);
     /* console.log(anioActual);
@@ -91,7 +91,7 @@ export class CalendarioReservaComponent implements OnInit {
     }
   }
 
-  clickDay(day:any) 
+  clickDay(day:any)
   {
     const monthYear = this.dateSelect.format('YYYY-MM')
     const parse = `${monthYear}-${day.value}`
@@ -122,9 +122,9 @@ export class CalendarioReservaComponent implements OnInit {
       }
     }
     this.ireserva = this.listar;
-    /*this.paqueteService.getPaquete().subscribe( paquetes => 
-      { 
-        this.paquete = paquetes;  
+    /*this.paqueteService.getPaquete().subscribe( paquetes =>
+      {
+        this.paquete = paquetes;
         for (let i=0; i<this.paquete.length; i++)
         {
           if (this.paquete[i].idPaquete === this.ireserva.idPaquete)
@@ -165,5 +165,5 @@ export class CalendarioReservaComponent implements OnInit {
     this.formularioReservaComponent.darValores(this.ireserva);
   }*/
 
-  
+
 }

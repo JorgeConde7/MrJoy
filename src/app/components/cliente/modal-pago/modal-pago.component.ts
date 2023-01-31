@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormularioReservaComponent } from '../formulario-reserva/formulario-reserva.component';
-import { ModalPagoService } from './modal-pago.service';
+import { ModalPagoService } from '../../../core/apis/client/modal-pago.service';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -17,14 +17,14 @@ export class ModalPagoComponent implements OnInit {
 
   public validar : boolean = false;
 
-  constructor(private formularioReservaComponent: FormularioReservaComponent, private modalPagoService: ModalPagoService/*, private modal : NgbModal*/) 
-  { 
-    
+  constructor(private formularioReservaComponent: FormularioReservaComponent, private modalPagoService: ModalPagoService/*, private modal : NgbModal*/)
+  {
+
   }
 
   ngOnInit(): void {
 
-    
+
   }
 
   validarPago()
@@ -64,7 +64,7 @@ export class ModalPagoComponent implements OnInit {
       alert('Error Papu :V')
     }
   }
-  
+
   /*cerrarModal(contentido : any)
   {
     this.modal.dismissAll

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Login} from './login-modal';
-import { LoginModalService } from './login-modal.service';
+import { LoginModalService } from '../../../core/apis/client/login-modal.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginModalComponent implements OnInit {
 
   constructor(private loginservice:LoginModalService) { /*this.obtener_localstore()*/ }
 
-  
+
   accesoLogin(){
     this.loginservice.getLogin(this.login).subscribe(usuario=>{
       if (usuario==null){
@@ -35,7 +35,7 @@ export class LoginModalComponent implements OnInit {
           this.grabar_localstore(usuario)
           window.location.href="admin/empleados"
           //this.router.navigate(['/admin/empleados'])
-          
+
         }
         else if(usuario.tipouser?.toLowerCase()=="cliente"){
           //console.log(typeof(usuario))
@@ -48,9 +48,9 @@ export class LoginModalComponent implements OnInit {
       console.log(usuario);
       console.log('aea')
 
-      
+
     });
-    
+
   }
 
   /*obtener_localstore()
@@ -73,7 +73,7 @@ export class LoginModalComponent implements OnInit {
     //   this.login.contrasenia=logins.contrasenia;
       // console.log(logins);
     // });
-    
+
 
   }
 

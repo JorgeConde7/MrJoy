@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { PaqueteServiceService } from 'src/app/components/cliente/formulario-reserva/paquete-service.service';
+import { PaqueteServiceService } from 'src/app/core/apis/client/paquete-service.service';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 
 // RESERVA
-import { ReservaServiceService } from '../calendario-reserva/reserva-service.service';
+import { ReservaServiceService } from '../../../core/apis/client/reserva-service.service';
 import { Reserva, IReserva } from '../calendario-reserva/reserva';
 import { Router } from '@angular/router';
 
@@ -15,11 +15,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./formulario-reserva.component.scss']
 })
 export class FormularioReservaComponent implements OnInit {
-  
+
   //habilitar: boolean = false;
   total: number = 0;
 
-  
+
 
   horaCadena: string[] = ['10:00',
     '11:00',
@@ -77,7 +77,7 @@ export class FormularioReservaComponent implements OnInit {
     //console.log('Llamando a fecha reserva ' + this.reserva.fechaReserva)
     this.reservaServiceService.getReserva(this.reserva.fechaReserva).subscribe
     (
-      reservas => 
+      reservas =>
       {
         for (let i = 0; i < reservas.length; i++)
         {
@@ -126,7 +126,7 @@ export class FormularioReservaComponent implements OnInit {
     {
       this.total = 0
       console.log("No selecciono paquete")
-      
+
     }
     else
     {
@@ -136,7 +136,7 @@ export class FormularioReservaComponent implements OnInit {
       this.total = cantPersona * Number(precio) + acompaniante * precioAcompaniante
     }
     this.reserva.totalPago = this.total;
-    
+
   }
 
   validandoCambioDeFecha()
@@ -169,6 +169,6 @@ export class FormularioReservaComponent implements OnInit {
 
     return url === currentURL;
   }
-  
+
 }
 

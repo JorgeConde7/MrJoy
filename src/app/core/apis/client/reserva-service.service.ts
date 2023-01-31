@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Reserva, IReserva } from './reserva';
+import { Reserva, IReserva } from '../../../components/cliente/calendario-reserva/reserva';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReservaServiceService 
+export class ReservaServiceService
 {
   private urlApi : string = "http://localhost:8090/apireserva/";
 

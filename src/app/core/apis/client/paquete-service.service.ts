@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
-import { Paquete } from './Paquete';
+import { Paquete } from '../../../components/cliente/formulario-reserva/Paquete';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,9 @@ export class PaqueteServiceService {
 
 
 
-  constructor(private http:HttpClient) 
-  { 
-      
+  constructor(private http:HttpClient)
+  {
+
   }
 
   getPaquete() : Observable<Paquete[]>
