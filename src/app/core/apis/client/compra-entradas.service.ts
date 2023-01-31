@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { TipoEntrada } from '../../../core/models/client/compra-entradas';
+import { TipoEntrada } from '../../models/client/compra-entradas';
 const URL = `${environment.URL_BASE}/apitipoentrada`;
 
 @Injectable({

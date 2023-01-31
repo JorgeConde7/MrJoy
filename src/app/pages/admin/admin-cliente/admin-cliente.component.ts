@@ -2,11 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
-import { GetDataService } from 'src/app/core/apis/get-data.service';
-import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
-import { ClienteService } from './admin-cliente.service';
-import { Cliente } from '../../../core/models/admin/admin-cliente';
+import { ClienteService } from '../../../core/apis/admin/admin-cliente.service';
 
 @Component({
   selector: 'app-admin-cliente',

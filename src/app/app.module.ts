@@ -37,7 +37,7 @@ import { AdminReportesComponent } from './pages/admin/admin-reportes/admin-repor
 import { AdminProveedoresComponent } from './pages/admin/admin-proveedores/admin-proveedores.component';
 import { AdminPaquetesComponent } from './pages/admin/admin-paquetes/admin-paquetes.component';
 import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin-promociones.component';
-import { ReporteServiceService } from './pages/admin/admin-reportes/reporte-service.service';
+import { ReporteServiceService } from './core/apis/admin/reporte-service.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfilComponent } from './pages/cliente/perfil/perfil.component';

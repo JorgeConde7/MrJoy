@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Empleado, IEmpleado } from '../../../core/models/admin/admin-empleado';
+import { Empleado, IEmpleado } from '../../models/admin/admin-empleado';
 import { environment } from 'src/environments/environment';
 const URL = `${environment.URL_BASE}/api`;
 

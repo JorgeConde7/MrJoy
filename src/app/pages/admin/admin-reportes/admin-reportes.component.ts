@@ -4,7 +4,7 @@ import { Component,OnInit } from '@angular/core';
 //import { Chart,LinearScale, BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip } from 'chart.js';
 //import Chart from 'chart.js/auto';
 
-import { ReporteServiceService } from './reporte-service.service';
+import { ReporteServiceService } from '../../../core/apis/admin/reporte-service.service';
 
 import {entradas} from '../../../core/models/admin/data'
 

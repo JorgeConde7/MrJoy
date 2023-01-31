@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient ,HttpHeaders} from '@angular/common/http';
-import { Cliente } from '../../../core/models/admin/admin-cliente';
+import { Cliente } from '../../models/admin/admin-cliente';
 import { environment } from 'src/environments/environment';
 const URL = `${environment.URL_BASE}/api/clientes`;
 @Injectable({

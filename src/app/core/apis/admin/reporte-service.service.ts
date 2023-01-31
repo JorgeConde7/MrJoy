@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { VentasPaquete,Info } from '../../../core/models/admin/data';
+import { VentasPaquete,Info } from '../../models/admin/data';
 import { Observable } from 'rxjs';
 
 

@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Router } from '@angular/router';
-import { PaquetesService } from './paquetes.service';
+import { PaquetesService } from '../../../core/apis/admin/paquetes.service';
 @Component({
   selector: 'app-admin-paquetes',
   templateUrl: './admin-paquetes.component.html',

@@ -4,7 +4,7 @@ import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Empleado, IEmpleado } from '../../../core/models/admin/admin-empleado';
-import { EmpleadoService } from './admin-empleado.Service';
+import { EmpleadoService } from '../../../core/apis/admin/admin-empleado.Service';
 
 @Component({
   selector: 'app-admin-empleado',

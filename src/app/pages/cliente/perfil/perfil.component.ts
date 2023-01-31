@@ -1,12 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
-import { GetDataService } from 'src/app/core/apis/get-data.service';
-import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
-import { ClienteService } from './perfil.service';
-import { Cliente,ICliente } from '../../../core/models/client/perfil';
+import { ClienteService } from '../../../core/apis/client/perfil.service';
+import { ICliente } from '../../../core/models/client/perfil';
 
 @Component({
   selector: 'app-perfil',

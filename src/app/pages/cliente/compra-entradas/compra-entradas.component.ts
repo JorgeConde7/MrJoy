@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompraEntradasService } from './compra-entradas.service';
+import { CompraEntradasService } from '../../../core/apis/client/compra-entradas.service';
 
 @Component({
   selector: 'app-compra-entradas',
@@ -15,12 +15,12 @@ export class CompraEntradasComponent implements OnInit {
   idss: any = [];
 
 
-  constructor(private compraEntradasService:CompraEntradasService) 
-  { 
-    
+  constructor(private compraEntradasService:CompraEntradasService)
+  {
+
   }
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     this.compraEntradasService.getEntradas().subscribe((result) => {
       this.data = result;
@@ -30,14 +30,14 @@ export class CompraEntradasComponent implements OnInit {
         //console.log(this.data[i].id)
         this.idss.push(this.data[i].id);
       }
-      
+
       //console.log(this.idss)
-      
+
     })
   }
 
   registrar(){
-    
+
   }
 
   Aumentar(idString:string, precio:any, itemid:any, suma:number)
@@ -51,10 +51,10 @@ export class CompraEntradasComponent implements OnInit {
       if (id.value == '0') return;
       id.value = "" + (parseInt(id.value) - 1 )
     }
-    
+
     if (id.value === '') subtotal.value = ""+0
     else subtotal.value = ""+(precio * parseInt(id.value))
-    
+
     let sub = 0;
     for (let i=0; i<this.idss.length; i++)
     {

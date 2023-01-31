@@ -1,12 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
-import { GetDataService } from 'src/app/core/apis/get-data.service';
-import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
-import { Contacto } from '../../../core/models/admin/admin-contacto';
-import { ContactoService } from './admin-contacto.service';
+import { ContactoService } from '../../../core/apis/admin/admin-contacto.service';
 
 @Component({
   selector: 'app-admin-contacto',

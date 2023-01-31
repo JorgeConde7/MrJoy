@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Cliente } from '../../../core/models/client/perfil';
+import { Cliente } from '../../models/client/perfil';
 const URL = `${environment.URL_BASE}/api/clientes`;
 @Injectable({
   providedIn: 'root'

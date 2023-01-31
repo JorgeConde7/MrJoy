@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AdminPromocionesService } from './admin-promociones.service';
+import { AdminPromocionesService } from '../../../core/apis/admin/admin-promociones.service';
 import { Router } from '@angular/router';
 import { Promociones, IPromociones } from '../../../core/models/admin/admin-promociones';
 

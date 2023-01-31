@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IRegistro } from '../../../core/models/client/registro';
-import { RegistroService } from './registro.service';
+import { RegistroService } from '../../../core/apis/client/registro.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
