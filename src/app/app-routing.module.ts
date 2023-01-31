@@ -27,11 +27,11 @@ import { PerfilComponent } from './pages/cliente/perfil/perfil.component';
 import { TerminosComponent } from './pages/cliente/terminos/terminos.component';
 const routes: Routes = [
   {
-    path: 'cliente',
+    path: '',
     component: InitPageComponent,
     children: [
       {
-        path: 'index',
+        path: '',
         component: HomeComponent
       },
       {
@@ -66,12 +66,14 @@ const routes: Routes = [
         path: 'bioseguridad',
         component: BioseguridadComponent
       },
-      {path: 'perfil',
-      component: PerfilComponent
-    },
-    {path: 'terminos',
-    component: TerminosComponent
-  },
+      {
+        path: 'perfil',
+        component: PerfilComponent
+      },
+      {
+        path: 'terminos',
+        component: TerminosComponent
+      },
 
 
       {
@@ -120,7 +122,7 @@ const routes: Routes = [
       },
     ]
   },
-  
+
   {
     path: 'admin',
     component: AdminInicioComponent,
