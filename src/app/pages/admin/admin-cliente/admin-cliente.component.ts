@@ -6,7 +6,7 @@ import { GetDataService } from 'src/app/core/apis/get-data.service';
 import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
 import { ClienteService } from './admin-cliente.service';
-import { Cliente } from './admin-cliente';
+import { Cliente } from '../../../core/models/admin/admin-cliente';
 
 @Component({
   selector: 'app-admin-cliente',

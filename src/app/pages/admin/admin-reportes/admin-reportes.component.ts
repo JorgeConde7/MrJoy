@@ -6,7 +6,7 @@ import { Component,OnInit } from '@angular/core';
 
 import { ReporteServiceService } from './reporte-service.service';
 
-import {entradas} from './data'
+import {entradas} from '../../../core/models/admin/data'
 
 
 @Component({
@@ -29,7 +29,7 @@ export class AdminReportesComponent  implements  OnInit{
         this.paquetes=result.map(datum  => ({name: datum.nombre, value: datum.total }));
         //console.log(typeof(result))
         //console.log(paquete)
-        
+
       }
     )
 
@@ -41,11 +41,11 @@ export class AdminReportesComponent  implements  OnInit{
 
   }
 
-    
+
   paquetes: any []=[];
   entradas: any[] = [];
   info: any[] = [];
-  
+
 
   view1:[number,number] = [1400, 400];
   view2:[number,number] = [600, 400];
@@ -70,7 +70,7 @@ export class AdminReportesComponent  implements  OnInit{
   };
 
   constructor(private reporte: ReporteServiceService) {
-    
+
   }
 
   onSelect(event:any) {

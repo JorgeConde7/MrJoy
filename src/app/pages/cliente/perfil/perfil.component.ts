@@ -6,7 +6,7 @@ import { GetDataService } from 'src/app/core/apis/get-data.service';
 import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
 import { ClienteService } from './perfil.service';
-import { Cliente,ICliente } from './perfil';
+import { Cliente,ICliente } from '../../../core/models/client/perfil';
 
 @Component({
   selector: 'app-perfil',
@@ -29,7 +29,7 @@ export class PerfilComponent implements OnInit {
       pageLength:10
     };
 
-    
+
   }
 
   ngOnDestroy(): void {
@@ -40,7 +40,7 @@ export class PerfilComponent implements OnInit {
 
     id_cliente:0,
     nombres:'',
-  
+
     apePaterno:'',
     apeMaterno:'',
     telefono: '',
@@ -49,7 +49,7 @@ export class PerfilComponent implements OnInit {
     genero:'',
     direccion:'',
     fechaNacimiento:'',
-    rutaImg:'' 
+    rutaImg:''
   }
 
   obtener_localstore()
@@ -65,14 +65,14 @@ export class PerfilComponent implements OnInit {
       this.datosCompletos = objeto;
       //console.log(this.datosCompletos.usuario)
       //this.nombre = JSON.parse(nombrelocal);
-      this.clienteService.traerCliente(objeto.idLogin).subscribe(nomequiere=> 
+      this.clienteService.traerCliente(objeto.idLogin).subscribe(nomequiere=>
         {
           console.log(nomequiere);
           this.icliente=nomequiere;
-        
+
           console.log(this.icliente);
         })
     }
   }
- 
+
 }

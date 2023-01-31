@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AdminPromocionesService } from './admin-promociones.service';
 import { Router } from '@angular/router';
-import { Promociones, IPromociones } from './admin-promociones';
+import { Promociones, IPromociones } from '../../../core/models/admin/admin-promociones';
 
 @Component({
   selector: 'app-admin-promociones',
@@ -18,7 +18,7 @@ export class AdminPromocionesComponent implements OnInit {
   dtTrigger = new Subject<ADTSettings>();
   data: any;
   isInsert=true;
-  ipromocion: IPromociones = 
+  ipromocion: IPromociones =
   {
     id_promociones: 0,
     descripcion: '',
@@ -58,7 +58,7 @@ export class AdminPromocionesComponent implements OnInit {
     this.promocionService.deletePromocion(id).subscribe(
       result => {
         this.getPromociones()
-      }  
+      }
     )
   }
 
@@ -66,7 +66,7 @@ export class AdminPromocionesComponent implements OnInit {
   {
     this.ipromocion = data;
   }
-  
+
   limpiarModal()
   {
     this.ipromocion.id_promociones = 0;
@@ -83,7 +83,7 @@ export class AdminPromocionesComponent implements OnInit {
         datos => { this.getPromociones() }
       )
       //console.log('e')
-      
+
     }
     else
     {

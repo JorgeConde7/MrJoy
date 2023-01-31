@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { GetDataService } from 'src/app/core/apis/get-data.service';
 import { CharacterResponse } from 'src/app/core/models/character.model';
 import { environment } from 'src/environments/environment';
-import { Contacto } from './admin-contacto';
+import { Contacto } from '../../../core/models/admin/admin-contacto';
 import { ContactoService } from './admin-contacto.service';
 
 @Component({
@@ -42,8 +42,8 @@ export class AdminContactoComponent implements OnDestroy, OnInit {
   eliminarContacto(id: number) {
     console.log("aea");
     this.contactoService.deleteContacto(id).subscribe(()=>{
-      
+
     })
   }
-  
+
 }

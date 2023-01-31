@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient ,HttpHeaders} from '@angular/common/http';
-import { Promociones, IPromociones } from './admin-promociones';
+import { Promociones, IPromociones } from '../../../core/models/admin/admin-promociones';
 import { environment } from 'src/environments/environment';
 const URL = `${environment.URL_BASE}/api/promociones`;
 @Injectable({

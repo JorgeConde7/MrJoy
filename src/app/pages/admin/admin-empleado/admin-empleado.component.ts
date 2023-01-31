@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Empleado, IEmpleado } from './admin-empleado';
+import { Empleado, IEmpleado } from '../../../core/models/admin/admin-empleado';
 import { EmpleadoService } from './admin-empleado.Service';
 
 @Component({
@@ -16,10 +16,10 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
   dtTrigger = new Subject<ADTSettings>();
   data: any;
   isInsert=true;
-  
 
 
-  constructor(private empleadoService: EmpleadoService, private router: Router) {  
+
+  constructor(private empleadoService: EmpleadoService, private router: Router) {
   }
   ngOnInit(): void {
     this.obtenerEmpleadoInit();
@@ -51,7 +51,7 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
         this.dtTrigger.next(this.dtOptions);
     });
   }
-  
+
   getEmpleados() {
     this.empleadoService.getEmpleado().subscribe((result) => {
     this.data = result;
@@ -89,7 +89,7 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
     console.log("cancelar ModalEmpleado")
   }
 
-  empleado: IEmpleado = this.templateEmpleado() 
+  empleado: IEmpleado = this.templateEmpleado()
 
   templateEmpleado() {
     return {
@@ -108,7 +108,7 @@ export class AdminEmpleadoComponent implements OnDestroy,OnInit {
 
   limpiarModal() {
     console.log("Limpiando")
-    this.empleado = this.templateEmpleado() 
+    this.empleado = this.templateEmpleado()
   }
-  
+
 }

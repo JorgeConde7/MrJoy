@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IRegistro } from './registro';
+import { IRegistro } from '../../../core/models/client/registro';
 import { RegistroService } from './registro.service';
 @Component({
   selector: 'app-registro',
@@ -23,7 +23,7 @@ export class RegistroComponent implements OnInit {
     this.registroService.registroUsuario(this.registro).subscribe({
       next: this.createEmpleadoNext.bind(this),
       error: (err) => console.log('Error al crear registro: ', err),
-      
+
     });
   }
 
@@ -31,7 +31,7 @@ export class RegistroComponent implements OnInit {
     console.log('Empleado creado: ', registro);
     window.location.href="cliente/index"
   }
-  registro: IRegistro = 
+  registro: IRegistro =
   {
       nombres: '',
       apePaterno: '',

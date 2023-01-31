@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { VentasPaquete,Info } from './data';
+import { VentasPaquete,Info } from '../../../core/models/admin/data';
 import { Observable } from 'rxjs';
 
 
@@ -21,11 +21,11 @@ export class ReporteServiceService {
 
     getListar():Observable<VentasPaquete[]>{
 
-      
-      
+
+
       return this.http.get<VentasPaquete[]>(this.urlEndPoint);
-    
-    
+
+
   }
 
   getListarInfo():Observable<Info[]>{
