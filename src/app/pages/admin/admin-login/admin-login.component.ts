@@ -41,20 +41,20 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formLogin.value);
+
     if (this.formLogin.invalid) return;
+
     const { username, password } = this.formLogin.value
 
     this.loginService.login(username, password).subscribe(loginResponse => {
-      console.log(loginResponse);
-      const isEmptyUser = loginResponse.idLogin == null
+      const isEmptyToken = loginResponse.data == null
 
-      if (isEmptyUser) {
+      if (isEmptyToken) {
         this.hasLoginError = true
         return
       }
-      // Guardamos en localstorage
-      Storage.setToken(loginResponse)
+      // Guardamos el token en localstorage
+      Storage.setToken(loginResponse.data)
 
       this.router.navigate(['admin', 'menu'])
     })
