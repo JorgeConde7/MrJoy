@@ -1,14 +1,13 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-a{
+a {
   text-decoration: none;
 }
-
 
 body {
   background-color: #fbfbfb;
@@ -18,7 +17,6 @@ body {
     padding-left: 240px;
   }
 }
-
 
 /* Sidebar */
 .sidebar {
@@ -52,7 +50,7 @@ body {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
-.list-group-flush>.list-group-item {
+.list-group-flush > .list-group-item {
   background-color: #19222a;
   border: 1px #19222a;
 }
@@ -60,14 +58,18 @@ body {
 .position-sticky a {
   color: rgba(255, 255, 255, 0.9);
 }
-.position-sticky a:hover{
-  background-color:#19222a;
+.position-sticky a:hover {
+  background-color: #0d6efd;
+  color: #000;
+  border-radius: 4px;
+
+
 }
 
 .main-footer {
   background-color: #fff;
   border: 1px solid #dee2e6;
-  color: #869099; 
+  color: #869099;
   border-radius: 4px;
 }
 .page-item:not(:first-child) .page-link {
@@ -88,7 +90,7 @@ body {
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  padding:0 !important;
+  padding: 0 !important;
 }
 
 .list-group-item.active {
@@ -97,13 +99,12 @@ body {
   background-color: #0d6efd;
   border-color: #0d6efd;
 }
-.table>:not(caption)>*>* {
-   padding: 0.8rem 1rem !important; 
+.table > :not(caption) > * > * {
+  padding: 0.8rem 1rem !important;
 }
 
 .form-select {
-
   padding: 0.375rem 2.25rem 0.375rem 0.75rem !important;
-  }
+}
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
