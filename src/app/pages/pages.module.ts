@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from '../app-routing.module';
@@ -40,6 +40,7 @@ import { HeaderComponent } from '../components/cliente/header/header.component';
 import { InitPageComponent } from '../components/cliente/init-page/init-page.component';
 import { ModalPagoComponent } from '../components/cliente/modal-pago/modal-pago.component';
 import { LoginModalComponent } from '../components/login-modal/login-modal/login-modal.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 
 @NgModule({
@@ -77,12 +78,14 @@ import { LoginModalComponent } from '../components/login-modal/login-modal/login
     InitPageComponent,
     ModalPagoComponent,
     LoginModalComponent,
+    AdminLoginComponent,
   ],
   imports: [
     AppRoutingModule,
     DataTablesModule,
     FormsModule,
     NgxChartsModule,
+    ReactiveFormsModule
   ],
   providers: [ReporteServiceService],
   exports: [

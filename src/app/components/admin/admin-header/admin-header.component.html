@@ -14,7 +14,7 @@
               <i class="fas fa-users fa-fw me-3"></i><span>Clientes</span>
           </a>
           <a [routerLink]="['/admin/reservas']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/reservas')}" class="list-group-item list-group-item-action py-2 ripple">
-              <i class="fas fa-book fa-fw me-3"></i><span>Reservas Cumpleaños</span>
+              <i class="fas fa-book fa-fw me-3"></i><span>Reservas</span>
           </a>
 
           <a [routerLink]="['/admin/reporte']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/reporte')}" class="list-group-item list-group-item-action py-2 ripple">
@@ -36,7 +36,7 @@
       </div>
     </nav>
     <!-- Sidebar -->
-  
+
     <!-- Navbar -->
     <nav
          id="main-navbar" class="navbar navbar-expand-lg navbar-light  fixed-top">
@@ -46,10 +46,10 @@
         <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
         </button>
-  
+
         <!-- Brand -->
         <a class="navbar-brand" href="#">
-          <img src="/assets/images/footer/logo.png" height="30" width="150px" alt="" loading="lazy" />
+          <img src="/assets/images/footer/logo.png" height="30" class="navbar__logo"  alt="" loading="lazy" />
         </a>
         <!-- Right links -->
         <ul class="navbar-nav ms-auto d-flex flex-row">
@@ -57,7 +57,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-bell"></i>
-              
+
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="#">Some news</a></li>
@@ -65,7 +65,7 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-  
+
           <!-- Icon -->
           <li class="nav-item">
             <a class="nav-link me-3 me-lg-0" href="#"><i class="fas fa-fill-drip"></i></a>

@@ -1,0 +1,38 @@
+<div id="login" class="login-form-container">
+  <header>LOGIN - SIGN UP</header>
+  <form [formGroup]="formLogin" (submit)="onSubmit()">
+    <fieldset>
+      <div class="input-wrapper">
+        <input
+          type="text"
+          formControlName="username"
+          placeholder="your@email.com"
+          [ngClass]="{
+            'login__username-error':
+              formLogin.controls['username'].errors &&
+              formLogin.controls['username'].touched &&
+              formLogin.controls['username'].dirty
+          }"
+        />
+      </div>
+      <div class="input-wrapper">
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="password"
+        />
+      </div>
+      <span [ngClass]="{ 'login__text-error': true, fail: hasLoginError }"
+        >*Contraseña o usuario incorrecto</span
+      >
+      <button
+        id="continue"
+        type="submit"
+        [disabled]="formLogin.invalid"
+        [ngClass]="{ 'continue-disabled': formLogin.invalid }"
+      >
+        CONTINUE
+      </button>
+    </fieldset>
+  </form>
+</div>

@@ -25,6 +25,7 @@ import { AdminPaquetesComponent } from './pages/admin/admin-paquetes/admin-paque
 import { AdminPromocionesComponent } from './pages/admin/admin-promociones/admin-promociones.component';
 import { PerfilComponent } from './pages/cliente/perfil/perfil.component';
 import { TerminosComponent } from './pages/cliente/terminos/terminos.component';
+import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
 const routes: Routes = [
   {
     path: '',
@@ -171,6 +172,10 @@ const routes: Routes = [
         component: AdminPromocionesComponent
       }
     ]
+  },
+  {
+    path: 'login',
+    component: AdminLoginComponent,
   },
   {
     path: '404',
