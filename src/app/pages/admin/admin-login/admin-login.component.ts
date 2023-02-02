@@ -53,12 +53,9 @@ export class AdminLoginComponent implements OnInit {
         return
       }
 
-      this.router.navigate(['admin'])
-
+      this.router.navigate(['admin','menu'])
     })
 
-
   }
-
 
 }
