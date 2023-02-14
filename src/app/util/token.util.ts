@@ -7,10 +7,19 @@ export const setToken = (token: string) => {
   localStorage.setItem(TOKEN, token)
 }
 
-export const getToken = () => {
+export const getPayload = () => {
   const payload = localStorage.getItem(TOKEN)
   if (payload === null) return null
 
   return jwt_decode(payload) as LoginResponse
+
+}
+
+
+export const getToken = () => {
+  const payload = localStorage.getItem(TOKEN)
+  if (payload === null) return ""
+
+  return payload
 
 }
