@@ -21,7 +21,6 @@ export class AddTokenInterceptor implements HttpInterceptor {
 
   private addAuthorization(request: HttpRequest<unknown>) {
     let jwt = getToken();
-    console.log("jwt: ", jwt);
 
     if (jwt) {
       const auth = request.clone({

@@ -1,8 +1,16 @@
 
 
+
+
+<mat-form-field class="reservar__fecha" appearance="fill">
+  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"  name = "fechaReserva" [(ngModel)]="reserva.fechaReserva"    (change)="validandoCambioDeFecha()" >
+  <mat-hint>DD/MM/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker  ></mat-datepicker>
+</mat-form-field>
         <form class="fomurlarioReserva">
-          <label for="">Fecha de la Reserva:</label>
-          <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva" [(ngModel)]="reserva.fechaReserva" name = "fechaReserva" (change)="validandoCambioDeFecha()">
+          <!-- <label for="">Fecha de la Reserva:</label> -->
+          <!-- <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva" [(ngModel)]="reserva.fechaReserva" name = "fechaReserva" (change)="validandoCambioDeFecha()"> -->
           <label for="">Hora de la Reserva:</label>
           <select class="form-control" [(ngModel)]="reserva.hora"  name = "hora">
             <option  value="inicio">Seleccione Hora</option>

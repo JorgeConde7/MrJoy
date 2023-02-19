@@ -41,7 +41,12 @@ import { InitPageComponent } from '../components/cliente/init-page/init-page.com
 import { ModalPagoComponent } from '../components/cliente/modal-pago/modal-pago.component';
 import { LoginModalComponent } from '../components/login-modal/login-modal/login-modal.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -85,9 +90,16 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
     DataTablesModule,
     FormsModule,
     NgxChartsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMomentDateModule
   ],
-  providers: [ReporteServiceService],
+  providers: [ReporteServiceService, { provide: MAT_DATE_LOCALE, useValue: 'es' }],
   exports: [
     AppComponent,
     HomeComponent,
@@ -122,6 +134,8 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
     InitPageComponent,
     ModalPagoComponent,
     LoginModalComponent,
+    BrowserAnimationsModule,
+    MatMomentDateModule
   ]
 })
 export class PagesModule { }

@@ -54,6 +54,8 @@ export class ModalPagoComponent implements OnInit {
               audio.play();
               alert('Mano no tienes plata. pipipi ( ͡ಥ ͜ʖ ͡ಥ)')
             }
+          }else{
+            alert("No se pudo concretar la compra, intentelo denuevo")
           }
         })
       }

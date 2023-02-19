@@ -34,7 +34,7 @@
               "src/assets"
             ],
             "styles": [
-              
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss",
               "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
@@ -112,6 +112,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
