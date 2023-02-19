@@ -13,7 +13,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(user: string, password: string) {
-    return this.http.get<DataResponse<string>>(URL + `/${user}/${password}`)
+    return this.http.get<DataResponse<string>>(URL + `/${user}/${password}/1`)
   }
 
 }
