@@ -7,7 +7,7 @@ import { Login} from '../../../components/login-modal/login-modal/login-modal'
   providedIn: 'root'
 })
 export class LoginModalService {
-  private urlEndPoint:string="http://localhost:8090/apilogin"
+  private urlEndPoint:string="http://localhost:8090/apilogin/login"
 
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'});
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Login} from './login-modal';
+import { Login } from './login-modal';
 import { LoginModalService } from '../../../core/apis/client/login-modal.service';
 
 
@@ -10,45 +10,51 @@ import { LoginModalService } from '../../../core/apis/client/login-modal.service
 })
 export class LoginModalComponent implements OnInit {
 
-  login:Login={
-    "contrasenia":"",
-    "usuario":"",
-    "tipouser":""
+  login: Login = {
+    "contrasenia": "",
+    "usuario": "",
+    "tipouser": ""
   }
 
-  validacion:boolean=false;
+  validacion: boolean = false;
 
-  constructor(private loginservice:LoginModalService) { /*this.obtener_localstore()*/ }
+  constructor(private loginservice: LoginModalService) { /*this.obtener_localstore()*/ }
 
 
-  accesoLogin(){
-    this.loginservice.getLogin(this.login).subscribe(usuario=>{
-      if (usuario==null){
-      this.validacion=true
-      this.login.contrasenia="";
-      this.login.usuario="";
-      }
-      else{
-        this.validacion=false
-        if (usuario.tipouser?.toLowerCase()=="empleado"){
-          //console.log(typeof(usuario))
-          this.grabar_localstore(usuario)
-          window.location.href="admin/empleados"
-          //this.router.navigate(['/admin/empleados'])
-
+  accesoLogin() {
+    this.loginservice.getLogin(this.login).subscribe({
+      next: (usuario) => {
+        if (usuario == null) {
+          this.validacion = true
+          this.login.contrasenia = "";
+          this.login.usuario = "";
         }
-        else if(usuario.tipouser?.toLowerCase()=="cliente"){
-          //console.log(typeof(usuario))
-          this.grabar_localstore(usuario)
-          window.location.href="cliente/index"
-          //this.router.navigate(['/cliente/index'])
+        else {
+          this.validacion = false
+          if (usuario.tipouser?.toLowerCase() == "empleado") {
+            //console.log(typeof(usuario))
+            this.grabar_localstore(usuario)
+            window.location.href = "admin/"
+            //this.router.navigate(['/admin/empleados'])
+
+          }
+          else if (usuario.tipouser?.toLowerCase() == "cliente") {
+            //console.log(typeof(usuario))
+            this.grabar_localstore(usuario)
+            window.location.href = "/"
+            //this.router.navigate(['/cliente/index'])
+          }
         }
+
+        console.log(usuario);
+        console.log('aea')
+
+
+      },
+      error:(err)=>{
+        console.log(err);
+        this.validacion = true
       }
-
-      console.log(usuario);
-      console.log('aea')
-
-
     });
 
   }
@@ -59,10 +65,9 @@ export class LoginModalComponent implements OnInit {
     console.log('xd')
   }*/
 
-  grabar_localstore(objeto : any)
-  {
+  grabar_localstore(objeto: any) {
     if (objeto)
-    localStorage.setItem("datos", JSON.stringify( objeto ))
+      localStorage.setItem("datos", JSON.stringify(objeto))
   }
 
   ngOnInit(): void {
@@ -71,7 +76,7 @@ export class LoginModalComponent implements OnInit {
     //   this.login.id=logins.id;
     //   this.login.usuario=logins.usuario;
     //   this.login.contrasenia=logins.contrasenia;
-      // console.log(logins);
+    // console.log(logins);
     // });
 
 
