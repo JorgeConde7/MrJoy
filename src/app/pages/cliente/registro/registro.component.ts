@@ -52,7 +52,7 @@ export class RegistroComponent implements OnInit {
     const formRegister = this.formRegisterClient.value
     const dataRegistro: IRegistro = { ...formRegister, tipouser, contrasenia: formRegister.password, correo: formRegister.email }
     console.log(dataRegistro);
-
+    
     this.registroService.registroUsuario(dataRegistro).subscribe({
       next: this.createEmpleadoNext.bind(this),
       error: (err) => console.log('Error al crear registro: ', err),

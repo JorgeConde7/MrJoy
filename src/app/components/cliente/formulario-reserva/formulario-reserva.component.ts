@@ -7,6 +7,7 @@ import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 import { ReservaServiceService } from '../../../core/apis/client/reserva-service.service';
 import { Reserva, IReserva } from '../calendario-reserva/reserva';
 import { Router } from '@angular/router';
+import { getPayload } from 'src/app/util/token.util';
 
 
 @Component({
@@ -95,10 +96,14 @@ export class FormularioReservaComponent implements OnInit {
   }
 
   RegistrarReservaClass(datoReserva: any) {
+    const payload = getPayload()!;
+    const { id: idLogin  } = payload;
     this.reserva = datoReserva;
     let guardandoidPaquete = this.reserva.idPaquete;
     let pruebita = guardandoidPaquete.toString().split(" ");
     this.reserva.idPaquete = parseInt(pruebita[0]);
+
+    this.reserva.idLogin = idLogin;
     this.reservaServiceService.CrearReserva(this.reserva).subscribe(() => {
       alert("Reserva registrada correctamente!!")
     });
