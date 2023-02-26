@@ -3,16 +3,16 @@
     <form (ngSubmit)="registroUsuario()" [formGroup]="formRegisterClient">
       <h1 class="text-center">Registro de Usuario</h1>
       <div class="form-group">
-        <input type="text" formControlName="nombre" class="form-control" name="nombre" placeholder="Nombre" [ngClass]="{ 'login__username-error':
-          formRegisterClient.controls['nombre'].errors &&
-          formRegisterClient.controls['nombre'].touched &&
-          formRegisterClient.controls['nombre'].dirty }" />
+        <input type="text" formControlName="nombres" class="form-control" name="nombre" placeholder="Nombre" [ngClass]="{ 'login__username-error':
+          formRegisterClient.controls['nombres'].errors &&
+          formRegisterClient.controls['nombres'].touched &&
+          formRegisterClient.controls['nombres'].dirty }" />
 
         <div class="form__warning" [ngClass]="{
           'show':
-          formRegisterClient.controls['nombre'].errors &&
-           formRegisterClient.controls['nombre'].touched &&
-           formRegisterClient.controls['nombre'].dirty
+          formRegisterClient.controls['nombres'].errors &&
+           formRegisterClient.controls['nombres'].touched &&
+           formRegisterClient.controls['nombres'].dirty
         }">
           <p class="warning-text">* Solo se permite letras a-Z</p>
         </div>

@@ -20,7 +20,6 @@ export class RegistroComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.formRegisterClient = this.createUserBuilder()
-
   }
 
   ngOnInit(): void {
@@ -29,12 +28,12 @@ export class RegistroComponent implements OnInit {
 
   createUserBuilder() {
     return this.formBuilder.group({
-      nombre: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      nombres: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
       apePaterno: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
       apeMaterno: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
       dni: [null, [Validators.required, Validators.pattern(regex.DNI)]],
       telefono: [null, [Validators.required, Validators.pattern(regex.PHONE)]],
-      direccion: [null, [Validators.required, Validators.maxLength(30 )]],
+      direccion: [null, [Validators.required, Validators.maxLength(30)]],
       genero: [null, [Validators.required, Validators.pattern(regex.GENDERS)]],
       fechaNacimiento: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
@@ -49,8 +48,12 @@ export class RegistroComponent implements OnInit {
   }
 
   registroUsuario() {
-    this.registro.tipouser = '0';
-    this.registroService.registroUsuario(this.registro).subscribe({
+    const tipouser = '0';
+    const formRegister = this.formRegisterClient.value
+    const dataRegistro: IRegistro = { ...formRegister, tipouser, contrasenia: formRegister.password, correo: formRegister.email }
+    console.log(dataRegistro);
+
+    this.registroService.registroUsuario(dataRegistro).subscribe({
       next: this.createEmpleadoNext.bind(this),
       error: (err) => console.log('Error al crear registro: ', err),
     });
@@ -60,22 +63,6 @@ export class RegistroComponent implements OnInit {
     console.log('Empleado creado: ', registro);
     this.router.navigate(['/'])
   }
-  registro: IRegistro =
-    {
-      nombres: '',
-      apePaterno: '',
-      apeMaterno: '',
-      dni: '',
-      telefono: '',
-      direccion: '',
-      genero: '',
-      correo: '',
-      fechaNacimiento: '',
-      usuario: '',
-      contrasenia: '',
-      tipouser: '',
-      contraseniaConfirm: ''
-    }
 
   ConfirmedValidator(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
