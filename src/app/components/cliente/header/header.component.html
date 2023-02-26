@@ -19,12 +19,12 @@
                 {{nombre}}</a>
               <ng-template #UsuarioIngresado>
                 <div class="dropdown">
-                  <span class="formudatos dropbtn" (click)="nombreClick()">{{nombre | uppercase }} 🡣
+                  <span class="formudatos dropbtn" >{{" " + nombre | uppercase }} 🡣
                   </span>
                   <div class="dropdown-content">
                     <a routerLink="perfil">Perfil </a>
                     <a>Configuración</a>
-                    <a (click)="cambioSelect()">Cerrar Sesión</a>
+                    <a (click)="signut()">Cerrar Sesión</a>
                   </div>
                 </div>
 
