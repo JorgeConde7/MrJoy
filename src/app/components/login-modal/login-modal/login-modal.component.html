@@ -19,22 +19,22 @@
                         <div class="form-group" id="contrasena-group">
                         <input [(ngModel)]="login.contrasenia" type="password" class="form-control Input" placeholder="Contraseña"
                             name="password" />
-                        
+
                             <br>
                             <p class="alert alert-danger" *ngIf="validacion">Usuario o contraseña incorrectos</p>
                         </div>
-                
+
                         <br>
-            
+
                             <button [disabled]="login.usuario=='' || login.contrasenia==''" type="submit" class="btn btn-primary">   Ingresar</button>
-                        
-                            
-                        
-                        
+
+
+
+
                     </form>
-                    <div class="col-12 forgot">
-                        <a href="#">Recordar contraseña?</a>
-                    </div>
+                    <!-- <div class="col-12 forgot"> -->
+                        <!-- <a href="#">Recordar contraseña?</a> -->
+                    <!-- </div> -->
                     <div class="col-12 forgot">
                         <a routerLink="registro" data-bs-dismiss="modal">Registrarse</a>
                     </div>
