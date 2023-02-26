@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { getPayload } from 'src/app/util/token.util';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  nombre : any = 'Ingresar';
-  datosCompletos : any;
+  nombre: any = 'Ingresar';
+  datosCompletos: any;
 
   constructor(private router: Router) { this.obtener_localstore() }
 
@@ -22,17 +23,19 @@ export class HeaderComponent implements OnInit {
     return url === currentURL;
   }
 
-  obtener_localstore()
-  {
-   // console.log('abriendo ga')
-    let nombrelocal = localStorage.getItem("datos");
-    if (nombrelocal != null)
-    {
+  obtener_localstore() {
+    // console.log('abriendo ga')
+    // let nombrelocal = localStorage.getItem("datos");
+    const payload = getPayload()
+    console.log("payload ");
+    console.log(payload);
+
+    if (payload) {
       //console.log(JSON.parse(nombrelocal))
-      let objeto = JSON.parse(nombrelocal)
+      const { username, profile, id, create_at } = payload
       //console.log(objeto.usuario)
-      this.nombre = objeto.usuario
-      this.datosCompletos = objeto;
+      this.nombre = username;
+      this.datosCompletos = create_at;
       //console.log(this.datosCompletos.usuario)
       //this.nombre = JSON.parse(nombrelocal);
     }
@@ -40,18 +43,16 @@ export class HeaderComponent implements OnInit {
 
   siono: any;
 
-  cambioSelect()
-  {
+  cambioSelect() {
     localStorage.clear();
-    window.location.href='/cliente/index'
+    window.location.href = '/cliente/index'
   }
 
-  nombreClick()
-  {
+  nombreClick() {
     console.log('eeeh')
     const select = (<HTMLInputElement>document.getElementById('selectuser'))
     select.onclick
-    
+
   }
 
 }
