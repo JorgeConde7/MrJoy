@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+
+
 import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from '../app-routing.module';
 import { AppComponent } from '../app.component';
@@ -15,6 +18,8 @@ import { AdminPromocionesComponent } from './admin/admin-promociones/admin-promo
 import { AdminProveedoresComponent } from './admin/admin-proveedores/admin-proveedores.component';
 import { AdminReportesComponent } from './admin/admin-reportes/admin-reportes.component';
 import { AdminReservaComponent } from './admin/admin-reserva/admin-reserva.component';
+
+
 import { AdminVentaBoletoComponent } from './admin/admin-venta-boleto/admin-venta-boleto.component';
 import { BioseguridadComponent } from './cliente/bioseguridad/bioseguridad.component';
 import { CompraEntradasComponent } from './cliente/compra-entradas/compra-entradas.component';
@@ -29,7 +34,6 @@ import { RegistroComponent } from './cliente/registro/registro.component';
 import { TerminosComponent } from './cliente/terminos/terminos.component';
 
 
-
 import { AdminFooterComponent } from '../components/admin/admin-footer/admin-footer.component';
 import { AdminHeaderComponent } from '../components/admin/admin-header/admin-header.component';
 import { AdminInicioComponent } from '../components/admin/admin-inicio/admin-inicio.component';
@@ -41,6 +45,8 @@ import { InitPageComponent } from '../components/cliente/init-page/init-page.com
 import { ModalPagoComponent } from '../components/cliente/modal-pago/modal-pago.component';
 import { LoginModalComponent } from '../components/login-modal/login-modal/login-modal.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -97,7 +103,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    RouterModule
   ],
   providers: [ReporteServiceService, { provide: MAT_DATE_LOCALE, useValue: 'es' }],
   exports: [
@@ -135,7 +142,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     ModalPagoComponent,
     LoginModalComponent,
     BrowserAnimationsModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    RouterModule
   ]
 })
 export class PagesModule { }

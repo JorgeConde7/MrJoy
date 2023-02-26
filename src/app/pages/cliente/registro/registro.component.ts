@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { IRegistro } from '../../../core/models/client/registro';
 import { RegistroService } from '../../../core/apis/client/registro.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as regex from 'src/app/util/regex.util';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -10,12 +12,40 @@ import { RegistroService } from '../../../core/apis/client/registro.service';
 })
 export class RegistroComponent implements OnInit {
 
+  formRegisterClient: FormGroup
+
   constructor(
     private registroService: RegistroService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
+    this.formRegisterClient = this.createUserBuilder()
+
+  }
 
   ngOnInit(): void {
+  }
+
+
+  createUserBuilder() {
+    return this.formBuilder.group({
+      nombre: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      apePaterno: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      apeMaterno: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      dni: [null, [Validators.required, Validators.pattern(regex.DNI)]],
+      telefono: [null, [Validators.required, Validators.pattern(regex.PHONE)]],
+      direccion: [null, [Validators.required, Validators.maxLength(30 )]],
+      genero: [null, [Validators.required, Validators.pattern(regex.GENDERS)]],
+      fechaNacimiento: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      usuario: [null, [Validators.required, Validators.pattern(regex.USERNAME)]],
+      password: [null, [Validators.required, Validators.pattern(regex.PASSWORD)]],
+      passwordConfirm: [null, [Validators.required, Validators.pattern(regex.PASSWORD)]],
+      termsAndConditions: [false, [Validators.required, Validators.pattern(/^true$/)]]
+    },
+      {
+        validators: this.ConfirmedValidator('password', 'passwordConfirm'),
+      })
   }
 
   registroUsuario() {
@@ -23,34 +53,53 @@ export class RegistroComponent implements OnInit {
     this.registroService.registroUsuario(this.registro).subscribe({
       next: this.createEmpleadoNext.bind(this),
       error: (err) => console.log('Error al crear registro: ', err),
-
     });
   }
 
   protected createEmpleadoNext(registro: IRegistro) {
     console.log('Empleado creado: ', registro);
-    window.location.href="cliente/index"
-
+    this.router.navigate(['/'])
   }
   registro: IRegistro =
-  {
+    {
       nombres: '',
       apePaterno: '',
       apeMaterno: '',
       dni: '',
       telefono: '',
-      direccion:'',
-      genero:'',
+      direccion: '',
+      genero: '',
       correo: '',
       fechaNacimiento: '',
       usuario: '',
       contrasenia: '',
       tipouser: '',
-      contraseniaConfirm:''
+      contraseniaConfirm: ''
+    }
+
+  ConfirmedValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (
+        matchingControl.errors &&
+        !matchingControl.errors["passwordConfirm"]
+      ) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmedValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
   }
- redireccionar(){
-  console.log('pipipipippi si llamo')
-  window.location.href="cliente/terminos"
- }
+
+
+  inputValidation(formControlname?: string) {
+    return (this.formRegisterClient.controls[formControlname!].errors &&
+      this.formRegisterClient.controls[formControlname!].touched &&
+      this.formRegisterClient.controls[formControlname!].dirty) || false
+  }
 
 }
