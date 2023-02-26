@@ -48,7 +48,7 @@ export class RegistroComponent implements OnInit {
   }
 
   registroUsuario() {
-    const tipouser = '0';
+    const tipouser = 'cliente';
     const formRegister = this.formRegisterClient.value
     const dataRegistro: IRegistro = { ...formRegister, tipouser, contrasenia: formRegister.password, correo: formRegister.email }
     console.log(dataRegistro);
