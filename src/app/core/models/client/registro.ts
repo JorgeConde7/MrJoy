@@ -11,5 +11,6 @@ export interface IRegistro {
     fechaNacimiento: string;
     usuario: string,
     contrasenia: string,
-    tipouser: string
+    tipouser: string,
+    contraseniaConfirm:string
 }

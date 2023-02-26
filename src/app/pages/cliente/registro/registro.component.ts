@@ -19,7 +19,7 @@ export class RegistroComponent implements OnInit {
   }
 
   registroUsuario() {
-    this.registro.tipouser = 'cliente';
+    this.registro.tipouser = '0';
     this.registroService.registroUsuario(this.registro).subscribe({
       next: this.createEmpleadoNext.bind(this),
       error: (err) => console.log('Error al crear registro: ', err),
@@ -30,6 +30,7 @@ export class RegistroComponent implements OnInit {
   protected createEmpleadoNext(registro: IRegistro) {
     console.log('Empleado creado: ', registro);
     window.location.href="cliente/index"
+
   }
   registro: IRegistro =
   {
@@ -45,6 +46,7 @@ export class RegistroComponent implements OnInit {
       usuario: '',
       contrasenia: '',
       tipouser: '',
+      contraseniaConfirm:''
   }
  redireccionar(){
   console.log('pipipipippi si llamo')
