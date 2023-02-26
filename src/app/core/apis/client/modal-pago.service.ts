@@ -1,15 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Tarjeta } from '../../../components/cliente/modal-pago/tarjeta';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ModalPagoService
 {
-  private urlEndPoint:string="http://localhost:8090/apitarjeta"
-
+  private urlEndPoint:string=`${environment.URL_BASE}/apitarjeta`;
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'});
   tarjeta : Tarjeta = new Tarjeta();
 

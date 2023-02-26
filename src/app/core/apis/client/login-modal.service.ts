@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Login} from '../../../components/login-modal/login-modal/login-modal'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginModalService {
-  private urlEndPoint:string="http://localhost:8090/apilogin/login"
+
+  private urlEndPoint:string=`${environment.URL_BASE}/apilogin/login`
 
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'});
 

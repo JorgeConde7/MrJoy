@@ -1,15 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { environment } from 'src/environments/environment';
 import { Paquete } from '../../../components/cliente/formulario-reserva/Paquete';
-
 @Injectable({
   providedIn: 'root'
 })
 export class PaqueteServiceService {
 
-  private urlAPI : string = "http://localhost:8090/apireserva/paquetes";
+  private urlAPI : string =`${environment.URL_BASE}/apireserva/paquetes`;
 
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'})
 

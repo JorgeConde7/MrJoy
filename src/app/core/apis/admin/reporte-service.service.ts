@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { VentasPaquete,Info } from '../../models/admin/data';
 import { Observable } from 'rxjs';
-
-
-//import { map } from 'rxjs/operators';
-
-
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,20 +10,15 @@ import { Observable } from 'rxjs';
 
 export class ReporteServiceService {
 
-  private urlEndPoint:string="http://localhost:8090/apireserva/totalPaquetes"
+  private urlEndPoint:string=`${environment.URL_BASE}/apireserva/totalPaquetes`;
 
   constructor(private http:HttpClient) { }
 
     getListar():Observable<VentasPaquete[]>{
-
-
-
       return this.http.get<VentasPaquete[]>(this.urlEndPoint);
-
-
   }
 
   getListarInfo():Observable<Info[]>{
-    return this.http.get<Info[]>("http://localhost:8090/data/datosEmpresa")
+    return this.http.get<Info[]>(`${environment.URL_BASE}/data/datosEmpresa`)
   }
 }
