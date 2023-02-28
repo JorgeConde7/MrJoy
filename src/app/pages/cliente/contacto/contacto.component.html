@@ -1,8 +1,53 @@
 <div class="banner">
+<<<<<<< HEAD
+    <div class="container">
+      <div class="row">
+        <h1 class="contenido-banner-bio">Contactos</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="height:auto">
+    <div class="texto">
+      Escríbenos un mensaje llenando el formulario con tus datos personales
+    </div> 
+    <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+      <div class="row">
+        <div class="col-md-6">
+          <section class="form-register">
+            <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre"
+              required [(ngModel)]="nombres">
+            
+            <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo"
+              required [(ngModel)]="correo">
+
+            <input class="controls" type="text" name="asunto" id="asunto" placeholder="Ingrese su Asunto"
+              required [(ngModel)]="asunto">
+
+            <input class="controls" type="text" name="estado" id="estado" placeholder="Ingrese su Estado"
+              required [(ngModel)]="estado">
+
+            <input class="controls" type="number" name="telefono" id="telefono" placeholder="Ingrese su Telefono"
+              required [(ngModel)]="telefono">
+
+            <textarea name="descripcion" id="descripcion" cols="50" rows="5" placeholder=" Mensaje"
+              required [(ngModel)]="descripcion">
+            </textarea>
+
+            <button class="botons" type="submit" value="Registrar" [disabled]="!f.valid" >Registrar</button>
+          </section>
+        </div>
+        <div class="col-md-6">
+          <img src="/assets/images/contacto/mrJoy.png" alt="" class="img-fluid2">
+        </div>
+      </div>
+    </form>
+    
+=======
   <div class="container">
     <div class="row">
       <h1 class="contenido-banner-bio">Contactos</h1>
     </div>
+>>>>>>> 2c8bf4c1b1097f0231f1245b45f8d70c99974610
   </div>
 </div>
 <div class="container" style="height:auto">

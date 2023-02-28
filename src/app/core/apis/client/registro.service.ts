@@ -8,6 +8,7 @@ const URL = `${environment.URL_BASE}/api`;
   providedIn: 'root',
 })
 export class RegistroService {
+  
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient) {}
   registroUsuario(registro: IRegistro): Observable<IRegistro> {
@@ -15,5 +16,4 @@ export class RegistroService {
 
     });
   }
-
 }
