@@ -1,79 +1,80 @@
 <header>
   <div class="container">
-      <div class="row">
-        <div class="container-flex">
-          <div class="botones">
-              <a routerLink="compra-entradas"><div class="btn-compra">COMPRA ENTRADAS</div></a>
-              <a routerLink="bioseguridad"><div class="btn-bio">BIOSEGURIDAD</div></a>
-          </div>
-          <div class="registro">
-            <ul>
-              <li>
-                
-                <a id="" data-bs-toggle="modal" data-bs-target="#modalLogin" class="login" *ngIf="nombre == 'Ingresar' ; else UsuarioIngresado">
-                  {{nombre}}</a>
-                <ng-template #UsuarioIngresado>
-                  
-                  <!--<select (change)="cambioSelect()" id="selectuser">
-                    <option value="perfil">Perfil</option>
-                    <option value="cerrar">Cerrar Sesión</option>
-                  </select>-->
-                  <div class="dropdown">
+    <div class="row">
+      <div class="container-flex">
+        <div class="botones">
+          <a routerLink="compra-entradas">
+            <div class="btn-compra">COMPRA ENTRADAS</div>
+          </a>
+          <a routerLink="bioseguridad">
+            <div class="btn-bio">BIOSEGURIDAD</div>
+          </a>
+        </div>
+        <div class="registro">
+          <ul>
+            <li>
 
-                    <span class="formudatos dropbtn" (click)="nombreClick()">{{datosCompletos.usuario}} 🡣
-                    
-                    
-                    </span>
-                    <div class="dropdown-content">
-                      <a routerLink="perfil" >Perfil </a>
-                      <a >Configuración</a>
-                      <a (click)="cambioSelect()">Cerrar Sesión</a>
-                    </div>
+              <a id="" data-bs-toggle="modal" data-bs-target="#modalLogin" class="login"
+                *ngIf="nombre == 'Ingresar' ; else UsuarioIngresado">
+                {{nombre}}</a>
+              <ng-template #UsuarioIngresado>
+                <div class="dropdown">
+                  <span class="formudatos dropbtn" >{{" " + nombre | uppercase }} 🡣
+                  </span>
+                  <div class="dropdown-content">
+                    <a routerLink="perfil">Perfil </a>
+                    <a>Configuración</a>
+                    <a (click)="signut()">Cerrar Sesión</a>
                   </div>
-                  
-                </ng-template>
-              </li>
-              <li>
-                <a class="" ><i class="fas fa-cart-plus"> </i>ORDENES</a>
-              </li>
-            </ul> 
-          </div>
+                </div>
+
+              </ng-template>
+            </li>
+            <li>
+              <a class=""><i class="fas fa-cart-plus"> </i>ORDENES</a>
+            </li>
+          </ul>
         </div>
       </div>
+    </div>
   </div>
 </header>
 <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container">
-        <img src="/assets/images/footer/logo.png" alt="">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="" role="button">
-          <i class="fa fa-bars" aria-hidden="true" style="color:#283890"></i>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarScroll">
-        <ul class="navbar-nav navegacion" style="--bs-scroll-height: 100px;">
-          <li class="nav-item" >
-            <a class="nav-link" aria-current="page"  routerLink="index" [ngClass]="{active: isUrlEqualTo('/cliente/index')}">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="parques" [ngClass]="{active: isUrlEqualTo('/cliente/parques')}">Parques</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="horarios" [ngClass]="{active: isUrlEqualTo('/cliente/horarios')}">Horarios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="promociones" [ngClass]="{active: isUrlEqualTo('/cliente/promociones')}">Promociones</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="cumpleanios" [ngClass]="{active: isUrlEqualTo('/cliente/cumpleanios')}">Cumpleaños</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/cliente/contacto')}">
-              Contacto</a>
-          </li>
-        </ul>
-      </div>
+  <div class="container">
+    <img src="/assets/images/footer/logo.png" alt="">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="" role="button">
+        <i class="fa fa-bars" aria-hidden="true" style="color:#283890"></i>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav navegacion" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="index"
+            [ngClass]="{active: isUrlEqualTo('/cliente/index')}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="parques" [ngClass]="{active: isUrlEqualTo('/cliente/parques')}">Parques</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="horarios" [ngClass]="{active: isUrlEqualTo('/cliente/horarios')}">Horarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="promociones"
+            [ngClass]="{active: isUrlEqualTo('/cliente/promociones')}">Promociones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="cumpleanios"
+            [ngClass]="{active: isUrlEqualTo('/cliente/cumpleanios')}">Cumpleaños</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/cliente/contacto')}">
+            Contacto</a>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
 
 <app-login-modal></app-login-modal>

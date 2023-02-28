@@ -1,70 +1,229 @@
 <body>
   <div class="signup-form">
-    <form (ngSubmit)="registroUsuario()">
+    <form (ngSubmit)="registroUsuario()" [formGroup]="formRegisterClient">
       <h1 class="text-center">Registro de Usuario</h1>
       <div class="form-group">
-        <input type="text" required [(ngModel)]="registro.nombres"class="form-control" name="nombre" placeholder="Nombre" >
+        <input type="text" formControlName="nombres" class="form-control" name="nombre" placeholder="Nombre" [ngClass]="{ 'login__username-error':
+          formRegisterClient.controls['nombres'].errors &&
+          formRegisterClient.controls['nombres'].touched &&
+          formRegisterClient.controls['nombres'].dirty }" />
+
+        <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['nombres'].errors &&
+           formRegisterClient.controls['nombres'].touched &&
+           formRegisterClient.controls['nombres'].dirty
+        }">
+          <p class="warning-text">* Solo se permite letras a-Z</p>
+        </div>
+
       </div>
       <div class="form-group">
         <div class="row">
           <div class="col">
-            <input type="text" required [(ngModel)]="registro.apePaterno" class="form-control" name="apePaterno" placeholder="Apellido Paterno" >
+            <input type="text" formControlName="apePaterno" class="form-control" name="apePaterno"
+              placeholder="Apellido Paterno" [ngClass]="{
+                'login__username-error':
+                  formRegisterClient.controls['apePaterno'].errors &&
+                  formRegisterClient.controls['apePaterno'].touched &&
+                  formRegisterClient.controls['apePaterno'].dirty
+              }">
+            <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['apePaterno'].errors &&
+           formRegisterClient.controls['apePaterno'].touched &&
+           formRegisterClient.controls['apePaterno'].dirty
+        }">
+              <p class="warning-text">* Solo letras a-Z</p>
+            </div>
           </div>
           <div class="col">
-            <input type="text"required [(ngModel)]="registro.apeMaterno" class="form-control" name="apeMaterno" placeholder="Apellido Materno" >
+            <input type="text" formControlName="apeMaterno" class="form-control" name="apeMaterno"
+              placeholder="Apellido Materno" [ngClass]="{
+                'login__username-error':
+                  formRegisterClient.controls['apeMaterno'].errors &&
+                  formRegisterClient.controls['apeMaterno'].touched &&
+                  formRegisterClient.controls['apeMaterno'].dirty
+              }">
+            <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['apeMaterno'].errors &&
+           formRegisterClient.controls['apeMaterno'].touched &&
+           formRegisterClient.controls['apeMaterno'].dirty
+        }">
+              <p class="warning-text">* Solo letras a-Z</p>
+            </div>
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="row">
           <div class="col">
-            <input maxlength="8" type="text" required [(ngModel)]="registro.dni"class="form-control" name="dni" placeholder="Dni" >
+            <input maxlength="8" type="text" formControlName="dni" class="form-control" name="dni" placeholder="Dni"
+              [ngClass]="{
+              'login__username-error':
+                formRegisterClient.controls['dni'].errors &&
+                formRegisterClient.controls['dni'].touched &&
+                formRegisterClient.controls['dni'].dirty
+            }">
+            <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['dni'].errors &&
+           formRegisterClient.controls['dni'].touched &&
+           formRegisterClient.controls['dni'].dirty
+        }">
+              <p class="warning-text">* Solo numeros 0-9</p>
+              <p class="warning-text">* Caracteres max. 8</p>
+            </div>
           </div>
           <div class="col">
-            <input maxlength="9" type="text"required [(ngModel)]="registro.telefono"class="form-control" name="telefono" placeholder="Telefono" >
+            <input maxlength="9" type="text" formControlName="telefono" class="form-control" name="telefono"
+              placeholder="Telefono" [ngClass]="{
+                'login__username-error':
+                  formRegisterClient.controls['telefono'].errors &&
+                  formRegisterClient.controls['telefono'].touched &&
+                  formRegisterClient.controls['telefono'].dirty
+              }">
+            <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['telefono'].errors &&
+           formRegisterClient.controls['telefono'].touched &&
+           formRegisterClient.controls['telefono'].dirty
+        }">
+              <p class="warning-text">* Solo numeros 0-9</p>
+              <p class="warning-text">* Caracteres max. 9</p>
+            </div>
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="row">
           <div class="col">
-            <input type="text" required [(ngModel)]="registro.direccion"class="form-control" name="direccion" placeholder="Direccion" >
+            <input type="text" formControlName="direccion" class="form-control" name="direccion" placeholder="Direccion"
+              [ngClass]="{
+                'login__username-error':
+                  formRegisterClient.controls['direccion'].errors &&
+                  formRegisterClient.controls['direccion'].touched &&
+                  formRegisterClient.controls['direccion'].dirty
+              }" maxlength="30">
+            <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['direccion'].errors &&
+           formRegisterClient.controls['direccion'].touched &&
+           formRegisterClient.controls['direccion'].dirty
+        }">
+              <p class="warning-text">* Caracteres max. 30</p>
+            </div>
           </div>
           <div class="col">
-            <input type="text"required [(ngModel)]="registro.genero"class="form-control" name="genero" placeholder="Genero" >
+            <input type="text" formControlName="genero" class="form-control" name="genero" placeholder="Genero"
+              [ngClass]="{
+              'login__username-error':
+                formRegisterClient.controls['genero'].errors &&
+                formRegisterClient.controls['genero'].touched &&
+                formRegisterClient.controls['genero'].dirty
+            }">
+            <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['genero'].errors &&
+           formRegisterClient.controls['genero'].touched &&
+           formRegisterClient.controls['genero'].dirty
+        }">
+              <p class="warning-text">* Masculino|Femenino|No Binario</p>
+            </div>
           </div>
         </div>
       </div>
       <div class="form-group">
-        <input type="date"required [(ngModel)]="registro.fechaNacimiento" class="form-control" name="fechaNacimiento" placeholder="Fecha de Nacimiento"
-          >
+        <input type="date" formControlName="fechaNacimiento" class="form-control" name="fechaNacimiento"
+          placeholder="Fecha de Nacimiento" [ngClass]="{
+              'login__username-error':
+                formRegisterClient.controls['fechaNacimiento'].errors &&
+                formRegisterClient.controls['fechaNacimiento'].touched &&
+                formRegisterClient.controls['fechaNacimiento'].dirty
+            }">
       </div>
       <div class="form-group">
-        <input type="email" required [(ngModel)]="registro.correo"class="form-control" name="email" placeholder="Ingrese Correo Electronico"
-        >
+        <input type="email" formControlName="email" class="form-control" name="email"
+          placeholder="Ingrese Correo Electronico" [ngClass]="{
+              'login__username-error':
+                formRegisterClient.controls['email'].errors &&
+                formRegisterClient.controls['email'].touched &&
+                formRegisterClient.controls['email'].dirty
+            }" maxlength="70">
+        <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['email'].errors &&
+           formRegisterClient.controls['email'].touched &&
+           formRegisterClient.controls['email'].dirty
+        }">
+          <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
+        </div>
       </div>
       <div class="form-group">
-        <input type="usuario" required [(ngModel)]="registro.usuario"class="form-control" name="usuario" placeholder="Ingrese Usuario"
-          >
+        <input type="usuario" formControlName="usuario" class="form-control" name="usuario"
+          placeholder="Ingrese Usuario" [ngClass]="{
+              'login__username-error':
+                formRegisterClient.controls['usuario'].errors &&
+                formRegisterClient.controls['usuario'].touched &&
+                formRegisterClient.controls['usuario'].dirty
+            }">
+        <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['usuario'].errors &&
+           formRegisterClient.controls['usuario'].touched &&
+           formRegisterClient.controls['usuario'].dirty
+        }">
+          <p class="warning-text">* Caracteres min. 5</p>
+          <p class="warning-text">* Caracteres max. 10</p>
+        </div>
       </div>
 
       <div class="form-group">
-        <input type="password" required [(ngModel)]="registro.contrasenia"class="form-control" name="password" placeholder="Ingrese Contraseña"
-          >
-      </div>   
-     <div class="form-group">
-      <input type="file" name="file" required />
+        <input type="password" formControlName="password" class="form-control" name="password"
+          placeholder="Ingrese Contraseña" [ngClass]="{
+              'login__username-error':
+                formRegisterClient.controls['password'].errors &&
+                formRegisterClient.controls['password'].touched &&
+                formRegisterClient.controls['password'].dirty
+            }" maxlength="12" minlength="8">
+        <div class="form__warning" [ngClass]="{
+          'show':
+          formRegisterClient.controls['password'].errors &&
+           formRegisterClient.controls['password'].touched &&
+           formRegisterClient.controls['password'].dirty
+        }">
+          <p class="warning-text">* Solo se permite a-Z, 0-9, _-$.#</p>
+          <p class="warning-text">* Caracteres min. 8</p>
+          <p class="warning-text">* Caracteres max. 12</p>
+        </div>
       </div>
 
       <div class="form-group">
+        <input type="password" formControlName="passwordConfirm" class="form-control" name="passwordConfirm"
+          placeholder="Confirmar  Contraseña" [ngClass]="{
+              'login__username-error':
+                formRegisterClient.controls['passwordConfirm'].errors &&
+                formRegisterClient.controls['passwordConfirm'].touched &&
+                formRegisterClient.controls['passwordConfirm'].dirty
+            }" maxlength="12" minlength="8">
+      </div>
+
+
+      <div class="form-group form__terms">
         <label class="form-check-label">
-          <input type="checkbox" required="required"> I accept the
-          <a (click)="redireccionar()">Terminos Y Condiciones</a>
+          <input type="checkbox" formControlName="termsAndConditions" name="termsAndConditions" [ngClass]="{
+            'login__username-error': true
+          }"> I accept the
+          <a>Terminos Y Condiciones</a>
         </label>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-success btn-lg btn-block">REGISTRARSE</button>
+        <button type="submit" [disabled]="formRegisterClient.invalid"
+          class="btn btn-success btn-lg btn-block">REGISTRARSE</button>
       </div>
     </form>
+    <!-- {{ formRegisterClient.value | json }}
+    {{"2invalid:"}} {{ formRegisterClient.invalid | json }} -->
   </div>
 </body>
