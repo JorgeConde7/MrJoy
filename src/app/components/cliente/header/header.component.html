@@ -52,24 +52,25 @@
       <ul class="navbar-nav navegacion" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="index"
-            [ngClass]="{active: isUrlEqualTo('/cliente/index')}">Inicio</a>
+            [ngClass]="{active: isUrlEqualTo('/')}">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="parques" [ngClass]="{active: isUrlEqualTo('/cliente/parques')}">Parques</a>
+          <a class="nav-link" routerLink="parques" [ngClass]="{active: isUrlEqualTo('/parques')}">Parques</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="horarios" [ngClass]="{active: isUrlEqualTo('/cliente/horarios')}">Horarios</a>
+          <a class="nav-link" routerLink="horarios" [ngClass]="{active: isUrlEqualTo('/horarios')}">Horarios</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="promociones"
-            [ngClass]="{active: isUrlEqualTo('/cliente/promociones')}">Promociones</a>
+            [ngClass]="{active: isUrlEqualTo('/promociones')}">Promociones</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="cumpleanios"
-            [ngClass]="{active: isUrlEqualTo('/cliente/cumpleanios')}">Cumpleaños</a>
+            [ngClass]="{active: isUrlEqualTo('/cumpleanios')}">Cumpleaños</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/cliente/contacto')}">
+          <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/cliente/contacto')}"
+            [ngClass]="{active: isUrlEqualTo('/contacto')}">
             Contacto</a>
         </li>
       </ul>
