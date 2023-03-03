@@ -1,13 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as moment from 'moment';
 import { PaqueteServiceService } from 'src/app/core/apis/client/paquete-service.service';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 
 // RESERVA
 import { ReservaServiceService } from '../../../core/apis/client/reserva-service.service';
-import { Reserva, IReserva } from '../calendario-reserva/reserva';
+import { IReserva } from '../calendario-reserva/reserva';
 import { Router } from '@angular/router';
 import { getPayload } from 'src/app/util/token.util';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import * as regex from 'src/app/util/regex.util';
+import * as moment from 'moment';
 
 
 @Component({
@@ -46,6 +48,7 @@ export class FormularioReservaComponent implements OnInit {
     idLogin: 1,
     nombres: '',
     apellido: '',
+    email: '',
     telefono: '',
     flagTipoReserva: 0,
     acompaniante: 0,
@@ -58,12 +61,15 @@ export class FormularioReservaComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
 
-  constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService, private router: Router) {
+  formReserva: FormGroup
+
+  constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService, private router: Router, private formBuilder: FormBuilder) {
     const currentYear = new Date().getFullYear();
     const currentMoth = new Date().getMonth();
     const currentDay = new Date().getDate();
     this.minDate = new Date(currentYear, currentMoth, currentDay);
     this.maxDate = new Date(currentYear, 11, 31);
+    this.formReserva = this.getReservaFormBuilder();
   }
 
 
@@ -72,10 +78,33 @@ export class FormularioReservaComponent implements OnInit {
     this.paqueteService.getPaquete().subscribe(
       paquetes => {
         this.paquetes = paquetes;
-
       });
   }
 
+  dateValidator(control: FormControl): { [s: string]: boolean }| null {
+    if (control.value) {
+      const date = moment(control.value);
+      const today = moment().subtract(1,'day');
+      if (date.isBefore(today)) {
+        return { 'invalidDate': true }
+      }
+    }
+    return null;
+  }
+
+  getReservaFormBuilder() {
+    return this.formBuilder.group({
+      fechaReserva: [null, [Validators.required, this.dateValidator]],
+      hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
+      nombres: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      apellidos: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      email: [null, [Validators.required, Validators.email]],
+      telefono: [null, [Validators.required, Validators.pattern(regex.PHONE)]],
+      idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
+      cantPersonas: [1, [Validators.required, Validators.pattern(regex.INTEGER)]],
+      acompaniante: [1, [Validators.required, Validators.pattern(regex.INTEGER)]],
+    })
+  }
 
 
   validarHorario() {
@@ -97,7 +126,7 @@ export class FormularioReservaComponent implements OnInit {
 
   RegistrarReservaClass(datoReserva: any) {
     const payload = getPayload()!;
-    const { id: idLogin  } = payload;
+    const { id: idLogin } = payload;
     this.reserva = datoReserva;
     let guardandoidPaquete = this.reserva.idPaquete;
     let pruebita = guardandoidPaquete.toString().split(" ");
@@ -121,8 +150,17 @@ export class FormularioReservaComponent implements OnInit {
     window.location.href = 'admin/reservas'
   }
 
+  get cantidadPersonas(){
+    return this.formReserva.controls['cantPersonas'].value
+  }
+  get cantidadAcompaniantes(){
+    return this.formReserva.controls['acompaniante'].value
+  }
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
+    console.log("CAMBIANDO DATOS: ", { cantPersona, acompaniante, paquete });
+    console.log();
+    console.log(this.formReserva.controls['acompaniante'].value);
 
     const paqueteSplit = paquete.split(" ")
     let precio = 0
@@ -169,7 +207,7 @@ export class FormularioReservaComponent implements OnInit {
     return url === currentURL;
   }
 
-  test(){
+  test() {
     console.log("HOLA MUNDO ASDAS");
 
   }

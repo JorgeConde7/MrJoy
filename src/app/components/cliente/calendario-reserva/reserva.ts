@@ -32,4 +32,5 @@ export interface IReserva
     flagTipoReserva: number;
     acompaniante: number;
     totalPago: number;
+    email?: string;
 };
