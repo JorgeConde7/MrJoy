@@ -95,7 +95,7 @@ export class FormularioReservaComponent implements OnInit {
       telefono: [null, [Validators.required, Validators.pattern(regex.PHONE)]],
       idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
       cantPersonas: [1, [Validators.required, Validators.pattern(regex.INTEGER)]],
-      acompaniante: [1, [Validators.required, Validators.pattern(regex.INTEGER)]],
+      acompaniante: [0, [Validators.required, Validators.pattern(regex.INTEGER)]],
     })
   }
 
