@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormularioReservaComponent } from '../formulario-reserva/formulario-reserva.component';
 import { ModalPagoService } from '../../../core/apis/client/modal-pago.service';
+import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.service';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -17,7 +18,7 @@ export class ModalPagoComponent implements OnInit {
 
   public validar: boolean = false;
 
-  constructor(private formularioReservaComponent: FormularioReservaComponent, private modalPagoService: ModalPagoService/*, private modal : NgbModal*/) {
+  constructor(private reservaServiceService: ReservaServiceService, private formularioReservaComponent: FormularioReservaComponent, private modalPagoService: ModalPagoService/*, private modal : NgbModal*/) {
 
   }
 
@@ -32,15 +33,20 @@ export class ModalPagoComponent implements OnInit {
     try {
       if (this.validar) {
         if (this.numeroTarjeta.trim() !== '' && this.mesTarjeta.trim() !== '' && this.codSeguridad.trim() !== '') {
-          this.modalPagoService.getTarjeta(this.numeroTarjeta, this.mesTarjeta, this.codSeguridad).subscribe(result => {
+          this.modalPagoService.getTarjeta(this.numeroTarjeta, this.mesTarjeta, this.codSeguridad).subscribe(tarjetaResponse => {
             /*console.log(this.datoReservaFormulario.totalPago)
             console.log(result.saldo)*/
 
-            if (result) {
-              if (result.saldo >= this.datoReservaFormulario.totalPago) {
-                this.formularioReservaComponent.RegistrarReservaClass(this.datoReservaFormulario)
+            if (tarjetaResponse) {
+              if (tarjetaResponse.saldo >= this.datoReservaFormulario.totalPago) {
+                // this.formularioReservaComponent.RegistrarReservaClass(this.datoReservaFormulario)
+                this.reservaServiceService.CrearReserva(this.datoReservaFormulario).subscribe(reservaResponse => {
+                  console.log("RESULT RESERVACION:: ", reservaResponse);
+
+                  this.modalPagoService.putTarjeta(this.numeroTarjeta, (tarjetaResponse.saldo - this.datoReservaFormulario.totalPago)).subscribe()
+
+                })
                 //console.log(result.saldo - this.datoReservaFormulario.totalPago)
-                this.modalPagoService.putTarjeta(this.numeroTarjeta, (result.saldo - this.datoReservaFormulario.totalPago)).subscribe()
 
                 alert("Reservacion Completada. Su constancia se le enviara a su correo  en breve.")
               }

@@ -33,12 +33,12 @@
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
   <label for="">Apellidos:</label>
-  <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellidos" name = "apellido">
+  <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellido" name = "apellido">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['apellidos'].errors &&
-    formReserva.controls['apellidos'].touched &&
-    formReserva.controls['apellidos'].dirty
+    formReserva.controls['apellido'].errors &&
+    formReserva.controls['apellido'].touched &&
+    formReserva.controls['apellido'].dirty
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
@@ -85,12 +85,12 @@
   <input class="form-control" type="number" placeholder="Ingrese su telefono" [(ngModel)]="reserva.telefono">-->
   <label for="">Total a Pagar :</label>
   <input type="text" readonly placeholder="" class="form-control" [value]="total" name="total">
-  <button
+  <!-- <button
    id="btnRegistrar" class="btn btn-primary mt-4 botonRegistrar"
-   type="button"  *ngIf="isUrlEqualTo('/admin/reservas')" (click)="RegistrarReservaEmpleado()">Registrar</button>
-  <button
+   type="button"  *ngIf="isUrlEqualTo('/admin/reservas')" (click)="RegistrarReservaEmpleado()">Registrar</button> -->
+  <button  (click)="setFormularioDataToReservaDTO()"
    id="btnRegistrar" [disabled]="formReserva.invalid" data-bs-toggle="modal" data-bs-target="#modalLEntradas" class="btn btn-primary mt-4 botonRegistrar"
-   data-bs-dismiss="modal" type="button"  *ngIf="isUrlEqualTo('/cumpleanios')">Registrar</button>
+   data-bs-dismiss="modal" type="button"  *ngIf="isUrlEqualTo('/cumpleanios')" >Registrar</button>
 
 </form>
 <app-modal-pago [datoReservaFormulario]="reserva"></app-modal-pago>

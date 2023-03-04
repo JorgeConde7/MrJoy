@@ -81,10 +81,10 @@ export class FormularioReservaComponent implements OnInit {
       });
   }
 
-  dateValidator(control: FormControl): { [s: string]: boolean }| null {
+  dateValidator(control: FormControl): { [s: string]: boolean } | null {
     if (control.value) {
       const date = moment(control.value);
-      const today = moment().subtract(1,'day');
+      const today = moment().subtract(1, 'day');
       if (date.isBefore(today)) {
         return { 'invalidDate': true }
       }
@@ -97,7 +97,7 @@ export class FormularioReservaComponent implements OnInit {
       fechaReserva: [null, [Validators.required, this.dateValidator]],
       hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
       nombres: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
-      apellidos: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      apellido: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
       email: [null, [Validators.required, Validators.email]],
       telefono: [null, [Validators.required, Validators.pattern(regex.PHONE)]],
       idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
@@ -125,18 +125,48 @@ export class FormularioReservaComponent implements OnInit {
   }
 
   RegistrarReservaClass(datoReserva: any) {
-    const payload = getPayload()!;
-    const { id: idLogin } = payload;
     this.reserva = datoReserva;
     let guardandoidPaquete = this.reserva.idPaquete;
     let pruebita = guardandoidPaquete.toString().split(" ");
     this.reserva.idPaquete = parseInt(pruebita[0]);
 
-    this.reserva.idLogin = idLogin;
     this.reservaServiceService.CrearReserva(this.reserva).subscribe(() => {
       alert("Reserva registrada correctamente!!")
     });
     this.reserva.idPaquete = 0;
+  }
+
+
+  setFormularioDataToReservaDTO() {
+    console.log("Hola Mundo");
+    const currentDateTime = new Date()
+    const day = currentDateTime.getFullYear()
+    const month = (currentDateTime.getMonth() + 1).toString().padStart(2, "0")
+    const date = (currentDateTime.getDate()).toString().padStart(2, "0")
+    const today = `${day}-${month}-${date}`;
+
+    const { acompaniante, apellido, cantPersonas, fechaReserva, hora, idPaquete, nombres, telefono, email } = this.formReserva.value as IReserva;
+    const payload = getPayload()!;
+    const { id: idLoginFromToken } = payload;
+
+    const idPaqueteSelected = idPaquete.toString().split(" ")[0]
+    console.log("this.formReserva.value");
+    console.log(this.formReserva.value);
+    console.log("this.reserva");
+    console.log(this.reserva);
+    
+    this.reserva.acompaniante = acompaniante
+    this.reserva.apellido = apellido
+    this.reserva.cantPersonas = cantPersonas
+    this.reserva.fechaRegistro = today
+    this.reserva.fechaReserva = fechaReserva
+    this.reserva.hora = hora
+    this.reserva.idLogin = idLoginFromToken
+    this.reserva.idPaquete = Number(idPaqueteSelected)
+    this.reserva.nombres = nombres
+    this.reserva.telefono = telefono
+    this.reserva.totalPago = this.total
+    this.reserva.email = email
   }
 
   RegistrarReservaEmpleado() {
@@ -150,17 +180,14 @@ export class FormularioReservaComponent implements OnInit {
     window.location.href = 'admin/reservas'
   }
 
-  get cantidadPersonas(){
+  get cantidadPersonas() {
     return this.formReserva.controls['cantPersonas'].value
   }
-  get cantidadAcompaniantes(){
+  get cantidadAcompaniantes() {
     return this.formReserva.controls['acompaniante'].value
   }
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
-    console.log("CAMBIANDO DATOS: ", { cantPersona, acompaniante, paquete });
-    console.log();
-    console.log(this.formReserva.controls['acompaniante'].value);
 
     const paqueteSplit = paquete.split(" ")
     let precio = 0
