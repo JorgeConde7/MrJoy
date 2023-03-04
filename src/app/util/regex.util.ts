@@ -8,6 +8,7 @@ const INTEGER = /^[0-9]+$/
 const DOUBLE = /^[0-9]+(\.)?[0-9]*$/
 const PAQUETE = /^[1-9\s\.]+$/
 const NOT_INICIO = /^((?!inicio).)*$/
+const CVV=/^[0-9]{2}\-[0-9]{2}$/
 
 export {
   DNI,
@@ -19,5 +20,6 @@ export {
   INTEGER,
   DOUBLE,
   PAQUETE,
-  NOT_INICIO
+  NOT_INICIO,
+  CVV
 }

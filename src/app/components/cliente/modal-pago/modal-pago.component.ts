@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { checkLuhn } from 'src/app/util/utils.util';
 import { IPayModal } from 'src/app/core/models/client/payModal';
 import { IReserva } from '../calendario-reserva/reserva';
+import * as regex from 'src/app/util/regex.util';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -27,7 +28,7 @@ export class ModalPagoComponent implements OnInit {
   getFormBuilderTarjeta() {
     return this.formBuilder.group({
       numeroTarjeta: [null, [Validators.required, Validators.minLength(16), Validators.maxLength(16), this.cardValidator]],
-      mesTarjeta: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(5), this.dateCardValidator]],
+      mesTarjeta: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(5), this.dateCardValidator, Validators.pattern(regex.CVV)]],
       codSeguridad: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3)]]
     })
   }
