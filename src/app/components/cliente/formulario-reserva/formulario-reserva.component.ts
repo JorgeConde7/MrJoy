@@ -58,17 +58,10 @@ export class FormularioReservaComponent implements OnInit {
 
 
   paquetes: Paquete[] = [];
-  minDate: Date;
-  maxDate: Date;
 
   formReserva: FormGroup
 
   constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService, private router: Router, private formBuilder: FormBuilder) {
-    const currentYear = new Date().getFullYear();
-    const currentMoth = new Date().getMonth();
-    const currentDay = new Date().getDate();
-    this.minDate = new Date(currentYear, currentMoth, currentDay);
-    this.maxDate = new Date(currentYear, 11, 31);
     this.formReserva = this.getReservaFormBuilder();
   }
 
@@ -138,7 +131,7 @@ export class FormularioReservaComponent implements OnInit {
 
 
   setFormularioDataToReservaDTO() {
-    console.log("Hola Mundo");
+    // console.log("Hola Mundo");
     const currentDateTime = new Date()
     const day = currentDateTime.getFullYear()
     const month = (currentDateTime.getMonth() + 1).toString().padStart(2, "0")
@@ -150,11 +143,11 @@ export class FormularioReservaComponent implements OnInit {
     const { id: idLoginFromToken } = payload;
 
     const idPaqueteSelected = idPaquete.toString().split(" ")[0]
-    console.log("this.formReserva.value");
-    console.log(this.formReserva.value);
-    console.log("this.reserva");
-    console.log(this.reserva);
-    
+    // console.log("this.formReserva.value");
+    // console.log(this.formReserva.value);
+    // console.log("this.reserva");
+    // console.log(this.reserva);
+
     this.reserva.acompaniante = acompaniante
     this.reserva.apellido = apellido
     this.reserva.cantPersonas = cantPersonas
@@ -194,15 +187,17 @@ export class FormularioReservaComponent implements OnInit {
     if (paqueteSplit.length <= 1) {
       this.total = 0
       console.log("No selecciono paquete")
+      this.reserva.totalPago = this.total
 
     }
     else {
       precio = Number(paqueteSplit[1])
       console.log("paquete: ", precio);
       const precioAcompaniante = 6
-      this.total = cantPersona * Number(precio) + acompaniante * precioAcompaniante
+      const totalTemp = cantPersona * Number(precio) + acompaniante * precioAcompaniante
+      this.total = Number(totalTemp.toFixed(2))
+      this.reserva.totalPago = this.total;
     }
-    this.reserva.totalPago = this.total;
 
   }
 
