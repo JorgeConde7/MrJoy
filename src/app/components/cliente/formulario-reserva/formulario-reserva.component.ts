@@ -94,8 +94,8 @@ export class FormularioReservaComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       telefono: [null, [Validators.required, Validators.pattern(regex.PHONE)]],
       idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
-      cantPersonas: [1, [Validators.required, Validators.pattern(regex.INTEGER)]],
-      acompaniante: [0, [Validators.required, Validators.pattern(regex.INTEGER)]],
+      cantPersonas: [1, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(1), Validators.max(15)]],
+      acompaniante: [0, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(0), Validators.max(15)]],
     })
   }
 
@@ -219,7 +219,6 @@ export class FormularioReservaComponent implements OnInit {
         //console.log(this.horaCadena.indexOf(this.horaOcupada[i]))
         this.horaCadena.splice(this.horaCadena.indexOf(this.horaOcupada[i]), 1)
       }
-      //console.log(this.horaCadena)
     })
   }
 
@@ -229,10 +228,6 @@ export class FormularioReservaComponent implements OnInit {
     return url === currentURL;
   }
 
-  test() {
-    console.log("HOLA MUNDO ASDAS");
-
-  }
 
 }
 

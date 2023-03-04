@@ -1,6 +1,20 @@
-export const leftPad = (text: string, limit: number, caracter: '0') => {
-//   if (text.length >= limit) return text;
-//   const textResult = text + caracter
-// "".padStart
-//   if (textResult.length < limit) leftPad(textResult, limit, caracter)
+/**
+ * Algoritmo simple de luhn que permite validar los digitos  de tarjetas de credito
+ */
+const checkLuhn = (num: string) => {
+  const isEmpty = !num.trim().length
+  if (isEmpty) return false;
+
+  let arr = (num + '')
+    .split('')
+    .reverse()
+    .map(x => parseInt(x));
+  let lastDigit = arr.splice(0, 1)[0];
+  let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
+  sum += lastDigit;
+  return sum % 10 === 0;
+};
+
+export {
+  checkLuhn
 }

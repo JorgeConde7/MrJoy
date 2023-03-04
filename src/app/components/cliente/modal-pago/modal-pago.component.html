@@ -1,51 +1,76 @@
 <div class="modal fade" id="modalLEntradas" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-    aria-hidden="true">
-    <div class="modal-dialog text-center">
-        <div class=" main-section">
-            <div class="modal-content">
-                <div class="signup-form">
-                    <div class="form">
-                        <h5 class="text-center ">Tarjeta de crédito o débito</h5>
-                        <hr />
-                        <div class="text-center">
-                            <img src="/assets/images/entradas/card_visa.png" alt="icon" class="image">
-                            <img src="/assets/images/entradas/card_master.png" alt="icon" class="image">
-                            <img src="/assets/images/entradas/america_express.png" alt="icon" class="image">
-                            <img src="/assets/images/entradas/card_diners.png" alt="icon" class="image">
-                        </div>
-                        <br />
-
-                        <div class="form-group">
-                            <input type="text" placeholder="Nombre y Apelido" class="form-control ">
-                        </div><br />
-                        <div class="form-group">
-                            <input type="text" [(ngModel)]="numeroTarjeta" name="numeroTarjeta" placeholder="Numero de Tarjeta" class="form-control ">
-                        </div><br />
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" [(ngModel)]="mesTarjeta" name="mesTarjeta" class="form-control" placeholder="MM/AA">
-                                </div>
-                                <div class="col-md-6">
-                                    <input placeholder="CVC" [(ngModel)]="codSeguridad" name="codSeguridad" type="password" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <button class="btn btn-primary form-control" data-bs-toggle="modal" (click)="validarPago()"
-                                data-bs-target="#myModal">PAGAR</button>
-                        </div>
-                        <br />
-                        <div class="text-center ka">
-                            <img src="/assets/images/entradas/logo_ksh.png" alt="icon" class="image">
-                            <p>Este pago es procesado de forma segura por Kushki, un proveedor de pagos PCI de nivel 1
-                            </p>
-                        </div>
-                    </div>
-                </div>
+  aria-hidden="true">
+  <div class="modal-dialog text-center">
+    <div class=" main-section">
+      <div class="modal-content">
+        <div class="signup-form">
+          <div class="form">
+            <h5 class="text-center ">Tarjeta de crédito o débito</h5>
+            <hr />
+            <div class="text-center">
+              <img src="/assets/images/entradas/card_visa.png" alt="icon" class="image">
+              <img src="/assets/images/entradas/card_master.png" alt="icon" class="image">
+              <img src="/assets/images/entradas/america_express.png" alt="icon" class="image">
+              <img src="/assets/images/entradas/card_diners.png" alt="icon" class="image">
             </div>
-            <br>
+            <br />
+            <form [formGroup]="formTarjeta" autocomplete="off">
+              <!-- <div class="form-group">
+                            <input type="text"  formControlName="" placeholder="Nombre y Apelido" class="form-control ">
+                        </div><br /> -->
+              <div class="form-group">
+                <input  maxlength="16" type="text" formControlName="numeroTarjeta" name="numeroTarjeta" placeholder="Numero de Tarjeta"
+                  class="form-control ">
+                <div class="form__warning" [ngClass]="{
+                              'show':
+                              formTarjeta.controls['numeroTarjeta'].errors &&
+                              formTarjeta.controls['numeroTarjeta'].touched
+                            }">
+                  <p class="warning-text">* Tarjeta invalida</p>
+                </div>
+              </div><br />
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input maxlength="5" type="text" formControlName="mesTarjeta" name="mesTarjeta" class="form-control"
+                      placeholder="MM-AA" autocomplete="off">
+                    <div class="form__warning" [ngClass]="{
+                                      'show':
+                                      formTarjeta.controls['mesTarjeta'].errors &&
+                                      formTarjeta.controls['mesTarjeta'].touched
+                                    }">
+                      <p class="warning-text">* Fecha inválida</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <input maxlength="3" placeholder="CVV" formControlName="codSeguridad" name="codSeguridad" type="password"
+                      class="form-control" autocomplete="off">
+                    <div class="form__warning" [ngClass]="{
+                                      'show':
+                                      formTarjeta.controls['codSeguridad'].errors &&
+                                      formTarjeta.controls['codSeguridad'].touched
+                                    }">
+                      <p class="warning-text">* Requerido</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="form-group">
+                <button  [disabled]="formTarjeta.invalid" class="btn btn-primary form-control" data-bs-toggle="modal" (click)="validarPago()"
+                  data-bs-target="#myModal">PAGAR</button>
+              </div>
+            </form>
+            <br />
+            <div class="text-center ka">
+              <img src="/assets/images/entradas/logo_ksh.png" alt="icon" class="image">
+              <p>Este pago es procesado de forma segura por Kushki, un proveedor de pagos PCI de nivel 1
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
+      <br>
     </div>
+  </div>
