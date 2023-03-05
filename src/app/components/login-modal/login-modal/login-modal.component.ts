@@ -18,16 +18,12 @@ export class LoginModalComponent implements OnInit {
 
   hasBadCredentials: boolean = false;
 
-  constructor(private loginservice: LoginModalService) { /*this.obtener_localstore()*/ }
-
+  constructor(private loginservice: LoginModalService) { }
 
   accesoLogin() {
-    console.log("asdasd");
 
     this.loginservice.getLogin(this.login).subscribe({
       next: (response) => {
-        console.log(response);
-
         const isEmptyToken = response.data === null
         if (isEmptyToken) {
           this.hasBadCredentials = true
@@ -37,8 +33,7 @@ export class LoginModalComponent implements OnInit {
         }
         const { data: token } = response;
         setToken(token);
-        window.location.href = "/"
-        //this.router.navigate(['/cliente/index'])
+        window.location.reload()
       },
       error: (err) => {
         console.log(err);

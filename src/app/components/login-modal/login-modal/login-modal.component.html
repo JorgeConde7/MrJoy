@@ -1,47 +1,39 @@
+<section class="body-main">
 
-
-
-<section class="body-main" >
-
-    <div class="modal fade" id="modalLogin"   data-bs-keyboard="false"  tabindex="-1"  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog text-center" >
-            <div class="col-sm-8 main-section">
-                <div class="modal-content">
-                    <div class="col-12 user-img">
-                        <img src="/assets/images/modal-login/login.png" height="256" width="256" />
-                    </div>
-                    <form (ngSubmit)="accesoLogin()" class="col-12" name="login">
-                        <div class="form-group" id="user-group">
-                        <input [(ngModel)]="login.usuario" type="text" class="form-control Input" placeholder="Nombre de usuario"
-                            name="usuario" />
-                        </div>
-                        <br>
-                        <div class="form-group" id="contrasena-group">
-                        <input [(ngModel)]="login.contrasenia" type="password" class="form-control Input" placeholder="Contraseña"
-                            name="password" />
-
-                            <br>
-                            <p class="alert alert-danger" *ngIf="hasBadCredentials">Usuario o contraseña incorrectos</p>
-                        </div>
-
-                        <br>
-
-                            <button [disabled]="login.usuario=='' || login.contrasenia==''" type="submit" class="btn btn-primary">   Ingresar</button>
-
-
-
-
-                    </form>
-                    <!-- <div class="col-12 forgot"> -->
-                        <!-- <a href="#">Recordar contraseña?</a> -->
-                    <!-- </div> -->
-                    <div class="col-12 forgot">
-                        <a routerLink="registro" data-bs-dismiss="modal">Registrarse</a>
-                    </div>
-                    <br>
-                </div>
+  <div class="modal fade" id="modalLogin" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog text-center">
+      <div class="col-sm-8 main-section">
+        <div class="modal-content">
+          <div class="col-12 user-img">
+            <img src="/assets/images/modal-login/login.png" height="256" width="256" />
+          </div>
+          <form (ngSubmit)="accesoLogin()" class="col-12" name="login">
+            <div class="form-group" id="user-group">
+              <input [(ngModel)]="login.usuario" type="text" class="form-control Input" placeholder="Nombre de usuario"
+                name="usuario" />
             </div>
+            <br>
+            <div class="form-group" id="contrasena-group">
+              <input [(ngModel)]="login.contrasenia" type="password" class="form-control Input" placeholder="Contraseña"
+                name="password" />
+              <br>
+              <p class="alert alert-danger" *ngIf="hasBadCredentials">Usuario o contraseña incorrectos</p>
+            </div>
+            <br>
+            <button [disabled]="login.usuario=='' || login.contrasenia==''" type="submit" class="btn btn-primary">
+              Ingresar</button>
+          </form>
+          <!-- <div class="col-12 forgot"> -->
+          <!-- <a href="#">Recordar contraseña?</a> -->
+          <!-- </div> -->
+          <div class="col-12 forgot">
+            <a routerLink="registro" data-bs-dismiss="modal">Registrarse</a>
+          </div>
+          <br>
         </div>
+      </div>
     </div>
+  </div>
 
 </section>
