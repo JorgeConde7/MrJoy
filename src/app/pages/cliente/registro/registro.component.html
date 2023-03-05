@@ -1,7 +1,7 @@
 <body>
   <div class="signup-form">
     <form (ngSubmit)="registroUsuario()" [formGroup]="formRegisterClient">
-      <h1 class="text-center">Registro de Usuario</h1>
+      <h1 class="text-center"></h1>
       <div class="form-group">
         <input type="text" formControlName="nombres" class="form-control" name="nombre" placeholder="Nombre" [ngClass]="{ 'login__username-error':
           formRegisterClient.controls['nombres'].errors &&
@@ -98,40 +98,21 @@
       </div>
       <div class="form-group">
         <div class="row">
+          
           <div class="col">
-            <input type="text" formControlName="direccion" class="form-control" name="direccion" placeholder="Direccion"
-              [ngClass]="{
-                'login__username-error':
-                  formRegisterClient.controls['direccion'].errors &&
-                  formRegisterClient.controls['direccion'].touched &&
-                  formRegisterClient.controls['direccion'].dirty
-              }" maxlength="30">
-            <div class="form__warning" [ngClass]="{
-          'show':
-          formRegisterClient.controls['direccion'].errors &&
-           formRegisterClient.controls['direccion'].touched &&
-           formRegisterClient.controls['direccion'].dirty
-        }">
-              <p class="warning-text">* Caracteres max. 30</p>
-            </div>
+            <label>-- Seleccione su distrito --</label>
+            <select formControlName="direccion" name="direccion" class="form-control" >
+              <option *ngFor="let direccion of distritos"  [ngValue]="direccion">{{direccion}}</option>
+            </select>
           </div>
+          
           <div class="col">
-            <input type="text" formControlName="genero" class="form-control" name="genero" placeholder="Genero"
-              [ngClass]="{
-              'login__username-error':
-                formRegisterClient.controls['genero'].errors &&
-                formRegisterClient.controls['genero'].touched &&
-                formRegisterClient.controls['genero'].dirty
-            }">
-            <div class="form__warning" [ngClass]="{
-          'show':
-          formRegisterClient.controls['genero'].errors &&
-           formRegisterClient.controls['genero'].touched &&
-           formRegisterClient.controls['genero'].dirty
-        }">
-              <p class="warning-text">* Masculino|Femenino|No Binario</p>
-            </div>
+            <label>-- Seleccione su genero --</label>
+            <select formControlName="genero"  name="genero" class="form-control">
+              <option *ngFor="let genero of generos"  [ngValue]="genero">{{genero}}</option>
+            </select>
           </div>
+
         </div>
       </div>
       <div class="form-group">
