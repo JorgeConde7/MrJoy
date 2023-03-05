@@ -11,12 +11,14 @@
       </div>
       <ol>
         <li *ngFor="let day of week; index as rc" class="day-name">{{day | slice:0:3}}</li>
-            <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
-             *ngFor="let day of monthSelect;let first = first">
+            <li (click)="clickDay(day)" class="date"  [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+             *ngFor="let day of monthSelect;let first = first" [ngClass]="{
+              'date__calendary-selected': isDateCalendarySelected(day)
+            }">
           <span>{{day?.value}}</span>
         </li>
       </ol>
-    </div>    
+    </div>
     <hr>
     <div class="fechaActual">
       <p>Horario de reservas ocupadas: {{dateValue | date}}</p>
@@ -24,7 +26,7 @@
     <div class="reservas">
       <div *ngFor="let re of reservas" (click)="verDetallesReserva(re.hora)" >{{re.hora}} </div>
     </div>
-    <div class="row" *ngIf="isUrlEqualTo('/cliente/cumpleanios')">
+    <div class="row" *ngIf="isUrlEqualTo('/cumpleanios')">
       <div class="col-md-2 iconoReserva"><i class="fa-solid fa-circle-exclamation"></i></div>
       <div class="col-md-10">
         <ul class="infReserva">
@@ -55,7 +57,7 @@
               <th>Estado</th>
               <th>Pagado</th>
               <th colspan="2">Acciones</th>
-              
+
             </tr>
           </thead>
           <tbody>
@@ -95,4 +97,4 @@
         </div>
       </div>
     </section>
-  
+
