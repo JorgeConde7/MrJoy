@@ -4,8 +4,7 @@ import { ReservaServiceService } from '../../../core/apis/client/reserva-service
 import { Reserva } from './reserva';
 import { Router } from '@angular/router';
 import { IReserva } from './reserva';
-//import { PaqueteServiceService } from '../formulario-reserva/paquete-service.service';
-//import { FormularioReservaComponent } from '../formulario-reserva/formulario-reserva.component';
+import { ICalendary } from 'src/app/core/models/client/calendary';
 
 @Component({
   selector: 'app-calendario-reserva',
@@ -28,60 +27,54 @@ export class CalendarioReservaComponent implements OnInit {
   dateValue: any;
   monthSelect: any[];
   dateSelect: any;
-  reservas:Reserva[]=[];
-
+  reservas: Reserva[] = [];
+  calendarySelect!: ICalendary;
   //listar:Reserva;
-  listar:any;
+  listar: any;
 
   // iniciando datos de variables
-  constructor(private reseraService:ReservaServiceService/*, private paqueteService: PaqueteServiceService*/, private router:Router) {
-    this.monthSelect=new Array;
+  constructor(private reseraService: ReservaServiceService, private router: Router) {
+    this.monthSelect = new Array;
     this.listar = new Reserva();
-   }
+  }
 
   // la misma vaina :v
 
-  ngOnInit(): void
-  {
-    var fecha = new Date();
-    var hoy = fecha.getDate();
-    var mesActual = fecha.getMonth()+1;
-    var anioActual = fecha.getFullYear();
-    /* Test
-    /* console.log(hoy);
-    /* console.log(mesActual);
-    /* console.log(anioActual);
-    /* */
+  ngOnInit(): void {
+    const fecha = new Date();
+    const hoy = fecha.getDate();
+    const mesActual = fecha.getMonth() + 1;
+    const anioActual = fecha.getFullYear();
+
     this.getDaysFromDate(mesActual, anioActual)
     this.clickDayInicial(hoy)
   }
 
-  getDaysFromDate(month:any, year:any) {
+
+
+  getDaysFromDate(month: number, year: number) {
 
     const startDate = moment(`${year}/${month}/01`)
     const endDate = startDate.clone().endOf('month')
-    this.dateSelect = startDate ;
+    this.dateSelect = startDate;
     const diffDays = endDate.diff(startDate, 'days', true)
     const numberDays = Math.round(diffDays);
 
-    const arrayDays = Object.keys([...Array(numberDays)]).map((a: any) => {
-      a = parseInt(a) + 1;
-      const dayObject = moment(`${year}-${month}-${a}`);
+    const arrayDays = Object.keys([...Array(numberDays)]).map((date: string) => {
+      const datenumber = parseInt(date) + 1;
+      const dayObject = moment(`${year}-${month}-${datenumber}`);
       return {
         name: dayObject.format("dddd"),
-        value: a,
+        value: datenumber,
         indexWeek: dayObject.isoWeekday()
 
       };
     });
 
-    /*var fecha = new Date();
-    var hoy = fecha.getDate();
-    this.clickDay(hoy);*/
     this.monthSelect = arrayDays;
   }
 
-  changeMonth(flag:any) {
+  changeMonth(flag: number) {
     if (flag < 0) {
       const prevDate = this.dateSelect.clone().subtract(1, "month");
       this.getDaysFromDate(prevDate.format("MM"), prevDate.format("YYYY"));
@@ -91,33 +84,32 @@ export class CalendarioReservaComponent implements OnInit {
     }
   }
 
-  clickDay(day:any)
-  {
+  clickDay(day: ICalendary) {
+    console.log({ dateSelect: this.dateSelect });
+    const dateSelectMoment = this.dateSelect as moment.Moment;
+    console.log(day);
+    this.calendarySelect = day;
     const monthYear = this.dateSelect.format('YYYY-MM')
     const parse = `${monthYear}-${day.value}`
-    this.reseraService.getReserva(parse).subscribe( reservas => { this.reservas = reservas});
+    this.reseraService.getReserva(parse).subscribe(reservas => { this.reservas = reservas });
     const objectDate = moment(parse)
     this.dateValue = objectDate;
   }
 
-  clickDayInicial(day:any)
-  {
+  clickDayInicial(day: number) {
     const monthYear = this.dateSelect.format('YYYY-MM')
-    const parse = `${monthYear}-${day}`
-    this.reseraService.getReserva(parse).subscribe( reservas => { this.reservas = reservas; });
-    const objectDate = moment(parse)
+    const dateFull = `${monthYear}-${day}`
+    this.reseraService.getReserva(dateFull).subscribe(reservas => { this.reservas = reservas; });
+    const objectDate = moment(dateFull)
     this.dateValue = objectDate;
   }
 
   //paquete:any;
 
-  verDetallesReserva(hora : any)
-  {
-    //console.log('diste clic en la hora: ' + hora)
-    for (let i=0 ; i < this.reservas.length; i++)
-    {
-      if (this.reservas[i].hora === hora)
-      {
+  verDetallesReserva(hora: string) {
+    console.log('diste clic en la hora: ' + hora)
+    for (let i = 0; i < this.reservas.length; i++) {
+      if (this.reservas[i].hora === hora) {
         this.listar = this.reservas[i];
       }
     }
@@ -137,6 +129,12 @@ export class CalendarioReservaComponent implements OnInit {
     //console.log(this.ireserva)
   }
 
+  isDateCalendarySelected(day: ICalendary) {
+    // console.log(this.calendarySelect === day);
+
+    return this.calendarySelect === day
+  }
+
   isUrlEqualTo(currentURL: string) {
     const url = this.router.url
 
@@ -149,7 +147,7 @@ export class CalendarioReservaComponent implements OnInit {
     fechaReserva: '',
     hora: '',
     cantPersonas: 0,
-    correo:"",
+    correo: "",
     idLogin: 1,
     nombres: '',
     apellido: '',
@@ -158,12 +156,5 @@ export class CalendarioReservaComponent implements OnInit {
     acompaniante: 0,
     totalPago: 0
   };
-
-  /*obtenerDatosModal(objecto : any)
-  {
-    this.ireserva = objecto;
-    this.formularioReservaComponent.darValores(this.ireserva);
-  }*/
-
 
 }
