@@ -10,6 +10,7 @@ import { getPayload } from 'src/app/util/token.util';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as regex from 'src/app/util/regex.util';
 import * as moment from 'moment';
+import { getCurrentDate } from 'src/app/util/utils.util';
 
 
 @Component({
@@ -61,7 +62,7 @@ export class FormularioReservaComponent implements OnInit {
 
   formReserva: FormGroup
 
-  constructor(private paqueteService: PaqueteServiceService, private reservaServiceService: ReservaServiceService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private paqueteService: PaqueteServiceService, private reservaService: ReservaServiceService, private router: Router, private formBuilder: FormBuilder) {
     this.formReserva = this.getReservaFormBuilder();
   }
 
@@ -86,8 +87,12 @@ export class FormularioReservaComponent implements OnInit {
   }
 
   getReservaFormBuilder() {
+    const [date, month, year, _] = getCurrentDate()
+    const today = `${year}-${month}-${date}`
+    this.validandoCambioDeFechaByFecha(today)
+
     return this.formBuilder.group({
-      fechaReserva: [null, [Validators.required, this.dateValidator]],
+      fechaReserva: [today, [Validators.required, this.dateValidator]],
       hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
       nombres: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
       apellido: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
@@ -102,7 +107,7 @@ export class FormularioReservaComponent implements OnInit {
 
   validarHorario() {
     //console.log('Llamando a fecha reserva ' + this.reserva.fechaReserva)
-    this.reservaServiceService.getReserva(this.reserva.fechaReserva).subscribe
+    this.reservaService.getReserva(this.reserva.fechaReserva).subscribe
       (
         reservas => {
           for (let i = 0; i < reservas.length; i++) {
@@ -123,7 +128,7 @@ export class FormularioReservaComponent implements OnInit {
     let pruebita = guardandoidPaquete.toString().split(" ");
     this.reserva.idPaquete = parseInt(pruebita[0]);
 
-    this.reservaServiceService.CrearReserva(this.reserva).subscribe(() => {
+    this.reservaService.CrearReserva(this.reserva).subscribe(() => {
       alert("Reserva registrada correctamente!!")
     });
     this.reserva.idPaquete = 0;
@@ -166,7 +171,7 @@ export class FormularioReservaComponent implements OnInit {
     let guardandoidPaquete = this.reserva.idPaquete;
     let pruebita = guardandoidPaquete.toString().split(" ");
     this.reserva.idPaquete = parseInt(pruebita[0]);
-    this.reservaServiceService.CrearReserva(this.reserva).subscribe(() => {
+    this.reservaService.CrearReserva(this.reserva).subscribe(() => {
       alert("Reserva registrada correctamente!!")
     });
     this.reserva.idPaquete = 0;
@@ -176,6 +181,7 @@ export class FormularioReservaComponent implements OnInit {
   get cantidadPersonas() {
     return this.formReserva.controls['cantPersonas'].value
   }
+
   get cantidadAcompaniantes() {
     return this.formReserva.controls['acompaniante'].value
   }
@@ -202,21 +208,34 @@ export class FormularioReservaComponent implements OnInit {
   }
 
   validandoCambioDeFecha() {
-    console.log(this.reserva.fechaReserva)
-    console.log(this.reserva.fechaReserva)
-    this.horaCadena = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
-    this.reserva.hora = 'inicio'
-    if (this.reserva.fechaReserva === '') return;
 
-    this.reservaServiceService.getReserva(this.reserva.fechaReserva).subscribe(cuerpo => {
-      this.horaOcupada = [];
-      for (let i = 0; i < cuerpo.length; i++) {
-        this.horaOcupada.push(cuerpo[i].hora)
-      }
+    this.horaCadena = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
+    const { fechaReserva } = this.formReserva.value as IReserva
+    const isEmpty = fechaReserva === ""
+
+    if (isEmpty) return;
+
+    this.reservaService.getReserva(fechaReserva).subscribe(reservaResponse => {
+
+      this.horaOcupada = reservaResponse.map(reserva => reserva.hora)
+
       this.horaOcupada.sort()
-      //console.log(this.horaOcupada)
+
       for (let i = 0; i < this.horaOcupada.length; i++) {
-        //console.log(this.horaCadena.indexOf(this.horaOcupada[i]))
+        this.horaCadena.splice(this.horaCadena.indexOf(this.horaOcupada[i]), 1)
+      }
+    })
+  }
+
+  validandoCambioDeFechaByFecha(fecha: string) {
+    this.horaCadena = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
+    this.reservaService.getReserva(fecha).subscribe(reservaResponse => {
+
+      this.horaOcupada = reservaResponse.map(reserva => reserva.hora)
+
+      this.horaOcupada.sort()
+
+      for (let i = 0; i < this.horaOcupada.length; i++) {
         this.horaCadena.splice(this.horaCadena.indexOf(this.horaOcupada[i]), 1)
       }
     })
@@ -227,6 +246,7 @@ export class FormularioReservaComponent implements OnInit {
 
     return url === currentURL;
   }
+
 
 
 }

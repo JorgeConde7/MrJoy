@@ -15,6 +15,17 @@ const checkLuhn = (num: string) => {
   return sum % 10 === 0;
 };
 
+
+const getCurrentDate = () => {
+  const dateTime = new Date();
+  const dateCurrent = String(dateTime.getDate()).padStart(2, "0")
+  const monthCurrent = String(dateTime.getMonth() + 1).padStart(2, "0")
+  const yearCurrent = String(dateTime.getFullYear())
+
+  return [dateCurrent, monthCurrent, yearCurrent, dateTime]
+}
+
 export {
-  checkLuhn
+  checkLuhn,
+  getCurrentDate
 }
