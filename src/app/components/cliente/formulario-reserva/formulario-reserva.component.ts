@@ -98,14 +98,14 @@ export class FormularioReservaComponent implements OnInit {
     const [date, month, year, _] = getCurrentDate()
     const today = `${year}-${month}-${date}`
     this.validandoCambioDeFechaByFecha(today)
-
+    const { correo, apellidos, nombres, telefono } = getPayload()!
     return this.formBuilder.group({
       fechaReserva: [today, [Validators.required, this.dateValidator]],
       hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
-      nombres: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
-      apellido: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
-      email: [null, [Validators.required, Validators.email]],
-      telefono: [null, [Validators.required, Validators.pattern(regex.PHONE)]],
+      nombres: [nombres, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      apellido: [apellidos, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      email: [correo, [Validators.required, Validators.email]],
+      telefono: [telefono, [Validators.required, Validators.pattern(regex.PHONE)]],
       idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
       cantPersonas: [1, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(1), Validators.max(15)]],
       acompaniante: [0, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(0), Validators.max(15)]],

@@ -73,7 +73,7 @@ export class CumpleaniosComponent implements OnInit {
 
   hasSesion() {
     const payload = getPayload()
-    return payload === null
+    return payload !== null
   }
 
   clickDay(day: any) {

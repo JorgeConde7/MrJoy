@@ -5,15 +5,14 @@
   <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva"   formControlName="fechaReserva" name = "fechaReserva" (change)="validandoCambioDeFecha()">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['fechaReserva'].errors &&
-    formReserva.controls['fechaReserva'].touched
+    formReserva.controls['fechaReserva'].errors
   }">
     <p class="warning-text">* Seleccione una fecha válida</p>
   </div>
   <label for="">Hora de la Reserva:</label>
   <select class="form-control" formControlName="hora"  name = "hora">
     <option  value="inicio">Seleccione Hora</option>
-    <option *ngFor="let items of horaCadena" [value]="items" >{{ items }}</option>
+    <option *ngFor="let item of horaCadena" [value]="item" >{{ item }}</option>
   </select>
   <div class="form__warning" [ngClass]="{
     'show':
@@ -26,9 +25,7 @@
   <input class="form-control" type="text" placeholder="Ingrese su Nombre" formControlName="nombres" name = "nombres">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['nombres'].errors &&
-    formReserva.controls['nombres'].touched &&
-    formReserva.controls['nombres'].dirty
+    formReserva.controls['nombres'].errors
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
@@ -36,9 +33,7 @@
   <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellido" name = "apellido">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['apellido'].errors &&
-    formReserva.controls['apellido'].touched &&
-    formReserva.controls['apellido'].dirty
+    formReserva.controls['apellido'].errors
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
@@ -46,9 +41,7 @@
   <input class="form-control" type="email" placeholder="Ingrese su email" formControlName="email" name = "email">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['email'].errors &&
-    formReserva.controls['email'].touched &&
-    formReserva.controls['email'].dirty
+    formReserva.controls['email'].errors
   }">
   <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
   </div>
@@ -56,9 +49,7 @@
   <input  maxlength=9 class="form-control" type="text" placeholder="Ingrese su telefono" formControlName="telefono" name = "telefono">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['telefono'].errors &&
-    formReserva.controls['telefono'].touched &&
-    formReserva.controls['telefono'].dirty
+    formReserva.controls['telefono'].errors
   }">
   <p class="warning-text">* Solo numeros 0-9</p>
   <p class="warning-text">* Caracteres max. 9</p>

@@ -1,11 +1,11 @@
 export interface LoginResponse {
-  // idLogin: number;
-  // usuario: string;
-  // contrasenia?: null;
-  // tipouser: string;
-
-  id:number,
-  profile:number,
-  username:string
-  create_at:number,
+  id: number;
+  profile: number;
+  username: string;
+  create_at: number;
+  apellidos: string;
+  nombres: string
+  dni: string
+  telefono: string
+  correo: string
 }
