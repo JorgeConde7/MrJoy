@@ -75,6 +75,14 @@ export class FormularioReservaComponent implements OnInit {
       });
   }
 
+  get cantidadPersonas() {
+    return this.formReserva.controls['cantPersonas'].value
+  }
+
+  get cantidadAcompaniantes() {
+    return this.formReserva.controls['acompaniante'].value
+  }
+
   dateValidator(control: FormControl): { [s: string]: boolean } | null {
     if (control.value) {
       const date = moment(control.value);
@@ -90,14 +98,14 @@ export class FormularioReservaComponent implements OnInit {
     const [date, month, year, _] = getCurrentDate()
     const today = `${year}-${month}-${date}`
     this.validandoCambioDeFechaByFecha(today)
-
+    const { correo, apellidos, nombres, telefono } = getPayload()!
     return this.formBuilder.group({
       fechaReserva: [today, [Validators.required, this.dateValidator]],
       hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
-      nombres: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
-      apellido: [null, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
-      email: [null, [Validators.required, Validators.email]],
-      telefono: [null, [Validators.required, Validators.pattern(regex.PHONE)]],
+      nombres: [nombres, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      apellido: [apellidos, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      email: [correo, [Validators.required, Validators.email]],
+      telefono: [telefono, [Validators.required, Validators.pattern(regex.PHONE)]],
       idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
       cantPersonas: [1, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(1), Validators.max(15)]],
       acompaniante: [0, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(0), Validators.max(15)]],
@@ -106,7 +114,6 @@ export class FormularioReservaComponent implements OnInit {
 
 
   validarHorario() {
-    //console.log('Llamando a fecha reserva ' + this.reserva.fechaReserva)
     this.reservaService.getReserva(this.reserva.fechaReserva).subscribe
       (
         reservas => {
@@ -148,10 +155,6 @@ export class FormularioReservaComponent implements OnInit {
     const { id: idLoginFromToken } = payload;
 
     const idPaqueteSelected = idPaquete.toString().split(" ")[0]
-    // console.log("this.formReserva.value");
-    // console.log(this.formReserva.value);
-    // console.log("this.reserva");
-    // console.log(this.reserva);
 
     this.reserva.acompaniante = acompaniante
     this.reserva.apellido = apellido
@@ -175,15 +178,8 @@ export class FormularioReservaComponent implements OnInit {
       alert("Reserva registrada correctamente!!")
     });
     this.reserva.idPaquete = 0;
-    window.location.href = 'admin/reservas'
-  }
-
-  get cantidadPersonas() {
-    return this.formReserva.controls['cantPersonas'].value
-  }
-
-  get cantidadAcompaniantes() {
-    return this.formReserva.controls['acompaniante'].value
+    this.router.navigate(['admin', 'reservas'])
+    // window.location.href = 'admin/reservas'
   }
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {

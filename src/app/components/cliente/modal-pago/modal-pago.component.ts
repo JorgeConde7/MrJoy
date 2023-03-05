@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormularioReservaComponent } from '../formulario-reserva/formulario-reserva.component';
 import { ModalPagoService } from '../../../core/apis/client/modal-pago.service';
 import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +7,7 @@ import { IPayModal } from 'src/app/core/models/client/payModal';
 import { IReserva } from '../calendario-reserva/reserva';
 import * as regex from 'src/app/util/regex.util';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal, { SweetAlertIcon, SweetAlertResult } from 'sweetalert2'
 
 @Component({
   selector: 'app-modal-pago',
@@ -22,7 +22,8 @@ export class ModalPagoComponent implements OnInit {
     this.formTarjeta = this.getFormBuilderTarjeta()
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
 
   getFormBuilderTarjeta() {
@@ -66,53 +67,68 @@ export class ModalPagoComponent implements OnInit {
     return { 'invalidDateCard': true }
   }
 
-  validarPago() {
+  async validarPago() {
+    const result = await Swal.fire({
+      title: 'Confirme reserva',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: "#dc3545",
+      reverseButtons: true
+    })
+    const isDenied = !result.isConfirmed
+    if (isDenied) return;
     const isInvalidFormTarjeta = this.formTarjeta.invalid
     if (isInvalidFormTarjeta) return;
 
-    console.log('Entro en validar pago ')
     try {
 
       const { codSeguridad, mesTarjeta, numeroTarjeta } = this.formTarjeta.value as IPayModal
 
       this.modalPagoService.getTarjeta(numeroTarjeta, mesTarjeta, codSeguridad).subscribe(tarjetaResponse => {
-        /*console.log(this.datoReservaFormulario.totalPago)
-        console.log(result.saldo)*/
 
         if (tarjetaResponse) {
           if (tarjetaResponse.saldo >= this.datoReservaFormulario.totalPago) {
             // this.formularioReservaComponent.RegistrarReservaClass(this.datoReservaFormulario)
-            this.reservaService.CrearReserva(this.datoReservaFormulario).subscribe(reservaResponse => {
-              console.log("RESULT RESERVACION:: ", { reservaResponse });
+            this.reservaService.CrearReserva(this.datoReservaFormulario).subscribe(_ => {
+              this.modalPagoService.putTarjeta(numeroTarjeta, (tarjetaResponse.saldo - this.datoReservaFormulario.totalPago)).subscribe(_ => {
 
-              this.modalPagoService.putTarjeta(numeroTarjeta, (tarjetaResponse.saldo - this.datoReservaFormulario.totalPago)).subscribe(response => {
-                console.log({ response });
+                this.alertNotification("Reservacion Completada. Su constancia se le enviara a su correo  en breve.", "", "success", ({ isConfirmed }) => {
+                  if (isConfirmed) window.location.reload();
+                })
 
-                alert("Reservacion Completada. Su constancia se le enviara a su correo  en breve.")
+                setTimeout(() => { window.location.reload() }, 3000)
               })
             })
           }
           else {
+            this.alertNotification("No tiene saldo suficiente para realizar la compra", '', "error")
             const audio = new Audio('assets/audios/pipipiii.mp3')
             audio.volume = 0.4;
             audio.play();
-            alert('Mano no tienes plata. pipipi ( ͡ಥ ͜ʖ ͡ಥ)')
           }
         } else {
-          alert("Verifique sus datos e intentelo denuevo")
+          this.alertNotification("Verifique sus datos e intentelo denuevo", '', "error")
         }
 
       })
 
     } catch (error) {
-      alert("Se se pudo concreta la la accion. Vuelva a intentarlo mas tarde.")
+      this.alertNotification("Se se pudo concreta la la accion. Vuelva a intentarlo mas tarde.", '', "error")
     }
   }
 
-  /*cerrarModal(contentido : any)
-  {
-    this.modal.dismissAll
-  }*/
-
+  alertNotification(title = "Completado!", text = '', icon: SweetAlertIcon = "success", cb: (result: SweetAlertResult) => void = () => { }) {
+    Swal.fire({
+      position: 'center',
+      icon,
+      title,
+      text,
+      showConfirmButton: true,
+      timer: 6000
+    }).then(result => { cb(result) })
+  }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { getPayload } from 'src/app/util/token.util';
 
 
 @Component({
@@ -21,25 +22,25 @@ export class CumpleaniosComponent implements OnInit {
   dateSelect: any;
   dateValue: any;
 
-  
+
 
   constructor() {
-    this.monthSelect=new Array;
-    
-   }
-  
+    this.monthSelect = new Array;
+
+  }
+
   habilitar: boolean = true;
 
   ngOnInit(): void {
     this.getDaysFromDate(12, 2022);
-    
+
   }
-  getDaysFromDate(month:any, year:any) {
+  getDaysFromDate(month: any, year: any) {
 
 
     const startDate = moment(`${year}/${month}/01`)
     const endDate = startDate.clone().endOf('month')
-    this.dateSelect = startDate ;
+    this.dateSelect = startDate;
     const diffDays = endDate.diff(startDate, 'days', true)
     const numberDays = Math.round(diffDays);
 
@@ -50,16 +51,16 @@ export class CumpleaniosComponent implements OnInit {
         name: dayObject.format("dddd"),
         value: a,
         indexWeek: dayObject.isoWeekday()
-        
+
       };
     });
 
-    
+
 
     this.monthSelect = arrayDays;
   }
 
-  changeMonth(flag:any) {
+  changeMonth(flag: any) {
     if (flag < 0) {
       const prevDate = this.dateSelect.clone().subtract(1, "month");
       this.getDaysFromDate(prevDate.format("MM"), prevDate.format("YYYY"));
@@ -69,7 +70,13 @@ export class CumpleaniosComponent implements OnInit {
     }
   }
 
-  clickDay(day:any) {
+
+  hasSesion() {
+    const payload = getPayload()
+    return payload !== null
+  }
+
+  clickDay(day: any) {
     const monthYear = this.dateSelect.format('YYYY-MM')
     const parse = `${monthYear}-${day.value}`
     const objectDate = moment(parse)

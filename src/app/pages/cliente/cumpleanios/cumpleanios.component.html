@@ -139,24 +139,32 @@
     </div>
   </div>
   <br>
-<div class="row">
-    <div class="col-md-4 col-center">
+  <div class="row">
+    <div class="col-md-4 col-center" *ngIf="hasSesion(); else hasSesionActive">
       <div class="boton" type="button" (click)="habilitar=(habilitar==false)?true:false;">
         <a class="btn-reserva">{{habilitar==false?'Reserva tu Paquete':'¿Desea Reservar?' }}</a>
       </div>
     </div>
+
+    <ng-template #hasSesionActive>
+      <div class="boton" type="button">
+        <a [routerLink]="['/registro']" class="btn-reserva">Quiero hacer una reserva</a>
+      </div>
+    </ng-template>
   </div>
 </div>
 <br>
 
-<div class="container "*ngIf="habilitar==false">
-  <h2 class="text-center">Registro de Reserva</h2>
-  <div class="row mt-4" >
-    <div class="col-md-6">
-     <app-formulario-reserva></app-formulario-reserva>
-    </div>
-    <div class="col-md-6">
-     <app-calendario-reserva></app-calendario-reserva>
+<div class="container " *ngIf="habilitar==false">
+  <div *ngIf="hasSesion()">
+    <h2 class="text-center">Registro de Reserva</h2>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <app-formulario-reserva></app-formulario-reserva>
+      </div>
+      <div class="col-md-6">
+        <app-calendario-reserva></app-calendario-reserva>
+      </div>
     </div>
   </div>
 </div>
