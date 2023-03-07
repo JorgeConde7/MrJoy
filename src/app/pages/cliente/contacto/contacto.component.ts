@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContactoService } from 'src/app/core/apis/client/contacto.service';
 import { Contacto } from 'src/app/core/models/client/contacto';
+import { getPayload } from 'src/app/util/token.util';
 
 
 @Component({
@@ -22,9 +23,17 @@ export class ContactoComponent implements OnInit {
   constructor(
     private contactoService: ContactoService,
     private router: Router
-  ) { }
+  ) { this.setDefaultValues() }
 
   ngOnInit(): void {
+    
+  }
+
+  setDefaultValues() {
+    const payLoad = getPayload()
+    this.nombres = payLoad?.nombres ? payLoad.nombres : ""
+    this.correo = payLoad?.correo ? payLoad.correo : "" ;
+    this.telefono = payLoad?.telefono ? payLoad.telefono : "";
   }
 
   onCreate(): void {
