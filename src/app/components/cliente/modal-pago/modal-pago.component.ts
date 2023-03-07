@@ -108,6 +108,9 @@ export class ModalPagoComponent implements OnInit {
             const audio = new Audio('assets/audios/pipipiii.mp3')
             audio.volume = 0.4;
             audio.play();
+
+            this.formTarjeta.controls['mesTarjeta'].reset();
+            this.formTarjeta.controls['codSeguridad'].reset();
           }
         } else {
           this.alertNotification("Verifique sus datos e intentelo denuevo", '', "error")
