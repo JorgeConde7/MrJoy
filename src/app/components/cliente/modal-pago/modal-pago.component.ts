@@ -79,7 +79,11 @@ export class ModalPagoComponent implements OnInit {
       reverseButtons: true
     })
     const isDenied = !result.isConfirmed
-    if (isDenied) return;
+    if (isDenied){
+      this.formTarjeta.controls['mesTarjeta'].reset();
+      this.formTarjeta.controls['codSeguridad'].reset();
+     return;
+    }
     const isInvalidFormTarjeta = this.formTarjeta.invalid
     if (isInvalidFormTarjeta) return;
 
@@ -99,15 +103,15 @@ export class ModalPagoComponent implements OnInit {
                   if (isConfirmed) window.location.reload();
                 })
 
-                setTimeout(() => { window.location.reload() }, 3000)
+                // setTimeout(() => { window.location.reload() }, 3000)
               })
             })
           }
           else {
             this.alertNotification("No tiene saldo suficiente para realizar la compra", '', "error")
-            const audio = new Audio('assets/audios/pipipiii.mp3')
-            audio.volume = 0.4;
-            audio.play();
+            // const audio = new Audio('assets/audios/pipipiii.mp3')
+            // audio.volume = 0.4;
+            // audio.play();
 
             this.formTarjeta.controls['mesTarjeta'].reset();
             this.formTarjeta.controls['codSeguridad'].reset();

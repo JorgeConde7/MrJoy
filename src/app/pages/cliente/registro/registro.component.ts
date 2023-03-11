@@ -12,10 +12,10 @@ import * as regex from 'src/app/util/regex.util';
 })
 export class RegistroComponent implements OnInit {
 
-  generos:string[] = ["Masculino", "Femenino", "Binario"];
-  distritos:string[] = ["Ate", "Barranco", "Breña", "Carabayllo", "Cercado de Lima", 
+  generos:string[] = ["Masculino", "Femenino", "No Binario"];
+  distritos:string[] = ["Ate", "Barranco", "Breña", "Carabayllo", "Cercado de Lima",
               "Chaclacayo", "Chorrillos", "Cieneguilla", "Comas", "El Agustino", "Independecia", "Jesus Maria", "La Molina", "La Victoria"];
-  
+
 
   formRegisterClient: FormGroup
 
@@ -57,7 +57,7 @@ export class RegistroComponent implements OnInit {
     const formRegister = this.formRegisterClient.value
     const dataRegistro: IRegistro = { ...formRegister, tipouser, contrasenia: formRegister.password, correo: formRegister.email }
     console.log(dataRegistro);
-    
+
     this.registroService.registroUsuario(dataRegistro).subscribe({
       next: this.createEmpleadoNext.bind(this),
       error: (err) => console.log('Error al crear registro: ', err),
