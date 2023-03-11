@@ -59,6 +59,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col">
+            <label style="color: #000">Ingrese su dni:</label>
             <input maxlength="8" type="text" formControlName="dni" class="form-control" name="dni" placeholder="Dni"
               [ngClass]="{
               'login__username-error':
@@ -77,6 +78,7 @@
             </div>
           </div>
           <div class="col">
+            <label style="color: #000">Ingrese su telefono</label>
             <input maxlength="9" type="text" formControlName="telefono" class="form-control" name="telefono"
               placeholder="Telefono" [ngClass]="{
                 'login__username-error':
@@ -100,16 +102,15 @@
         <div class="row">
           
           <div class="col">
-            <label style="color: #000">-- Seleccione su distrito --</label>
+            <label style="color: #000">Seleccione su distrito:</label>
             <select formControlName="direccion" name="direccion" class="form-control" >
               <option *ngFor="let direccion of distritos"  [ngValue]="direccion">{{direccion}}</option>
             </select>
           </div>
           
           <div class="col">
-            <label style="color: #000">- Seleccione su genero --</label>
+            <label style="color: #000">Seleccione su genero:</label>
             <select formControlName="genero"  name="genero" class="form-control">
-              <option selected disabled> Seleccione su genero </option>
               <option *ngFor="let genero of generos"  [ngValue]="genero">{{genero}}</option>
             </select>
           </div>
@@ -117,7 +118,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label style="color: #000">-- Seleccione su fecha de nacimiento --</label>
+        <label style="color: #000">Seleccione su fecha de nacimiento:</label>
         <input type="date" formControlName="fechaNacimiento" class="form-control" name="fechaNacimiento"
           placeholder="Fecha de Nacimiento" [ngClass]="{
               'login__username-error':
@@ -127,6 +128,7 @@
             }">
       </div>
       <div class="form-group">
+        <label style="color: #000">Ingrese su correo electrónico:</label>
         <input type="email" formControlName="email" class="form-control" name="email"
           placeholder="Ingrese Correo Electronico" [ngClass]="{
               'login__username-error':
@@ -144,6 +146,7 @@
         </div>
       </div>
       <div class="form-group">
+        <label style="color: #000">Ingrese nuevo usuario:</label>
         <input type="usuario" formControlName="usuario" class="form-control" name="usuario"
           placeholder="Ingrese Usuario" [ngClass]="{
               'login__username-error':
@@ -163,6 +166,7 @@
       </div>
 
       <div class="form-group">
+        <label style="color: #000">Ingrese nueva contraseña:</label>
         <input type="password" formControlName="password" class="form-control" name="password"
           placeholder="Ingrese Contraseña" [ngClass]="{
               'login__username-error':
