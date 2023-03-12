@@ -26,7 +26,7 @@ export class ContactoComponent implements OnInit {
   ) { this.setDefaultValues() }
 
   ngOnInit(): void {
-    
+
   }
 
   setDefaultValues() {
@@ -39,7 +39,7 @@ export class ContactoComponent implements OnInit {
   onCreate(): void {
     const contacto = new Contacto(this.nombres, this.correo, this.telefono, this.asunto, this.estado, this.descripcion, this.fechaRegistro);
     this.contactoService.create(contacto).subscribe(
-      data => {
+      _ => {
         this.router.navigate([""])
       }
     )
