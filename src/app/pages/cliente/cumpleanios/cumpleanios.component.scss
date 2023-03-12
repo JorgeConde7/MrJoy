@@ -2,7 +2,7 @@
     clear: both;
     padding: 0 10px;
     height: 87px;
-    width: 100%; 
+    width: 100%;
     background-position: center center;
     background-origin: border-box;
     background-color: #283890;
@@ -42,7 +42,7 @@
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: 0.9s ease;
+    transition: 0.5s ease;
 }
 .titulo{
     text-align: center;
@@ -69,11 +69,11 @@
     left: 0;
     width: 100%;
     height: 91%;
-    background: #333;
+    // background: #e7e7e7;
     backface-visibility: hidden;
-    transform-style: preserve-3d;
+    // transform-style: preserve-3d;
     transform: rotateY(180deg);
-    border-radius: 10px;
+    border-radius: 25px;
 }
 .margin-menos{
     font-size: 2em;
@@ -86,9 +86,24 @@
     padding: 5px 15px;
     background: linear-gradient(45deg, #b91152,#1991c9);
     transform: translateZ(100px);
-    border-radius: 5px;
+    border-radius: 15px;
     width: 300px;
 }
+
+.color__paquete-green{
+  background: linear-gradient(to right, #72a71f, #aedf62) ;
+  // border: 1px solid rgba(97, 97, 97, 1) ;
+}
+
+.color__paquete-orange{
+  background: linear-gradient(to right, #F9A825, #f8ebd7);
+}
+
+.color__paquete-cyan{
+  background: linear-gradient(to right, #5DC1B9, #C9F1EE);
+}
+
+
 .content div h3{
     letter-spacing: 1px;
 }
@@ -104,7 +119,7 @@
     height: auto;
     min-height: 200px;
     overflow: hidden;
-    
+
 }
 .valor{
     font-family: Arial Black;
@@ -141,6 +156,7 @@
     max-width: 200px;
     display: inline-block;
     margin-left: 20px;
+    border-radius: 5px;
 }
 
 /*inicio verde*/
@@ -174,7 +190,7 @@
     height: auto;
     padding: 10px;
     text-align: center;
-    
+
 }
 /*fin verde*/
 
@@ -210,7 +226,7 @@
     height: auto;
     padding: 10px;
     text-align: center;
-    
+
 }
 /*fin amarillo*/
 
@@ -237,7 +253,7 @@
 .valorTurquesa{
     padding: 10px 70px !important;
     background: #C9F1EE;
-    color: #388b85;   
+    color: #388b85;
 }
 .cantidadTurquesa{
     background: #5DC1B9;
@@ -246,7 +262,7 @@
     height: auto;
     padding: 10px;
     text-align: center;
-    
+
 }
 /*fin turquesa*/
 
