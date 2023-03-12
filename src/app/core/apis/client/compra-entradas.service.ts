@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { TipoEntrada } from '../../models/client/compra-entradas';
+import { Boleta } from '../../models/client/boleta';
 const URL = `${environment.URL_BASE}/apitipoentrada`;
+const URL_BOLETA = `${environment.URL_BASE}/apiBoleta`;
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +16,12 @@ export class CompraEntradasService {
 
   constructor(private http: HttpClient) { }
 
-  getEntradas() : Observable<TipoEntrada[]>
-  {
-    return this.http.get<any>(URL+'/tipoentrada');
+  getEntradas(): Observable<TipoEntrada[]> {
+    return this.http.get<any>(URL + '/tipoentrada');
   }
 
-  // postEntradas(): Observable<TipoEntrada>
+  saveTicket(boleta: Boleta) {
+    return this.http.post<{ Mensaje: string }>(`${URL_BOLETA}/guardar`, boleta)
+  }
 
 }

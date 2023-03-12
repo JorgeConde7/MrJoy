@@ -79,8 +79,9 @@
                         </table>
                         <div class="right">
                             <!-- <a href=""><i class="fas fa-arrow-left"></i> Continuar comprando</a><br /> -->
-                            <button class="btn btn-primary mt-4 " type="button" id="" data-bs-toggle="modal" data-bs-target="#modalLEntradas">Proceder con la
-                                Compra</button>
+                            <button class="btn btn-primary mt-4" [disabled]="totals <= 0" type="button" id="" data-bs-toggle="modal"
+                              data-bs-target="#modalLEntradas">Proceder con la
+                              Compra</button>
                         </div>
                     </div>
                 </div>
@@ -106,28 +107,54 @@
                         </div>
                         <br />
 
-                        <div class="form-group">
-                            <input type="text" placeholder="Nombre y Apelido" class="form-control ">
-                        </div><br />
-                        <div class="form-group">
-                            <input type="text" placeholder="Numero de Tarjeta" class="form-control ">
-                        </div><br />
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="MM/AA">
-                                </div>
-                                <div class="col-md-6">
-                                    <input placeholder="CVC" type="password" class="form-control">
-                                </div>
+                        <form [formGroup]="formTarjeta" autocomplete="off" (submit)="ngSubmit()">
+                          <!-- <div class="form-group">
+                                        <input type="text"  formControlName="" placeholder="Nombre y Apelido" class="form-control ">
+                                    </div><br /> -->
+                          <div class="form-group">
+                            <input  maxlength="16" type="text" formControlName="numeroTarjeta" name="numeroTarjeta" placeholder="Numero de Tarjeta"
+                              class="form-control ">
+                            <div class="form__warning" [ngClass]="{
+                                          'show':
+                                          formTarjeta.controls['numeroTarjeta'].errors &&
+                                          formTarjeta.controls['numeroTarjeta'].touched
+                                        }">
+                              <p class="warning-text">* Tarjeta invalida</p>
                             </div>
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <button (click)="registrar()" class="btn btn-primary form-control" data-bs-toggle="modal"
-                                data-bs-target="#myModal">PAGAR</button>
-                        </div>
+                          </div><br />
+
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <input maxlength="5" type="text" formControlName="mesTarjeta" name="mesTarjeta" class="form-control"
+                                  placeholder="MM-AA" autocomplete="off">
+                                <div class="form__warning" [ngClass]="{
+                                                  'show':
+                                                  formTarjeta.controls['mesTarjeta'].errors &&
+                                                  formTarjeta.controls['mesTarjeta'].touched
+                                                }">
+                                  <p class="warning-text">* Fecha inválida</p>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <input maxlength="3" placeholder="CVV" formControlName="codSeguridad" name="codSeguridad" type="password"
+                                  class="form-control" autocomplete="off">
+                                <div class="form__warning" [ngClass]="{
+                                                  'show':
+                                                  formTarjeta.controls['codSeguridad'].errors &&
+                                                  formTarjeta.controls['codSeguridad'].touched
+                                                }">
+                                  <p class="warning-text">* Requerido</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br />
+                          <div class="form-group">
+                            <button type="submit"  [disabled]="formTarjeta.invalid" class="btn btn-primary form-control" data-bs-toggle="modal"
+                              data-bs-target="#myModal">PAGAR</button>
+                          </div>
+                        </form>
                         <br />
                         <div class="text-center ka">
                             <img src="/assets/images/entradas/logo_ksh.png" alt="icon" class="image">
@@ -140,3 +167,4 @@
             <br>
         </div>
     </div>
+
