@@ -23,3 +23,8 @@ export const getToken = () => {
   return payload
 
 }
+
+export const hasToken = () => {
+  const payload = getPayload()
+  return payload !== null
+}

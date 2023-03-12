@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { getPayload } from 'src/app/util/token.util';
+import { hasToken } from 'src/app/util/token.util';
 
 
 @Component({
@@ -70,10 +70,8 @@ export class CumpleaniosComponent implements OnInit {
     }
   }
 
-
   hasSesion() {
-    const payload = getPayload()
-    return payload !== null
+    return hasToken()
   }
 
   clickDay(day: any) {

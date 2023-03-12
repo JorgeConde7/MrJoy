@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TOKEN } from 'src/app/core/constants/constants';
-import { getPayload } from 'src/app/util/token.util';
+import { getPayload, hasToken } from 'src/app/util/token.util';
 
 @Component({
   selector: 'app-header',
@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+
+  hasSesion() {
+    return hasToken()
+  }
   signut() {
     localStorage.removeItem(TOKEN);
     this.nombre = 'Ingresar'
