@@ -10,7 +10,7 @@ export class CompraEntradasComponent implements OnInit {
 
   data: any;
   subTotal: number = 0;
-  desCuento: number = 20;
+  desCuento: number = 0;
   totals: number = 0 ;
   idss: any = [];
 
