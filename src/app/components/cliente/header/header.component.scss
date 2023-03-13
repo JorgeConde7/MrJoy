@@ -3,7 +3,7 @@
     color: #000;
 }
 
-  
+
 header{
     background-color: rgb(40, 56, 144);
     color:aliceblue;
@@ -37,7 +37,7 @@ header{
 .container-flex{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; 
+    justify-content: space-between;
     width: 100%;
 }
 .btn-compra{
@@ -79,7 +79,7 @@ header{
     margin-left: 20px;
 }
 .logo{
-    display: block; 
+    display: block;
     float: left;
     max-width: 100%;
 }
@@ -96,7 +96,7 @@ header{
 .active{
     border-bottom: 3px solid rgb(40, 56, 144);
     color: rgb(23, 116, 185);
-} 
+}
 
 .login{
     cursor: pointer;
@@ -130,13 +130,13 @@ header{
     border: none;
     cursor: pointer;
   }
-  
+
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
     display: inline-block;
   }
-  
+
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
@@ -147,7 +147,7 @@ header{
     z-index: 1;
     border-radius: 4px;
   }
-  
+
   /* Links inside the dropdown */
   .dropdown-content a {
     color: black !important;
@@ -156,20 +156,24 @@ header{
     display: block;
     cursor: pointer;
   }
-  
+
   /* Change color of dropdown links on hover */
-  .dropdown-content a:hover 
+  .dropdown-content a:hover
   {
     background-color: #f1f1f1;
     border-radius: 4px;
   }
-  
+
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  
+
   /* Change the background color of the dropdown button when the dropdown content is shown */
   /*.dropdown:hover .dropbtn {
     background-color: #3e8e41;
   }*/
+
+  .container__image{
+    cursor: pointer;
+  }
