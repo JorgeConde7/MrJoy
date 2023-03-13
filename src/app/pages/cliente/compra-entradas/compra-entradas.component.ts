@@ -206,7 +206,7 @@ export class CompraEntradasComponent implements OnInit {
                     "",
                     "success",
                     ({ isConfirmed }) => {
-                      // if (isConfirmed) window.location.reload();
+                      if (isConfirmed) window.location.reload();
                     }
                   );
 
