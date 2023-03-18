@@ -69,7 +69,7 @@
     <p class="warning-text">* Seleccione  un Paquete</p>
   </div>
   <label for="">Cantidad de Persona:</label>
-  <input min="1" max="15"  class="form-control" type="number" placeholder="Ingrese su cantidad de persona" formControlName="cantPersonas" name = "cantPersonas" (keyup)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)">
+  <input min="15" max="30"  class="form-control" type="number" placeholder="Ingrese su cantidad de persona" formControlName="cantPersonas" name = "cantPersonas" (keyup)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['cantPersonas'].errors &&
