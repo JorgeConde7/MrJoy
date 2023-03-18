@@ -53,6 +53,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MisReservasComponent } from './cliente/mis-reservas/mis-reservas.component';
+import { EditarreservasComponent } from './cliente/editarreservas/editarreservas.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     ModalPagoComponent,
     LoginModalComponent,
     AdminLoginComponent,
+    MisReservasComponent,
+    EditarreservasComponent,
   ],
   imports: [
     AppRoutingModule,

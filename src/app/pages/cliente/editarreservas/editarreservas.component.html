@@ -1,0 +1,151 @@
+
+<div class="container">
+  <div>
+    <h2 class="text-center">Editar de Reserva</h2>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <form [formGroup]="editarForm" (ngSubmit)="onSubmit()"> 
+          <label for="">Fecha de la Reserva:</label>
+          <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva"   formControlName="fechaReserva"> <!--(change)="validandoCambioDeFecha()"-->
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['fechaReserva'].errors
+          }">
+            <p class="warning-text">* Seleccione una fecha válida</p>
+          </div>-->
+
+          <label for="">Hora de la Reserva:</label>
+          <select class="form-control" formControlName="hora"  name = "hora">
+            <option  value="inicio">Seleccione Hora</option>
+            <option *ngFor="let item of horaCadena" [value]="item" >{{ item }}</option>
+          </select>
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['hora'].errors &&
+            formReserva.controls['hora'].touched
+          }">
+            <p class="warning-text">* Seleccione una hora</p>
+          </div>-->
+
+          <label for="">Nombre:</label>
+          <input class="form-control" type="text" placeholder="Ingrese su Nombre" formControlName="nombres" name = "nombres">
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['nombres'].errors
+          }">
+            <p class="warning-text">* Solo se permite letras a-Z</p>
+          </div>-->
+
+          <label for="">Apellidos:</label>
+          <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellido" name = "apellido">
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['apellido'].errors
+          }">
+            <p class="warning-text">* Solo se permite letras a-Z</p>
+          </div>-->
+
+          <label for="">Email:</label>
+          <input class="form-control" type="email" placeholder="Ingrese su email" formControlName="email" name = "email">
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['email'].errors
+          }">
+          <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
+          </div>-->
+
+          <label for="">Telefono:</label>
+          <input  maxlength=9 class="form-control" type="text" placeholder="Ingrese su telefono" formControlName="telefono" name = "telefono">
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['telefono'].errors
+          }">
+          <p class="warning-text">* Solo numeros 0-9</p>
+          <p class="warning-text">* Caracteres max. 9</p>
+          </div>-->
+
+          <label for="">Tipo de Paquete</label>
+          <select class="form-control" formControlName="idPaquete"  name = "idPaquete" #idPaquetes> <!--(change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)"-->
+            <option  value="0">Seleccione paquete</option>
+            <option *ngFor="let items of paquetes" [value]="items.idPaquete + ' '+ items.precio">{{ items.descripcion }}</option>
+          </select>
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['idPaquete'].errors &&
+            formReserva.controls['idPaquete'].touched
+          }">
+            <p class="warning-text">* Seleccione  un Paquete</p>
+          </div>-->
+
+          <label for="">Cantidad de Persona:</label>
+          <input min="1" max="15"  class="form-control" type="number" placeholder="Ingrese su cantidad de persona" formControlName="cantPersonas" name = "cantPersonas" > <!--(keyup)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)"-->
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['cantPersonas'].errors &&
+            formReserva.controls['cantPersonas'].touched
+          }">
+            <p class="warning-text">* Cantidad de personas permitida: 1-15</p>
+          </div>-->
+
+          <label for="">Acompañante:</label>
+          <input min="0" max="15" class="form-control" type="number" placeholder="Ingrese su cantidad de acompañante" formControlName="acompaniante"  name = "acompaniante"> <!--(keyup)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)"-->
+          <!--<div class="form__warning" [ngClass]="{
+            'show':
+            formReserva.controls['acompaniante'].errors &&
+            formReserva.controls['acompaniante'].touched
+          }">
+            <p class="warning-text">* Cantidad de acompañantes permitido: 0-15</p>
+          </div>-->
+
+          <label for="">Total a Pagar :</label>
+          <input type="text" readonly placeholder="" class="form-control" [value]="total" name="total" formControlName="acompaniante">
+
+          <!--<button  (click)="setFormularioDataToReservaDTO()"
+          id="btnRegistrar" [disabled]="formReserva.invalid" data-bs-toggle="modal" data-bs-target="#modalLEntradas" class="btn btn-primary mt-4 botonRegistrar"
+          data-bs-dismiss="modal" type="button"  *ngIf="isUrlEqualTo('/cumpleanios')" >Registrar</button>-->
+
+          <button type="submit" class="btn btn-primary mt-4 botonRegistrar">GUARDAR RESERVA</button>
+
+
+        </form>
+
+        <!--<app-formulario-reserva></app-formulario-reserva>-->
+      </div>
+      <div class="col-md-6">
+        <!--<app-calendario-reserva></app-calendario-reserva>-->
+        <div class="wrapper-calendar mt-4">
+          <div class="header-calendar">
+            <div>
+              <button class="btn-prev"><i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+            <h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
+            <div>
+              <button (click)="changeMonth(1)" class="btn-next"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <ol>
+            <li *ngFor="let day of week; index as rc" class="day-name">{{day | slice:0:3}}</li>
+                <li (click)="clickDay(day)" class="date"  [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+                 *ngFor="let day of monthSelect;let first = first" [ngClass]="{
+                  'date__calendary-selected': isDateCalendarySelected(day)
+                }">
+              <span>{{day?.value}}</span>
+            </li>
+          </ol>
+        </div>
+        <hr>
+        <div class="fechaActual">
+          <p>Horario de reservas ocupadas: {{dateValue | date}}</p>
+        </div>
+        <div class="reservas">
+          <div *ngFor="let re of datosReserva" (click)="verDetallesReserva(re.hora)" >{{re.hora}} </div>
+        </div>
+      </div>
+
+      
+    </div>
+</div>
+</div>
+
+<br>   
+
