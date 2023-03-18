@@ -10,51 +10,22 @@
     <div class="col-xs-12">
       <h1 class="titulo">Recuerda que las cajas cierran 90 minutos antes del cierre de los locales</h1>
     </div>
-    <div class="col-lg-4 col-md-12  mb-md-0">
+    <div *ngFor="let parque of parques; let i = index;" class="col-lg-4 col-md-12  mb-md-0">
       <div class="contenido-imagen">
-        <img src="/assets/images/horario/lima.jpg" alt="">
+        <img [src]="parque.rutaImg"  class="rounded img-fluid" alt="">
       </div>
 
       <div class="contenido">
         <div>
-          <h3>Horario Mr Joy Lima</h3>
+          <h3>{{ parque.nombre }}</h3>
           <p>
-            Lunes a Viernes 09:00 a 21:00
+            {{ parque.horario1 }}
             <br>
-            Sábado de 11:00 a 21:00 y Domingo de 11:00 a 19:00
+            {{ parque.horario2 }}
           </p>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-12  mb-md-0">
-      <div class="contenido-imagen">
-        <img src="/assets/images/horario/trujillo.jpg" alt="">
-      </div>
-      <div class="contenido">
-        <div>
-          <h3>Horario Mr Joy Trujillo</h3>
-          <p>
-            Lunes a Viernes 09:00 a 21:00
-            <br>
-            Sábado de 11:00 a 21:00 y Domingo de 11:00 a 19:00
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-12  mb-md-0">
-      <div class="contenido-imagen">
-        <img src="/assets/images/horario/piura.jpg" alt="">
-      </div>
-      <div class="contenido">
-        <div>
-          <h3>Horario Mr Joy Piura</h3>
-          <p>
-            Lunes a Viernes 09:00 a 21:00
-            <br>
-            Sábado de 11:00 a 21:00 y Domingo de 11:00 a 19:00
-          </p>
-        </div>
-      </div>
-    </div>
+
   </div>
 </div>

@@ -3,9 +3,14 @@
     <div class="row">
       <div class="container-flex">
         <div class="botones">
-          <a routerLink="compra-entradas">
+          <a *ngIf="hasSesion() else noHasSesion" routerLink="compra-entradas">
             <div class="btn-compra">COMPRA ENTRADAS</div>
           </a>
+          <ng-template #noHasSesion>
+            <a data-bs-toggle="modal" data-bs-target="#modalLogin">
+              <div class="btn-compra">COMPRA ENTRADAS</div>
+            </a>
+          </ng-template>
           <a routerLink="bioseguridad">
             <div class="btn-bio">BIOSEGURIDAD</div>
           </a>
@@ -19,7 +24,7 @@
                 {{nombre}}</a>
               <ng-template #UsuarioIngresado>
                 <div class="dropdown">
-                  <span class="formudatos dropbtn" >{{" " + nombre | uppercase }} 🡣
+                  <span class="formudatos dropbtn">{{" " + nombre | uppercase }} 🡣
                   </span>
                   <div class="dropdown-content">
                     <a routerLink="perfil">Perfil </a>
@@ -42,7 +47,7 @@
 </header>
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container">
-    <img src="/assets/images/footer/logo.png" alt="">
+    <img class="container__image" [routerLink]="['/']" src="/assets/images/footer/logo.png" alt="">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
       aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="" role="button">
@@ -52,8 +57,7 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav navegacion" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="index"
-            [ngClass]="{active: isUrlEqualTo('/')}">Inicio</a>
+          <a class="nav-link" aria-current="page" routerLink="index" [ngClass]="{active: isUrlEqualTo('/')}">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="parques" [ngClass]="{active: isUrlEqualTo('/parques')}">Parques</a>
@@ -66,8 +70,7 @@
             [ngClass]="{active: isUrlEqualTo('/promociones')}">Promociones</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="cumpleanios"
-            [ngClass]="{active: isUrlEqualTo('/cumpleanios')}">Cumpleaños</a>
+          <a class="nav-link" routerLink="cumpleanios" [ngClass]="{active: isUrlEqualTo('/cumpleanios')}">Cumpleaños</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/cliente/contacto')}"

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PaqueteServiceService } from 'src/app/core/apis/client/paquete-service.service';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 
 // RESERVA
@@ -11,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import * as regex from 'src/app/util/regex.util';
 import * as moment from 'moment';
 import { getCurrentDate } from 'src/app/util/utils.util';
+import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 
 
 @Component({
@@ -62,14 +62,14 @@ export class FormularioReservaComponent implements OnInit {
 
   formReserva: FormGroup
 
-  constructor(private paqueteService: PaqueteServiceService, private reservaService: ReservaServiceService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private paqueteService: PaquetesService, private reservaService: ReservaServiceService, private router: Router, private formBuilder: FormBuilder) {
     this.formReserva = this.getReservaFormBuilder();
   }
 
 
 
   ngOnInit(): void {
-    this.paqueteService.getPaquete().subscribe(
+    this.paqueteService.getPaquetes().subscribe(
       paquetes => {
         this.paquetes = paquetes;
       });
@@ -107,7 +107,7 @@ export class FormularioReservaComponent implements OnInit {
       email: [correo, [Validators.required, Validators.email]],
       telefono: [telefono, [Validators.required, Validators.pattern(regex.PHONE)]],
       idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
-      cantPersonas: [1, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(1), Validators.max(15)]],
+      cantPersonas: [15, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(15), Validators.max(30)]],
       acompaniante: [0, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(0), Validators.max(15)]],
     })
   }

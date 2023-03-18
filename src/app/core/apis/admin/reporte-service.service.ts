@@ -10,13 +10,7 @@ import { environment } from 'src/environments/environment';
 
 export class ReporteServiceService {
 
-  private urlEndPoint:string=`${environment.URL_BASE}/apireserva/totalPaquetes`;
-
   constructor(private http:HttpClient) { }
-
-    getListar():Observable<VentasPaquete[]>{
-      return this.http.get<VentasPaquete[]>(this.urlEndPoint);
-  }
 
   getListarInfo():Observable<Info[]>{
     return this.http.get<Info[]>(`${environment.URL_BASE}/data/datosEmpresa`)

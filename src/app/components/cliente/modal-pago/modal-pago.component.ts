@@ -6,8 +6,7 @@ import { checkLuhn } from 'src/app/util/utils.util';
 import { IPayModal } from 'src/app/core/models/client/payModal';
 import { IReserva } from '../calendario-reserva/reserva';
 import * as regex from 'src/app/util/regex.util';
-//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import Swal, { SweetAlertIcon, SweetAlertResult } from 'sweetalert2'
+import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
 
 @Component({
   selector: 'app-modal-pago',
@@ -68,21 +67,12 @@ export class ModalPagoComponent implements OnInit {
   }
 
   async validarPago() {
-    const result = await Swal.fire({
-      title: 'Confirme reserva',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#28a745',
-      cancelButtonColor: "#dc3545",
-      reverseButtons: true
-    })
+    const result = await alertConfirmation()
     const isDenied = !result.isConfirmed
-    if (isDenied){
+    if (isDenied) {
       this.formTarjeta.controls['mesTarjeta'].reset();
       this.formTarjeta.controls['codSeguridad'].reset();
-     return;
+      return;
     }
     const isInvalidFormTarjeta = this.formTarjeta.invalid
     if (isInvalidFormTarjeta) return;
@@ -99,7 +89,7 @@ export class ModalPagoComponent implements OnInit {
             this.reservaService.CrearReserva(this.datoReservaFormulario).subscribe(_ => {
               this.modalPagoService.putTarjeta(numeroTarjeta, (tarjetaResponse.saldo - this.datoReservaFormulario.totalPago)).subscribe(_ => {
 
-                this.alertNotification("Reservacion Completada. Su constancia se le enviara a su correo  en breve.", "", "success", ({ isConfirmed }) => {
+                alertNotification("Reservacion Completada. Su constancia se le enviara a su correo  en breve.", "", "success", ({ isConfirmed }) => {
                   if (isConfirmed) window.location.reload();
                 })
 
@@ -108,7 +98,7 @@ export class ModalPagoComponent implements OnInit {
             })
           }
           else {
-            this.alertNotification("No tiene saldo suficiente para realizar la compra", '', "error")
+            alertNotification("No tiene saldo suficiente para realizar la compra", '', "error")
             // const audio = new Audio('assets/audios/pipipiii.mp3')
             // audio.volume = 0.4;
             // audio.play();
@@ -117,25 +107,15 @@ export class ModalPagoComponent implements OnInit {
             this.formTarjeta.controls['codSeguridad'].reset();
           }
         } else {
-          this.alertNotification("Verifique sus datos e intentelo denuevo", '', "error")
+          alertNotification("Verifique sus datos e intentelo denuevo", '', "error")
         }
 
       })
 
     } catch (error) {
-      this.alertNotification("Se se pudo concreta la la accion. Vuelva a intentarlo mas tarde.", '', "error")
+      alertNotification("Se se pudo concreta la la accion. Vuelva a intentarlo mas tarde.", '', "error")
     }
   }
 
-  alertNotification(title = "Completado!", text = '', icon: SweetAlertIcon = "success", cb: (result: SweetAlertResult) => void = () => { }) {
-    Swal.fire({
-      position: 'center',
-      icon,
-      title,
-      text,
-      showConfirmButton: true,
-      timer: 6000
-    }).then(result => { cb(result) })
-  }
 
 }
