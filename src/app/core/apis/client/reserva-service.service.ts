@@ -25,4 +25,13 @@ export class ReservaServiceService
   {
     return this.http.post<IReserva>(this.urlApi + 'reservas', reserva);
   }
+
+  getReservasPorIdLogin(idLogin: number): Observable<IReserva[]> {
+    return this.http.get<IReserva[]>(this.urlApi + 'reservas-idLogin/'+idLogin);
+  }
+
+  getReservasPorIdReserva(idReserva: number): Observable<IReserva> {
+    return this.http.get<IReserva>(this.urlApi + 'reservas/'+ idReserva);
+  }
+
 }

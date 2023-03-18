@@ -19,7 +19,7 @@ export class Reserva
 export interface IReserva
 {
     idPaquete: number ;
-    //idReserva: number | undefined;
+    idReserva?: number | undefined;
     fechaRegistro: string;
     fechaReserva: string;
     hora: string;

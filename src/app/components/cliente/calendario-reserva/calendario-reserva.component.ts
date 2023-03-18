@@ -29,6 +29,7 @@ export class CalendarioReservaComponent implements OnInit {
   dateSelect: any;
   reservas: Reserva[] = [];
   calendarySelect!: ICalendary;
+  
   //listar:Reserva;
   listar: any;
 
