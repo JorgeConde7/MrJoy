@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 import { hasToken } from 'src/app/util/token.util';
 
 
@@ -21,10 +22,13 @@ export class CumpleaniosComponent implements OnInit {
   monthSelect: any[];
   dateSelect: any;
   dateValue: any;
+  precioPaquetes = {
+    nito: 0,
+    mr_joy: 0,
+    super_mr_joy: 0
+  }
 
-
-
-  constructor() {
+  constructor(private paquetesService: PaquetesService) {
     this.monthSelect = new Array;
 
   }
@@ -33,6 +37,7 @@ export class CumpleaniosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDaysFromDate(12, 2022);
+    this.setPriceToCardPackages()
 
   }
   getDaysFromDate(month: any, year: any) {
@@ -79,6 +84,22 @@ export class CumpleaniosComponent implements OnInit {
     const parse = `${monthYear}-${day.value}`
     const objectDate = moment(parse)
     this.dateValue = objectDate;
+  }
+
+  setPriceToCardPackages() {
+
+    this.paquetesService.getPaquetes().subscribe(packageResponse => {
+      packageResponse.forEach(paquete => {
+        const isNitoPackage = paquete.idPaquete === 1;
+        const isMrJoyPackage = paquete.idPaquete === 2;
+        const isSuperMrJoyPackage = paquete.idPaquete === 3;
+
+        if (isNitoPackage) this.precioPaquetes.nito = paquete.precio!
+        if (isMrJoyPackage) this.precioPaquetes.mr_joy = paquete.precio!
+        if (isSuperMrJoyPackage) this.precioPaquetes.super_mr_joy = paquete.precio!
+      })
+    })
+
   }
 
 }
