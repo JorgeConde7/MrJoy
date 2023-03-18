@@ -1,12 +1,46 @@
-.center{
+.titulo{
+    font-family: cursive;
+    font-size: 28px;
+    text-align: center;
+    padding: 20px;
+}
+.contenido-imagen img{
+    min-width: 300px;
+    height: 175px;
+    border:2px solid black;
+    border-radius: 5px;
+}
+.contenido-imagen{
     text-align: center;
 }
-.parque{
-    background-color: rgb(40, 56, 144);
-    color:aliceblue;
-    width: 100%;
-    min-height: 60px;
-
-    padding:12px;
-    font-size: 50px;
+.contenido{
+    padding: 20px;
+    text-align: center;
+}
+.contenido h3{
+    color:rgb(40, 56, 144);
+    font-family: Arial black;
+}
+.contenido-banner-bio{
+    display: inline-block;
+    background: #1774b9;
+    padding: 10px 10px;
+    transform: skew(0deg, -5deg) translateY(0px);
+    color: white;
+    font-size: 22px;
+    width: 105px;
+    top: 110px;
+    margin: 8px 20px;
+}
+.banner{
+    clear: both;
+    padding: 0 10px;
+    height: 80px;
+    background-position: center center;
+    background-origin: border-box;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    background-image: url(/assets/images/horario/bannerHorario.jpg);
+    border-color: #d2d3d4;
+    padding-top: 10px;
 }

@@ -26,8 +26,8 @@ import { CompraEntradasComponent } from './cliente/compra-entradas/compra-entrad
 import { ContactoComponent } from './cliente/contacto/contacto.component';
 import { CumpleaniosComponent } from './cliente/cumpleanios/cumpleanios.component';
 import { HomeComponent } from './cliente/home/home.component';
-import { HorariosComponent } from './cliente/horarios/horarios.component';
 import { ParquesComponent } from './cliente/parques/parques.component';
+import { AtraccionesComponent } from './cliente/atracciones/atracciones.component';
 import { PerfilComponent } from './cliente/perfil/perfil.component';
 import { PromocionesComponent } from './cliente/promociones/promociones.component';
 import { RegistroComponent } from './cliente/registro/registro.component';
@@ -58,8 +58,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
   declarations: [
     AppComponent,
     HomeComponent,
+    AtraccionesComponent,
     ParquesComponent,
-    HorariosComponent,
     PromocionesComponent,
     CumpleaniosComponent,
     ContactoComponent,
@@ -110,8 +110,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
   exports: [
     AppComponent,
     HomeComponent,
+    AtraccionesComponent,
     ParquesComponent,
-    HorariosComponent,
     PromocionesComponent,
     CumpleaniosComponent,
     ContactoComponent,

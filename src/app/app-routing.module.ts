@@ -11,8 +11,8 @@ import { CompraEntradasComponent } from './pages/cliente/compra-entradas/compra-
 import { ContactoComponent } from './pages/cliente/contacto/contacto.component';
 import { CumpleaniosComponent } from './pages/cliente/cumpleanios/cumpleanios.component';
 import { HomeComponent } from './pages/cliente/home/home.component';
-import { HorariosComponent } from './pages/cliente/horarios/horarios.component';
 import { ParquesComponent } from './pages/cliente/parques/parques.component';
+import { AtraccionesComponent } from './pages/cliente/atracciones/atracciones.component';
 import { PromocionesComponent } from './pages/cliente/promociones/promociones.component';
 import { RegistroComponent } from './pages/cliente/registro/registro.component';
 import { AdminContactoComponent } from './pages/admin/admin-contacto/admin-contacto.component';
@@ -40,12 +40,12 @@ const routes: Routes = [
         component: RegistroComponent,
       },
       {
-        path: 'parques',
-        component: ParquesComponent
+        path: 'atracciones',
+        component: AtraccionesComponent
       },
       {
-        path: 'horarios',
-        component: HorariosComponent
+        path: 'parques',
+        component: ParquesComponent
       },
       {
         path: 'cumpleanios',
@@ -87,11 +87,11 @@ const routes: Routes = [
       },
       {
         path: 'parques/:id',
-        component: ParquesComponent
+        component: AtraccionesComponent
       },
       {
         path: 'horarios/:id',
-        component: HorariosComponent
+        component: ParquesComponent
       },
       {
         path: 'cumpleanios/:id',
