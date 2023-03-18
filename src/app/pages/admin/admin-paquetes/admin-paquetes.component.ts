@@ -25,7 +25,7 @@ export class AdminPaquetesComponent implements OnInit {
       pageLength:10
     };
 
-    this.paqueteService.getPromocion()
+    this.paqueteService.getPaquetes()
       .subscribe(result => {
         console.log(result);
         this.data = result;
@@ -36,7 +36,7 @@ export class AdminPaquetesComponent implements OnInit {
     this.dtTrigger.unsubscribe()
   }
   getPromociones() {
-    this.paqueteService.getPromocion().subscribe((result) => {
+    this.paqueteService.getPaquetes().subscribe((result) => {
     this.data = result;
     });
   }

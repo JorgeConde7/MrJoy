@@ -9,9 +9,8 @@ const URL = `${environment.URL_BASE}/apireserva/paquetes`;
 })
 export class PaquetesService {
 
-  private httpHeaders =new HttpHeaders({'Content-Type':'application/json'})
   constructor(private http:HttpClient) { }
-  getPromocion(): Observable<Paquete[]>{
+  getPaquetes(): Observable<Paquete[]>{
     return this.http.get<Paquete[]>(URL);
   }
 }
