@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 
 
 //import { Chart,LinearScale, BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip } from 'chart.js';
@@ -15,32 +16,6 @@ import {entradas} from '../../../core/models/admin/data'
   styleUrls: ['./admin-reportes.component.scss']
 })
 export class AdminReportesComponent  implements  OnInit{
-
-
-
-  ngOnInit(): void{
-    Object.assign(this, {entradas});
-
-
-
-    this.reporte.getListar().subscribe(
-      result=>{
-        //var paquete=result;
-        this.paquetes=result.map(datum  => ({name: datum.nombre, value: datum.total }));
-        //console.log(typeof(result))
-        //console.log(paquete)
-
-      }
-    )
-
-    this.reporte.getListarInfo().subscribe(
-      result=>{
-        this.info=result.map(datum  => ({name: datum.dato, value: datum.cantidad }));
-      }
-    )
-
-  }
-
 
   paquetes: any []=[];
   entradas: any[] = [];
@@ -69,10 +44,28 @@ export class AdminReportesComponent  implements  OnInit{
     domain: ['#5AA454', 'red', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private reporte: ReporteServiceService) {
+  constructor(private reporte: ReporteServiceService, private paqueteService: PaquetesService) {
 
   }
 
+  ngOnInit(): void{
+    Object.assign(this, {entradas});
+
+
+
+    this.paqueteService.getTotalPaquetes().subscribe(
+      result=>{
+        this.paquetes=result.map(datum  => ({name: datum.nombre, value: datum.total }));
+      }
+    )
+
+    this.reporte.getListarInfo().subscribe(
+      result=>{
+        this.info=result.map(datum  => ({name: datum.dato, value: datum.cantidad }));
+      }
+    )
+
+  }
   onSelect(event:any) {
     console.log(event);
   }
