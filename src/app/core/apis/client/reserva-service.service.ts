@@ -34,4 +34,9 @@ export class ReservaServiceService
     return this.http.get<IReserva>(this.urlApi + 'reservas/'+ idReserva);
   }
 
+  putReserva(reserva: IReserva, idReserva: number):Observable<IReserva> {
+    return this.http.put<IReserva>(this.urlApi + 'reservas/'+idReserva, reserva);
+  }
+
+
 }

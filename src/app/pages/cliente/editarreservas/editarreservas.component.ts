@@ -80,8 +80,10 @@ export class EditarreservasComponent implements OnInit {
     this.setPaquetesList()
 
     this.reservaService.getReservasPorIdReserva(reservaIdNumber).subscribe(data => {
-      const paquetefound = this.paquetes.find(paquete => paquete.idPaquete === data.idPaquete)
+      const paquetefound = this.paquetes.find(paquete  =>
+        paquete.idPaquete === data.idPaquete)
       const paqueteValue = `${paquetefound?.idPaquete} ${paquetefound?.precio}`
+      const soloId = paqueteValue.split(' ')[0]
 
       const horafound = this.horaCadena.find(hora => {
         const horaFormat = data.hora.split('-')[0]
@@ -91,7 +93,7 @@ export class EditarreservasComponent implements OnInit {
 
       this.editarForm.setValue({
         'nombres': data.nombres,
-        'idPaquete': paqueteValue,
+        'idPaquete': soloId,
         'fechaRegistro': data.fechaRegistro,
         'fechaReserva': data.fechaReserva,
         'hora': horafound!,
@@ -106,9 +108,6 @@ export class EditarreservasComponent implements OnInit {
       });
     })
 
-
-
-
   }
 
   setPaquetesList() {
@@ -119,7 +118,32 @@ export class EditarreservasComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.editarForm.value)
+    let reservaId = Number(this.activerouter.snapshot.paramMap.get('id'))
+    this.editarForm
+    const reservaDto: IReserva = {
+      nombres: this.editarForm.value.nombres!,
+      idPaquete: Number(this.editarForm.value.idPaquete!),
+      apellido: this.editarForm.value.apellido!,
+      fechaRegistro: this.editarForm.value.fechaRegistro!,
+      hora: this.editarForm.value.hora!,
+      cantPersonas: Number(this.editarForm.value.cantPersonas!),
+      idLogin: Number(this.editarForm.value.idLogin!),
+      telefono: this.editarForm.value.telefono!,
+      flagTipoReserva: this.editarForm.value.flagTipoReserva!,
+      acompaniante: this.editarForm.value.acompaniante!,
+      totalPago: this.editarForm.value.totalPago!,
+      email: this.editarForm.value.email!,
+      fechaReserva: this.editarForm.value.fechaReserva!,
+      correo: ""
+    }
+    
+    this.reservaService.putReserva(reservaDto, reservaId).subscribe(
+      reservaDto => {
+        console.log(reservaDto)
+        this.router.navigate(['mis-reservas'])
+      }
+    )
+
   }
 
   //calendario
