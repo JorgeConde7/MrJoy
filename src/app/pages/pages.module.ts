@@ -147,7 +147,9 @@ import { EditarreservasComponent } from './cliente/editarreservas/editarreservas
     LoginModalComponent,
     BrowserAnimationsModule,
     MatMomentDateModule,
-    RouterModule
+    RouterModule,
+    MisReservasComponent,
+    EditarreservasComponent,
   ]
 })
 export class PagesModule { }

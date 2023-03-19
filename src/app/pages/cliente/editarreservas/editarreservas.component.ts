@@ -4,9 +4,9 @@ import { IReserva, Reserva } from 'src/app/components/cliente/calendario-reserva
 import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
-import { PaqueteServiceService } from 'src/app/core/apis/client/paquete-service.service';
 import { ICalendary } from 'src/app/core/models/client/calendary';
 import * as moment from 'moment';
+import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 
 @Component({
   selector: 'app-editarreservas',
@@ -48,8 +48,8 @@ export class EditarreservasComponent implements OnInit {
       "Domingo"
     ];
 
-  constructor(private activerouter: ActivatedRoute, private router:Router, 
-    private reservaService: ReservaServiceService, private paqueteService: PaqueteServiceService) { 
+  constructor(private activerouter: ActivatedRoute, private router:Router,
+    private reservaService: ReservaServiceService, private paqueteService: PaquetesService) {
       this.monthSelect = new Array;
     }
 
@@ -87,9 +87,9 @@ export class EditarreservasComponent implements OnInit {
         const horaFormat = data.hora.split('-')[0]
         return hora === horaFormat
       })
-      
 
-      this.editarForm.setValue({ 
+
+      this.editarForm.setValue({
         'nombres': data.nombres,
         'idPaquete': paqueteValue,
         'fechaRegistro': data.fechaRegistro,
@@ -106,13 +106,13 @@ export class EditarreservasComponent implements OnInit {
       });
     })
 
-    
-    
+
+
 
   }
 
   setPaquetesList() {
-    this.paqueteService.getPaquete().subscribe(
+    this.paqueteService.getPaquetes().subscribe(
       paquetes => {
         this.paquetes = paquetes;
       });
@@ -132,7 +132,7 @@ export class EditarreservasComponent implements OnInit {
       }
     }
     this.iReserva = this.listar;
-    
+
   }
 
   isDateCalendarySelected(day: ICalendary) {
