@@ -11,7 +11,7 @@
                             <th colspan="11" class="text-center"> MIS RESERVAS </th>
                         </tr>
                         <tr>
-                            <th class="text-center">Fecha</th>
+                            <th class="text-center">Fecha de Reserva</th>
                             <th class="text-center">Hora</th>
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Gmail</th>
@@ -25,13 +25,13 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr *ngFor="let reserva of reservas" >
+                        <tr *ngFor="let reserva of tablaReserva" >
                           <th>{{ reserva.fechaReserva }}</th>
                           <th>{{ reserva.hora }}</th>
                           <th>{{ reserva.apellido+" "+ reserva.nombres }}</th>
                           <th>{{ reserva.email }}</th>
                           <th>{{ reserva.telefono }}</th>
-                          <th>{{ reserva.idPaquete }} </th>
+                          <th>{{ reserva.paqueteName }} </th>
                           <th>{{ reserva.cantPersonas }}</th>
                           <th>{{ reserva.acompaniante }}</th>
                           <th>{{ reserva.totalPago }}</th>

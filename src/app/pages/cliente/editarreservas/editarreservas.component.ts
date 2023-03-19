@@ -80,8 +80,9 @@ export class EditarreservasComponent implements OnInit {
     this.setPaquetesList()
 
     this.reservaService.getReservasPorIdReserva(reservaIdNumber).subscribe(data => {
-      const paquetefound = this.paquetes.find(paquete  =>
-        paquete.idPaquete === data.idPaquete)
+      
+      const paquetefound = this.paquetes.find(paquete  => paquete.idPaquete === data.idPaquete)
+      
       const paqueteValue = `${paquetefound?.idPaquete} ${paquetefound?.precio}`
       const soloId = paqueteValue.split(' ')[0]
 
@@ -93,7 +94,7 @@ export class EditarreservasComponent implements OnInit {
 
       this.editarForm.setValue({
         'nombres': data.nombres,
-        'idPaquete': soloId,
+        'idPaquete': soloId!,
         'fechaRegistro': data.fechaRegistro,
         'fechaReserva': data.fechaReserva,
         'hora': horafound!,
