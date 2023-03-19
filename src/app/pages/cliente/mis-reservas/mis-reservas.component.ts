@@ -22,7 +22,7 @@ export class MisReservasComponent implements OnDestroy, OnInit {
 
   namePaquete: String = ""
 
-  reservas: IReserva[] = []
+  //reservas: IReserva[] = []
   id!: number;
 
   paquetes: Paquete[] = []
@@ -34,16 +34,20 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
       // pagingType: "full_numbers"
       pageLength:10
     };
+
     this.setPaquetesList()
 
     const payLoad = getPayload()
     this.id = payLoad?.id ? payLoad.id : 0;
+
     this.reservaService.getReservasPorIdLogin(this.id).subscribe(reservaResponse => {
+
       this.tablaReserva = reservaResponse.map(
         reserva => {
           const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete = reserva.idPaquete)!

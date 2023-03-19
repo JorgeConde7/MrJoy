@@ -67,9 +67,11 @@
           <label for="">Tipo de Paquete</label>
           <select class="form-control" formControlName="idPaquete"  name = "idPaquete" #idPaquetes> <!--(change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)"-->
             <option  value="0">Seleccione paquete</option>
-            <option *ngFor="let items of paquetes" [value]="items.idPaquete + ' '+ items.precio">{{ items.descripcion }}</option>
+            <option *ngFor="let items of paquetes" [value]="items.idPaquete">{{ items.descripcion }}</option>
           </select>
-          <!--<div class="form__warning" [ngClass]="{
+          <!--
+             
+            <div class="form__warning" [ngClass]="{
             'show':
             formReserva.controls['idPaquete'].errors &&
             formReserva.controls['idPaquete'].touched
