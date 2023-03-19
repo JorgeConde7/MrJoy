@@ -159,7 +159,7 @@ export class FormularioReservaComponent implements OnInit {
     this.reserva.acompaniante = acompaniante
     this.reserva.apellido = apellido
     this.reserva.cantPersonas = cantPersonas
-    this.reserva.fechaRegistro = today
+    this.reserva.fechaRegistro = null;
     this.reserva.fechaReserva = fechaReserva
     this.reserva.hora = hora
     this.reserva.idLogin = idLoginFromToken

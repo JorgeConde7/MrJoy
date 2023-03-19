@@ -20,12 +20,12 @@ export interface IReserva
 {
     idPaquete: number ;
     idReserva?: number | undefined;
-    fechaRegistro: string;
+    fechaRegistro: string | null;
     fechaReserva: string;
     hora: string;
     cantPersonas: number;
     idLogin: number;
-    correo: string;
+    correo?: string;
     nombres: string;
     apellido: string;
     telefono: string;
