@@ -140,3 +140,27 @@
   padding: 0;
   margin: 0;
 }
+#cbox1{
+  margin-top: 8px;
+}
+.terminos{
+  padding-left: 10px;
+}
+.modal-header{
+  background-color: rgb(23, 116, 185);
+  color: aliceblue;
+    width: 100%;
+
+}
+.modal-header >h2{
+  text-align: center;
+
+}
+.modal-body >h2{
+  color: #2e3192;
+}
+
+.btn-cerrar{
+  background-color: rgb(23, 116, 185);
+  color: aliceblue;
+}
