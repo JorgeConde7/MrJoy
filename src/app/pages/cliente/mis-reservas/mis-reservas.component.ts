@@ -20,26 +20,55 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject<ADTSettings>()
 
-  reservas: IReserva[] = [];
+  namePaquete: String = ""
+
+  //reservas: IReserva[] = []
   id!: number;
 
-  paquetes: Paquete[] = [];
+  paquetes: Paquete[] = []
+
+  tablaReserva: TablaReserva[] = []
 
   constructor(private reservaService: ReservaServiceService, private router: Router,
     private paqueteService: PaquetesService) {
   }
 
   ngOnInit(): void {
+
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
       // pagingType: "full_numbers"
       pageLength:10
     };
 
+    this.setPaquetesList()
+
     const payLoad = getPayload()
     this.id = payLoad?.id ? payLoad.id : 0;
-    this.reservaService.getReservasPorIdLogin(this.id).subscribe(data => {
-      this.reservas = data;
+
+    this.reservaService.getReservasPorIdLogin(this.id).subscribe(reservaResponse => {
+
+      this.tablaReserva = reservaResponse.map(
+        reserva => {
+          const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete = reserva.idPaquete)!
+          return {
+            acompaniante: reserva.acompaniante,
+            apellido: reserva.apellido,
+            cantPersonas: reserva.cantPersonas,
+            fechaRegistro: reserva.fechaRegistro,
+            fechaReserva: reserva.fechaReserva,
+            flagTipoReserva: reserva.flagTipoReserva,
+            hora: reserva.hora,
+            nombres: reserva.nombres,
+            telefono: reserva.telefono,
+            totalPago: reserva.totalPago,
+            email: reserva.email,
+            idReserva: reserva.idReserva,
+            paqueteName: paqueteFound.descripcion!
+
+          }
+        }
+      )
       this.dtTrigger.next(this.dtOptions)
     });
   }
@@ -59,4 +88,21 @@ export class MisReservasComponent implements OnDestroy, OnInit {
         this.paquetes = paquetes;
       });
   }
+}
+
+interface TablaReserva{
+  paqueteName: String ;
+  idReserva?: number | undefined;
+  fechaRegistro: string | null;
+  fechaReserva: string;
+  hora: string;
+  cantPersonas: number;
+  //idLogin: number;
+  nombres: string;
+  apellido: string;
+  telefono: string;
+  flagTipoReserva: number;
+  acompaniante: number;
+  totalPago: number;
+  email?: string;
 }
