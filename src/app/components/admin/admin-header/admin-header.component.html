@@ -7,7 +7,7 @@
           <a [routerLink]="['/admin/menu']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/menu')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fas fa-home fa-fw me-3"></i><span>Menu</span>
           </a>
-          <a [routerLink]="['/admin/empleados']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/empleados')}"  class="list-group-item list-group-item-action py-2 ripple">
+          <a *ngIf="sesionData.isAdmin" [routerLink]="['/admin/empleados']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/empleados')}"  class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-users-cog fa-fw me-3"></i><span>Empleados</span>
           </a>
           <a [routerLink]="['/admin/clientes']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/clientes')}" class="list-group-item list-group-item-action py-2 ripple active">
@@ -17,10 +17,7 @@
               <i class="fas fa-book fa-fw me-3"></i><span>Reservas</span>
           </a>
 
-          <a [routerLink]="['/admin/reporte']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/reporte')}" class="list-group-item list-group-item-action py-2 ripple">
-              <i class="fas fa-chart-bar fa-fw me-3"></i><span>Reportes</span>
-          </a>
-          <a [routerLink]="['/admin/proveedores']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/proveedores')}" class="list-group-item list-group-item-action py-2 ripple">
+          <a *ngIf="sesionData.isAdmin" [routerLink]="['/admin/proveedores']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/proveedores')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-shipping-fast fa-fw me-3"></i><span>Provedores</span>
           </a>
           <a [routerLink]="['/admin/paquetes']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/paquetes')}" class="list-group-item list-group-item-action py-2 ripple">
@@ -29,9 +26,14 @@
           <a [routerLink]="['/admin/promociones']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/promociones')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-calendar fa-fw me-3"></i><span>Promociones</span>
           </a>
+
           <a [routerLink]="['/admin/contacto']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/contacto')}" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-book fa-fw me-3"></i><span>Preguntas Clientes</span>
         </a>
+
+        <a [routerLink]="['/admin/reporte']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/reporte')}" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-bar fa-fw me-3"></i><span>Reportes</span>
+      </a>
         </div>
       </div>
     </nav>
