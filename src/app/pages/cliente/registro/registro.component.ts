@@ -12,9 +12,9 @@ import * as regex from 'src/app/util/regex.util';
 })
 export class RegistroComponent implements OnInit {
 
-  generos:string[] = ["Masculino", "Femenino", "No Binario"];
-  distritos:string[] = ["Ate", "Barranco", "Breña", "Carabayllo", "Cercado de Lima",
-              "Chaclacayo", "Chorrillos", "Cieneguilla", "Comas", "El Agustino", "Independecia", "Jesus Maria", "La Molina", "La Victoria"];
+  generos: string[] = ["Masculino", "Femenino", "No Binario"];
+  distritos: string[] = ["Ate", "Barranco", "Breña", "Carabayllo", "Cercado de Lima",
+    "Chaclacayo", "Chorrillos", "Cieneguilla", "Comas", "El Agustino", "Independecia", "Jesus Maria", "La Molina", "La Victoria"];
 
 
   formRegisterClient: FormGroup
@@ -45,7 +45,7 @@ export class RegistroComponent implements OnInit {
       usuario: [null, [Validators.required, Validators.pattern(regex.USERNAME)]],
       password: [null, [Validators.required, Validators.pattern(regex.PASSWORD)]],
       passwordConfirm: [null, [Validators.required, Validators.pattern(regex.PASSWORD)]],
-      termsAndConditions: [false, [Validators.required, Validators.pattern(/^true$/)]]
+      termsAndConditions: [false, [Validators.requiredTrue]]
     },
       {
         validators: this.ConfirmedValidator('password', 'passwordConfirm'),

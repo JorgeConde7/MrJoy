@@ -88,17 +88,22 @@ export class FormularioReservaComponent implements OnInit {
   }
 
   getReservaFormBuilder() {
+    let terminosCondiciones = false
     const [date, month, year, _] = getCurrentDate()
     const today = `${year}-${month}-${date}`
     this.validandoCambioDeFechaByFecha(today)
     let { correo, apellidos, nombres, telefono, profile } = getPayload()!
     const isClient = profile === "cliente"
-    if (!isClient) {
+    const isReservaPage = this.isUrlEqualTo("/admin/reservas")
+    // Si la sesion del empleado esta en la pagina, limpiara campos por defecto
+    if (isReservaPage) {
       correo = ''
       apellidos = ''
       nombres = ''
       telefono = ''
     }
+    if (!isClient && isReservaPage) terminosCondiciones = true
+
     this.sesionData.isClient = isClient;
     return this.formBuilder.group({
       fechaReserva: [today, [Validators.required, this.dateValidator]],
@@ -110,6 +115,7 @@ export class FormularioReservaComponent implements OnInit {
       idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
       cantPersonas: [15, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(15), Validators.max(30)]],
       acompaniante: [0, [Validators.required, Validators.pattern(regex.INTEGER), Validators.min(0), Validators.max(15)]],
+      terminosCondiciones: [terminosCondiciones, [Validators.requiredTrue]]
     })
   }
 
@@ -174,13 +180,13 @@ export class FormularioReservaComponent implements OnInit {
     let precio = 0
     if (paqueteSplit.length <= 1) {
       this.total = 0
-      console.log("No selecciono paquete")
+      // console.log("No selecciono paquete")
       this.reserva.totalPago = this.total
 
     }
     else {
       precio = Number(paqueteSplit[1])
-      console.log("paquete: ", precio);
+      // console.log("paquete: ", precio);
       const precioAcompaniante = 6
       const totalTemp = cantPersona * Number(precio) + acompaniante * precioAcompaniante
       this.total = Number(totalTemp.toFixed(2))
