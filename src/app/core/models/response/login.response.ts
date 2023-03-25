@@ -1,6 +1,6 @@
 export interface LoginResponse {
   id: number;
-  profile: number;
+  profile: "empleado" | "cliente" | "admin";
   username: string;
   create_at: number;
   apellidos: string;
