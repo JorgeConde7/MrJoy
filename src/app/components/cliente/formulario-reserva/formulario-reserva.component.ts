@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 
 // RESERVA
@@ -16,14 +16,10 @@ import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 @Component({
   selector: 'app-formulario-reserva',
   templateUrl: './formulario-reserva.component.html',
-  styleUrls: ['./formulario-reserva.component.scss']
+  styleUrls: ['./formulario-reserva.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FormularioReservaComponent implements OnInit {
-
-  //habilitar: boolean = false;
-  total: number = 0;
-
-
 
   horaCadena: string[] = ['10:00',
     '11:00',
@@ -35,9 +31,7 @@ export class FormularioReservaComponent implements OnInit {
     '17:00',
     '18:00',
     '19:00']
-
   horaOcupada: string[] = [];
-
 
   @Input() reserva: IReserva = {
     idPaquete: 0,
@@ -55,12 +49,11 @@ export class FormularioReservaComponent implements OnInit {
     acompaniante: 0,
     totalPago: 0
   };
-
-
+  total: number = 0;
 
   paquetes: Paquete[] = [];
-
   formReserva: FormGroup
+  sesionData = { isClient: true }
 
   constructor(private paqueteService: PaquetesService, private reservaService: ReservaServiceService, private router: Router, private formBuilder: FormBuilder) {
     this.formReserva = this.getReservaFormBuilder();
@@ -98,7 +91,15 @@ export class FormularioReservaComponent implements OnInit {
     const [date, month, year, _] = getCurrentDate()
     const today = `${year}-${month}-${date}`
     this.validandoCambioDeFechaByFecha(today)
-    const { correo, apellidos, nombres, telefono } = getPayload()!
+    let { correo, apellidos, nombres, telefono, profile } = getPayload()!
+    const isClient = profile === "cliente"
+    if (!isClient) {
+      correo = ''
+      apellidos = ''
+      nombres = ''
+      telefono = ''
+    }
+    this.sesionData.isClient = isClient;
     return this.formBuilder.group({
       fechaReserva: [today, [Validators.required, this.dateValidator]],
       hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
@@ -129,19 +130,6 @@ export class FormularioReservaComponent implements OnInit {
       )
   }
 
-  RegistrarReservaClass(datoReserva: any) {
-    this.reserva = datoReserva;
-    let guardandoidPaquete = this.reserva.idPaquete;
-    let pruebita = guardandoidPaquete.toString().split(" ");
-    this.reserva.idPaquete = parseInt(pruebita[0]);
-
-    this.reservaService.CrearReserva(this.reserva).subscribe(() => {
-      alert("Reserva registrada correctamente!!")
-    });
-    this.reserva.idPaquete = 0;
-  }
-
-
   setFormularioDataToReservaDTO() {
     // console.log("Hola Mundo");
     const currentDateTime = new Date()
@@ -170,16 +158,14 @@ export class FormularioReservaComponent implements OnInit {
     this.reserva.email = email
   }
 
-  RegistrarReservaEmpleado() {
-    let guardandoidPaquete = this.reserva.idPaquete;
-    let pruebita = guardandoidPaquete.toString().split(" ");
-    this.reserva.idPaquete = parseInt(pruebita[0]);
-    this.reservaService.CrearReserva(this.reserva).subscribe(() => {
-      alert("Reserva registrada correctamente!!")
-    });
-    this.reserva.idPaquete = 0;
-    this.router.navigate(['admin', 'reservas'])
-    // window.location.href = 'admin/reservas'
+  registrarReservaEmpleado() {
+    this.setFormularioDataToReservaDTO()
+    this.reservaService.CrearReserva(this.reserva).subscribe(reservaResponse => {
+      console.log({ reservaResponse });
+
+    })
+
+
   }
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {

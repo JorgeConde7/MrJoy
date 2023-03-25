@@ -25,7 +25,8 @@
   <input class="form-control" type="text" placeholder="Ingrese su Nombre" formControlName="nombres" name = "nombres">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['nombres'].errors
+    formReserva.controls['nombres'].errors &&
+    (!sesionData.isClient && formReserva.controls['nombres'].touched)
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
@@ -33,7 +34,9 @@
   <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellido" name = "apellido">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['apellido'].errors
+    formReserva.controls['apellido'].errors &&
+    (!sesionData.isClient && formReserva.controls['apellido'].touched)
+
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
@@ -41,7 +44,8 @@
   <input class="form-control" type="email" placeholder="Ingrese su email" formControlName="email" name = "email">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['email'].errors
+    formReserva.controls['email'].errors &&
+    (!sesionData.isClient && formReserva.controls['email'].touched)
   }">
   <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
   </div>
@@ -49,7 +53,9 @@
   <input  maxlength=9 class="form-control" type="text" placeholder="Ingrese su telefono" formControlName="telefono" name = "telefono">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['telefono'].errors
+    formReserva.controls['telefono'].errors &&
+    (!sesionData.isClient && formReserva.controls['telefono'].touched)
+
   }">
   <p class="warning-text">* Solo numeros 0-9</p>
   <p class="warning-text">* Caracteres max. 9</p>
@@ -94,7 +100,7 @@
   <label><input type="checkbox" id="cbox1" value="first_checkbox"> <a data-bs-toggle="modal" data-bs-target="#terminosCondiciones" class="terminos"
 >Acepto y leido los terminos y condiciones Mr. Joy </a></label><br>
 
-<div class="modal fade" id="terminosCondiciones" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" 
+<div class="modal fade" id="terminosCondiciones" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
 aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -154,9 +160,9 @@ aria-hidden="true">
     </div>
   </div>
 </div>
-  <!-- <button
-   id="btnRegistrar" class="btn btn-primary mt-4 botonRegistrar"
-   type="button"  *ngIf="isUrlEqualTo('/admin/reservas')" (click)="RegistrarReservaEmpleado()">Registrar</button> -->
+  <button
+   id="btnRegistrar" class="btn btn-primary  mt-4 botonRegistrar"
+   type="button"  *ngIf="isUrlEqualTo('/admin/reservas')" [disabled]="formReserva.invalid" (click)="registrarReservaEmpleado ()">Registrar</button>
   <button  (click)="setFormularioDataToReservaDTO()"
    id="btnRegistrar" [disabled]="formReserva.invalid" data-bs-toggle="modal" data-bs-target="#modalLEntradas" class="btn btn-primary mt-4 botonRegistrar"
    data-bs-dismiss="modal" type="button"  *ngIf="isUrlEqualTo('/cumpleanios')" >Registrar</button>
