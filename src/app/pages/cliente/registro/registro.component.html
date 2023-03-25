@@ -100,14 +100,14 @@
       </div>
       <div class="form-group">
         <div class="row">
-          
+
           <div class="col">
             <label style="color: #000">Seleccione su distrito:</label>
             <select formControlName="direccion" name="direccion" class="form-control" >
               <option *ngFor="let direccion of distritos"  [ngValue]="direccion">{{direccion}}</option>
             </select>
           </div>
-          
+
           <div class="col">
             <label style="color: #000">Seleccione su genero:</label>
             <select formControlName="genero"  name="genero" class="form-control">
@@ -201,7 +201,7 @@
         <label class="form-check-label">
           <input type="checkbox" formControlName="termsAndConditions" name="termsAndConditions" [ngClass]="{
             'login__username-error': true
-          }"> I accept the
+          }"> Acepto los
           <a>Terminos Y Condiciones</a>
         </label>
       </div>

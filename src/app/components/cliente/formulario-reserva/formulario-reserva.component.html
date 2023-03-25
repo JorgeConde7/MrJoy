@@ -97,8 +97,8 @@
   <label for="">Total a Pagar :</label>
   <input type="text" readonly placeholder="" class="form-control" [value]="total" name="total">
 
-  <label *ngIf="!isUrlEqualTo('/admin/reservas')" ><input formControlName="terminosCondiciones" type="checkbox" id="cbox1" value="first_checkbox"> <a data-bs-toggle="modal" data-bs-target="#terminosCondiciones" class="terminos"
->Acepto y leido los terminos y condiciones Mr. Joy </a></label><br>
+  <label *ngIf="!isUrlEqualTo('/admin/reservas')" class="form-group" ><input formControlName="terminosCondiciones" type="checkbox" id="cbox1" value="first_checkbox"> Acepto y he leido los <a data-bs-toggle="modal" data-bs-target="#terminosCondiciones" class="terminos"
+>términos y condiciones Mr. Joy </a></label><br>
 
 <div class="modal fade"  id="terminosCondiciones" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
 aria-hidden="true">
