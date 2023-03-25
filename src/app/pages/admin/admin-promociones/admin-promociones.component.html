@@ -1,9 +1,9 @@
 <main style="margin-top: 35px">
   <div class="container-fluid pt-4">
-    <a id="btnNuevoPromocion" class="btn btn-success float-right my-2" data-bs-toggle="modal"
-    data-bs-target="#modalPromocion" (click)="limpiarModal()">
-    <i class="ion-plus-round"></i> Nuevo</a>
-    <div class="card" style="min-height: 720px">
+    <div class="card  mt-5" style="min-height: 720px">
+      <a *ngIf="sesionData.isAdmin" id="btnNuevoPromocion" class="btn btn-success float-right " data-bs-toggle="modal"
+        data-bs-target="#modalPromocion" (click)="limpiarModal()">
+        <i class="ion-plus-round"></i> Nuevo</a>
       <div class="card-body">
         <table id="tablaPromocion" class="table table-hover table-dark text-light table-responsive-lg table-bordered"
           style="width: 100%">
@@ -14,19 +14,22 @@
             <tr>
               <th class="text-center">Codigo</th>
               <th class="text-center">Promocion</th>
+              <th class="text-center">Imagen</th>
               <th class="text-center">Descripcion</th>
-              <th class="text-center">acciones</th>
+              <th *ngIf="sesionData.isAdmin" class="text-center">acciones</th>
             </tr>
           </thead>
-          <tbody class="text-center">
-            <tr *ngFor="let Promocion of data">
-              <td>{{ Promocion.id_promociones }}</td>
-              <td>{{ Promocion.promociones }}</td>
-              <td>{{ Promocion.descripcion }}</td>
-              <td>
-                <a class="btn btn-warning" style='padding:0 10px' (click)="editarPromociones(Promocion)" data-bs-toggle="modal"
-                data-bs-target="#modalPromocion"><i class="fas fa-pencil-alt"></i></a>
-                <a class="btn btn-danger" style='padding:0 10px' (click)="eliminarPromociones(Promocion.id_promociones)"><i class="fas fa-trash-alt"></i></a>
+          <tbody>
+            <tr *ngFor="let promocion of promociones">
+              <td class="text-center">{{ promocion.id_promociones }}</td>
+              <td class="text-center">{{ promocion.titulo }}</td>
+              <td class="text-center"><img class="img-fluid img-thumbnail" width="70" [src]="promocion.foto" [alt]="promocion.titulo" /></td>
+              <td class="text-left">{{ promocion.descripcion }}</td>
+              <td *ngIf="sesionData.isAdmin">
+                <a class="btn btn-warning" style='padding:0 10px' (click)="editarPromociones(promocion)"
+                  data-bs-toggle="modal" data-bs-target="#modalPromocion"><i class="fas fa-pencil-alt"></i></a>
+                <a class="btn btn-danger" style='padding:0 10px'
+                  (click)="eliminarPromociones(promocion.id_promociones)"><i class="fas fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -35,7 +38,7 @@
     </div>
 
     <app-admin-footer></app-admin-footer>
-       <!-- Button trigger modal -->
+    <!-- Button trigger modal -->
   </div>
   <!--Modal para CRUD-->
   <section class="body-main">
@@ -44,16 +47,16 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div *ngIf="isInsert" class="modal-headerCrear">
-            <h5  class="modal-title" id="exampleModalLabel">Crear Promociones</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Crear Promociones</h5>
           </div>
           <div *ngIf="!isInsert" class="modal-headerActualizar">
-            <h5  class="modal-title" id="exampleModalLabel">Actualizar Promociones</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar Promociones</h5>
           </div>
-          <form >
+          <form>
             <div class="modal-body">
               <div class="form-group" hidden>
                 <label for="nombres" class="col-form-label">Codigo:</label>
-                <input type="text"  class="form-control" [(ngModel)]="ipromocion.id_promociones" name="id_promociones">
+                <input type="text" class="form-control" [(ngModel)]="ipromocion.id_promociones" name="id_promociones">
               </div>
               <div class="form-group">
                 <label for="apellidos" class="col-form-label">Promocion:</label>
@@ -65,8 +68,9 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal" >Cancelar</button>
-              <button type="submit" id="btnGuardar" class="btn btn-dark" data-bs-dismiss="modal" (click)="guardarDatos()">  Guardar</button>
+              <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" id="btnGuardar" class="btn btn-dark" data-bs-dismiss="modal"
+                (click)="guardarDatos()"> Guardar</button>
             </div>
           </form>
         </div>
@@ -77,8 +81,8 @@
   <section class="body-main">
     <form id="frmEliminarCliente" action="" method="POST">
 
-      <div class="modal fade" id="modalEliminarPromocion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+      <div class="modal fade" id="modalEliminarPromocion" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

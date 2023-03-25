@@ -17,7 +17,6 @@ export class AdminPaquetesComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject<ADTSettings>();
   data!: Paquete[];
-  sesionValues!: LoginResponse
   sesionData = { isAdmin: false }
 
   constructor(private paqueteService: PaquetesService) {
@@ -36,7 +35,6 @@ export class AdminPaquetesComponent implements OnInit {
 
   setSesionData() {
     const sesionData = getPayload()!
-    this.sesionValues = sesionData;
     this.sesionData.isAdmin = sesionData.profile === "admin"
   }
 
