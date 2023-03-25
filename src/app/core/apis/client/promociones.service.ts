@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Promocion } from '../../models/client/Promociones';
 
-const URL = `${environment.URL_BASE}/apiPromociones/`;
+const URL = `${environment.URL_BASE}/apiPromociones`;
 
 @Injectable({
   providedIn: 'root'
