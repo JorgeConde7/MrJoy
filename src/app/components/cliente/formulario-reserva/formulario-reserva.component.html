@@ -25,8 +25,7 @@
   <input class="form-control" type="text" placeholder="Ingrese su Nombre" formControlName="nombres" name = "nombres">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['nombres'].errors &&
-    (!sesionData.isClient && formReserva.controls['nombres'].touched)
+    formReserva.controls['nombres'].errors
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
@@ -34,8 +33,7 @@
   <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellido" name = "apellido">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['apellido'].errors &&
-    (!sesionData.isClient && formReserva.controls['apellido'].touched)
+    formReserva.controls['apellido'].errors
 
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
@@ -44,8 +42,7 @@
   <input class="form-control" type="email" placeholder="Ingrese su email" formControlName="email" name = "email">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['email'].errors &&
-    (!sesionData.isClient && formReserva.controls['email'].touched)
+    formReserva.controls['email'].errors
   }">
   <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
   </div>
@@ -53,8 +50,7 @@
   <input  maxlength=9 class="form-control" type="text" placeholder="Ingrese su telefono" formControlName="telefono" name = "telefono">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['telefono'].errors &&
-    (!sesionData.isClient && formReserva.controls['telefono'].touched)
+    formReserva.controls['telefono'].errors
 
   }">
   <p class="warning-text">* Solo numeros 0-9</p>
