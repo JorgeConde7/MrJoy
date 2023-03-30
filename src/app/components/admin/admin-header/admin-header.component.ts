@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getPayload } from 'src/app/util/token.util';
+import { getPayloadEmpleado } from 'src/app/util/token.util';
 
 @Component({
   selector: 'app-admin-header',
@@ -26,7 +26,7 @@ export class AdminHeaderComponent implements OnInit {
   }
 
   setSesionData() {
-    const sesionData = getPayload()!
+    const sesionData = getPayloadEmpleado()!
     this.sesionData.isAdmin = sesionData.profile === "admin"
   }
 
