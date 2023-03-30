@@ -25,7 +25,8 @@
   <input class="form-control" type="text" placeholder="Ingrese su Nombre" formControlName="nombres" name = "nombres">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['nombres'].errors
+    formReserva.controls['nombres'].errors &&
+    formReserva.controls['nombres'].touched
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
@@ -33,8 +34,8 @@
   <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellido" name = "apellido">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['apellido'].errors
-
+    formReserva.controls['apellido'].errors &&
+    formReserva.controls['apellido'].touched
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
@@ -42,8 +43,8 @@
   <input class="form-control" type="text" placeholder="Ingrese su DNI" formControlName="dni" name = "dni">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['dni'].errors
-
+    formReserva.controls['dni'].errors &&
+    formReserva.controls['dni'].touched
   }">
     <p class="warning-text">* Dni requerido</p>
   </div>
@@ -51,7 +52,8 @@
   <input class="form-control" type="email" placeholder="Ingrese su email" formControlName="email" name = "email">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['email'].errors
+    formReserva.controls['email'].errors &&
+    formReserva.controls['email'].touched
   }">
   <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
   </div>
@@ -59,8 +61,8 @@
   <input  maxlength=9 class="form-control" type="text" placeholder="Ingrese su telefono" formControlName="telefono" name = "telefono">
   <div class="form__warning" [ngClass]="{
     'show':
-    formReserva.controls['telefono'].errors
-
+    formReserva.controls['telefono'].errors &&
+    formReserva.controls['telefono'].touched
   }">
   <p class="warning-text">* Solo numeros 0-9</p>
   <p class="warning-text">* Caracteres max. 9</p>
