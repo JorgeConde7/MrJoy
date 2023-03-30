@@ -33,4 +33,5 @@ export interface IReserva
     acompaniante: number;
     totalPago: number;
     email?: string;
+    dni?:string;
 };
