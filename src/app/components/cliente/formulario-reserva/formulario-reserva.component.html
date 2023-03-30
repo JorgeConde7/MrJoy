@@ -38,6 +38,15 @@
   }">
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
+  <label for="">DNI:</label>
+  <input class="form-control" type="text" placeholder="Ingrese su DNI" formControlName="dni" name = "dni">
+  <div class="form__warning" [ngClass]="{
+    'show':
+    formReserva.controls['dni'].errors
+
+  }">
+    <p class="warning-text">* Dni requerido</p>
+  </div>
   <label for="">Email:</label>
   <input class="form-control" type="email" placeholder="Ingrese su email" formControlName="email" name = "email">
   <div class="form__warning" [ngClass]="{

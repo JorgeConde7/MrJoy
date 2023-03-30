@@ -92,7 +92,7 @@ export class FormularioReservaComponent implements OnInit {
     const [date, month, year, _] = getCurrentDate()
     const today = `${year}-${month}-${date}`
     this.validandoCambioDeFechaByFecha(today)
-    let { correo, apellidos, nombres, telefono, profile } = getPayload()!
+    let { correo, apellidos, nombres, dni, telefono, profile } = getPayload()!
     const isClient = profile === "cliente"
     const isReservaPage = this.isUrlEqualTo("/admin/reservas")
     // Si la sesion del empleado esta en la pagina, limpiara campos por defecto
@@ -100,6 +100,7 @@ export class FormularioReservaComponent implements OnInit {
       correo = ''
       apellidos = ''
       nombres = ''
+      dni = ''
       telefono = ''
     }
     if (!isClient && isReservaPage) terminosCondiciones = true
@@ -110,6 +111,7 @@ export class FormularioReservaComponent implements OnInit {
       hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
       nombres: [nombres, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
       apellido: [apellidos, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
+      dni: [dni, [Validators.required, Validators.pattern(regex.DOCUMENTO_IDENTIDAD)]],
       email: [correo, [Validators.required, Validators.email]],
       telefono: [telefono, [Validators.required, Validators.pattern(regex.PHONE)]],
       idPaquete: ["0", [Validators.required, Validators.pattern(regex.PAQUETE)]],
@@ -144,7 +146,7 @@ export class FormularioReservaComponent implements OnInit {
     const date = (currentDateTime.getDate()).toString().padStart(2, "0")
     const today = `${day}-${month}-${date}`;
 
-    const { acompaniante, apellido, cantPersonas, fechaReserva, hora, idPaquete, nombres, telefono, email } = this.formReserva.value as IReserva;
+    const { acompaniante, apellido,dni, cantPersonas, fechaReserva, hora, idPaquete, nombres, telefono, email } = this.formReserva.value as IReserva;
     const payload = getPayload()!;
     const { id: idLoginFromToken } = payload;
 
@@ -162,6 +164,7 @@ export class FormularioReservaComponent implements OnInit {
     this.reserva.telefono = telefono
     this.reserva.totalPago = this.total
     this.reserva.email = email
+    this.reserva.dni = dni
   }
 
   registrarReservaEmpleado() {
