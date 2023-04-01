@@ -200,7 +200,8 @@ export class EditarreservasComponent implements OnInit {
           this.router.navigate(['mis-reservas'])
         },
         error => {
-          alertNotification("Estimado cliente, no puede modificar su reserva ya que esta a menos de 1 semana de empezar", '', "error")
+          alertNotification(error.error.message, '', "error")
+          
         }
       )
       } 
