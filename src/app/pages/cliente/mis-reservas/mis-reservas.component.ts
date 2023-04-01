@@ -44,9 +44,8 @@ export class MisReservasComponent implements OnDestroy, OnInit {
 
     const payLoad = getPayload()
     this.id = payLoad?.id ? payLoad.id : 0;
-      
+    
     this.reservaService.getReservasPorIdLogin(this.id).subscribe(reservaResponse => {
-      
       this.tablaReserva = reservaResponse.map(
         
         reserva => {
@@ -67,14 +66,14 @@ export class MisReservasComponent implements OnDestroy, OnInit {
             email: reserva.email,
             idReserva: reserva.idReserva,
             paqueteName: paqueteFound.descripcion!,
-            estado: reserva.estado
+            estado: reserva.estado,
+            dni: reserva.dni
           }
-          
-        }
+        } 
       )
-      
       this.dtTrigger.next(this.dtOptions)
     });
+    
     
   }
 
@@ -105,4 +104,5 @@ interface TablaReserva{
   totalPago: number;
   email?: string;
   estado?: string;
+  dni?: string;
 }
