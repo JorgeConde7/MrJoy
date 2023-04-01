@@ -54,7 +54,7 @@ export class AdminLoginComponent implements OnInit {
         return
       }
       // Guardamos el token en localstorage
-      Storage.setToken(loginResponse.data)
+      Storage.setTokenEmpleado(loginResponse.data)
 
       this.router.navigate(['admin', 'menu'])
     })

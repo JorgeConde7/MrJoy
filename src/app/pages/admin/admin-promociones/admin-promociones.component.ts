@@ -4,8 +4,8 @@ import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { Promociones, IPromociones } from '../../../core/models/admin/admin-promociones';
-import { getPayload } from 'src/app/util/token.util';
+import { IPromociones } from '../../../core/models/admin/admin-promociones';
+import { getPayloadEmpleado } from 'src/app/util/token.util';
 import { PromocionService } from 'src/app/core/apis/client/promociones.service';
 import { Promocion } from 'src/app/core/models/client/Promociones';
 
@@ -42,7 +42,7 @@ export class AdminPromocionesComponent implements OnInit {
   }
 
   setSesionData() {
-    const sesionData = getPayload()!
+    const sesionData = getPayloadEmpleado()!
     this.sesionData.isAdmin = sesionData.profile === "admin"
   }
 

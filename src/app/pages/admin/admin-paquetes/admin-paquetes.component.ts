@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { PaquetesService } from '../../../core/apis/admin/paquetes.service';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
-import { getPayload } from 'src/app/util/token.util';
+import { getPayload, getPayloadEmpleado } from 'src/app/util/token.util';
 import { LoginResponse } from 'src/app/core/models/response/login.response';
 @Component({
   selector: 'app-admin-paquetes',
@@ -34,7 +34,7 @@ export class AdminPaquetesComponent implements OnInit {
   }
 
   setSesionData() {
-    const sesionData = getPayload()!
+    const sesionData = getPayloadEmpleado()!
     this.sesionData.isAdmin = sesionData.profile === "admin"
   }
 
