@@ -155,7 +155,9 @@ export class CalendarioReservaComponent implements OnInit {
     telefono: '',
     flagTipoReserva: 0,
     acompaniante: 0,
-    totalPago: 0
+    totalPago: 0,
+    dni: '',
+    estado: 'vigente'
   };
 
 }

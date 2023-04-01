@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReporteServiceService } from './core/apis/admin/reporte-service.service';
 import { PagesModule } from './pages/pages.module';
 import { AddTokenInterceptor } from './core/interceptors/add-token.interceptor';
+import { CommonModule } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AddTokenInterceptor } from './core/interceptors/add-token.interceptor';
     BrowserModule,
     HttpClientModule,
     PagesModule,
+    CommonModule
   ],
   providers: [ReporteServiceService, {
     provide: HTTP_INTERCEPTORS,

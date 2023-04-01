@@ -15,4 +15,9 @@ export class ContactoService {
   create(contacto: Contacto): Observable<Contacto> {
     return this.http.post<Contacto>(URL + "/contactos", contacto)
   }
+
+  getConsultasPorIdLogin(idLogin: number): Observable<Contacto[]> {
+    return this.http.get<Contacto[]>(URL + '/contactos/'+idLogin);
+  }
+
 }

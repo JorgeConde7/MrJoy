@@ -18,10 +18,11 @@ export class Reserva
 
 export interface IReserva
 {
-    idPaquete: number ;
     idReserva?: number | undefined;
+    idPaquete: number ;
     fechaRegistro: string | null;
     fechaReserva: string;
+    fechaModificacion?: string;
     hora: string;
     cantPersonas: number;
     idLogin: number;
@@ -33,4 +34,6 @@ export interface IReserva
     acompaniante: number;
     totalPago: number;
     email?: string;
+    dni?: string;
+    estado?: string;
 };

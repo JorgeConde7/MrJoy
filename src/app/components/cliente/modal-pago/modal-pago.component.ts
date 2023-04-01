@@ -113,7 +113,7 @@ export class ModalPagoComponent implements OnInit {
       })
 
     } catch (error) {
-      alertNotification("Se se pudo concreta la la accion. Vuelva a intentarlo mas tarde.", '', "error")
+      alertNotification("No se pudo concreta la la accion. Vuelva a intentarlo mas tarde.", '', "error")
     }
   }
 

@@ -28,6 +28,7 @@ import { TerminosComponent } from './pages/cliente/terminos/terminos.component';
 import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
 import { MisReservasComponent } from './pages/cliente/mis-reservas/mis-reservas.component';
 import { EditarreservasComponent } from './pages/cliente/editarreservas/editarreservas.component';
+import { MisConsultasComponent } from './pages/cliente/mis-consultas/mis-consultas.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,10 @@ const routes: Routes = [
       {
         path: 'editar-misreservas/:id',
         component: EditarreservasComponent
+      },
+      {
+        path: 'mis-consultas',
+        component: MisConsultasComponent
       },
 
 
