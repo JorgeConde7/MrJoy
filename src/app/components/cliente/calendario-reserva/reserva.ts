@@ -22,7 +22,7 @@ export interface IReserva
     idPaquete: number ;
     fechaRegistro: string | null;
     fechaReserva: string;
-    fechaModificacion?: string;
+    //fechaModificacion: string;
     hora: string;
     cantPersonas: number;
     idLogin: number;

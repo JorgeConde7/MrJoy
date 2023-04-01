@@ -55,6 +55,7 @@ export class EditarreservasComponent implements OnInit {
     flagTipoReserva: 0,
     acompaniante: 0,
     totalPago: 0
+    
   };
   
   iReserva: IReserva[] = [];
@@ -181,7 +182,7 @@ export class EditarreservasComponent implements OnInit {
       cantPersonas: Number(this.editarForm.value.cantPersonas!),
       idLogin: Number(this.editarForm.value.idLogin!),
       telefono: this.editarForm.value.telefono!,
-      flagTipoReserva: this.editarForm.value.flagTipoReserva!,
+      flagTipoReserva: 0,
       acompaniante: this.editarForm.value.acompaniante!,
       totalPago: this.total,//this.editarForm.value.totalPago!
       email: this.editarForm.value.email!,
@@ -192,7 +193,7 @@ export class EditarreservasComponent implements OnInit {
     if (reservaDto) {
       this.reservaService.putReserva(reservaDto, reservaId).subscribe(
         reservaDto => {
-          
+          console.log(reservaDto)
           alertNotification("Se ha actualizado la reserva. Todo correcto.", "", "success", ({ isConfirmed }) => {
             if (isConfirmed) window.location.reload();
           })
@@ -205,7 +206,7 @@ export class EditarreservasComponent implements OnInit {
       } 
   }
 
-  calcularDiferenciaDias(reservaActual: IReserva): number {
+  /*calcularDiferenciaDias(reservaActual: IReserva): number {
     const fechaHoy = new Date();
     const month = fechaHoy.getMonth() + 1;
     const day = fechaHoy.getDate();
@@ -218,7 +219,7 @@ export class EditarreservasComponent implements OnInit {
     const difDias = Math.floor(difMillis / (1000 * 60 * 60 * 24));
     
     return difDias;
-  }
+  }*/
   
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
 
