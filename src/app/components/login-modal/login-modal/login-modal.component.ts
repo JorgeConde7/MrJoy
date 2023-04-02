@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Login } from './login-modal';
 import { LoginModalService } from '../../../core/apis/client/login-modal.service';
 import { setToken } from 'src/app/util/token.util';
+import { alertNotification } from 'src/app/util/notifications';
 
 @Component({
   selector: 'app-login-modal',
@@ -37,6 +38,7 @@ export class LoginModalComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        alertNotification(err.error.message, '', "error")
         this.hasBadCredentials = true
       }
     });

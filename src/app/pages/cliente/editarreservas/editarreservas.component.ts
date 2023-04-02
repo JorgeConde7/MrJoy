@@ -91,7 +91,7 @@ export class EditarreservasComponent implements OnInit {
         'fechaReserva': data.fechaReserva,
         'hora': horafound!,
         'cantPersonas': data.cantPersonas,
-        //'idLogin': data.idLogin,
+        'idLogin': data.idLogin,
         'telefono': data.telefono,
         //'flagTipoReserva': data.flagTipoReserva,
         'acompaniante': data.acompaniante,
@@ -170,6 +170,7 @@ export class EditarreservasComponent implements OnInit {
 
   onSubmit() {
     let reservaId = Number(this.activerouter.snapshot.paramMap.get('id'))
+    console.log(reservaId)
     let { correo, apellidos: apellido, nombres, telefono, profile } = getPayload()!
     const soloIdPaquete = this.editarForm.value.idPaquete!.split(" ")[0]
     
@@ -195,10 +196,10 @@ export class EditarreservasComponent implements OnInit {
         reservaDto => {
           console.log(reservaDto)
           alertNotification("Se ha actualizado la reserva. Todo correcto.", "", "success", ({ isConfirmed }) => {
-            if (isConfirmed) window.location.reload();
-          })
-          this.router.navigate(['mis-reservas'])
-        },
+          if (isConfirmed) window.location.reload();
+        })
+        this.router.navigate(['mis-reservas'])
+      },
         error => {
           alertNotification(error.error.message, '', "error")
           
