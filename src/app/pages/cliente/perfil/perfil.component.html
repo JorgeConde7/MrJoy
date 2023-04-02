@@ -2,9 +2,7 @@
     <div class="perfil-usuario-header">
         <div class="perfil-usuario-portada">
             <div class="perfil-usuario-avatar">
-
-                <img src={{icliente.rutaImg}} alt="">
-
+                <img src="https://pbs.twimg.com/media/ErZ-UB5XIAAUBk9.jpg" alt="">
             </div>
             <button type="button" class="boton-portada">
                 <i class="far fa-image"></i> Cambiar fondo
@@ -21,7 +19,7 @@
         <div class="perfil-usuario-footer">
             <ul class="lista-datos">
                 <li><i class="icono fas fa-user-check"></i> Nombre : {{icliente.nombres}}</li>
-                <li><i class="icono fas fa-phone-alt"></i> Apellido:{{icliente.apePaterno+ " "+icliente.apePaterno}}
+                <li><i class="icono fas fa-phone-alt"></i> Apellido:{{icliente.apePaterno+ " "+icliente.apeMaterno}}
                 </li>
                 <li><i class="icono fas fa-briefcase"></i> Genero: {{icliente.genero}}</li>
                 <li><i class="icono fas fa-briefcase"></i> Dni: {{icliente.dni}} </li>
@@ -35,4 +33,5 @@
             </ul>
         </div>
     </div>
+    <br>
 </section>
