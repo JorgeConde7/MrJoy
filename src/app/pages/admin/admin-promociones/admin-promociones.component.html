@@ -27,7 +27,7 @@
               <td class="text-left">{{ promocion.descripcion }}</td>
               <td *ngIf="sesionData.isAdmin">
                 <a class="btn btn-warning" style='padding:0 10px' (click)="editarPromociones(promocion)"
-                  data-bs-toggle="modal" data-bs-target="#modalPromocion"><i class="fas fa-pencil-alt"></i></a>
+                  data-bs-toggle="modal" data-bs-target="#modalPromocion"><i class="fas fa-pencil-alt"></i></a>{{" "}}
                 <a class="btn btn-danger" style='padding:0 10px'
                   (click)="eliminarPromociones(promocion.id_promociones)"><i class="fas fa-trash-alt"></i></a>
               </td>
