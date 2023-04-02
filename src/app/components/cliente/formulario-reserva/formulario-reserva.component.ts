@@ -31,7 +31,7 @@ export class FormularioReservaComponent implements OnInit {
     '17:00',
     '18:00',
     '19:00']
-    
+
   horaOcupada: string[] = [];
 
   @Input() reserva: IReserva = {
@@ -50,7 +50,7 @@ export class FormularioReservaComponent implements OnInit {
     acompaniante: 0,
     totalPago: 0
   };
-  
+
   total: number = 0;
 
   paquetes: Paquete[] = [];
@@ -93,17 +93,17 @@ export class FormularioReservaComponent implements OnInit {
     const [date, month, year, _] = getCurrentDate()
     const today = `${year}-${month}-${date}`
     this.validandoCambioDeFechaByFecha(today)
-    let { correo, apellidos, nombres, dni, telefono, profile } = getPayload()!
+    let { correo = '', apellidos = '', nombres = '', dni = '', telefono = '', profile = '' } = getPayload() || {};
     const isClient = profile === "cliente"
     const isReservaPage = this.isUrlEqualTo("/admin/reservas")
     // Si la sesion del empleado esta en la pagina, limpiara campos por defecto
-    if (isReservaPage) {
-      correo = ''
-      apellidos = ''
-      nombres = ''
-      dni = ''
-      telefono = ''
-    }
+    // if (isReservaPage) {
+    //   correo = ''
+    //   apellidos = ''
+    //   nombres = ''
+    //   dni = ''
+    //   telefono = ''
+    // }
     if (!isClient && isReservaPage) terminosCondiciones = true
 
     this.sesionData.isClient = isClient;
@@ -123,10 +123,10 @@ export class FormularioReservaComponent implements OnInit {
   }
 
 
-  
+
 
   setFormularioDataToReservaDTO() {
-  
+
     const currentDateTime = new Date()
     const day = currentDateTime.getFullYear()
     const month = (currentDateTime.getMonth() + 1).toString().padStart(2, "0")
