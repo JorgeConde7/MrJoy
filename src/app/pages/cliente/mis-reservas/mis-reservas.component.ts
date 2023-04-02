@@ -38,8 +38,10 @@ export class MisReservasComponent implements OnDestroy, OnInit {
     
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
-      // pagingType: "full_numbers"
-      pageLength:10
+      pagingType: 'full_numbers',
+      pageLength: 5, // Aquí defines la cantidad de registros por página que deseas mostrar
+      lengthMenu: [ 5, 10, 25, 50 ], // Aquí defines las opciones de la lista desplegable de "Mostrar"
+      processing: true
     };
 
     const payLoad = getPayload()

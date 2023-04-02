@@ -36,8 +36,10 @@ export class MisConsultasComponent implements OnDestroy, OnInit {
 
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
-      // pagingType: "full_numbers"
-      pageLength:10
+      pagingType: 'full_numbers',
+      pageLength: 5, 
+      lengthMenu: [ 5, 10, 25, 50 ], 
+      processing: true
     };
   }
 

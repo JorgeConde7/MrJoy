@@ -21,27 +21,7 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-ol {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin: 0;
-  padding: 0;
-}
 
-li {
-  padding: 0.25rem;
-  font-size: 1.5ch;
-  cursor: pointer;
-  text-align: center;
-}
-li:hover {
-  font-weight: 600;
-}
-h2 {
-  margin-bottom: 4px;
-  padding: 0;
-}
 
 .first-day {
   grid-column-start: var(--first-day-start, 0);
