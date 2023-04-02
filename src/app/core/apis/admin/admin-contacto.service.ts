@@ -26,8 +26,8 @@ export  class ContactoService{
       }
 
       actualizarContacto(contacto: Contacto) {
-        const id = contacto.idContacto || '';
-        return this.http.put<any>(URL + '/contactos/' + id,contacto);
+        const { idContacto = '' } = contacto;
+        return this.http.put<Contacto>(`${URL}/${idContacto}`, contacto );
       }
     }
 

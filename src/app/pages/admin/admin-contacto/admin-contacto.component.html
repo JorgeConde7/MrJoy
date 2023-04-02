@@ -1,52 +1,83 @@
 <main style="margin-top: 35px">
-    <div class="container-fluid pt-4">
-        <a id="btnNuevoCliente" class="btn btn-success float-right my-2" data-bs-toggle="modal"
-            data-bs-target="#modalCliente">
-            <i class="ion-plus-round"></i> Nuevo</a>
-        <div class="card" style="min-height: 720px">
-            <div class="card-body">
-                <table id="tablaCliente"
-                    class="table table-hover table-dark text-light table-responsive-lg table-bordered"
-                    style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th colspan="8" class="text-center">LISTA DE PREGUNTAS</th>
-                        </tr>
-                        <tr>
-                            <th class="text-center">idContacto</th>
-                            <th class="text-center">Nombres</th>
-                            <th class="text-center">Correo</th>
-                            <th class="text-center">Teléfono</th>
-                            <th class="text-center">Asunto</th>
-                            <th class="text-center">Descripción</th>
-                            <th class="text-center">Estado</th>
-                            <th class="text-center">FechaRegistro</th>
-                            <th class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr *ngFor="let contacto of data">
-                            <td>{{contacto.idContacto}}</td>
-                            <td>{{contacto.nombres}}</td>
-                            <td>{{contacto.correo}}</td>
-                            <td>{{contacto.telefono}}</td>
-                            <td>{{contacto.asunto}}</td>
-                            <td>{{contacto.descripcion}}</td>
-                            <td>{{contacto.estado}}</td>
-                            <td>{{contacto.fechaRegistro}}</td>
-                            <td>
-                                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt" data-bs-toggle="modal"
-                                data-bs-target="#modalEmpleado"></i></a>{{" "}}
-                                <a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt" (click)="eliminarContacto(contacto.idContacto)"></i> </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
+  <div class="container-fluid pt-4">
+    <!-- <a id="btnNuevoCliente" class="btn btn-success float-right my-2" data-bs-toggle="modal"
+      data-bs-target="#modalCliente">
+      <i class="ion-plus-round"></i> Nuevo</a> -->
+    <div class="card" style="min-height: 720px">
+      <div class="card-body  pt-5">
+        <table id="tablaCliente" class="table table-hover table-dark text-light table-responsive-lg table-bordered"
+          style="width: 100%">
+          <thead>
+            <tr>
+              <th colspan="8" class="text-center">LISTA DE PREGUNTAS</th>
+            </tr>
+            <tr>
+              <th class="text-center">ID </th>
+              <th class="text-center">Nombres</th>
+              <th class="text-center">Correo</th>
+              <th class="text-center">Teléfono</th>
+              <th class="text-center">Asunto</th>
+              <th class="text-center">Estado</th>
+              <th class="text-center">FechaRegistro</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let contacto of data" [ngClass]="{
+              'disabled': contacto.estado === 'resuelto'
+            }">
+              <td>{{contacto.idContacto}}</td>
+              <td>{{contacto.nombres}}</td>
+              <td>{{contacto.correo}}</td>
+              <td>{{contacto.telefono}}</td>
+              <td>{{contacto.asunto}}</td>
+              <td>{{contacto.estado}}</td>
+              <td>{{contacto.fechaRegistro | date: 'dd-MM-yyyy' }}</td>
+              <td>
+                <button type="button" [disabled]="contacto.estado==='resuelto'" title="Responder"
+                  (click)="selectContact(contacto)" class="btn btn-warning" style='padding:0 10px'
+                  data-bs-toggle="modal" data-bs-target="#modal__contacto"><i
+                    class="fa-sharp fa-solid fa-comment-dots"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-
-
+  </div>
 </main>
+
+<div class="modal fade" id="modal__contacto" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <form (ngSubmit)="onSubmitModal()" name="login">
+    <div class="modal-dialog ">
+      <div class="col">
+        <div class="modal-content">
+          <div class="modal-header ">
+            <h2 class="m-0 modal-title">Responder Consulta</h2>
+            <button type="button" class="close btn__close" data-bs-toggle="modal" data-bs-target="#modal__contacto">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="col">
+              <h1>Asunto: {{ contactoSelected.asunto }}</h1>
+              <p> {{ contactoSelected.descripcion }} </p>
+            </div>
+            <div class="form-group" id="user-group">
+              <textarea rows="5" type="text" class="form-control Input" placeholder="Responder..." name="response"
+                [(ngModel)]="contactoSelected.respuestaAtencion"></textarea>
+            </div>
+            <br>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#modal__contacto">Enviar</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+              data-bs-target="#modal__contacto">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
