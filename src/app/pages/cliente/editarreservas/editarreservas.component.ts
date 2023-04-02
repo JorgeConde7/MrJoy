@@ -91,7 +91,7 @@ export class EditarreservasComponent implements OnInit {
         'fechaReserva': data.fechaReserva,
         'hora': horafound!,
         'cantPersonas': data.cantPersonas,
-        //'idLogin': data.idLogin,
+        'idLogin': data.idLogin,
         'telefono': data.telefono,
         //'flagTipoReserva': data.flagTipoReserva,
         'acompaniante': data.acompaniante,
@@ -181,7 +181,7 @@ export class EditarreservasComponent implements OnInit {
       fechaRegistro: this.editarForm.value.fechaRegistro!,
       hora: this.editarForm.value.hora!,
       cantPersonas: Number(this.editarForm.value.cantPersonas!),
-      idLogin: reservaId,
+      idLogin: Number(this.editarForm.value.idLogin!),
       telefono: this.editarForm.value.telefono!,
       flagTipoReserva: 0,
       acompaniante: this.editarForm.value.acompaniante!,
@@ -196,10 +196,10 @@ export class EditarreservasComponent implements OnInit {
         reservaDto => {
           console.log(reservaDto)
           alertNotification("Se ha actualizado la reserva. Todo correcto.", "", "success", ({ isConfirmed }) => {
-            if (isConfirmed) window.location.reload();
-          })
-          this.router.navigate(['mis-reservas'])
-        },
+          if (isConfirmed) window.location.reload();
+        })
+        this.router.navigate(['mis-reservas'])
+      },
         error => {
           alertNotification(error.error.message, '', "error")
           
