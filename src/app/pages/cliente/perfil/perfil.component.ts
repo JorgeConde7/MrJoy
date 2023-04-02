@@ -13,7 +13,6 @@ import { getPayload } from 'src/app/util/token.util';
 })
 export class PerfilComponent implements OnInit {
 
-  nombre : any = '';
   datosCompletos : any;
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject<ADTSettings>()

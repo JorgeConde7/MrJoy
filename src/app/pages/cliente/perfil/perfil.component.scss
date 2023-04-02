@@ -51,9 +51,9 @@
     height: 170px;
     align-items: center;
     justify-content: center;
-    border: 7px solid #FFFFFF;
+    //border: 7px solid #FFFFFF;
     background-color: #DFE5F2;
-    border-radius: 40%;
+    border-radius: 60%;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     position: absolute;
     bottom: -40px;
@@ -205,3 +205,8 @@
     color: #309B76;
     transform: scale(1.4)
 }
+.miicono {
+    font-size: 2em;
+    z-index: 2;
+    color: #8c8c8c;
+  }

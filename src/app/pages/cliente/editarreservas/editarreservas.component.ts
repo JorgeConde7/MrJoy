@@ -180,7 +180,7 @@ export class EditarreservasComponent implements OnInit {
       fechaRegistro: this.editarForm.value.fechaRegistro!,
       hora: this.editarForm.value.hora!,
       cantPersonas: Number(this.editarForm.value.cantPersonas!),
-      idLogin: Number(this.editarForm.value.idLogin!),
+      idLogin: reservaId,
       telefono: this.editarForm.value.telefono!,
       flagTipoReserva: 0,
       acompaniante: this.editarForm.value.acompaniante!,
