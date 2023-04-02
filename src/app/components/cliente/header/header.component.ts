@@ -41,6 +41,8 @@ export class HeaderComponent implements OnInit {
   signut() {
     localStorage.removeItem(TOKEN);
     this.nombre = 'Ingresar'
+
+    this.router.navigate(['/'])
   }
 
 }

@@ -16,7 +16,7 @@ export class AdminHeaderComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-
+    this.setSesionData()
   }
 
   isUrlEqualTo(currentURL: string) {
@@ -27,6 +27,8 @@ export class AdminHeaderComponent implements OnInit {
 
   setSesionData() {
     const sesionData = getPayloadEmpleado()!
+    console.log({sesionData});
+
     this.sesionData.isAdmin = sesionData.profile === "admin"
   }
 
