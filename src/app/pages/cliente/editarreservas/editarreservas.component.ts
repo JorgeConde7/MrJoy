@@ -93,7 +93,7 @@ export class EditarreservasComponent implements OnInit {
         'fechaReserva': data.fechaReserva,
         'hora': horafound!,
         'cantPersonas': data.cantPersonas,
-        'idLogin': data.idLogin,
+        //'idLogin': data.idLogin,
         'telefono': data.telefono,
         //'flagTipoReserva': data.flagTipoReserva,
         'acompaniante': data.acompaniante,
@@ -173,7 +173,7 @@ export class EditarreservasComponent implements OnInit {
   onSubmit() {
     let reservaId = Number(this.activerouter.snapshot.paramMap.get('id'))
     
-    let { correo, apellidos: apellido, nombres, telefono, profile } = getPayload()!
+    let { correo, apellidos: apellido, nombres, telefono, profile, id } = getPayload()!
     const soloIdPaquete = this.editarForm.value.idPaquete!.split(" ")[0]
     
     const reservaDto: IReserva = {
@@ -183,7 +183,7 @@ export class EditarreservasComponent implements OnInit {
       fechaRegistro: this.editarForm.value.fechaRegistro!,
       hora: this.editarForm.value.hora!,
       cantPersonas: Number(this.editarForm.value.cantPersonas!),
-      idLogin: Number(this.editarForm.value.idLogin!),
+      idLogin: id,
       telefono: this.editarForm.value.telefono!,
       flagTipoReserva: 0,
       acompaniante: this.editarForm.value.acompaniante!,
