@@ -1,7 +1,13 @@
+<div class="banner">
+  <div class="container">
+    <div class="row">
+      <h1 class="contenido-banner-bio">Editar Reserva</h1>
+    </div>
+  </div>
+</div>
 
-<div class="container">
+<div class="container pt-4 pb-4">
   <div>
-    <h2 class="text-center">Editar de Reserva</h2>
     <div class="row mt-4">
       <div class="col-md-6">
 
@@ -88,15 +94,13 @@
 
 
           <button type="submit" [disabled]="editarForm.invalid" class="btn btn-primary mt-4 botonRegistrar">GUARDAR RESERVA</button>
-              {{editarForm.value | json}}
+              <!--{{editarForm.value | json}}-->
         </form>
 
-        <!--<app-formulario-reserva></app-formulario-reserva>-->
       </div>
       <div class="col-md-6">
-      <app-calendario-reserva></app-calendario-reserva>
-      
-    </div>
+        <app-calendario-reserva></app-calendario-reserva>   
+      </div>
 </div>
 </div>
 

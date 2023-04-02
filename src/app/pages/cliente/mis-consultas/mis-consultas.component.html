@@ -1,35 +1,36 @@
-<main style="margin-top: 35px">
-    <div class="container-fluid pt-4">
-        <div class="card" style="min-height: 720px">
+    <div class="banner">
+        <div class="container">
+        <div class="row">
+            <h1 class="contenido-banner-bio">Mis consultas</h1>
+        </div>
+        </div>
+    </div>
+
+    <div class="container pt-4 pb-4">
+        <div class="card" style="min-height: 520px">
             <div class="card-body">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaMisConsultas"
                     class="table table-hover table-light text-dark table-responsive-lg table-bordered" style="width: 100%">
                     <thead>
                         <tr>
-                            <th colspan="10" class="text-center">MIS CONSULTAS</th>
+                            <th colspan="6" class="text-center">MIS CONSULTAS</th>
                         </tr>
                         <tr>
-                            <th class="text-center">Id consulta</th>
-                            <th class="text-center">Asunto</th>
-                            <th class="text-center">Descripcion</th>
                             <th class="text-center">Fecha Registro</th>
+                            <th class="text-center">Asunto</th>
+                            <th class="text-center">Descripcion</th>                          
                             <th class="text-center">Estado</th>
-                            <th class="text-center">Usuario quien respondió</th>
-                            <th class="text-center">Acciones</th>
+                            <th class="text-center">Respuesta</th>
                         </tr>
                     
                         <tbody class="text-center">
                             <tr *ngFor="let consulta of consultotas">
-                                <th>{{consulta.idContacto}}</th>
+                                <th>{{consulta.fechaRegistro | date: 'yyyy-MM-dd'}}</th>
                                 <th>{{consulta.asunto}}</th>
-                                <th>{{consulta.descripcion}}</th>
-                                <th>{{consulta.fechaRegistro}}</th>
+                                <th>{{consulta.descripcion}}</th> 
                                 <th>{{consulta.estado}}</th>
                                 <th>{{consulta.respuestaAtencion}}</th>                                    
-                                <td>
-                                    <a class="btn btn-warning" style='padding:0 10px' data-bs-toggle="modal"
-                                    data-bs-target="#modalEmpleado"><i class="fas fa-pencil-alt"  ></i></a>
-                                </td>
+     
                             </tr>
                         </tbody>
                     
@@ -38,4 +39,3 @@
         </div>
 
     </div>
-</main>

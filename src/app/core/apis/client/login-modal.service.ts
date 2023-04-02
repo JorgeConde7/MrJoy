@@ -17,7 +17,6 @@ export class LoginModalService {
   constructor(private http: HttpClient) { }
 
   getLogin(login: Login) {
-
     return this.http.get<DataResponse<string>>(this.urlEndPoint + "/" + login.usuario + "/" + login.contrasenia + "/0");
   }
 

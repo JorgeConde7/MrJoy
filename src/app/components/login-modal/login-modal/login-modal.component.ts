@@ -21,13 +21,17 @@ export class LoginModalComponent implements OnInit {
 
   constructor(private loginservice: LoginModalService) { }
 
-  accesoLogin() {
+  ngOnInit(): void {
 
+  }
+  
+  accesoLogin() {
     this.loginservice.getLogin(this.login).subscribe({
       next: (response) => {
         const isEmptyToken = response.data === null
         if (isEmptyToken) {
           this.hasBadCredentials = true
+          //alertNotification('malas credenciales', '', "error")
           this.login.contrasenia = "";
           this.login.usuario = "";
           return;
@@ -37,16 +41,10 @@ export class LoginModalComponent implements OnInit {
         window.location.reload()
       },
       error: (err) => {
-        console.log(err);
         alertNotification(err.error.message, '', "error")
         this.hasBadCredentials = true
       }
     });
-
-  }
-
-  ngOnInit(): void {
-
   }
 
 }

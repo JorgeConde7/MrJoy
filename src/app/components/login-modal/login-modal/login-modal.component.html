@@ -18,7 +18,6 @@
               <input [(ngModel)]="login.contrasenia" type="password" class="form-control Input" placeholder="Contraseña"
                 name="password" />
               <br>
-              <p class="alert alert-danger" *ngIf="hasBadCredentials">Usuario o contraseña incorrectos</p>
             </div>
             <br>
             <button [disabled]="login.usuario=='' || login.contrasenia==''" type="submit" class="btn btn-primary">
