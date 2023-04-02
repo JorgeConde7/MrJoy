@@ -170,6 +170,7 @@ export class EditarreservasComponent implements OnInit {
 
   onSubmit() {
     let reservaId = Number(this.activerouter.snapshot.paramMap.get('id'))
+    console.log(reservaId)
     let { correo, apellidos: apellido, nombres, telefono, profile } = getPayload()!
     const soloIdPaquete = this.editarForm.value.idPaquete!.split(" ")[0]
     
