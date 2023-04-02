@@ -24,6 +24,7 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   paquetes: Paquete[] = []
 
   tablaReserva: TablaReserva[] = []
+  private primeraVez = true;
 
   constructor(private reservaService: ReservaServiceService, private router: Router,
     private paqueteService: PaquetesService) {

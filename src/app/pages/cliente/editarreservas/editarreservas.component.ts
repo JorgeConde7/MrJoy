@@ -62,6 +62,7 @@ export class EditarreservasComponent implements OnInit {
   
   sesionData = { isClient: true }
 
+
   constructor(private activerouter: ActivatedRoute, private router:Router,
     private reservaService: ReservaServiceService, private paqueteService: PaquetesService, private formBuilder: FormBuilder) {
       this.editarForm = this.getReservaFormBuilder()
@@ -69,6 +70,7 @@ export class EditarreservasComponent implements OnInit {
   
   
   ngOnInit(): void {
+    
     this.setPaquetesList()
 
     let reservaId = this.activerouter.snapshot.paramMap.get('id')
@@ -170,7 +172,7 @@ export class EditarreservasComponent implements OnInit {
 
   onSubmit() {
     let reservaId = Number(this.activerouter.snapshot.paramMap.get('id'))
-    console.log(reservaId)
+    
     let { correo, apellidos: apellido, nombres, telefono, profile } = getPayload()!
     const soloIdPaquete = this.editarForm.value.idPaquete!.split(" ")[0]
     
@@ -201,8 +203,10 @@ export class EditarreservasComponent implements OnInit {
         this.router.navigate(['mis-reservas'])
       },
         error => {
-          alertNotification(error.error.message, '', "error")
-          
+          alertNotification(error.error.message, '', "error", ({ isConfirmed }) => {
+            if (isConfirmed) window.location.reload();
+          })
+          this.router.navigate(['mis-reservas'])
         }
       )
       } 
