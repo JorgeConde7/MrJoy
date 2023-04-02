@@ -1,0 +1,10 @@
+.table > :not(caption) > * > * {
+    padding: 10px 2px !important; 
+}
+
+.acciones-cell >a >i{
+    padding: 6px;
+}
+.acciones-cell >a{
+    margin: 5px;
+}
