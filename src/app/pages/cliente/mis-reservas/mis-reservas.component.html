@@ -1,54 +1,61 @@
-<main style="margin-top: 35px">
-    <div class="container-fluid pt-4">
-        <div class="card" style="min-height: 720px">
-            <div class="card-body">
-                <table 
-                    datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaMisReservas"
-                    class="table table-hover table-light text-dark table-responsive-lg table-bordered" style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th colspan="11" class="text-center"> MIS RESERVAS </th>
-                        </tr>
-                        <tr>
-                            <th class="text-center">Fecha de Reserva</th>
-                            <th class="text-center">Hora</th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">Dni</th>
-                            <th class="text-center">Correo</th>
-                            <th class="text-center">Telefono</th>
-                            <th class="text-center">Tipo de paquete</th>
-                            <th class="text-center">Cantidad de personas</th>
-                            <th class="text-center">Acompañante</th>
-                            <th class="text-center">Total de pago</th>
-                            <th class="text-center">Restante a pagar</th>
-                            <th class="text-center">Estado de reserva</th>
-                            <th class="text-center" colspan="1">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr *ngFor="let reserva of tablaReserva" >
-                          <th>{{ reserva.fechaReserva }}</th>
-                          <th>{{ reserva.hora }}</th>
-                          <th>{{ reserva.apellido+" "+ reserva.nombres }}</th>
-                          <th>{{ reserva.dni}}</th>
-                          <th>{{ reserva.email }}</th>
-                          <th>{{ reserva.telefono }}</th>
-                          <th>{{ reserva.paqueteName }} </th>
-                          <th>{{ reserva.cantPersonas }}</th>
-                          <th>{{ reserva.acompaniante }}</th>
-                          <th>{{ reserva.totalPago }}</th>
-                          <th>calculando...</th>
-                          <th>{{ reserva.estado}}</th>
-                            <td>
-                                <a class="btn btn-warning" style='padding:0 10px' data-bs-toggle="modal"
-                                data-bs-target="#modalEmpleado" (click)="editarReserva(reserva.idReserva!)"><i class="fas fa-pencil-alt"  ></i></a>
-                            </td>
-                        </tr>
-                      </tbody>
-                </table>
 
+    <div class="banner">
+        <div class="container">
+          <div class="row">
+            <h1 class="contenido-banner-bio">Mis Reservas</h1>
+          </div>
+        </div>
+    </div>
+    <div class="container pt-4 pb-4" >
+        <div class="card" style="min-height: 520px">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table 
+                        datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaMisReservas"
+                        class="table table-hover table-light text-dark  table-bordered" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="11" class="text-center"> MIS RESERVAS </th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Fecha de Reserva</th>
+                                <th class="text-center">Hora</th>
+                                <th class="text-center">Correo</th>
+                                <th class="text-center">Telefono</th>
+                                <th class="text-center">Tipo de paquete</th>
+                                <th class="text-center">Cantidad de personas</th>
+                                <th class="text-center">Acompañante</th>
+                                <th class="text-center">Total de pago</th>
+                                <th class="text-center">Diferencia a pagar</th>
+                                <th class="text-center">Estado de reserva</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr *ngFor="let reserva of tablaReserva" >
+                                <td>{{ reserva.fechaReserva }}</td>
+                                <td>{{ reserva.hora }}</td>
+                                <td>{{ reserva.email }}</td>
+                                <td>{{ reserva.telefono }}</td>
+                                <td>{{ reserva.paqueteName }} </td>
+                                <td>{{ reserva.cantPersonas }}</td>
+                                <td>{{ reserva.acompaniante }}</td>
+                                <td>{{ reserva.totalPago }}</td>
+                                <td>calculando...</td>
+                                <td>{{ reserva.estado}}</td>
+                                <td class="acciones-cell">
+                                    <a class="btn btn-warning d-inline-block" style='padding:0 10px;' data-bs-toggle="modal"
+                                    data-bs-target="#" (click)="editarReserva(reserva.idReserva!)"><i class="fas fa-pencil-alt"  ></i></a>
+                                    <a class="btn btn-danger d-inline-block" style='padding:0 10px' data-bs-toggle="modal"
+                                    data-bs-target="#" >  <i class="fas fa-trash-alt"  ></i></a>
+                                </td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
   
     </div>
-</main>

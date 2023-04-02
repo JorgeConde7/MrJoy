@@ -35,7 +35,7 @@
               <td>{{ empleado.turno }}</td>
               <td>
                 <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt"(click)="btnSetEmpleadoModal(empleado)" data-bs-toggle="modal"
-                data-bs-target="#modalEmpleado"></i></a>
+                data-bs-target="#modalEmpleado"></i></a>{{" "}}
                 <a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt" (click)="eliminarEmpleado(empleado.id_empleados)"></i> </a>
               </td>
             </tr>
@@ -54,9 +54,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div *ngIf="isInsert" class="modal-headerCrear">
-            <h5  class="modal-title" id="exampleModalLabel">Crear Empleado</h5> 
+            <h5  class="modal-title" id="exampleModalLabel">Crear Empleado</h5>
           </div>
-          <div *ngIf="!isInsert" class="modal-headerActualizar">  
+          <div *ngIf="!isInsert" class="modal-headerActualizar">
             <h5  class="modal-title" id="exampleModalLabel">Actualizar Empleado</h5>
           </div>
           <form (ngSubmit)="formularioEmpleado()">
