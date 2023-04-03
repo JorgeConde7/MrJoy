@@ -5,16 +5,13 @@
         </div>
     </div>
 </div>
-<div class="container text-center">
-    <br />
-    <h2 class="text-center">Compra de Entradas</h2>
-    <p class="text-center">Pago Unico con tarjeta</p>
-    <hr />
-    <!--<img src="/assets/images/entradas/venta.png" alt="" class="img-fluid">-->
-    <br />
+<div class="container pt-4 pb-4" >
 
+    <h2 class="text-center">Venta de Entradas Mr. Joy</h2>
+ 
     <div class="card">
-        <table class="table ">
+        <div class="table-responsive">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Producto</th>
@@ -23,12 +20,12 @@
                     <th>Subtotal</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="tablaEntrada">
                 <tr *ngFor="let item of data">
                     <td><img [src]="item.rutaImg" alt="" class="imagen-entrada">
                         <p><b>{{item.descripcion}}</b></p>
                     </td>
-                    <td class="precio-entrada"><br />
+                    <td class="precio-entrada">
                         <h5>{{'S/.' + item.precioUnitario}}</h5>
                     </td>
                     <td>
@@ -36,10 +33,11 @@
                         <input type="number" class="cantidad" step="1" min="0" max="" value="0" [id]="item.descripcion" (input)="Aumentar(item.descripcion, item.precioUnitario, item.id, 2)" (keydown)="keydown($event)">
                         <input type="button" class="sube-baja" value="+" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 1)">
                     </td>
-                    <td><input [id]="item.id" value=0 readonly></td>
+                    <td><input [id]="item.id" class="subTotal" value=0 readonly></td>
                 </tr>
             </tbody>
         </table>
+    </div>
     </div>
     <br />
     <div class="row">
@@ -58,11 +56,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6>Total de la orden</h6>
-                    <hr />
+                    <h3>Total de la orden</h3>
                     <div class="row">
                         <table class="table">
-                            <tbody>
+                            <tbody class="tablaResultado">
                                 <tr>
                                     <td class="left">Subtotal</td>
                                     <td>{{this.subTotal}}</td>
@@ -78,7 +75,6 @@
                             </tbody>
                         </table>
                         <div class="right">
-                            <!-- <a href=""><i class="fas fa-arrow-left"></i> Continuar comprando</a><br /> -->
                             <button class="btn btn-primary mt-4" [disabled]="totals <= 0" type="button" id="" data-bs-toggle="modal"
                               data-bs-target="#modalLEntradas">Proceder con la
                               Compra</button>
