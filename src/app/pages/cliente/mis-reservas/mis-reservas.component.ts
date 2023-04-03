@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
-import { IReserva } from 'src/app/components/cliente/calendario-reserva/reserva';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.service';
@@ -21,36 +19,42 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   dtTrigger = new Subject<ADTSettings>()
 
   namePaquete: String = ""
-
-  //reservas: IReserva[] = []
   id!: number;
 
   paquetes: Paquete[] = []
 
   tablaReserva: TablaReserva[] = []
+  private primeraVez = true;
 
   constructor(private reservaService: ReservaServiceService, private router: Router,
     private paqueteService: PaquetesService) {
   }
 
   ngOnInit(): void {
-
+    
+    this.paqueteService.getPaquetes().subscribe(
+      paquetes => {
+        this.paquetes = paquetes;
+    });
+    
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
-      // pagingType: "full_numbers"
-      pageLength:10
+      pagingType: 'full_numbers',
+      pageLength: 5, // Aquí defines la cantidad de registros por página que deseas mostrar
+      lengthMenu: [ 5, 10, 25, 50 ], // Aquí defines las opciones de la lista desplegable de "Mostrar"
+      processing: true
     };
-
-    this.setPaquetesList()
 
     const payLoad = getPayload()
     this.id = payLoad?.id ? payLoad.id : 0;
-
+    
     this.reservaService.getReservasPorIdLogin(this.id).subscribe(reservaResponse => {
-
       this.tablaReserva = reservaResponse.map(
+        
         reserva => {
-          const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete = reserva.idPaquete)!
+
+          const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete == reserva.idPaquete)! 
+          
           return {
             acompaniante: reserva.acompaniante,
             apellido: reserva.apellido,
@@ -64,13 +68,16 @@ export class MisReservasComponent implements OnDestroy, OnInit {
             totalPago: reserva.totalPago,
             email: reserva.email,
             idReserva: reserva.idReserva,
-            paqueteName: paqueteFound.descripcion!
-
+            paqueteName: paqueteFound.descripcion!,
+            estado: reserva.estado,
+            dni: reserva.dni
           }
-        }
+        } 
       )
       this.dtTrigger.next(this.dtOptions)
     });
+    
+    
   }
 
   ngOnDestroy(): void {
@@ -82,16 +89,10 @@ export class MisReservasComponent implements OnDestroy, OnInit {
     this.router.navigate(['editar-misreservas', id])
   }
 
-  setPaquetesList() {
-    this.paqueteService.getPaquetes().subscribe(
-      paquetes => {
-        this.paquetes = paquetes;
-      });
-  }
 }
 
 interface TablaReserva{
-  paqueteName: String ;
+  paqueteName: string ;
   idReserva?: number | undefined;
   fechaRegistro: string | null;
   fechaReserva: string;
@@ -105,4 +106,6 @@ interface TablaReserva{
   acompaniante: number;
   totalPago: number;
   email?: string;
+  estado?: string;
+  dni?: string;
 }

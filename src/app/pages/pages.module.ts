@@ -55,6 +55,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MisReservasComponent } from './cliente/mis-reservas/mis-reservas.component';
 import { EditarreservasComponent } from './cliente/editarreservas/editarreservas.component';
+import { MisConsultasComponent } from './cliente/mis-consultas/mis-consultas.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { EditarreservasComponent } from './cliente/editarreservas/editarreservas
     AdminLoginComponent,
     MisReservasComponent,
     EditarreservasComponent,
+    MisConsultasComponent,
   ],
   imports: [
     AppRoutingModule,

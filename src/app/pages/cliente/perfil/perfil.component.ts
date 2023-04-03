@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ClienteService } from '../../../core/apis/client/perfil.service';
 import { ICliente } from '../../../core/models/client/perfil';
+import { getPayload } from 'src/app/util/token.util';
 
 @Component({
   selector: 'app-perfil',
@@ -11,33 +12,17 @@ import { ICliente } from '../../../core/models/client/perfil';
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
-  nombre : any = '';
+
   datosCompletos : any;
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject<ADTSettings>()
-  data: any
+  id!: number;
 
-  constructor(private clienteService:ClienteService) { this.obtener_localstore() }
-
-  ngOnInit(): void {
-    this.dtOptions = {
-      language: { url: environment.DATATABLE_LANGUAJE },
-      // pagingType: "full_numbers"
-      pageLength:10
-    };
-
-
-  }
-
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe()
-  }
-
-  icliente:ICliente={
-
+  icliente!: ICliente
+  /*={
     id_cliente:0,
     nombres:'',
-
+    idLogin: 1,
     apePaterno:'',
     apeMaterno:'',
     telefono: '',
@@ -47,9 +32,35 @@ export class PerfilComponent implements OnInit {
     direccion:'',
     fechaNacimiento:'',
     rutaImg:''
+  }*/
+
+  constructor(private clienteService:ClienteService) {  } //this.obtener_localstore()
+
+  ngOnInit(): void {
+    this.dtOptions = {
+      language: { url: environment.DATATABLE_LANGUAJE },
+      // pagingType: "full_numbers"
+      pageLength:10
+    };
+
+    const payLoad = getPayload()
+    this.id = payLoad?.id ? payLoad.id : 0;
+
+    this.clienteService.traerCliente(this.id).subscribe(
+      data => {
+        this.icliente = data;
+        console.log(this.icliente)
+      }
+    )
   }
 
-  obtener_localstore()
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe()
+  }
+
+  
+
+  /*obtener_localstore()
   {
     //console.log('abriendo ga')
     let nombrelocal = localStorage.getItem("datos");
@@ -70,6 +81,6 @@ export class PerfilComponent implements OnInit {
           console.log(this.icliente);
         })
     }
-  }
+  }*/
 
 }

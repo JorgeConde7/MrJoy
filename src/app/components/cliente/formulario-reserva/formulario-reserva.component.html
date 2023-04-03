@@ -1,5 +1,4 @@
 
-
 <form class="fomurlarioReserva" [formGroup]="formReserva">
   <label for="">Fecha de la Reserva:</label>
   <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva"   formControlName="fechaReserva" name = "fechaReserva" (change)="validandoCambioDeFecha()">
@@ -72,7 +71,7 @@
   <label for="">Tipo de Paquete</label>
   <select class="form-control" formControlName="idPaquete"  name = "idPaquete" #idPaquetes (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" >
     <option  value="0">Seleccione paquete</option>
-    <option *ngFor="let items of paquetes" [value]="items.idPaquete + ' '+ items.precio">{{ items.descripcion }}</option>
+    <option *ngFor="let items of paquetes" [value]="items.idPaquete + ' '+ items.precio">{{ items.descripcion }}</option>                                                 
   </select>
   <div class="form__warning" [ngClass]="{
     'show':

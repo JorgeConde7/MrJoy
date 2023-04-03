@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/apis/login.service';
 import * as  Storage from 'src/app/util/token.util';
+import { alertNotification } from 'src/app/util/notifications';
 
 @Component({
   selector: 'app-admin-login',
@@ -46,18 +47,27 @@ export class AdminLoginComponent implements OnInit {
 
     const { username, password } = this.formLogin.value
 
-    this.loginService.login(username, password).subscribe(loginResponse => {
-      const isEmptyToken = loginResponse.data == null
+    this.loginService.login(username, password).subscribe({
+      next: (loginResponse) => {
+        const isEmptyToken = loginResponse.data == null
+  
+        if (isEmptyToken) {
+          this.hasLoginError = true
+          return
+        }
+        // Guardamos el token en localstorage
+        Storage.setTokenEmpleado(loginResponse.data)
+  
+        this.router.navigate(['admin', 'menu'])
+    },
+    error: (err) => {
+      console.log(err);
+      alertNotification(err.error.message, '', "error")
+      this.hasLoginError = true
+    }
 
-      if (isEmptyToken) {
-        this.hasLoginError = true
-        return
-      }
-      // Guardamos el token en localstorage
-      Storage.setTokenEmpleado(loginResponse.data)
-
-      this.router.navigate(['admin', 'menu'])
-    })
+  });
+      
 
   }
 

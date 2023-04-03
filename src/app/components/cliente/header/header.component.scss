@@ -121,6 +121,19 @@ header{
     box-sizing: inherit;
 }*/
 
+.img__profile {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 5px;
+  width: 22px;
+  height: 22px;
+}
+
+.my__span {
+  background: red;
+  position: relative;
+}
 /* Style The Dropdown Button */
 .dropbtn {
     /*background-color: #4CAF50;*/

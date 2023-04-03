@@ -19,6 +19,8 @@ export class ContactoComponent implements OnInit {
   estado!: string;
   descripcion!: string;
   fechaRegistro: Date = new Date();
+  respuestaAtencion!: string;
+  idLogin!: number;
 
   constructor(
     private contactoService: ContactoService,
@@ -34,10 +36,13 @@ export class ContactoComponent implements OnInit {
     this.nombres = payLoad?.nombres ? payLoad.nombres : ""
     this.correo = payLoad?.correo ? payLoad.correo : "" ;
     this.telefono = payLoad?.telefono ? payLoad.telefono : "";
+    this.idLogin = Number(payLoad?.id ? payLoad.id : "");
+
   }
 
   onCreate(): void {
-    const contacto = new Contacto(this.nombres, this.correo, this.telefono, this.asunto, this.estado, this.descripcion, this.fechaRegistro);
+    const contacto = new Contacto(this.nombres, this.correo, this.telefono, this.asunto, 
+      this.estado, this.descripcion, this.fechaRegistro, this.idLogin);
     this.contactoService.create(contacto).subscribe(
       _ => {
         this.router.navigate([""])

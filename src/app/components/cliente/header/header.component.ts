@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   nombre: any = 'Ingresar';
   datosCompletos: any;
 
-  constructor(private router: Router) { this.obtener_localstore() }
+  constructor(private router: Router) { this.setUsernameFromSession() }
 
   ngOnInit(): void {
   }
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     return url === currentURL;
   }
 
-  obtener_localstore() {
+  setUsernameFromSession() {
     const payload = getPayload()
 
     if (payload) {
@@ -41,6 +41,8 @@ export class HeaderComponent implements OnInit {
   signut() {
     localStorage.removeItem(TOKEN);
     this.nombre = 'Ingresar'
+
+    this.router.navigate(['/'])
   }
 
 }

@@ -27,6 +27,7 @@ export class AdminPromocionesComponent implements OnInit {
   constructor(private promocionService: PromocionService, private router: Router) { }
 
   ngOnInit(): void {
+    this. setSesionData()
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
       // pagingType: "full_numbers"

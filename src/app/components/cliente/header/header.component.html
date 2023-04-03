@@ -24,21 +24,26 @@
                 {{nombre}}</a>
               <ng-template #UsuarioIngresado>
                 <div class="dropdown">
-                  <span class="formudatos dropbtn">{{" " + nombre | uppercase }} 🡣
+                  <span class="formudatos dropbtn ">{{" " + nombre | uppercase }} <span class="my__span">
+                      {{" "}}<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="rounded-circle img__profile"
+                        height="22" alt="" loading="lazy" />
+                    </span>
                   </span>
+
                   <div class="dropdown-content">
-                    <a routerLink="perfil">Perfil </a>
+                    <a routerLink="perfil"><i class="fa-solid fa-user"></i> Mi Perfil </a>
                     <!-- <a>Configuración</a> -->
-                    <a routerLink="mis-reservas">Mis reservas</a>
-                    <a (click)="signut()">Cerrar Sesión</a>
+                    <a routerLink="mis-reservas"><i class="fa-solid fa-book"></i> Mis reservas</a>
+                    <a routerLink="mis-consultas"><i class="fa-solid fa-pen-to-square"></i> Mis Consultas</a>
+                    <a (click)="signut()"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
                   </div>
                 </div>
 
               </ng-template>
             </li>
-            <li>
+            <!-- <li>
               <a class=""><i class="fas fa-cart-plus"> </i>ORDENES</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -60,7 +65,8 @@
           <a class="nav-link" aria-current="page" routerLink="index" [ngClass]="{active: isUrlEqualTo('/')}">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="atracciones" [ngClass]="{active: isUrlEqualTo('/atracciones')}">Atracciones</a>
+          <a class="nav-link" routerLink="atracciones"
+            [ngClass]="{active: isUrlEqualTo('/atracciones')}">Atracciones</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="parques" [ngClass]="{active: isUrlEqualTo('/parques')}">Parques</a>
@@ -72,7 +78,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="cumpleanios" [ngClass]="{active: isUrlEqualTo('/cumpleanios')}">Cumpleaños</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="nombre !== 'Ingresar'" class="nav-item">
           <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/cliente/contacto')}"
             [ngClass]="{active: isUrlEqualTo('/contacto')}">
             Contacto</a>
