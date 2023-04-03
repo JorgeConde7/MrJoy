@@ -28,6 +28,24 @@
     background-size: cover;
     */
 }
+.boton-portada{
+  cursor: pointer;
+   &:hover {
+    opacity: .7;
+  }
+}
+
+.miicono{
+  cursor: pointer;
+   &:hover {
+    opacity: .7;
+  }
+}
+
+.perfil-usuario-avatar{
+  border: 2px solid rgba(0, 0, 0, .8);
+  box-shadow: 4px 4px 51px 0px rgba(0,0,0,0.35);
+}
 
 .seccion-perfil-usuario .perfil-usuario-portada .boton-portada {
     position: absolute;
@@ -38,7 +56,6 @@
     padding: 12px 25px;
     background-color: rgba(0, 0, 0, .5);
     color: #fff;
-    cursor: pointer;
 }
 
 .seccion-perfil-usuario .perfil-usuario-portada .boton-portada i {
@@ -77,7 +94,6 @@
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    cursor: pointer;
 }
 
 .seccion-perfil-usuario .perfil-usuario-body {
