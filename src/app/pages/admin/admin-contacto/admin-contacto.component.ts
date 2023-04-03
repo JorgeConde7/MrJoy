@@ -60,7 +60,7 @@ export class AdminContactoComponent implements OnDestroy, OnInit {
       return;
     }
 
-    const resul = await alertConfirmation();
+    const resul = await alertConfirmation('Confirme respuesta');
     if (!resul.isConfirmed) return;
 
     const { id: idEmpleado } = getPayloadEmpleado()!;
