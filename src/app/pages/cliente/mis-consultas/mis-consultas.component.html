@@ -9,32 +9,34 @@
     <div class="container pt-4 pb-4">
         <div class="card" style="min-height: 520px">
             <div class="card-body">
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaMisConsultas"
-                    class="table table-hover table-light text-dark table-responsive-lg table-bordered" style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th colspan="6" class="text-center">MIS CONSULTAS</th>
-                        </tr>
-                        <tr>
-                            <th class="text-center">Fecha Registro</th>
-                            <th class="text-center">Asunto</th>
-                            <th class="text-center">Descripcion</th>
-                            <th class="text-center">Estado</th>
-                            <th class="text-center">Respuesta</th>
-                        </tr>
-
-                        <tbody class="text-center">
-                            <tr *ngFor="let consulta of consultotas">
-                                <th>{{consulta.fechaRegistro | date: 'yyyy-MM-dd'}}</th>
-                                <th>{{consulta.asunto}}</th>
-                                <th>{{consulta.descripcion}}</th>
-                                <th>{{consulta.estado}}</th>
-                                <th>{{ consulta.respuestaAtencion ? consulta.respuestaAtencion : '-'}}</th>
-
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaMisConsultas"
+                        class="table table-hover table-light text-dark table-responsive-lg table-bordered" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="6" class="text-center">MIS CONSULTAS</th>
                             </tr>
-                        </tbody>
+                            <tr>
+                                <th class="text-center">Fecha Registro</th>
+                                <th class="text-center">Asunto</th>
+                                <th class="text-center">Descripcion</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Respuesta</th>
+                            </tr>
 
-                </table>
+                            <tbody class="text-center">
+                                <tr *ngFor="let consulta of consultotas">
+                                    <th>{{consulta.fechaRegistro | date: 'yyyy-MM-dd'}}</th>
+                                    <th>{{consulta.asunto}}</th>
+                                    <th>{{consulta.descripcion}}</th>
+                                    <th>{{consulta.estado}}</th>
+                                    <th>{{ consulta.respuestaAtencion ? consulta.respuestaAtencion : '-'}}</th>
+
+                                </tr>
+                            </tbody>
+
+                    </table>
+                </div>
             </div>
         </div>
 

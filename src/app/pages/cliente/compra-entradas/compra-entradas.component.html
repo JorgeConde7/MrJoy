@@ -11,33 +11,33 @@
  
     <div class="card">
         <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
-            <tbody class="tablaEntrada">
-                <tr *ngFor="let item of data">
-                    <td><img [src]="item.rutaImg" alt="" class="imagen-entrada">
-                        <p><b>{{item.descripcion}}</b></p>
-                    </td>
-                    <td class="precio-entrada">
-                        <h5>{{'S/.' + item.precioUnitario}}</h5>
-                    </td>
-                    <td>
-                        <input type="button" class="sube-baja" value="-" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 0)">
-                        <input type="number" class="cantidad" step="1" min="0" max="" value="0" [id]="item.descripcion" (input)="Aumentar(item.descripcion, item.precioUnitario, item.id, 2)" (keydown)="keydown($event)">
-                        <input type="button" class="sube-baja" value="+" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 1)">
-                    </td>
-                    <td><input [id]="item.id" class="subTotal" value=0 readonly></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody class="tablaEntrada">
+                    <tr *ngFor="let item of data">
+                        <td><img [src]="item.rutaImg" alt="" class="imagen-entrada">
+                            <p><b>{{item.descripcion}}</b></p>
+                        </td>
+                        <td class="precio-entrada">
+                            <h5>{{'S/.' + item.precioUnitario}}</h5>
+                        </td>
+                        <td>
+                            <input type="button" class="sube-baja" value="-" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 0)">
+                            <input type="number" class="cantidad" step="1" min="0" max="" value="0" [id]="item.descripcion" (input)="Aumentar(item.descripcion, item.precioUnitario, item.id, 2)" (keydown)="keydown($event)">
+                            <input type="button" class="sube-baja" value="+" (click)="Aumentar(item.descripcion, item.precioUnitario, item.id, 1)">
+                        </td>
+                        <td><input [id]="item.id" class="subTotal" value=0 readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <br />
     <div class="row">
