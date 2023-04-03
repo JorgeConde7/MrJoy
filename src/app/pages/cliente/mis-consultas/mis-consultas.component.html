@@ -18,22 +18,22 @@
                         <tr>
                             <th class="text-center">Fecha Registro</th>
                             <th class="text-center">Asunto</th>
-                            <th class="text-center">Descripcion</th>                          
+                            <th class="text-center">Descripcion</th>
                             <th class="text-center">Estado</th>
                             <th class="text-center">Respuesta</th>
                         </tr>
-                    
+
                         <tbody class="text-center">
                             <tr *ngFor="let consulta of consultotas">
                                 <th>{{consulta.fechaRegistro | date: 'yyyy-MM-dd'}}</th>
                                 <th>{{consulta.asunto}}</th>
-                                <th>{{consulta.descripcion}}</th> 
+                                <th>{{consulta.descripcion}}</th>
                                 <th>{{consulta.estado}}</th>
-                                <th>{{consulta.respuestaAtencion}}</th>                                    
-     
+                                <th>{{ consulta.respuestaAtencion ? consulta.respuestaAtencion : '-'}}</th>
+
                             </tr>
                         </tbody>
-                    
+
                 </table>
             </div>
         </div>
