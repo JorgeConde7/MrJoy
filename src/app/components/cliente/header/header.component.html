@@ -73,7 +73,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="cumpleanios" [ngClass]="{active: isUrlEqualTo('/cumpleanios')}">Cumpleaños</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="nombre !== 'Ingresar'" class="nav-item">
           <a class="nav-link" routerLink="contacto" [ngClass]="{active: isUrlEqualTo('/cliente/contacto')}"
             [ngClass]="{active: isUrlEqualTo('/contacto')}">
             Contacto</a>
