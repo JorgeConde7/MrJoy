@@ -11,6 +11,7 @@ import * as regex from 'src/app/util/regex.util';
 import * as moment from 'moment';
 import { getCurrentDate } from 'src/app/util/utils.util';
 import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
+import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
 
 
 @Component({
@@ -156,11 +157,15 @@ export class FormularioReservaComponent implements OnInit {
     this.reserva.dni = dni
   }
 
-  registrarReservaEmpleado() {
+  async registrarReservaEmpleado() {
+
+    const result = await alertConfirmation('Confirmar Reserva')
+    if(!result.isConfirmed) return;
+
+
     this.setFormularioDataToReservaDTO()
     this.reservaService.CrearReserva(this.reserva).subscribe(reservaResponse => {
-      console.log({ reservaResponse });
-
+      window.location.reload()
     })
 
 
