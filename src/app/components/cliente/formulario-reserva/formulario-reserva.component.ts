@@ -80,7 +80,7 @@ export class FormularioReservaComponent implements OnInit {
   dateValidator(control: FormControl): { [s: string]: boolean } | null {
     if (control.value) {
       const date = moment(control.value);
-      const today = moment().subtract(1, 'day');
+      const today = moment()
       if (date.isBefore(today)) {
         return { 'invalidDate': true }
       }
@@ -91,8 +91,11 @@ export class FormularioReservaComponent implements OnInit {
   getReservaFormBuilder() {
     let terminosCondiciones = false
     const [date, month, year, _] = getCurrentDate()
-    const today = `${year}-${month}-${date}`
-    this.validandoCambioDeFechaByFecha(today)
+    const tomorrow = `${year}-${month}-0${Number(date) + 1}`
+    console.log({date});
+    console.log(Number(date) + 1);
+
+    this.validandoCambioDeFechaByFecha(tomorrow)
     let { correo = '', apellidos = '', nombres = '', dni = '', telefono = '', profile = '' } = getPayload() || {};
     const isClient = profile === "cliente"
     const isReservaPage = this.isUrlEqualTo("/admin/reservas")
@@ -108,7 +111,7 @@ export class FormularioReservaComponent implements OnInit {
 
     this.sesionData.isClient = isClient;
     return this.formBuilder.group({
-      fechaReserva: [today, [Validators.required, this.dateValidator]],
+      fechaReserva: [tomorrow, [Validators.required, this.dateValidator]],
       hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
       nombres: [nombres, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
       apellido: [apellidos, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
