@@ -99,7 +99,7 @@ export class FormularioReservaComponent implements OnInit {
     const isClient = profile === "cliente"
     const isReservaPage = this.isUrlEqualTo("/admin/reservas")
     // Si la sesion del empleado esta en la pagina, limpiara campos por defecto
-    if (isClient) {
+    if ( isReservaPage) {
       correo = ''
       apellidos = ''
       nombres = ''
