@@ -18,8 +18,7 @@ export class PerfilComponent implements OnInit {
   dtTrigger = new Subject<ADTSettings>()
   id!: number;
 
-  icliente!: ICliente
-  /*={
+  icliente: ICliente = {
     id_cliente:0,
     nombres:'',
     idLogin: 1,
@@ -32,7 +31,7 @@ export class PerfilComponent implements OnInit {
     direccion:'',
     fechaNacimiento:'',
     rutaImg:''
-  }*/
+  }
 
   constructor(private clienteService:ClienteService) {  } //this.obtener_localstore()
 
@@ -49,7 +48,6 @@ export class PerfilComponent implements OnInit {
     this.clienteService.traerCliente(this.id).subscribe(
       data => {
         this.icliente = data;
-        console.log(this.icliente)
       }
     )
   }
