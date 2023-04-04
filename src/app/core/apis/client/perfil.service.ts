@@ -4,6 +4,7 @@ import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Cliente, ICliente } from '../../models/client/perfil';
 const URL = `${environment.URL_BASE}/api/clientes`;
+const URLbyLogin = `${environment.URL_BASE}/api`;
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export  class ClienteService{
     }
 
   traerCliente(id:number): Observable<ICliente>{
-      return this.http.get<ICliente>(URL+"/"+id);
+      return this.http.get<ICliente>(URLbyLogin+"/clientebyidlogin/"+id);
     }
 
 }
