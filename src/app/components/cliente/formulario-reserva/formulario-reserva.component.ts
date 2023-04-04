@@ -164,7 +164,7 @@ export class FormularioReservaComponent implements OnInit {
 
 
     this.setFormularioDataToReservaDTO()
-    this.reservaService.CrearReserva(this.reserva).subscribe(reservaResponse => {
+    this.reservaService.CrearReserva(this.reserva).subscribe(_ => {
       window.location.reload()
     })
 
