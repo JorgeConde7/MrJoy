@@ -20,55 +20,58 @@
       <div class="card-body">
         <div class="row mt-4">
           <div class="col-md-7">
-            <app-calendario-reserva></app-calendario-reserva>
+            <app-calendario-reserva (reservaPicked$)="reservaPicked$($event)"></app-calendario-reserva>
           </div>
           <div class="col-md-5">
-            
-              <div class="table-responsive">
-                <table class="table table-hover table-light text-dark table-responsive-lg table-bordered text-center" style="width: 100%">
-                  <thead>
-                    <tr><th colspan="2">DETALLE DE RESERVA POR HORA</th></tr>
-                    <tr>
-                      <th>Nombres y Apellidos</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th>DNI</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th>Telefono</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th>Hora</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th>Cant. Personas</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th>Cant. Acompañantes</th>
-                      <td></td>
-                    <tr>
-                      <th>Paquete</th>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th>Precio total</th>
-                      <td></td>
-                    </tr>
 
-                  </thead>
-                  <tbody>
-          
-                  </tbody>
-                </table>
-              </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-light text-dark table-responsive-lg table-bordered text-center"
+                style="width: 100%">
+                <thead>
+                  <tr>
+                    <th colspan="2">DETALLE DE RESERVA POR HORA</th>
+                  </tr>
+                  <tr>
+                    <th>Nombres y Apellidos</th>
+                    <td> {{ reservaPicked.nombres + " " + reservaPicked.apellido }} </td>
+                  </tr>
+                  <tr>
+                    <th>DNI</th>
+                    <td> {{ reservaPicked.dni }} </td>
+                  </tr>
+                  <tr>
+                    <th>Telefono</th>
+                    <td> {{ reservaPicked.telefono }} </td>
+                  </tr>
+                  <tr>
+                    <th>Hora</th>
+                    <td> {{ reservaPicked.hora }} </td>
+                  </tr>
+                  <tr>
+                    <th>Cant. Personas</th>
+                    <td> {{ reservaPicked.cantPersonas }} </td>
+                  </tr>
+                  <tr>
+                    <th>Cant. Acompañantes</th>
+                    <td> {{ reservaPicked.acompaniante }} </td>
+                  <tr>
+                    <th>Paquete</th>
+                    <td> {{ paquetePicked }} </td>
+                  </tr>
+                  <tr>
+                    <th>Precio total</th>
+                    <td> {{ reservaPicked.totalPago }} </td>
+                  </tr>
+
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-        
+
       </div>
     </div>
 
@@ -133,5 +136,3 @@
     </form>
   </section>
 </main>
-
-

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Reserva, IReserva } from '../../../components/cliente/calendario-reserva/reserva';
+import { IReserva } from '../../../components/cliente/calendario-reserva/reserva';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,9 +16,9 @@ export class ReservaServiceService
 
   constructor(private http:HttpClient) { }
 
-  getReserva(fecha : any) : Observable<Reserva[]>
+  getReserva(fecha : string) : Observable<IReserva[]>
   {
-    return this.http.get<Reserva[]>(this.urlApi + 'reservas-fecha/'+ fecha);
+    return this.http.get<IReserva[]>(this.urlApi + 'reservas-fecha/'+ fecha);
   }
 
   CrearReserva(reserva: IReserva) : Observable<IReserva>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IReserva, Reserva } from 'src/app/components/cliente/calendario-reserva/reserva';
+import { IReserva } from 'src/app/components/cliente/calendario-reserva/reserva';
 import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
@@ -32,7 +32,7 @@ export class EditarreservasComponent implements OnInit {
 
   horaOcupada: string[] = [];
 
-  
+
   total: number = 0;
 
   listar: any;
@@ -55,11 +55,11 @@ export class EditarreservasComponent implements OnInit {
     flagTipoReserva: 0,
     acompaniante: 0,
     totalPago: 0
-    
+
   };
-  
+
   iReserva: IReserva[] = [];
-  
+
   sesionData = { isClient: true }
 
 
@@ -67,19 +67,19 @@ export class EditarreservasComponent implements OnInit {
     private reservaService: ReservaServiceService, private paqueteService: PaquetesService, private formBuilder: FormBuilder) {
       this.editarForm = this.getReservaFormBuilder()
   }
-  
-  
+
+
   ngOnInit(): void {
-    
+
     this.setPaquetesList()
 
     let reservaId = this.activerouter.snapshot.paramMap.get('id')
     let reservaIdNumber = Number(reservaId);
 
     this.reservaService.getReservasPorIdReserva(reservaIdNumber).subscribe(data => {
-      
+
       const paquetefound = this.paquetes.find(paquete  => paquete.idPaquete === data.idPaquete)
-      
+
       const paqueteValue = `${paquetefound?.idPaquete} ${paquetefound?.precio}`
 
       const horafound = this.horaCadena.find(hora => {
@@ -103,7 +103,7 @@ export class EditarreservasComponent implements OnInit {
       this.total = data.totalPago
     })
 
-    
+
   }
 
   get cantidadPersonas() {
@@ -113,7 +113,7 @@ export class EditarreservasComponent implements OnInit {
   get cantidadAcompaniantes() {
     return this.editarForm.controls['acompaniante'].value
   }
-  
+
 
   setPaquetesList() {
     this.paqueteService.getPaquetes().subscribe(
@@ -139,7 +139,7 @@ export class EditarreservasComponent implements OnInit {
     this.validandoCambioDeFechaByFecha(today)
     let { correo, apellidos, nombres, telefono, profile } = getPayload()!
     const isClient = profile === "cliente"
-  
+
     this.sesionData.isClient = isClient;
     return this.formBuilder.group({
       fechaReserva: [today, [Validators.required, this.dateValidator]],
@@ -152,7 +152,7 @@ export class EditarreservasComponent implements OnInit {
     })
   }
 
-  
+
 
   validandoCambioDeFechaByFecha(fecha: string) {
     this.horaCadena = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
@@ -168,14 +168,14 @@ export class EditarreservasComponent implements OnInit {
     })
   }
 
-  
+
 
   onSubmit() {
     let reservaId = Number(this.activerouter.snapshot.paramMap.get('id'))
-    
+
     let { correo, apellidos: apellido, nombres, telefono, profile, id } = getPayload()!
     const soloIdPaquete = this.editarForm.value.idPaquete!.split(" ")[0]
-    
+
     const reservaDto: IReserva = {
       nombres,
       idPaquete: soloIdPaquete,
@@ -190,7 +190,7 @@ export class EditarreservasComponent implements OnInit {
       totalPago: this.total,//this.editarForm.value.totalPago!
       email: this.editarForm.value.email!,
       fechaReserva: this.editarForm.value.fechaReserva!
-      
+
     }
 
     if (reservaDto) {
@@ -209,7 +209,7 @@ export class EditarreservasComponent implements OnInit {
           this.router.navigate(['mis-reservas'])
         }
       )
-      } 
+      }
   }
 
   /*calcularDiferenciaDias(reservaActual: IReserva): number {
@@ -217,16 +217,16 @@ export class EditarreservasComponent implements OnInit {
     const month = fechaHoy.getMonth() + 1;
     const day = fechaHoy.getDate();
     const formattedDate = `${fechaHoy.getFullYear}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-    
+
     const calInicio = fechaHoy;
     const calFin = new Date(reservaActual.fechaReserva);
-    
+
     const difMillis = calFin.getTime() - calInicio.getTime();
     const difDias = Math.floor(difMillis / (1000 * 60 * 60 * 24));
-    
+
     return difDias;
   }*/
-  
+
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
 
     const paqueteSplit = paquete.split(" ")

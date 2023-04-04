@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 import { ReservaServiceService } from '../../../core/apis/client/reserva-service.service';
-import { Reserva } from './reserva';
 import { Router } from '@angular/router';
 import { IReserva } from './reserva';
 import { ICalendary } from 'src/app/core/models/client/calendary';
@@ -27,16 +26,15 @@ export class CalendarioReservaComponent implements OnInit {
   dateValue: any;
   monthSelect: any[];
   dateSelect: any;
-  reservas: Reserva[] = [];
+  reservas: IReserva[] = [];
   calendarySelect!: ICalendary;
-  
-  //listar:Reserva;
-  listar: any;
+
+  listar: IReserva = {} as IReserva;
+  @Output() reservaPicked$ = new EventEmitter<IReserva>()
 
   // iniciando datos de variables
   constructor(private reseraService: ReservaServiceService, private router: Router) {
     this.monthSelect = new Array;
-    this.listar = new Reserva();
   }
 
   // la misma vaina :v
@@ -109,25 +107,10 @@ export class CalendarioReservaComponent implements OnInit {
 
   verDetallesReserva(hora: string) {
     console.log('diste clic en la hora: ' + hora)
-    for (let i = 0; i < this.reservas.length; i++) {
-      if (this.reservas[i].hora === hora) {
-        this.listar = this.reservas[i];
-      }
-    }
-    this.ireserva = this.listar;
-    /*this.paqueteService.getPaquete().subscribe( paquetes =>
-      {
-        this.paquete = paquetes;
-        for (let i=0; i<this.paquete.length; i++)
-        {
-          if (this.paquete[i].idPaquete === this.ireserva.idPaquete)
-          {
-            this.ireserva.idPaquete = this.ireserva.idPaquete + ' ' + this.paquete[i].precio;
-          }
-        }
-      });*/
-    //this.ireserva.idPaquete = this.ireserva.idPaquete + ' ' + this.ireserva.precio
-    //console.log(this.ireserva)
+
+    this.listar = this.reservas.find(reserva => reserva.hora === hora)!
+
+    this.reservaPicked$.emit(this.listar)
   }
 
   isDateCalendarySelected(day: ICalendary) {
