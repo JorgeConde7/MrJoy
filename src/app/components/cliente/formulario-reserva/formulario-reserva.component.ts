@@ -92,22 +92,21 @@ export class FormularioReservaComponent implements OnInit {
     let terminosCondiciones = false
     const [date, month, year, _] = getCurrentDate()
     const tomorrow = `${year}-${month}-0${Number(date) + 1}`
-    console.log({date});
-    console.log(Number(date) + 1);
 
     this.validandoCambioDeFechaByFecha(tomorrow)
     let { correo = '', apellidos = '', nombres = '', dni = '', telefono = '', profile = '' } = getPayload() || {};
     const isClient = profile === "cliente"
     const isReservaPage = this.isUrlEqualTo("/admin/reservas")
     // Si la sesion del empleado esta en la pagina, limpiara campos por defecto
-    // if (isReservaPage) {
-    //   correo = ''
-    //   apellidos = ''
-    //   nombres = ''
-    //   dni = ''
-    //   telefono = ''
-    // }
-    if (!isClient && isReservaPage) terminosCondiciones = true
+    if (isClient) {
+      correo = ''
+      apellidos = ''
+      nombres = ''
+      dni = ''
+      telefono = ''
+    }
+
+    if (isReservaPage) terminosCondiciones = true
 
     this.sesionData.isClient = isClient;
     return this.formBuilder.group({
