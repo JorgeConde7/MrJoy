@@ -1,9 +1,10 @@
 <main style="margin-top: 35px">
-  <div class="container-fluid pt-4">
-    <a id="btnNuevoEmpleado" class="btn btn-success float-right my-2" data-bs-toggle="modal"
-      data-bs-target="#modalEmpleado" (click)="btnNuevoEmpleado()">
-      <i class="ion-plus-round"></i> Nuevo</a>
-    <div class="card" style="min-height: 720px">
+  <div class="container-fluid pt-4  mt-y">
+
+    <div class="card mt-5" style="min-height: 720px">
+      <a id="btnNuevoEmpleado" class="btn btn-success float-right my-2 mt-5" data-bs-toggle="modal"
+        data-bs-target="#modalEmpleado" (click)="btnNuevoEmpleado()">
+        <i class="ion-plus-round"></i> Nuevo</a>
       <div class="card-body">
         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaEmpleado"
           class="table table-hover table-dark text-light table-responsive-lg table-bordered" style="width: 100%">
@@ -34,9 +35,11 @@
               <td>{{ empleado.fechaNacimiento }}</td>
               <td>{{ empleado.turno }}</td>
               <td>
-                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt"(click)="btnSetEmpleadoModal(empleado)" data-bs-toggle="modal"
-                data-bs-target="#modalEmpleado"></i></a>{{" "}}
-                <a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt" (click)="eliminarEmpleado(empleado.id_empleados)"></i> </a>
+                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt"
+                    (click)="btnSetEmpleadoModal(empleado)" data-bs-toggle="modal"
+                    data-bs-target="#modalEmpleado"></i></a>{{" "}}
+                <a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt"
+                    (click)="eliminarEmpleado(empleado)"></i> </a>
               </td>
             </tr>
           </tbody>
@@ -54,45 +57,103 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div *ngIf="isInsert" class="modal-headerCrear">
-            <h5  class="modal-title" id="exampleModalLabel">Crear Empleado</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Crear Empleado</h5>
           </div>
           <div *ngIf="!isInsert" class="modal-headerActualizar">
-            <h5  class="modal-title" id="exampleModalLabel">Actualizar Empleado</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar Empleado</h5>
           </div>
-          <form (ngSubmit)="formularioEmpleado()">
+          <form (ngSubmit)="onSubmit()" [formGroup]="formEmpleado">
             <div class="modal-body">
               <div class="form-group">
                 <label for="nombres" class="col-form-label">Nombres:</label>
-                <input type="text" required [(ngModel)]="empleado.nombres" class="form-control" name="nombres">
+                <input type="text" required formControlName="nombres" class="form-control" name="nombres">
+                <div class="form__warning" [ngClass]="{
+                  'show':
+                  formEmpleado.controls['nombres'].errors &&
+                  formEmpleado.controls['nombres'].touched
+                }">
+                  <p class="warning-text">* Solo se permite letras a-Z</p>
+                </div>
               </div>
               <div class="form-group">
                 <label for="apellidos" class="col-form-label">Apellidos:</label>
-                <input type="text" required [(ngModel)]="empleado.apellidos"class="form-control" name="apellidos">
+                <input type="text" required formControlName="apellidos" class="form-control" name="apellidos">
+                <div class="form__warning" [ngClass]="{
+                  'show':
+                  formEmpleado.controls['apellidos'].errors &&
+                  formEmpleado.controls['apellidos'].touched
+                }">
+                  <p class="warning-text">* Solo se permite letras a-Z</p>
+                </div>
               </div>
               <div class="form-group">
                 <label for="dni" class="col-form-label">Dni:</label>
-                <input maxlength="8" type="text" required [(ngModel)]="empleado.dni"class="form-control" name="dni">
+                <input maxlength="8" type="text" required formControlName="dni" class="form-control" name="dni">
+                <div class="form__warning" [ngClass]="{
+                  'show':
+                  formEmpleado.controls['dni'].errors &&
+                  formEmpleado.controls['dni'].touched
+                }">
+                  <p class="warning-text">* Dni requerido</p>
+                </div>
               </div>
               <div class="form-group">
                 <label for="telefono" class="col-form-label">Telefono:</label>
-                <input maxlength="9"  type="text" required [(ngModel)]="empleado.telefono" class="form-control" name="telefono">
+                <input maxlength="9" type="text" required formControlName="telefono" class="form-control"
+                  name="telefono">
+                <div class="form__warning" [ngClass]="{
+                    'show':
+                    formEmpleado.controls['telefono'].errors &&
+                    formEmpleado.controls['telefono'].touched
+                  }">
+                  <p class="warning-text">* Solo numeros 0-9</p>
+                  <p class="warning-text">* Caracteres max. 9</p>
+                </div>
               </div>
               <div class="form-group">
                 <label for="correo" class="col-form-label">Correo:</label>
-                <input maxlength="50" type="email"  required [(ngModel)]="empleado.correo"class="form-control" name="email">
+                <input maxlength="50" type="email" required formControlName="correo" class="form-control" name="email">
+                <div class="form__warning" [ngClass]="{
+                    'show':
+                    formEmpleado.controls['correo'].errors &&
+                    formEmpleado.controls['correo'].touched
+                  }">
+                  <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
+                </div>
               </div>
               <div class="form-group">
                 <label for="fechaNacimiento" class="col-form-label">Fecha de Nacimiento:</label>
-                <input type="date" required [(ngModel)]="empleado.fechaNacimiento"class="form-control" name="fechaNacimiento">
+                <input type="date" required formControlName="fechaNacimiento" class="form-control"
+                  name="fechaNacimiento">
+                <div class="form__warning" [ngClass]="{
+                    'show':
+                    formEmpleado.controls['fechaNacimiento'].errors &&
+                    formEmpleado.controls['fechaNacimiento'].touched
+                  }">
+                  <p class="warning-text">* Seleccione una fecha</p>
+                </div>
               </div>
               <div class="form-group">
-                <label  for="validationDefault01"class="col-form-label">Turno:</label>
-                <input id="validationDefault01"type="text" class="form-control" required [(ngModel)]="empleado.turno" name="turno">
+                <label for="turno" class="col-form-label">Turno:</label>
+                <select class="form-control" formControlName="turno" id="turno">
+                  <option value="mañana">Mañana</option>
+                  <option value="tarde">Tarde</option>
+                  <option value="noche">Noche</option>
+                </select>
+                <div class="form__warning" [ngClass]="{
+                  'show':
+                  formEmpleado.controls['turno'].errors &&
+                  formEmpleado.controls['turno'].touched
+                }">
+                  <p class="warning-text">* Seleccione una Turno</p>
+                </div>
               </div>
+
             </div>
             <div class="modal-footer">
-              <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal" (click)="btnCancelarModal()">Cancelar</button>
-              <button type="submit" id="btnGuardar" class="btn btn-dark" data-bs-dismiss="modal">  Guardar</button>
+              <button type="button" (click)="btnCancel()" id="btnCancelar" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <!-- <button type="button" (click)="btnCancel()" id="btnCancelar" class="btn btn-danger">Cancelar</button> -->
+              <button type="submit" id="btnGuardar" class="btn btn-primary" data-bs-dismiss="modal"> Guardar</button>
             </div>
           </form>
         </div>

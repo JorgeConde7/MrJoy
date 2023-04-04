@@ -1,3 +1,5 @@
+import { FormGroup } from "@angular/forms";
+
 /**
  * Algoritmo simple de luhn que permite validar los digitos  de tarjetas de credito
  */
@@ -25,7 +27,24 @@ const getCurrentDate = () => {
   return [dateCurrent, monthCurrent, yearCurrent, dateTime]
 }
 
+const  markFormGroupTouched = (formGroup: FormGroup) => {
+  (<any>Object).values(formGroup.controls).forEach((control:any) => {
+    control.markAsTouched();
+
+    if (control.controls) { markFormGroupTouched(control); }
+  });
+}
+const  markFormGroupUnTouched = (formGroup: FormGroup) => {
+  (<any>Object).values(formGroup.controls).forEach((control:any) => {
+    control.markAsUntouched();
+
+    if (control.controls) { markFormGroupTouched(control); }
+  });
+}
+
 export {
   checkLuhn,
-  getCurrentDate
+  getCurrentDate,
+  markFormGroupTouched,
+  markFormGroupUnTouched
 }
