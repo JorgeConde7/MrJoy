@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
+
+  openCityInNewWindow(path:string) {
+  // Converts the route into a string that can be used
+  // with the window.open() function
+  const url = this.router.serializeUrl(
+    this.router.createUrlTree([path])
+  );
+
+  window.open(url, '_blank');
+}
 
 }
