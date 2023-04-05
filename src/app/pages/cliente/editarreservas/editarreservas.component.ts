@@ -41,7 +41,7 @@ export class EditarreservasComponent implements OnInit {
   paquetes: Paquete[] = [];
 
   datosReserva: IReserva = {
-    idPaquete: 0,
+    idPaquete: 1,
     fechaRegistro: '',
     fechaReserva: '',
     hora: 'inicio',

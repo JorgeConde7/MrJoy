@@ -12,7 +12,7 @@ export const alertNotification = (
     title,
     text,
     showConfirmButton: true,
-    timer: 6000,
+    timer: 7000,
   }).then((result) => {
     cb(result);
   });

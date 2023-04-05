@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContactoService } from 'src/app/core/apis/client/contacto.service';
 import { Contacto } from 'src/app/core/models/client/contacto';
+import { alertNotification } from 'src/app/util/notifications';
 import { getPayload } from 'src/app/util/token.util';
 
 
@@ -45,7 +46,11 @@ export class ContactoComponent implements OnInit {
       this.estado, this.descripcion, this.fechaRegistro, this.idLogin);
     this.contactoService.create(contacto).subscribe(
       _ => {
+        alertNotification("Se ha guardado su consulta. Todo correcto.", "", "success")
         this.router.navigate([""])
+      },
+      error => {
+        alertNotification(error.error.message, '', "error")
       }
     )
   }
