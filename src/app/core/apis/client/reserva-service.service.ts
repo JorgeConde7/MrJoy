@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ReservaServiceService
 {
 
-  private urlApi : string = `${environment.URL_BASE}/apireserva/`;
+  private urlApi : string = `${environment.URL_BASE}/apireserva`;
 
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'});
 
@@ -18,25 +18,28 @@ export class ReservaServiceService
 
   getReserva(fecha : string) : Observable<IReserva[]>
   {
-    return this.http.get<IReserva[]>(this.urlApi + 'reservas-fecha/'+ fecha);
+    return this.http.get<IReserva[]>(this.urlApi + '/reservas-fecha/'+ fecha);
   }
 
   CrearReserva(reserva: IReserva) : Observable<IReserva>
   {
-    return this.http.post<IReserva>(this.urlApi + 'reservas', reserva);
+    return this.http.post<IReserva>(this.urlApi + '/reservas', reserva);
   }
 
   getReservasPorIdLogin(idLogin: number): Observable<IReserva[]> {
-    return this.http.get<IReserva[]>(this.urlApi + 'reservas-idLogin/'+idLogin);
+    return this.http.get<IReserva[]>(this.urlApi + '/reservas-idLogin/'+idLogin);
   }
 
   getReservasPorIdReserva(idReserva: number): Observable<IReserva> {
-    return this.http.get<IReserva>(this.urlApi + 'reservas/'+ idReserva);
+    return this.http.get<IReserva>(this.urlApi + '/reservas/'+ idReserva);
   }
 
   putReserva(reserva: IReserva, idReserva: number):Observable<IReserva> {
-    return this.http.put<IReserva>(this.urlApi + 'reservas/'+idReserva, reserva);
+    return this.http.put<IReserva>(this.urlApi + '/reservas/'+idReserva, reserva);
   }
 
+  findReservasByNombreOrApellidoOrDni(campo:string, valor: string){
+    return this.http.get<IReserva[]>(`${this.urlApi}/buscar?campo=${campo}&valor=${valor}`)
+  }
 
 }

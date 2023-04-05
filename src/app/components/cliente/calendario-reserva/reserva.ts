@@ -18,4 +18,5 @@ export interface IReserva
     email?: string;
     dni?: string;
     estado?: string;
+    diferenciaPagar?: number;
 };

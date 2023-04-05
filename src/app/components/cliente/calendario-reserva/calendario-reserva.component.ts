@@ -4,37 +4,44 @@ import { ReservaServiceService } from '../../../core/apis/client/reserva-service
 import { Router } from '@angular/router';
 import { IReserva } from './reserva';
 import { ICalendary } from 'src/app/core/models/client/calendary';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-calendario-reserva',
   templateUrl: './calendario-reserva.component.html',
-  styleUrls: ['./calendario-reserva.component.scss']
+  styleUrls: ['./calendario-reserva.component.scss'],
 })
 export class CalendarioReservaComponent implements OnInit {
-
   // definiendo variables
 
   week: any = [
-    "Lunes",
-    "Martes",
-    "Miercoles",
-    "Jueves",
-    "Viernes",
-    "Sabado",
-    "Domingo"
+    'Lunes',
+    'Martes',
+    'Miercoles',
+    'Jueves',
+    'Viernes',
+    'Sabado',
+    'Domingo',
   ];
   dateValue: any;
   monthSelect: any[];
   dateSelect: any;
   reservas: IReserva[] = [];
   calendarySelect!: ICalendary;
-
   listar: IReserva = {} as IReserva;
-  @Output() reservaPicked$ = new EventEmitter<IReserva>()
+  formFilter: FormGroup;
+  reservasFiltered: IReserva[] = []
+
+  @Output() reservaPicked$ = new EventEmitter<IReserva>();
 
   // iniciando datos de variables
-  constructor(private reseraService: ReservaServiceService, private router: Router) {
-    this.monthSelect = new Array;
+  constructor(
+    private reseraService: ReservaServiceService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
+    this.monthSelect = new Array();
+    this.formFilter = this.getFormFilterBuilder();
   }
 
   // la misma vaina :v
@@ -45,82 +52,113 @@ export class CalendarioReservaComponent implements OnInit {
     const mesActual = fecha.getMonth() + 1;
     const anioActual = fecha.getFullYear();
 
-    this.getDaysFromDate(mesActual, anioActual)
-    this.clickDayInicial(hoy)
+    this.getDaysFromDate(mesActual, anioActual);
+    this.clickDayInicial(hoy);
   }
 
+  getFormFilterBuilder() {
+    return this.formBuilder.group({
+      campo: ['dni', [Validators.required]],
+      valor: ['', [Validators.required]],
+    });
+  }
 
+  btnEditreserva(reserva:IReserva){
+    
+  }
+
+  onSubmitFilter() {
+    const formFilter = this.formFilter.value
+
+    if (this.formFilter.invalid) return;
+
+    const valor = formFilter.valor.trim()
+    const campo = formFilter.campo
+    const isEmptyValor = valor === ""
+    if (isEmptyValor) return;
+
+    this.reseraService.findReservasByNombreOrApellidoOrDni(campo, valor).subscribe(reservasResponse => {
+      console.log({reservasResponse});
+      this.reservasFiltered = reservasResponse
+    })
+
+
+    console.log("saved");
+
+
+  }
 
   getDaysFromDate(month: number, year: number) {
-
-    const startDate = moment(`${year}/${month}/01`)
-    const endDate = startDate.clone().endOf('month')
+    const startDate = moment(`${year}/${month}/01`);
+    const endDate = startDate.clone().endOf('month');
     this.dateSelect = startDate;
-    const diffDays = endDate.diff(startDate, 'days', true)
+    const diffDays = endDate.diff(startDate, 'days', true);
     const numberDays = Math.round(diffDays);
 
-    const arrayDays = Object.keys([...Array(numberDays)]).map((date: string) => {
-      const datenumber = parseInt(date) + 1;
-      const dayObject = moment(`${year}-${month}-${datenumber}`);
-      return {
-        name: dayObject.format("dddd"),
-        value: datenumber,
-        indexWeek: dayObject.isoWeekday()
-
-      };
-    });
+    const arrayDays = Object.keys([...Array(numberDays)]).map(
+      (date: string) => {
+        const datenumber = parseInt(date) + 1;
+        const dayObject = moment(`${year}-${month}-${datenumber}`);
+        return {
+          name: dayObject.format('dddd'),
+          value: datenumber,
+          indexWeek: dayObject.isoWeekday(),
+        };
+      }
+    );
 
     this.monthSelect = arrayDays;
   }
 
   changeMonth(flag: number) {
     if (flag < 0) {
-      const prevDate = this.dateSelect.clone().subtract(1, "month");
-      this.getDaysFromDate(prevDate.format("MM"), prevDate.format("YYYY"));
+      const prevDate = this.dateSelect.clone().subtract(1, 'month');
+      this.getDaysFromDate(prevDate.format('MM'), prevDate.format('YYYY'));
     } else {
-      const nextDate = this.dateSelect.clone().add(1, "month");
-      this.getDaysFromDate(nextDate.format("MM"), nextDate.format("YYYY"));
+      const nextDate = this.dateSelect.clone().add(1, 'month');
+      this.getDaysFromDate(nextDate.format('MM'), nextDate.format('YYYY'));
     }
   }
 
   clickDay(day: ICalendary) {
-    console.log({ dateSelect: this.dateSelect });
-    const dateSelectMoment = this.dateSelect as moment.Moment;
-    console.log(day);
     this.calendarySelect = day;
-    const monthYear = this.dateSelect.format('YYYY-MM')
-    const parse = `${monthYear}-${day.value}`
-    this.reseraService.getReserva(parse).subscribe(reservas => { this.reservas = reservas });
-    const objectDate = moment(parse)
+    const monthYear = this.dateSelect.format('YYYY-MM');
+    const parse = `${monthYear}-${day.value}`;
+    this.reseraService.getReserva(parse).subscribe((reservas) => {
+      this.reservas = reservas;
+    });
+    const objectDate = moment(parse);
     this.dateValue = objectDate;
   }
 
   clickDayInicial(day: number) {
-    const monthYear = this.dateSelect.format('YYYY-MM')
-    const dateFull = `${monthYear}-${day}`
-    this.reseraService.getReserva(dateFull).subscribe(reservas => { this.reservas = reservas; });
-    const objectDate = moment(dateFull)
+    const monthYear = this.dateSelect.format('YYYY-MM');
+    const dateFull = `${monthYear}-${day}`;
+    this.reseraService.getReserva(dateFull).subscribe((reservas) => {
+      this.reservas = reservas;
+    });
+    const objectDate = moment(dateFull);
     this.dateValue = objectDate;
   }
 
   //paquete:any;
 
   verDetallesReserva(hora: string) {
-    console.log('diste clic en la hora: ' + hora)
+    console.log('diste clic en la hora: ' + hora);
 
-    this.listar = this.reservas.find(reserva => reserva.hora === hora)!
+    this.listar = this.reservas.find((reserva) => reserva.hora === hora)!;
 
-    this.reservaPicked$.emit(this.listar)
+    this.reservaPicked$.emit(this.listar);
   }
 
   isDateCalendarySelected(day: ICalendary) {
     // console.log(this.calendarySelect === day);
 
-    return this.calendarySelect === day
+    return this.calendarySelect === day;
   }
 
   isUrlEqualTo(currentURL: string) {
-    const url = this.router.url
+    const url = this.router.url;
 
     return url === currentURL;
   }
@@ -131,7 +169,7 @@ export class CalendarioReservaComponent implements OnInit {
     fechaReserva: '',
     hora: '',
     cantPersonas: 0,
-    correo: "",
+    correo: '',
     idLogin: 1,
     nombres: '',
     apellido: '',
@@ -140,7 +178,6 @@ export class CalendarioReservaComponent implements OnInit {
     acompaniante: 0,
     totalPago: 0,
     dni: '',
-    estado: 'vigente'
+    estado: 'vigente',
   };
-
 }
