@@ -11,6 +11,7 @@ import * as regex from 'src/app/util/regex.util';
 import * as moment from 'moment';
 import { getCurrentDate } from 'src/app/util/utils.util';
 import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
+import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
 
 
 @Component({
@@ -80,7 +81,7 @@ export class FormularioReservaComponent implements OnInit {
   dateValidator(control: FormControl): { [s: string]: boolean } | null {
     if (control.value) {
       const date = moment(control.value);
-      const today = moment().subtract(1, 'day');
+      const today = moment()
       if (date.isBefore(today)) {
         return { 'invalidDate': true }
       }
@@ -91,24 +92,26 @@ export class FormularioReservaComponent implements OnInit {
   getReservaFormBuilder() {
     let terminosCondiciones = false
     const [date, month, year, _] = getCurrentDate()
-    const today = `${year}-${month}-${date}`
-    this.validandoCambioDeFechaByFecha(today)
+    const tomorrow = `${year}-${month}-0${Number(date) + 1}`
+
+    this.validandoCambioDeFechaByFecha(tomorrow)
     let { correo = '', apellidos = '', nombres = '', dni = '', telefono = '', profile = '' } = getPayload() || {};
     const isClient = profile === "cliente"
     const isReservaPage = this.isUrlEqualTo("/admin/reservas")
     // Si la sesion del empleado esta en la pagina, limpiara campos por defecto
-    // if (isReservaPage) {
-    //   correo = ''
-    //   apellidos = ''
-    //   nombres = ''
-    //   dni = ''
-    //   telefono = ''
-    // }
-    if (!isClient && isReservaPage) terminosCondiciones = true
+    if ( isReservaPage) {
+      correo = ''
+      apellidos = ''
+      nombres = ''
+      dni = ''
+      telefono = ''
+    }
+
+    if (isReservaPage) terminosCondiciones = true
 
     this.sesionData.isClient = isClient;
     return this.formBuilder.group({
-      fechaReserva: [today, [Validators.required, this.dateValidator]],
+      fechaReserva: [tomorrow, [Validators.required, this.dateValidator]],
       hora: ["inicio", [Validators.required, Validators.pattern(regex.NOT_INICIO)]],
       nombres: [nombres, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
       apellido: [apellidos, [Validators.required, Validators.pattern(regex.JUST_LETTERS_WITH_SPACES)]],
@@ -154,11 +157,15 @@ export class FormularioReservaComponent implements OnInit {
     this.reserva.dni = dni
   }
 
-  registrarReservaEmpleado() {
-    this.setFormularioDataToReservaDTO()
-    this.reservaService.CrearReserva(this.reserva).subscribe(reservaResponse => {
-      console.log({ reservaResponse });
+  async registrarReservaEmpleado() {
 
+    const result = await alertConfirmation('Confirmar Reserva')
+    if(!result.isConfirmed) return;
+
+
+    this.setFormularioDataToReservaDTO()
+    this.reservaService.CrearReserva(this.reserva).subscribe(_ => {
+      window.location.reload()
     })
 
 

@@ -18,16 +18,67 @@
       <i class="ion-plus-round"></i> Nuevo</a>
     <div class="card" style="min-height: 720px">
       <div class="card-body">
-        <app-calendario-reserva></app-calendario-reserva>
-      </div>
-    </div>
+        <div class="row mt-4 mb-4">
+          <div class="col-md-7">
+            <app-calendario-reserva (reservaPicked$)="reservaPicked$($event)"></app-calendario-reserva>
+          </div>
+          <div class="col-md-5">
 
+            <div class="table-responsive">
+              <table class="table table-hover table-light text-dark table-responsive-lg table-bordered text-center"
+                style="width: 100%">
+                <thead>
+                  <tr>
+                    <th colspan="2">DETALLE DE RESERVA POR HORA</th>
+                  </tr>
+                  <tr>
+                    <th>Nombres y Apellidos</th>
+                    <td> {{ reservaPicked.nombres + " " + reservaPicked.apellido }} </td>
+                  </tr>
+                  <tr>
+                    <th>DNI</th>
+                    <td> {{ reservaPicked.dni }} </td>
+                  </tr>
+                  <tr>
+                    <th>Telefono</th>
+                    <td> {{ reservaPicked.telefono }} </td>
+                  </tr>
+                  <tr>
+                    <th>Hora</th>
+                    <td> {{ reservaPicked.hora }} </td>
+                  </tr>
+                  <tr>
+                    <th>Cant. Personas</th>
+                    <td> {{ reservaPicked.cantPersonas }} </td>
+                  </tr>
+                  <tr>
+                    <th>Cant. Acompañantes</th>
+                    <td> {{ reservaPicked.acompaniante }} </td>
+                  <tr>
+                    <th>Paquete</th>
+                    <td> {{ paquetePicked }} </td>
+                  </tr>
+                  <tr>
+                    <th>Precio total</th>
+                    <td> {{ reservaPicked.totalPago }} </td>
+                  </tr>
+
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+      <app-table-reserva-filter></app-table-reserva-filter>
+    </div>
     <app-admin-footer></app-admin-footer>
     <!-- Button trigger modal -->
   </div>
-
-
-
 
   <!--Modal para CRUD-->
   <section class="body-main">
@@ -83,5 +134,3 @@
     </form>
   </section>
 </main>
-
-

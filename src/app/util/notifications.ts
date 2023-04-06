@@ -30,3 +30,29 @@ export const alertConfirmation = async (title: string = 'Confirme reserva') => {
     reverseButtons: true,
   });
 };
+
+export const alertPrompt = async (
+  title = '',
+  preConfirm: (value: string) => void = () => {},
+  errorCallback: (error: unknown) => void = () => {}
+) => {
+  return await Swal.fire({
+    title,
+    input: 'text',
+    inputAttributes: {
+      autocapitalize: 'off',
+    },
+    showCancelButton: true,
+    confirmButtonText: 'Confirmar',
+    showLoaderOnConfirm: true,
+    preConfirm: async (value: string) => {
+      try {
+        preConfirm(value);
+      } catch (error) {
+        Swal.showValidationMessage(`Request failed: ${error}`);
+        errorCallback(error);
+      }
+    },
+    allowOutsideClick: () => !Swal.isLoading(),
+  });
+};

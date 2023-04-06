@@ -71,7 +71,7 @@
   <label for="">Tipo de Paquete</label>
   <select class="form-control" formControlName="idPaquete"  name = "idPaquete" #idPaquetes (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" >
     <option  value="0">Seleccione paquete</option>
-    <option *ngFor="let items of paquetes" [value]="items.idPaquete + ' '+ items.precio">{{ items.descripcion }}</option>                                                 
+    <option *ngFor="let items of paquetes" [value]="items.idPaquete + ' '+ items.precio">{{ items.descripcion }}</option>
   </select>
   <div class="form__warning" [ngClass]="{
     'show':
@@ -169,6 +169,7 @@ aria-hidden="true">
   <button
    id="btnRegistrar" class="btn btn-primary  mt-4 botonRegistrar"
    type="button"  *ngIf="isUrlEqualTo('/admin/reservas')" [disabled]="formReserva.invalid" (click)="registrarReservaEmpleado ()">Registrar</button>
+
   <button  (click)="setFormularioDataToReservaDTO()"
    id="btnRegistrar" [disabled]="formReserva.invalid" data-bs-toggle="modal" data-bs-target="#modalLEntradas" class="btn btn-primary mt-4 botonRegistrar"
    data-bs-dismiss="modal" type="button"  *ngIf="isUrlEqualTo('/cumpleanios')" >Registrar</button>
