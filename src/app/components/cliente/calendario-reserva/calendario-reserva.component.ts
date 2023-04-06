@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IReserva } from './reserva';
 import { ICalendary } from 'src/app/core/models/client/calendary';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModaReservaEventService } from 'src/app/core/events/moda-reserva-event.service';
 
 @Component({
   selector: 'app-calendario-reserva',
@@ -29,8 +30,6 @@ export class CalendarioReservaComponent implements OnInit {
   reservas: IReserva[] = [];
   calendarySelect!: ICalendary;
   listar: IReserva = {} as IReserva;
-  formFilter: FormGroup;
-  reservasFiltered: IReserva[] = []
 
   @Output() reservaPicked$ = new EventEmitter<IReserva>();
 
@@ -38,13 +37,10 @@ export class CalendarioReservaComponent implements OnInit {
   constructor(
     private reseraService: ReservaServiceService,
     private router: Router,
-    private formBuilder: FormBuilder
+
   ) {
     this.monthSelect = new Array();
-    this.formFilter = this.getFormFilterBuilder();
   }
-
-  // la misma vaina :v
 
   ngOnInit(): void {
     const fecha = new Date();
@@ -54,38 +50,6 @@ export class CalendarioReservaComponent implements OnInit {
 
     this.getDaysFromDate(mesActual, anioActual);
     this.clickDayInicial(hoy);
-  }
-
-  getFormFilterBuilder() {
-    return this.formBuilder.group({
-      campo: ['dni', [Validators.required]],
-      valor: ['', [Validators.required]],
-    });
-  }
-
-  btnEditreserva(reserva:IReserva){
-    
-  }
-
-  onSubmitFilter() {
-    const formFilter = this.formFilter.value
-
-    if (this.formFilter.invalid) return;
-
-    const valor = formFilter.valor.trim()
-    const campo = formFilter.campo
-    const isEmptyValor = valor === ""
-    if (isEmptyValor) return;
-
-    this.reseraService.findReservasByNombreOrApellidoOrDni(campo, valor).subscribe(reservasResponse => {
-      console.log({reservasResponse});
-      this.reservasFiltered = reservasResponse
-    })
-
-
-    console.log("saved");
-
-
   }
 
   getDaysFromDate(month: number, year: number) {
@@ -144,7 +108,6 @@ export class CalendarioReservaComponent implements OnInit {
   //paquete:any;
 
   verDetallesReserva(hora: string) {
-    console.log('diste clic en la hora: ' + hora);
 
     this.listar = this.reservas.find((reserva) => reserva.hora === hora)!;
 
@@ -152,7 +115,6 @@ export class CalendarioReservaComponent implements OnInit {
   }
 
   isDateCalendarySelected(day: ICalendary) {
-    // console.log(this.calendarySelect === day);
 
     return this.calendarySelect === day;
   }
@@ -170,8 +132,8 @@ export class CalendarioReservaComponent implements OnInit {
     hora: '',
     cantPersonas: 0,
     correo: '',
-    idLogin: 1,
-    nombres: '',
+    idLogin: 0,
+    nombres: '-',
     apellido: '',
     telefono: '',
     flagTipoReserva: 0,

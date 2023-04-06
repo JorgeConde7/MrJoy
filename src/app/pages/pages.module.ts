@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 import { DataTablesModule } from 'angular-datatables';
@@ -18,9 +19,10 @@ import { AdminPromocionesComponent } from './admin/admin-promociones/admin-promo
 import { AdminProveedoresComponent } from './admin/admin-proveedores/admin-proveedores.component';
 import { AdminReportesComponent } from './admin/admin-reportes/admin-reportes.component';
 import { AdminReservaComponent } from './admin/admin-reserva/admin-reserva.component';
-
-
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminVentaBoletoComponent } from './admin/admin-venta-boleto/admin-venta-boleto.component';
+
+
 import { BioseguridadComponent } from './cliente/bioseguridad/bioseguridad.component';
 import { CompraEntradasComponent } from './cliente/compra-entradas/compra-entradas.component';
 import { ContactoComponent } from './cliente/contacto/contacto.component';
@@ -44,18 +46,19 @@ import { HeaderComponent } from '../components/cliente/header/header.component';
 import { InitPageComponent } from '../components/cliente/init-page/init-page.component';
 import { ModalPagoComponent } from '../components/cliente/modal-pago/modal-pago.component';
 import { LoginModalComponent } from '../components/login-modal/login-modal/login-modal.component';
-import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { ModalFormularioReservaComponent } from '../components/admin/modal-reserva/modal-formulario-reserva.component';
+
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MisReservasComponent } from './cliente/mis-reservas/mis-reservas.component';
 import { EditarreservasComponent } from './cliente/editarreservas/editarreservas.component';
 import { MisConsultasComponent } from './cliente/mis-consultas/mis-consultas.component';
+import { TableReservaFilterComponent } from '../components/admin/table-reserva-filter/table-reserva-filter.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +99,8 @@ import { MisConsultasComponent } from './cliente/mis-consultas/mis-consultas.com
     MisReservasComponent,
     EditarreservasComponent,
     MisConsultasComponent,
+    ModalFormularioReservaComponent,
+    TableReservaFilterComponent
   ],
   imports: [
     AppRoutingModule,
@@ -152,6 +157,8 @@ import { MisConsultasComponent } from './cliente/mis-consultas/mis-consultas.com
     RouterModule,
     MisReservasComponent,
     EditarreservasComponent,
+    ModalFormularioReservaComponent,
+    TableReservaFilterComponent
   ]
 })
 export class PagesModule { }
