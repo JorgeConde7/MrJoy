@@ -17,6 +17,7 @@ import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 
 import { IReserva } from '../../cliente/calendario-reserva/reserva';
 import { ModaReservaEventService } from 'src/app/core/events/moda-reserva-event.service';
+import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
 
 @Component({
   selector: 'app-modal-formulario-reserva',
@@ -55,6 +56,7 @@ export class ModalFormularioReservaComponent implements OnInit {
     flagTipoReserva: 0,
     acompaniante: 0,
     totalPago: 0,
+    idReserva: 0,
   };
 
   total: number = 0;
@@ -104,6 +106,7 @@ export class ModalFormularioReservaComponent implements OnInit {
   onSetDataReservaToModal$() {
     this.modaReservaEventService.reserva$.subscribe((reserva) => {
       console.log('SE HA ESCUCHADO');
+      this.reserva = reserva;
       const paquetePrice = this.paquetes.find(
         (paquete) => paquete.idPaquete === reserva.idPaquete
       )!.precio;
@@ -178,8 +181,28 @@ export class ModalFormularioReservaComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log('SUBMIT MODAL');
+  async onSubmit() {
+    const formReserva = this.formReserva.value;
+    const isInvalidFormReserva = this.formReserva.invalid;
+    if (isInvalidFormReserva) return;
+    const idPaqueteToFormat: string = formReserva.idPaquete;
+    const idPaquete = Number(idPaqueteToFormat.split(' ')[0]);
+
+    const reservaUpdated = { ...this.reserva, ...formReserva, idPaquete };
+    console.log({ newReser4va: reservaUpdated });
+
+    const result = await alertConfirmation('Confirmar actualizacion de reserva')
+
+    if(!result.isConfirmed) return;
+
+    this.reservaService
+      .putReserva(reservaUpdated, reservaUpdated.idReserva)
+      .subscribe({
+        next:(putResponse) => {
+          alertNotification('', putResponse.message);
+        },
+        error:(err)=>{  alertNotification('', err.error.message, 'error');  }
+      });
   }
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {

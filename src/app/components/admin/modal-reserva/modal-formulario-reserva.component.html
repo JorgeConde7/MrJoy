@@ -1,7 +1,7 @@
-
 <form class="fomurlarioReserva p-3" [formGroup]="formReserva" (ngSubmit)="onSubmit()">
   <label for="">Fecha de la Reserva:</label>
-  <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva"   formControlName="fechaReserva" name = "fechaReserva" >
+  <input class="form-control" type="date" placeholder="Ingrese la Fecha de la Reserva" formControlName="fechaReserva"
+    name="fechaReserva">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['fechaReserva'].errors
@@ -9,9 +9,9 @@
     <p class="warning-text">* Seleccione una fecha válida</p>
   </div>
   <label for="">Hora de la Reserva:</label>
-  <select class="form-control" formControlName="hora"  name = "hora">
-    <option  value="inicio">Seleccione Hora</option>
-    <option *ngFor="let item of horaCadena" [value]="item" >{{ item }}</option>
+  <select class="form-control" formControlName="hora" name="hora">
+    <option value="inicio">Seleccione Hora</option>
+    <option *ngFor="let item of horaCadena" [value]="item">{{ item }}</option>
   </select>
   <div class="form__warning" [ngClass]="{
     'show':
@@ -21,7 +21,7 @@
     <p class="warning-text">* Seleccione una hora</p>
   </div>
   <label for="">Nombre:</label>
-  <input class="form-control" type="text" placeholder="Ingrese su Nombre" formControlName="nombres" name = "nombres">
+  <input class="form-control" type="text" placeholder="Ingrese su Nombre" formControlName="nombres" name="nombres">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['nombres'].errors &&
@@ -30,7 +30,7 @@
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
   <label for="">Apellidos:</label>
-  <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellido" name = "apellido">
+  <input class="form-control" type="text" placeholder="Ingrese su Apellido" formControlName="apellido" name="apellido">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['apellido'].errors &&
@@ -39,7 +39,7 @@
     <p class="warning-text">* Solo se permite letras a-Z</p>
   </div>
   <label for="">DNI:</label>
-  <input class="form-control" type="text" placeholder="Ingrese su DNI" formControlName="dni" name = "dni">
+  <input class="form-control" type="text" placeholder="Ingrese su DNI" formControlName="dni" name="dni">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['dni'].errors &&
@@ -48,40 +48,46 @@
     <p class="warning-text">* Dni requerido</p>
   </div>
   <label for="">Email:</label>
-  <input class="form-control" type="email" placeholder="Ingrese su email" formControlName="email" name = "email">
+  <input class="form-control" type="email" placeholder="Ingrese su email" formControlName="email" name="email">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['email'].errors &&
     formReserva.controls['email'].touched
   }">
-  <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
+    <p class="warning-text">* Debe ser un email válido: example@gmail.com</p>
   </div>
   <label for="">Telefono:</label>
-  <input  maxlength=9 class="form-control" type="text" placeholder="Ingrese su telefono" formControlName="telefono" name = "telefono">
+  <input maxlength=9 class="form-control" type="text" placeholder="Ingrese su telefono" formControlName="telefono"
+    name="telefono">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['telefono'].errors &&
     formReserva.controls['telefono'].touched
   }">
-  <p class="warning-text">* Solo numeros 0-9</p>
-  <p class="warning-text">* Caracteres max. 9</p>
+    <p class="warning-text">* Solo numeros 0-9</p>
+    <p class="warning-text">* Caracteres max. 9</p>
   </div>
   <!--<label for="">Correo:</label>
   <input class="form-control" type="email" [(ngModel)]="reserva.correo" placeholder="Ingrese su correo"  name = "correo">-->
   <label for="">Tipo de Paquete</label>
-  <select class="form-control" formControlName="idPaquete"  name = "idPaquete" #idPaquetes (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" >
-    <option  value="0">Seleccione paquete</option>
-    <option *ngFor="let items of paquetes" [value]="items.idPaquete + ' '+ items.precio">{{ items.descripcion }}</option>
+  <select class="form-control" formControlName="idPaquete" name="idPaquete" #idPaquetes
+    (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)">
+    <option value="0">Seleccione paquete</option>
+    <option *ngFor="let items of paquetes" [value]="items.idPaquete + ' '+ items.precio">{{ items.descripcion }}
+    </option>
   </select>
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['idPaquete'].errors &&
     formReserva.controls['idPaquete'].touched
   }">
-    <p class="warning-text">* Seleccione  un Paquete</p>
+    <p class="warning-text">* Seleccione un Paquete</p>
   </div>
   <label for="">Cantidad de Persona:</label>
-  <input min="15" max="30"  class="form-control" type="number" placeholder="Ingrese su cantidad de persona" formControlName="cantPersonas" name = "cantPersonas" (keyup)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)">
+  <input min="15" max="30" class="form-control" type="number" placeholder="Ingrese su cantidad de persona"
+    formControlName="cantPersonas" name="cantPersonas"
+    (keyup)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)"
+    (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['cantPersonas'].errors &&
@@ -90,7 +96,10 @@
     <p class="warning-text">* Cantidad de personas permitida: 1-15</p>
   </div>
   <label for="">Acompañante:</label>
-  <input min="0" max="15" class="form-control" type="number" placeholder="Ingrese su cantidad de acompañante" formControlName="acompaniante"  name = "acompaniante" (keyup)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)" (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)">
+  <input min="0" max="15" class="form-control" type="number" placeholder="Ingrese su cantidad de acompañante"
+    formControlName="acompaniante" name="acompaniante"
+    (keyup)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)"
+    (change)="onchangeValues(cantidadPersonas ,cantidadAcompaniantes,idPaquetes.value)">
   <div class="form__warning" [ngClass]="{
     'show':
     formReserva.controls['acompaniante'].errors &&
@@ -103,10 +112,10 @@
   <label for="">Total a Pagar :</label>
   <input type="text" readonly placeholder="" class="form-control" [value]="total" name="total">
 
-
-
-  <button
-   id="btnRegistrar" class="btn btn-primary  mt-4 botonRegistrar"
-   type="submit">Actualizar</button>
+  <div class="text-center">
+    <button type="button" id="btnRegistrar" class="btn btn-danger  mt-4 mx-2" type="button" data-bs-dismiss="modal"
+      data-bs-target="#modalEmpleado">Cancelar</button>
+    <button id="btnRegistrar" class="btn btn-primary  mt-4 mx-2" type="submit">Actualizar</button>
+  </div>
 
 </form>

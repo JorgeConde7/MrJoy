@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IReserva } from '../../../components/cliente/calendario-reserva/reserva';
 import { environment } from 'src/environments/environment';
+import { DataResponse } from '../../models/response/response.response';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,8 @@ export class ReservaServiceService
     return this.http.get<IReserva>(this.urlApi + '/reservas/'+ idReserva);
   }
 
-  putReserva(reserva: IReserva, idReserva: number):Observable<IReserva> {
-    return this.http.put<IReserva>(this.urlApi + '/reservas/'+idReserva, reserva);
+  putReserva(reserva: IReserva, idReserva: number) {
+    return this.http.put<DataResponse<any>>(this.urlApi + '/reservas/'+idReserva, reserva);
   }
 
   findReservasByNombreOrApellidoOrDni(campo:string, valor: string){
