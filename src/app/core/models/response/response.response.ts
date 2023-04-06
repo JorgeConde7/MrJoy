@@ -2,6 +2,6 @@
 
 export interface DataResponse<T> {
   data: T;
-  message: String;
+  message: string;
   status: number;
 }
