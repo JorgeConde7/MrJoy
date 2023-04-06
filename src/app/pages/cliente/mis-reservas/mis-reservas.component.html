@@ -18,13 +18,14 @@
                                 <th colspan="11" class="text-center"> MIS RESERVAS </th>
                             </tr>
                             <tr>
-                                <th class="text-center">Fecha de Reserva</th>
+                                <th class="text-center">Fecha de Registro</th>
                                 <th class="text-center">Hora</th>
                                 <th class="text-center">Correo</th>
                                 <th class="text-center">Telefono</th>
                                 <th class="text-center">Tipo de paquete</th>
                                 <th class="text-center">Cantidad de personas</th>
                                 <th class="text-center">Acompañante</th>
+                                <th class="text-center">Fecha de Reserva</th>
                                 <th class="text-center">Total de pago</th>
                                 <th class="text-center">Diferencia a pagar</th>
                                 <th class="text-center">Estado de reserva</th>
@@ -33,13 +34,14 @@
                         </thead>
                         <tbody class="text-center">
                             <tr *ngFor="let reserva of tablaReserva" >
-                                <td>{{ reserva.fechaReserva }}</td>
+                                <td>{{ reserva.fechaRegistro }}</td>
                                 <td>{{ reserva.hora }}</td>
                                 <td>{{ reserva.email }}</td>
                                 <td>{{ reserva.telefono }}</td>
                                 <td>{{ reserva.paqueteName }} </td>
                                 <td>{{ reserva.cantPersonas }}</td>
                                 <td>{{ reserva.acompaniante }}</td>
+                                <td>{{ reserva.fechaReserva }}</td>
                                 <td>{{ reserva.totalPago }}</td>
                                 <td>calculando...</td>
                                 <td>{{ reserva.estado}}</td>

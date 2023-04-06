@@ -50,9 +50,15 @@ export class ContactoComponent implements OnInit {
       this.idLogin
     );
 
-    this.contactoService.create(contacto).subscribe((_) => {
-      alertNotification('', 'Consulta enviada', 'success');
-      this.cleanForm();
+    this.contactoService.create(contacto).subscribe({
+      next: (_) => {
+        alertNotification('', 'Consulta registrada correctamente', 'success');
+        this.cleanForm();
+      },
+      error: (error) => {
+        alertNotification('', error.error.message, 'error');
+      }
+
     });
   }
 
