@@ -20,6 +20,7 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   dtTrigger = new Subject<ADTSettings>()
 
   namePaquete: String = ""
+  descripcion: String = ""
   id!: number;
 
   paquetes: Paquete[] = []
@@ -50,15 +51,11 @@ export class MisReservasComponent implements OnDestroy, OnInit {
     this.id = payLoad?.id ? payLoad.id : 0;
     
     this.reservaService.getReservasPorIdLogin(this.id).subscribe(reservaResponse => {
-      console.log({
-        reservaResponse
-      })
       this.tablaReserva = reservaResponse.map(
         
         reserva => {
-
           const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete == reserva.idPaquete)!;
-          const descripcion = paqueteFound.descripcion!
+          //this.descripcion = paqueteFound.descripcion
           
           return {
             acompaniante: reserva.acompaniante,
@@ -67,13 +64,13 @@ export class MisReservasComponent implements OnDestroy, OnInit {
             fechaRegistro: reserva.fechaRegistro,
             fechaReserva: reserva.fechaReserva,
             flagTipoReserva: reserva.flagTipoReserva,
-            hora: reserva.hora,
+            hora: reserva.hora ? reserva.hora : "",
             nombres: reserva.nombres,
             telefono: reserva.telefono,
             totalPago: reserva.totalPago,
             email: reserva.email,
             idReserva: reserva.idReserva,
-            paqueteName: descripcion,
+            paqueteName: paqueteFound ? paqueteFound.descripcion : '',
             estado: reserva.estado,
             dni: reserva.dni,
             usuarioModificacion: reserva.usuarioModificacion,
@@ -94,9 +91,9 @@ export class MisReservasComponent implements OnDestroy, OnInit {
 
 
   editarReserva(reserva: TablaReserva) {
-    console.log(reserva)
+    /*console.log(reserva)
     console.log(!!reserva.fechaModificacion)
-    console.log(!!reserva.fechaModificacion !== null)
+    console.log(!!reserva.fechaModificacion !== null)*/
     const isModificado = reserva.fechaModificacion !== null
     if (isModificado) {
       alertNotification('', 'La reserva ya ha sido modificada', 'info')
@@ -104,13 +101,12 @@ export class MisReservasComponent implements OnDestroy, OnInit {
     }
 
     this.router.navigate(['editar-misreservas', reserva.idReserva])
-
   }
 
 }
 
 interface TablaReserva{
-  paqueteName: string ;
+  paqueteName?: string;
   idReserva?: number | undefined;
   fechaRegistro: string | null;
   fechaReserva: string;
