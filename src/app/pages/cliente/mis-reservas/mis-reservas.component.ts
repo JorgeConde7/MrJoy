@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.service';
+import { alertNotification } from 'src/app/util/notifications';
 import { getPayload } from 'src/app/util/token.util';
 import { environment } from 'src/environments/environment';
 
@@ -49,11 +50,15 @@ export class MisReservasComponent implements OnDestroy, OnInit {
     this.id = payLoad?.id ? payLoad.id : 0;
     
     this.reservaService.getReservasPorIdLogin(this.id).subscribe(reservaResponse => {
+      console.log({
+        reservaResponse
+      })
       this.tablaReserva = reservaResponse.map(
         
         reserva => {
 
-          const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete == reserva.idPaquete)! 
+          const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete == reserva.idPaquete)!;
+          const descripcion = paqueteFound.descripcion!
           
           return {
             acompaniante: reserva.acompaniante,
@@ -68,9 +73,12 @@ export class MisReservasComponent implements OnDestroy, OnInit {
             totalPago: reserva.totalPago,
             email: reserva.email,
             idReserva: reserva.idReserva,
-            paqueteName: paqueteFound.descripcion!,
+            paqueteName: descripcion,
             estado: reserva.estado,
-            dni: reserva.dni
+            dni: reserva.dni,
+            usuarioModificacion: reserva.usuarioModificacion,
+            fechaModificacion: reserva.fechaModificacion
+
           }
         } 
       )
@@ -85,8 +93,18 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   }
 
 
-  editarReserva(id:number) {
-    this.router.navigate(['editar-misreservas', id])
+  editarReserva(reserva: TablaReserva) {
+    console.log(reserva)
+    console.log(!!reserva.fechaModificacion)
+    console.log(!!reserva.fechaModificacion !== null)
+    const isModificado = reserva.fechaModificacion !== null
+    if (isModificado) {
+      alertNotification('', 'La reserva ya ha sido modificada', 'info')
+      return;
+    }
+
+    this.router.navigate(['editar-misreservas', reserva.idReserva])
+
   }
 
 }
@@ -108,4 +126,6 @@ interface TablaReserva{
   email?: string;
   estado?: string;
   dni?: string;
+  fechaModificacion?: string;
+  usuarioModificacion?: string;
 }

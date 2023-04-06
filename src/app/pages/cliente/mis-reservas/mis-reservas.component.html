@@ -33,7 +33,10 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <tr *ngFor="let reserva of tablaReserva" >
+                            <tr *ngFor="let reserva of tablaReserva" 
+                            [ngClass]="{
+                                'disabled': reserva.estado !== 'vigente'
+                              }">
                                 <td>{{ reserva.fechaRegistro }}</td>
                                 <td>{{ reserva.hora }}</td>
                                 <td>{{ reserva.email }}</td>
@@ -46,10 +49,11 @@
                                 <td>calculando...</td>
                                 <td>{{ reserva.estado}}</td>
                                 <td class="acciones-cell">
-                                    <a class="btn btn-warning d-inline-block" style='padding:0 10px;' data-bs-toggle="modal"
-                                    data-bs-target="#" (click)="editarReserva(reserva.idReserva!)"><i class="fas fa-pencil-alt"  ></i></a>
-                                    <a class="btn btn-danger d-inline-block" style='padding:0 10px' data-bs-toggle="modal"
-                                    data-bs-target="#" >  <i class="fas fa-trash-alt"  ></i></a>
+                                    <Button class="btn btn-warning d-inline-block" [disabled]="reserva.estado !== 'vigente'"  style='padding:0 10px;' data-bs-toggle="modal"
+                                    data-bs-target="#" (click)="editarReserva(reserva)"><i class="fas fa-pencil-alt" ></i></Button>
+                                    {{' '}}
+                                    <Button class="btn btn-danger d-inline-block" [disabled]="reserva.estado !== 'vigente'" style='padding:0 10px' data-bs-toggle="modal"
+                                    data-bs-target="#" >  <i class="fas fa-trash-alt"  ></i></Button>
                                 </td>
                             </tr>
                             

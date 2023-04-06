@@ -55,7 +55,7 @@ export class EditarreservasComponent implements OnInit {
     flagTipoReserva: 0,
     acompaniante: 0,
     totalPago: 0
-
+    
   };
 
   iReserva: IReserva[] = [];
@@ -187,7 +187,7 @@ export class EditarreservasComponent implements OnInit {
       telefono: this.editarForm.value.telefono!,
       flagTipoReserva: 0,
       acompaniante: this.editarForm.value.acompaniante!,
-      totalPago: this.total,//this.editarForm.value.totalPago!
+      totalPago: this.total,
       email: this.editarForm.value.email!,
       fechaReserva: this.editarForm.value.fechaReserva!
 
@@ -212,20 +212,6 @@ export class EditarreservasComponent implements OnInit {
       }
   }
 
-  /*calcularDiferenciaDias(reservaActual: IReserva): number {
-    const fechaHoy = new Date();
-    const month = fechaHoy.getMonth() + 1;
-    const day = fechaHoy.getDate();
-    const formattedDate = `${fechaHoy.getFullYear}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-
-    const calInicio = fechaHoy;
-    const calFin = new Date(reservaActual.fechaReserva);
-
-    const difMillis = calFin.getTime() - calInicio.getTime();
-    const difDias = Math.floor(difMillis / (1000 * 60 * 60 * 24));
-
-    return difDias;
-  }*/
 
   onchangeValues(cantPersona: number, acompaniante: number, paquete: string) {
 
