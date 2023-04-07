@@ -53,7 +53,8 @@
                                     data-bs-target="#" (click)="editarReserva(reserva)"><i class="fas fa-pencil-alt" ></i></Button>
                                     {{' '}}
                                     <Button class="btn btn-danger d-inline-block" [disabled]="reserva.estado !== 'vigente'" style='padding:0 10px' data-bs-toggle="modal"
-                                    data-bs-target="#" >  <i class="fas fa-trash-alt"  ></i></Button>
+                                    data-bs-target="#" (click)="selectReserva(reserva)" style='padding:0 10px'
+                                    data-bs-toggle="modal" data-bs-target="#modal__eliminarreserva">  <i class="fas fa-trash-alt"  ></i></Button>
                                 </td>
                             </tr>
                             
@@ -63,5 +64,39 @@
                 </div>
             </div>
         </div>
-  
     </div>
+    <div class="modal fade" id="modal__eliminarreserva" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <form (ngSubmit)="onSubmitModalEliminarReserva()" name="login">
+    <div class="modal-dialog ">
+      <div class="col">
+        <div class="modal-content">
+          <div class="modal-header ">
+            <h2 class="m-0 modal-title">Anular Reserva</h2>
+            <button type="button" class="close btn__close" data-bs-toggle="modal" data-bs-target="#modal__eliminarreserva">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="col">
+              <h1>Fecha de Reserva: {{ tablaReservaE.fechaRegistro }}</h1>
+              <h1>Id de Reserva: {{ tablaReservaE.idReserva }}</h1>
+              <p> Total Cancelado: {{ tablaReservaE.totalPago }} </p>
+            </div>
+            <div class="form-group" id="user-group">
+              <textarea rows="5" type="text" class="form-control Input" placeholder="Cuál es el motivo de la anulación?..." name="response"
+                [(ngModel)]="tablaReservaE.motivoAnulacion"></textarea>
+            </div>
+            <br>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#modal__eliminarreserva">Enviar</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+              data-bs-target="#modal__eliminarreserva">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -2,10 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
+import { IReserva } from 'src/app/components/cliente/calendario-reserva/reserva';
 import { Paquete } from 'src/app/components/cliente/formulario-reserva/Paquete';
 import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.service';
-import { alertNotification } from 'src/app/util/notifications';
+import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
 import { getPayload } from 'src/app/util/token.util';
 import { environment } from 'src/environments/environment';
 
@@ -26,6 +27,8 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   paquetes: Paquete[] = []
 
   tablaReserva: TablaReserva[] = []
+  tablaReservaE: TablaReserva = {} as TablaReserva;
+
   private primeraVez = true;
 
   constructor(private reservaService: ReservaServiceService, private router: Router,
@@ -54,10 +57,11 @@ export class MisReservasComponent implements OnDestroy, OnInit {
       this.tablaReserva = reservaResponse.map(
         
         reserva => {
-          const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete == reserva.idPaquete)!;
+          const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete == reserva.idPaquete);
           //this.descripcion = paqueteFound.descripcion
           
           return {
+            idLogin: reserva.idLogin,
             acompaniante: reserva.acompaniante,
             apellido: reserva.apellido,
             cantPersonas: reserva.cantPersonas,
@@ -89,17 +93,71 @@ export class MisReservasComponent implements OnDestroy, OnInit {
     this.dtTrigger.unsubscribe()
   }
 
+  selectReserva(reserva: TablaReserva) {
+    this.tablaReservaE = reserva
+  }
+
+  async onSubmitModalEliminarReserva() {
+    console.log(this.tablaReservaE)
+    const { motivoAnulacion } = this.tablaReservaE;
+    console.log(motivoAnulacion)
+    const { idReserva } = this.tablaReservaE;
+    console.log(idReserva)
+
+    if (!motivoAnulacion?.trim()) {
+      alertNotification('', 'Ingrese su respuesta', 'info');
+      return;
+    }
+    const resul = await alertConfirmation('Confirme respuesta');
+    if (!resul.isConfirmed) return;
+
+    const paqueteFound = this.paquetes.find(paquete => paquete.descripcion === this.tablaReservaE.paqueteName)!;
+    console.log("paquete found " + paqueteFound.descripcion)
+
+    const iReserva: IReserva = {
+      idPaquete: paqueteFound.idPaquete ? paqueteFound.idPaquete : 1,
+      idLogin: this.tablaReservaE.idLogin,
+      acompaniante: this.tablaReservaE.acompaniante,
+      apellido: this.tablaReservaE.apellido,
+      cantPersonas: this.tablaReservaE.cantPersonas,
+      fechaRegistro: this.tablaReservaE.fechaRegistro,
+      fechaReserva: this.tablaReservaE.fechaReserva,
+      flagTipoReserva: this.tablaReservaE.flagTipoReserva,
+      hora: this.tablaReservaE.hora ? this.tablaReservaE.hora : "",
+      nombres: this.tablaReservaE.nombres,
+      telefono: this.tablaReservaE.telefono,
+      totalPago: this.tablaReservaE.totalPago,
+      email: this.tablaReservaE.email,
+      idReserva: this.tablaReservaE.idReserva,
+      estado: this.tablaReservaE.estado,
+      dni: this.tablaReservaE.dni,
+      usuarioModificacion: this.tablaReservaE.usuarioModificacion,
+      fechaModificacion: this.tablaReservaE.fechaModificacion
+
+    }
+
+    this.reservaService.eliminarReserva(iReserva, idReserva!).subscribe ({
+      next: this.onSubmitModalSucess.bind(this),
+      error: this.onSubmitModalError.bind(this),
+    })
+
+  }
+
+  onSubmitModalSucess() {
+    window.location.reload()
+  }
+
+  onSubmitModalError(err: any) {
+    alertNotification('', err.error.message, 'info');
+  }
+
 
   editarReserva(reserva: TablaReserva) {
-    /*console.log(reserva)
-    console.log(!!reserva.fechaModificacion)
-    console.log(!!reserva.fechaModificacion !== null)*/
     const isModificado = reserva.fechaModificacion !== null
     if (isModificado) {
       alertNotification('', 'La reserva ya ha sido modificada', 'info')
       return;
     }
-
     this.router.navigate(['editar-misreservas', reserva.idReserva])
   }
 
@@ -112,7 +170,7 @@ interface TablaReserva{
   fechaReserva: string;
   hora: string;
   cantPersonas: number;
-  //idLogin: number;
+  idLogin: number;
   nombres: string;
   apellido: string;
   telefono: string;
@@ -124,4 +182,5 @@ interface TablaReserva{
   dni?: string;
   fechaModificacion?: string;
   usuarioModificacion?: string;
+  motivoAnulacion?: string;
 }

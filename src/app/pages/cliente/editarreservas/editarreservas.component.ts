@@ -76,7 +76,7 @@ export class EditarreservasComponent implements OnInit {
     let reservaId = this.activerouter.snapshot.paramMap.get('id')
     let reservaIdNumber = Number(reservaId);
 
-    this.reservaService.getReservasPorIdReserva(reservaIdNumber).subscribe(data => {
+    this.reservaService.getReservaPorIdReserva(reservaIdNumber).subscribe(data => {
 
       const paquetefound = this.paquetes.find(paquete  => paquete.idPaquete === data.idPaquete)
 

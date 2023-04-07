@@ -31,7 +31,7 @@ export class ReservaServiceService
     return this.http.get<IReserva[]>(this.urlApi + '/reservas-idLogin/'+idLogin);
   }
 
-  getReservasPorIdReserva(idReserva: number): Observable<IReserva> {
+  getReservaPorIdReserva(idReserva: number): Observable<IReserva> {
     return this.http.get<IReserva>(this.urlApi + '/reservas/'+ idReserva);
   }
 
@@ -41,6 +41,10 @@ export class ReservaServiceService
 
   findReservasByNombreOrApellidoOrDni(campo:string, valor: string){
     return this.http.get<IReserva[]>(`${this.urlApi}/buscar?campo=${campo}&valor=${valor}`)
+  }
+
+  eliminarReserva(reserva: IReserva, idReserva: number) {
+    return this.http.post<IReserva>(this.urlApi + '/anularReserva/'+ idReserva, reserva);
   }
 
 }
