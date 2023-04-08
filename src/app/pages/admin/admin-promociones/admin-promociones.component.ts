@@ -68,8 +68,8 @@ export class AdminPromocionesComponent implements OnDestroy, OnInit {
   }
 
   getPromociones() {
-    this.promocionService.getPromociones().subscribe((result) => {
-      this.promociones = result.sort(this.sortPromocionesByid);
+    this.promocionService.getPromociones().subscribe((promocionesResponse) => {
+      this.promociones = promocionesResponse.sort(this.sortPromocionesByid);
     });
   }
 
