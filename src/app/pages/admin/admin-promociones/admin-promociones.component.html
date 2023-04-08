@@ -1,12 +1,12 @@
 <main style="margin-top: 35px">
   <div class="container-fluid pt-4">
     <div class="card  mt-5" style="min-height: 720px">
-      <a *ngIf="sesionData.isAdmin" id="btnNuevoPromocion" class="btn btn-success float-right mt-5" data-bs-toggle="modal"
-        data-bs-target="#modalPromocion" (click)="limpiarModal()">
+      <a *ngIf="sesionData.isAdmin" id="btnNuevoPromocion" class="btn btn-success float-right mt-5"
+        data-bs-toggle="modal" data-bs-target="#modalPromocion" (click)="btnNuevo()">
         <i class="ion-plus-round"></i> Nuevo</a>
       <div class="card-body">
-        <table id="tablaPromocion" class="table table-hover table-dark text-light table-responsive-lg table-bordered"
-          style="width: 100%">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaPromocion"
+          class="table table-hover table-dark text-light table-responsive-lg table-bordered" style="width: 100%">
           <thead>
             <tr>
               <th colspan="4" class="text-center">LISTA DE PROMOCIONES</th>
@@ -23,13 +23,14 @@
             <tr *ngFor="let promocion of promociones">
               <td class="text-center">{{ promocion.id_promociones }}</td>
               <td class="text-center">{{ promocion.titulo }}</td>
-              <td class="text-center"><img class="img-fluid img-thumbnail" width="70" [src]="promocion.foto" [alt]="promocion.titulo" /></td>
+              <td class="text-center"><img class="img-fluid img-thumbnail" width="70" [src]="promocion.foto"
+                  [alt]="promocion.titulo" /></td>
               <td class="text-left">{{ promocion.descripcion }}</td>
               <td *ngIf="sesionData.isAdmin">
-                <a class="btn btn-warning" style='padding:0 10px' (click)="editarPromociones(promocion)"
-                  data-bs-toggle="modal" data-bs-target="#modalPromocion"><i class="fas fa-pencil-alt"></i></a>{{" "}}
+                <a class="btn btn-warning" style='padding:0 10px' (click)="btnEditar(promocion)" data-bs-toggle="modal"
+                  data-bs-target="#modalPromocion"><i class="fas fa-pencil-alt"></i></a>{{" "}}
                 <a class="btn btn-danger" style='padding:0 10px'
-                  (click)="eliminarPromociones(promocion.id_promociones)"><i class="fas fa-trash-alt"></i></a>
+                  (click)="btnEliminar(promocion)"><i class="fas fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -52,25 +53,26 @@
           <div *ngIf="!isInsert" class="modal-headerActualizar">
             <h5 class="modal-title" id="exampleModalLabel">Actualizar Promociones</h5>
           </div>
-          <form>
+          <form [formGroup]="formPromocion" (ngSubmit)="onSubmit()" >
             <div class="modal-body">
               <div class="form-group" hidden>
                 <label for="nombres" class="col-form-label">Codigo:</label>
-                <input type="text" class="form-control" [(ngModel)]="ipromocion.id_promociones" name="id_promociones">
+                <input type="text" class="form-control" formControlName="id_promociones" name="id_promociones">
               </div>
               <div class="form-group">
                 <label for="apellidos" class="col-form-label">Promocion:</label>
-                <input type="text" class="form-control" [(ngModel)]="ipromocion.promociones" name="promociones">
+                <input type="text" class="form-control" formControlName="titulo" name="promociones">
               </div>
               <div class="form-group">
                 <label for="apellidos" class="col-form-label">Descripcion:</label>
-                <input type="text" class="form-control" [(ngModel)]="ipromocion.descripcion" name="descripcion">
+                <textarea rows="5" type="text"   class="form-control" formControlName="descripcion" name="descripcion">
+                  </textarea>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" id="btnGuardar" class="btn btn-dark" data-bs-dismiss="modal"
-                (click)="guardarDatos()"> Guardar</button>
+              <button type="submit" id="btnGuardar" class="btn btn-dark" data-bs-dismiss="modal">
+                Guardar</button>
             </div>
           </form>
         </div>
