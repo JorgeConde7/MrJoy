@@ -24,7 +24,7 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   namePaquete: String = ""
   descripcion: String = ""
   id!: number;
-  
+
   paquetes: Paquete[] = []
 
   tablaReserva: TablaReserva[] = []
@@ -37,12 +37,12 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    
+
     this.paqueteService.getPaquetes().subscribe(
       paquetes => {
         this.paquetes = paquetes;
     });
-    
+
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
       pagingType: 'full_numbers',
@@ -53,14 +53,14 @@ export class MisReservasComponent implements OnDestroy, OnInit {
 
     const payLoad = getPayload()
     this.id = payLoad?.id ? payLoad.id : 0;
-    
+
     this.reservaService.getReservasPorIdLogin(this.id).subscribe(reservaResponse => {
-      this.tablaReserva = reservaResponse.map(
-        
+      const tablaReservatemp = reservaResponse.map(
+
         reserva => {
           const paqueteFound = this.paquetes.find(paquete => paquete.idPaquete == reserva.idPaquete);
           //this.descripcion = paqueteFound.descripcion
-          
+
           return {
             idLogin: reserva.idLogin,
             acompaniante: reserva.acompaniante,
@@ -82,12 +82,24 @@ export class MisReservasComponent implements OnDestroy, OnInit {
             fechaModificacion: reserva.fechaModificacion,
             diferenciaPagar: reserva.diferenciaPagar
           }
-        } 
+        }
       )
+
+      this.tablaReserva = tablaReservatemp.sort(this.sortByEstado)
       this.dtTrigger.next(this.dtOptions)
     });
-    
-    
+
+
+  }
+
+  sortByEstado(a: any, b: any) {
+    if (a.estado > b.estado) {
+      return -1;
+    }
+    if (a.estado < b.estado) {
+      return 1;
+    }
+    return 0;
   }
 
   ngOnDestroy(): void {
@@ -107,7 +119,7 @@ export class MisReservasComponent implements OnDestroy, OnInit {
       return;
     }
     const resul = await alertConfirmation('Está seguro de anular su reserva con fecha del ' +this.tablaReservaE.fechaReserva + ' y con el monto de '+ this.tablaReservaE.totalPago+'soles?');
-    if (!resul.isConfirmed ) return; 
+    if (!resul.isConfirmed ) return;
 
     const paqueteFound = this.paquetes.find(paquete => paquete.descripcion === this.tablaReservaE.paqueteName)!;
     //console.log("paquete found " + paqueteFound.descripcion)
@@ -150,7 +162,7 @@ export class MisReservasComponent implements OnDestroy, OnInit {
       if (result.isConfirmed) {
         window.location.reload()
       }
-    });    
+    });
   }
 
   onSubmitModalError(err: any) {
