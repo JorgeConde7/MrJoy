@@ -17,9 +17,9 @@
               <i class="fas fa-book fa-fw me-3"></i><span>Reservas</span>
           </a>
 
-          <a *ngIf="sesionData.isAdmin" [routerLink]="['/admin/proveedores']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/proveedores')}" class="list-group-item list-group-item-action py-2 ripple">
+          <!-- <a *ngIf="sesionData.isAdmin" [routerLink]="['/admin/proveedores']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/proveedores')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-shipping-fast fa-fw me-3"></i><span>Provedores</span>
-          </a>
+          </a> -->
           <a [routerLink]="['/admin/paquetes']" routerLinkActive="router-link-active"   [ngClass]="{active: isUrlEqualTo('/admin/paquetes')}" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-calendar fa-fw me-3"></i><span>Paquetes</span>
           </a>
