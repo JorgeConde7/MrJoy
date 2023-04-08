@@ -49,12 +49,12 @@
                                 <td>{{ reserva.diferenciaPagar }}...</td>
                                 <td>{{ reserva.estado}}</td>
                                 <td class="acciones-cell">
-                                    <Button class="btn btn-warning d-inline-block" [disabled]="reserva.estado !== 'vigente'"  style='padding:0 10px;' data-bs-toggle="modal"
-                                    data-bs-target="#" (click)="editarReserva(reserva)"><i class="fas fa-pencil-alt" ></i></Button>
+                                    <button class="btn btn-warning d-inline-block" [disabled]="reserva.estado !== 'vigente'"  style='padding:0 10px;' data-bs-toggle="modal"
+                                    data-bs-target="#" (click)="editarReserva(reserva)"><i class="fas fa-pencil-alt" ></i></button>
                                     {{' '}}
-                                    <Button class="btn btn-danger d-inline-block" [disabled]="reserva.estado !== 'vigente'" style='padding:0 10px' data-bs-toggle="modal"
+                                    <button class="btn btn-danger d-inline-block" [disabled]="reserva.estado !== 'vigente'" style='padding:0 10px' data-bs-toggle="modal"
                                     data-bs-target="#" (click)="selectReserva(reserva)" style='padding:0 10px'
-                                    data-bs-toggle="modal" data-bs-target="#modal__eliminarreserva">  <i class="fas fa-trash-alt"  ></i></Button>
+                                    data-bs-toggle="modal" data-bs-target="#modal__eliminarreserva">  <i class="fas fa-trash-alt"  ></i></button>
                                 </td>
                             </tr>
                             
@@ -79,8 +79,8 @@
           </div>
           <div class="modal-body">
             <div class="col">
-              <h1>Fecha de Reserva: {{ tablaReservaE.fechaRegistro }}</h1>
-              <h1>Id de Reserva: {{ tablaReservaE.idReserva }}</h1>
+              <h1>Fecha de Registro: {{ tablaReservaE.fechaRegistro }}</h1>
+              <h3>Estimado cliente la reserva solo se podra anular dentro las 48 horas hábiles a partir de la fecha de registro</h3>
               <p> Total Cancelado: {{ tablaReservaE.totalPago }} </p>
             </div>
             <div class="form-group" id="user-group">

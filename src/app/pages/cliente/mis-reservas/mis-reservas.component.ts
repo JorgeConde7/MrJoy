@@ -99,11 +99,8 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   }
 
   async onSubmitModalEliminarReserva() {
-    console.log(this.tablaReservaE)
     const { motivoAnulacion } = this.tablaReservaE;
-    console.log(motivoAnulacion)
     const { idReserva } = this.tablaReservaE;
-    console.log(idReserva)
 
     if (!motivoAnulacion?.trim()) {
       alertNotification('', 'Ingrese su respuesta', 'info');

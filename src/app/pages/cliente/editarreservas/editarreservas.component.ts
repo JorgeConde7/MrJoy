@@ -258,6 +258,10 @@ export class EditarreservasComponent implements OnInit {
     return url === currentURL;
   }
 
+  clickRegresar() {
+    this.router.navigate(['/mis-reservas']);
+  }
+
 }
 
 

@@ -91,10 +91,14 @@
 
           <label for="">Total a Pagar :</label>
           <input type="text" readonly placeholder="" class="form-control" [value]="total" name="total">
+          <br>
 
+          <button type="submit" [disabled]="editarForm.invalid" class="btn btn-primary botonRegistrar">GUARDAR RESERVA</button>
+          {{" "}}
+          <button type="button" class="btn btn-secondary" (click)="clickRegresar()"> Regresar a mis reservas </button> 
 
-          <button type="submit" [disabled]="editarForm.invalid" class="btn btn-primary mt-4 botonRegistrar">GUARDAR RESERVA</button>
-              <!--{{editarForm.value | json}}-->
+             
+            <!--{{editarForm.value | json}}-->
         </form>
 
       </div>
