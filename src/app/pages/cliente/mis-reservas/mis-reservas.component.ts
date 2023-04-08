@@ -106,11 +106,11 @@ export class MisReservasComponent implements OnDestroy, OnInit {
       alertNotification('', 'Ingrese su respuesta', 'info');
       return;
     }
-    const resul = await alertConfirmation('Confirme respuesta');
-    if (!resul.isConfirmed) return;
+    const resul = await alertConfirmation('Está seguro de anular su reserva con fecha del ' +this.tablaReservaE.fechaReserva + ' y con el monto de '+ this.tablaReservaE.totalPago+'soles?');
+    if (!resul.isConfirmed ) return; 
 
     const paqueteFound = this.paquetes.find(paquete => paquete.descripcion === this.tablaReservaE.paqueteName)!;
-    console.log("paquete found " + paqueteFound.descripcion)
+    //console.log("paquete found " + paqueteFound.descripcion)
 
     const iReserva: IReserva = {
       idPaquete: paqueteFound.idPaquete ? paqueteFound.idPaquete : 1,
@@ -132,17 +132,25 @@ export class MisReservasComponent implements OnDestroy, OnInit {
       usuarioModificacion: this.tablaReservaE.usuarioModificacion,
       fechaModificacion: this.tablaReservaE.fechaModificacion
     }
-    console.log(iReserva)
+    //console.log(iReserva)
     this.reservaService.eliminarReserva(iReserva, idReserva!).subscribe ({
       next: this.onSubmitModalSucess.bind(this),
       error: this.onSubmitModalError.bind(this),
     })
 
   }
-  
 
   onSubmitModalSucess() {
-    window.location.reload()
+    Swal.fire({
+      title: 'Información',
+      text: '"Estimado cliente La devolución del dinero será dentro de un plazo de 5  a 10 días."',
+      icon: 'info',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload()
+      }
+    });    
   }
 
   onSubmitModalError(err: any) {
