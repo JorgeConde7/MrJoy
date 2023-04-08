@@ -9,6 +9,7 @@ import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.
 import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
 import { getPayload } from 'src/app/util/token.util';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 @Component({
   selector: 'app-mis-reservas',
@@ -23,7 +24,7 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   namePaquete: String = ""
   descripcion: String = ""
   id!: number;
-
+  
   paquetes: Paquete[] = []
 
   tablaReserva: TablaReserva[] = []
@@ -78,8 +79,8 @@ export class MisReservasComponent implements OnDestroy, OnInit {
             estado: reserva.estado,
             dni: reserva.dni,
             usuarioModificacion: reserva.usuarioModificacion,
-            fechaModificacion: reserva.fechaModificacion
-
+            fechaModificacion: reserva.fechaModificacion,
+            diferenciaPagar: reserva.diferenciaPagar
           }
         } 
       )
@@ -133,15 +134,15 @@ export class MisReservasComponent implements OnDestroy, OnInit {
       dni: this.tablaReservaE.dni,
       usuarioModificacion: this.tablaReservaE.usuarioModificacion,
       fechaModificacion: this.tablaReservaE.fechaModificacion
-
     }
-
+    console.log(iReserva)
     this.reservaService.eliminarReserva(iReserva, idReserva!).subscribe ({
       next: this.onSubmitModalSucess.bind(this),
       error: this.onSubmitModalError.bind(this),
     })
 
   }
+  
 
   onSubmitModalSucess() {
     window.location.reload()
@@ -183,4 +184,5 @@ interface TablaReserva{
   fechaModificacion?: string;
   usuarioModificacion?: string;
   motivoAnulacion?: string;
+  diferenciaPagar?: number;
 }

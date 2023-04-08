@@ -3,6 +3,7 @@ import { Login } from './login-modal';
 import { LoginModalService } from '../../../core/apis/client/login-modal.service';
 import { setToken } from 'src/app/util/token.util';
 import { alertNotification } from 'src/app/util/notifications';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-modal',
@@ -38,7 +39,26 @@ export class LoginModalComponent implements OnInit {
         }
         const { data: token } = response;
         setToken(token);
-        window.location.reload()
+        
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1200,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Signed in successfully'
+        })        
+        setTimeout(() => {
+          window.location.reload();
+        }, 1400);
       },
       error: (err) => {
         alertNotification(err.error.message, '', "error")
@@ -46,5 +66,6 @@ export class LoginModalComponent implements OnInit {
       }
     });
   }
+  
 
 }

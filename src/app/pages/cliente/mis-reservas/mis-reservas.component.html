@@ -46,7 +46,7 @@
                                 <td>{{ reserva.acompaniante }}</td>
                                 <td>{{ reserva.fechaReserva }}</td>
                                 <td>{{ reserva.totalPago }}</td>
-                                <td>calculando...</td>
+                                <td>{{ reserva.diferenciaPagar }}...</td>
                                 <td>{{ reserva.estado}}</td>
                                 <td class="acciones-cell">
                                     <Button class="btn btn-warning d-inline-block" [disabled]="reserva.estado !== 'vigente'"  style='padding:0 10px;' data-bs-toggle="modal"
