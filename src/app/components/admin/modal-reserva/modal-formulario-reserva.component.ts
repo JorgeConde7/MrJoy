@@ -17,7 +17,11 @@ import { PaquetesService } from 'src/app/core/apis/admin/paquetes.service';
 
 import { IReserva } from '../../cliente/calendario-reserva/reserva';
 import { ModaReservaEventService } from 'src/app/core/events/moda-reserva-event.service';
-import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
+import {
+  alertConfirmation,
+  alertNotification,
+} from 'src/app/util/notifications';
+import { getPayloadEmpleado } from 'src/app/util/token.util';
 
 @Component({
   selector: 'app-modal-formulario-reserva',
@@ -187,21 +191,33 @@ export class ModalFormularioReservaComponent implements OnInit {
     if (isInvalidFormReserva) return;
     const idPaqueteToFormat: string = formReserva.idPaquete;
     const idPaquete = Number(idPaqueteToFormat.split(' ')[0]);
+    const { id: idLogin } = getPayloadEmpleado()!;
 
-    const reservaUpdated = { ...this.reserva, ...formReserva, idPaquete };
-    console.log({ newReser4va: reservaUpdated });
+    const reservaUpdated: IReserva = {
+      ...this.reserva,
+      ...formReserva,
+      idPaquete,
+      idLogin,
+      flagTipoReserva: "1"
+    };
 
-    const result = await alertConfirmation('Confirmar actualizacion de reserva')
+    const result = await alertConfirmation(
+      'Confirmar actualizacion de reserva'
+    );
 
-    if(!result.isConfirmed) return;
+    if (!result.isConfirmed) return;
+
+
 
     this.reservaService
-      .putReserva(reservaUpdated, reservaUpdated.idReserva)
+      .putReserva(reservaUpdated, reservaUpdated.idReserva!)
       .subscribe({
-        next:(putResponse) => {
+        next: (putResponse) => {
           alertNotification('', putResponse.message);
         },
-        error:(err)=>{  alertNotification('', err.error.message, 'error');  }
+        error: (err) => {
+          alertNotification('', err.error.message, 'error');
+        },
       });
   }
 
