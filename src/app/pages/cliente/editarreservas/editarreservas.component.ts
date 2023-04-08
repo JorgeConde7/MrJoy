@@ -31,7 +31,7 @@ export class EditarreservasComponent implements OnInit {
     '19:00']
 
   horaOcupada: string[] = [];
-
+  currentHour: string = "";
 
   total: number = 0;
 
@@ -55,7 +55,7 @@ export class EditarreservasComponent implements OnInit {
     flagTipoReserva: 0,
     acompaniante: 0,
     totalPago: 0
-    
+
   };
 
   iReserva: IReserva[] = [];
@@ -86,6 +86,7 @@ export class EditarreservasComponent implements OnInit {
         const horaFormat = data.hora.split('-')[0]
         return hora === horaFormat
       })
+      this.currentHour = data.hora;
 
       this.editarForm.setValue({
         'idPaquete': paqueteValue,
@@ -190,7 +191,6 @@ export class EditarreservasComponent implements OnInit {
       totalPago: this.total,
       email: this.editarForm.value.email!,
       fechaReserva: this.editarForm.value.fechaReserva!
-
     }
 
     if (reservaDto) {
@@ -249,6 +249,14 @@ export class EditarreservasComponent implements OnInit {
       for (let i = 0; i < this.horaOcupada.length; i++) {
         this.horaCadena.splice(this.horaCadena.indexOf(this.horaOcupada[i]), 1)
       }
+
+      const hasCurrentHour = this.horaCadena.includes(this.currentHour)
+
+      if(!hasCurrentHour) {
+        this.horaCadena.unshift(this.currentHour);
+        this.horaCadena.sort();
+      }
+
     })
   }
 
