@@ -9,7 +9,9 @@ import { getCurrentDate } from 'src/app/util/utils.util';
 import { getPayload } from 'src/app/util/token.util';
 import * as moment from 'moment';
 import * as regex from 'src/app/util/regex.util';
-import { alertNotification } from 'src/app/util/notifications';
+import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
+
+
 import { error } from 'console';
 
 @Component({
@@ -62,6 +64,7 @@ export class EditarreservasComponent implements OnInit {
 
   sesionData = { isClient: true }
 
+  showModal = true;
 
   constructor(private activerouter: ActivatedRoute, private router:Router,
     private reservaService: ReservaServiceService, private paqueteService: PaquetesService, private formBuilder: FormBuilder) {
@@ -171,7 +174,8 @@ export class EditarreservasComponent implements OnInit {
 
 
 
-  onSubmit() {
+  async onSubmit() {
+
     let reservaId = Number(this.activerouter.snapshot.paramMap.get('id'))
 
     let { correo, apellidos: apellido, nombres, telefono, profile, id } = getPayload()!
@@ -192,12 +196,14 @@ export class EditarreservasComponent implements OnInit {
       email: this.editarForm.value.email!,
       fechaReserva: this.editarForm.value.fechaReserva!
     }
-
+    
+    const result = await alertConfirmation('Confirmar Actualización \nEstimado Cliente, recuerde que podrá modificar la reserva una sola vez')
+    if(!result.isConfirmed) return;
+    
     if (reservaDto) {
       this.reservaService.putReserva(reservaDto, reservaId).subscribe(
         reservaDto => {
-          console.log(reservaDto)
-          alertNotification("Se ha actualizado la reserva. Todo correcto.", "", "success", ({ isConfirmed }) => {
+          alertNotification(reservaDto.message+ ", si tiene algún inconveniente, contactese con Mr Joy", "", "success", ({ isConfirmed }) => {
           if (isConfirmed) window.location.reload();
         })
         this.router.navigate(['mis-reservas'])

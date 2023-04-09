@@ -9,7 +9,7 @@ import { ReservaServiceService } from 'src/app/core/apis/client/reserva-service.
 import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
 import { getPayload } from 'src/app/util/token.util';
 import { environment } from 'src/environments/environment';
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-mis-reservas',
@@ -31,6 +31,7 @@ export class MisReservasComponent implements OnDestroy, OnInit {
   tablaReservaE: TablaReserva = {} as TablaReserva;
 
   private primeraVez = true;
+  
 
   constructor(private reservaService: ReservaServiceService, private router: Router,
     private paqueteService: PaquetesService) {
@@ -176,6 +177,8 @@ export class MisReservasComponent implements OnDestroy, OnInit {
       alertNotification('', 'La reserva ya ha sido modificada', 'info')
       return;
     }
+    
+    
     this.router.navigate(['editar-misreservas', reserva.idReserva])
   }
 

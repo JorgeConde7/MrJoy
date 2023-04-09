@@ -105,6 +105,36 @@
       <div class="col-md-6">
         <app-calendario-reserva></app-calendario-reserva>   
       </div>
+
+      <form [ngClass]="{'show': showModal}" class="modal fade" >
+        <div class="modal-dialog ">
+          <div class="col">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title">Recordatorio</h1>
+                <button type="button" class="close btn__close" data-bs-toggle="modal" data-bs-target="#modal__eliminarreserva">
+                  
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="col">
+                  <h2>Tiene que saber que: </h2>
+                  <ul>
+                    <li><h3>Recuerde que solo puede actualizar 1 vez la reserva</h3></li>
+                    <li><h3>No puede actualizar su reserva si está a una semana de la fecha de reserva </h3></li>
+                    <li><h3></h3></li>
+                  </ul>
+                </div> 
+                <br>
+              </div>
+              <div class="modal-footer">
+                <button (click)="showModal = false" class="btn btn-primary">Entendido</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
 </div>
 </div>
 

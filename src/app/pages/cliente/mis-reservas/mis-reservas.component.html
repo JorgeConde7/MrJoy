@@ -15,17 +15,17 @@
                         class="table table-hover table-light text-dark  table-bordered" style="width: 100%">
                         <thead>
                             <tr>
-                                <th colspan="11" class="text-center"> MIS RESERVAS </th>
+                                <th colspan="12" class="text-center"> MIS RESERVAS </th>
                             </tr>
                             <tr>
                                 <th class="text-center">Fecha de Registro</th>
-                                <th class="text-center">Hora</th>
                                 <th class="text-center">Correo</th>
                                 <th class="text-center">Telefono</th>
                                 <th class="text-center">Tipo de paquete</th>
                                 <th class="text-center">Cantidad de personas</th>
                                 <th class="text-center">Acompañante</th>
                                 <th class="text-center">Fecha de Reserva</th>
+                                <th class="text-center">Hora</th>
                                 <th class="text-center">Total de pago</th>
                                 <th class="text-center">Diferencia a pagar</th>
                                 <th class="text-center">Estado de reserva</th>
@@ -38,15 +38,15 @@
                                 'disabled': reserva.estado !== 'vigente'
                               }">
                                 <td>{{ reserva.fechaRegistro }}</td>
-                                <td>{{ reserva.hora }}</td>
                                 <td>{{ reserva.email }}</td>
                                 <td>{{ reserva.telefono }}</td>
                                 <td>{{ reserva.paqueteName }} </td>
                                 <td>{{ reserva.cantPersonas }}</td>
                                 <td>{{ reserva.acompaniante }}</td>
                                 <td>{{ reserva.fechaReserva }}</td>
-                                <td>{{ reserva.totalPago }}</td>
-                                <td>{{ reserva.diferenciaPagar }}...</td>
+                                <td>{{ reserva.hora }}</td>
+                                <td>S/{{ reserva.totalPago }}</td>
+                                <td>S/{{ reserva.diferenciaPagar }}</td>
                                 <td>{{ reserva.estado}}</td>
                                 <td class="acciones-cell">
                                     <button class="btn btn-warning d-inline-block" [disabled]="reserva.estado !== 'vigente'"  style='padding:0 10px;' data-bs-toggle="modal"
