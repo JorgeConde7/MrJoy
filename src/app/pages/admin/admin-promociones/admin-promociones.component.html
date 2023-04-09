@@ -29,8 +29,8 @@
               <td *ngIf="sesionData.isAdmin">
                 <a class="btn btn-warning" style='padding:0 10px' (click)="btnEditar(promocion)" data-bs-toggle="modal"
                   data-bs-target="#modalPromocion"><i class="fas fa-pencil-alt"></i></a>{{" "}}
-                <a class="btn btn-danger" style='padding:0 10px'
-                  (click)="btnEliminar(promocion)"><i class="fas fa-trash-alt"></i></a>
+                <a class="btn btn-danger" style='padding:0 10px' (click)="btnEliminar(promocion)"><i
+                    class="fas fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -53,54 +53,40 @@
           <div *ngIf="!isInsert" class="modal-headerActualizar">
             <h5 class="modal-title" id="exampleModalLabel">Actualizar Promociones</h5>
           </div>
-          <form [formGroup]="formPromocion" (ngSubmit)="onSubmit()" >
+          <form [formGroup]="formPromocion" (ngSubmit)="onSubmit()">
             <div class="modal-body">
               <div class="form-group" hidden>
                 <label for="nombres" class="col-form-label">Codigo:</label>
                 <input type="text" class="form-control" formControlName="id_promociones" name="id_promociones">
               </div>
+
               <div class="form-group">
                 <label for="apellidos" class="col-form-label">Promocion:</label>
                 <input type="text" class="form-control" formControlName="titulo" name="promociones">
               </div>
+
+
+              <div class="form-group">
+                <div class="custom-file">
+                  <label class="col-form-label" for="imagen">Imagen:</label>
+                  <input type="file" accept="image/png, image/gif, image/jpeg" class="form-control" id="imagen">
+                </div>
+              </div>
+
               <div class="form-group">
                 <label for="apellidos" class="col-form-label">Descripcion:</label>
-                <textarea rows="5" type="text"   class="form-control" formControlName="descripcion" name="descripcion">
+                <textarea rows="5" type="text" class="form-control" formControlName="descripcion" name="descripcion">
                   </textarea>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" id="btnGuardar" class="btn btn-dark" data-bs-dismiss="modal">
+              <button type="button" id="btnCancelar" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" id="btnGuardar" class="btn btn-primary" data-bs-dismiss="modal">
                 Guardar</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="body-main">
-    <form id="frmEliminarCliente" action="" method="POST">
-
-      <div class="modal fade" id="modalEliminarPromocion" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4>Eliminar Promocion</h4>
-            </div>
-            <div class="modal-body">
-              ¿Esta seguro de eliminar al promocion?<strong data-name=""></strong>
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="btnAceptarEliminar" class="btn btn-primary"
-                data-dismiss="modal">Aceptar</button>
-              <button type="button" id="btnCancelarEliminar" class="btn btn-default">Cancelar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
   </section>
 </main>

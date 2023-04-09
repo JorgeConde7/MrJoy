@@ -38,6 +38,7 @@ export class AdminPromocionesComponent implements OnDestroy, OnInit {
       language: { url: environment.DATATABLE_LANGUAJE },
       // pagingType: "full_numbers"
       pageLength: 10,
+      lengthMenu: [10, 10, 25],
     };
 
     this.promocionService.getPromociones().subscribe((result) => {

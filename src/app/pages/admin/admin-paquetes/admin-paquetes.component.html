@@ -1,11 +1,11 @@
 <main style="margin-top: 35px">
   <div class="container-fluid pt-4">
     <div class="card mt-5" style="min-height: 720px">
-      <a *ngIf="sesionData.isAdmin" id="btnNuevoPaquete" class="btn btn-success float-right mt-5" data-bs-toggle="modal"
+      <a *ngIf="sesionData.isAdmin" (click)="btnNuevo()" id="btnNuevoPaquete" class="btn btn-success float-right mt-5" data-bs-toggle="modal"
         data-bs-target="#modalPaquete">
-        <i class="ion-plus-round"></i> Nuevo</a>
+        <i class="ion-plus-round" ></i> Nuevo</a>
       <div class="card-body">
-        <table id="tablaPaquete" class="table table-hover table-dark text-light table-responsive-lg table-bordered"
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="tablaPaquete" class="table table-hover table-dark text-light table-responsive-lg table-bordered"
           style="width: 100%">
           <thead>
             <tr>
@@ -19,13 +19,14 @@
             </tr>
           </thead>
           <tbody class="text-center">
-            <tr *ngFor="let Paquete of data">
-              <td>{{ Paquete.idPaquete }}</td>
-              <td>{{ Paquete.descripcion }}</td>
-              <td>{{ Paquete.precio }}</td>
+            <tr *ngFor="let paquete of paquetes">
+              <td>{{ paquete.idPaquete }}</td>
+              <td>{{ paquete.descripcion }}</td>
+              <td>{{ paquete.precio }}</td>
               <td *ngIf="sesionData.isAdmin">
-                <a class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt"></i></a>{{" "}}
-                <a class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt"></i> </a>
+                <a data-bs-toggle="modal"
+                data-bs-target="#modalPaquete" (click)="btnEditar(paquete)"  class="btn btn-warning" style='padding:0 10px'><i class="fas fa-pencil-alt"></i></a>{{" "}}
+                <a (click)="btnDelete(paquete)"  class="btn btn-danger" style='padding:0 10px'><i class="fas fa-trash-alt"></i> </a>
               </td>
             </tr>
           </tbody>
@@ -35,4 +36,40 @@
 
     <app-admin-footer></app-admin-footer>
     <!-- Button trigger modal -->
+    <section class="body-main">
+    <div class="modal fade" id="modalPaquete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div *ngIf="isInsert" class="modal-headerCrear">
+            <h5 class="modal-title" id="exampleModalLabel">Crear Paquete</h5>
+          </div>
+          <div *ngIf="!isInsert" class="modal-headerActualizar">
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar Paquete</h5>
+          </div>
+          <form [formGroup]="formPaquete" (ngSubmit)="onSubmit()" >
+            <div class="modal-body">
+              <div class="form-group" hidden>
+                <label for="nombres" class="col-form-label">Codigo:</label>
+                <input type="text" class="form-control" formControlName="idPaquete" name="idPaquete">
+              </div>
+              <div class="form-group">
+                <label for="apellidos" class="col-form-label">Precio:</label>
+                <input min="1" type="number" class="form-control" formControlName="precio" name="precio">
+              </div>
+              <div class="form-group">
+                <label for="apellidos" class="col-form-label">Descripcion:</label>
+                <input type="text"   class="form-control" formControlName="descripcion" name="descripcion" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCancelar" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" id="btnGuardar" class="btn btn-primary" data-bs-dismiss="modal">
+                Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
   </div>
