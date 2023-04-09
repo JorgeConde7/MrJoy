@@ -49,7 +49,8 @@ export class MisReservasComponent implements OnDestroy, OnInit {
       pagingType: 'full_numbers',
       pageLength: 5, // Aquí defines la cantidad de registros por página que deseas mostrar
       lengthMenu: [ 5, 10, 25, 50 ], // Aquí defines las opciones de la lista desplegable de "Mostrar"
-      processing: true
+      processing: true,
+      order:[[10, "desc"]]
     };
 
     const payLoad = getPayload()

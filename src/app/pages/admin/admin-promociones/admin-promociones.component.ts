@@ -1,98 +1,161 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
-import { IPromociones } from '../../../core/models/admin/admin-promociones';
 import { getPayloadEmpleado } from 'src/app/util/token.util';
 import { PromocionService } from 'src/app/core/apis/client/promociones.service';
 import { Promocion } from 'src/app/core/models/client/Promociones';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  alertConfirmation,
+  alertNotification,
+} from 'src/app/util/notifications';
 
 @Component({
   selector: 'app-admin-promociones',
   templateUrl: './admin-promociones.component.html',
-  styleUrls: ['./admin-promociones.component.scss']
+  styleUrls: ['./admin-promociones.component.scss'],
 })
-export class AdminPromocionesComponent implements OnInit {
-
+export class AdminPromocionesComponent implements OnDestroy, OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject<ADTSettings>();
-  promociones!: Promocion[];
+  promociones: Promocion[] = [];
   isInsert = true;
-  ipromocion: IPromociones = { id_promociones: 0, descripcion: '', promociones: '', foto: '' }
+  formPromocion: FormGroup;
+  sesionData = { isAdmin: false };
+  imgDefault =
+    'https://www.viewhotels.jp/ryogoku/wp-content/uploads/sites/9/2020/03/test-img.jpg';
 
-  sesionData = { isAdmin: false }
-
-  constructor(private promocionService: PromocionService, private router: Router) { }
+  constructor(
+    private promocionService: PromocionService,
+    private formBuilder: FormBuilder
+  ) {
+    this.formPromocion = this.getFormPromocionBulder();
+  }
 
   ngOnInit(): void {
-    this. setSesionData()
     this.dtOptions = {
       language: { url: environment.DATATABLE_LANGUAJE },
       // pagingType: "full_numbers"
-      pageLength: 10
+      pageLength: 10,
+      lengthMenu: [10, 10, 25],
     };
 
-    this.promocionService.getPromociones()
-      .subscribe(result => {
-        //console.log(result);
-        this.promociones = result;
-        this.dtTrigger.next(this.dtOptions)
-      })
-  }
-
-  setSesionData() {
-    const sesionData = getPayloadEmpleado()!
-    this.sesionData.isAdmin = sesionData.profile === "admin"
-  }
-
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe()
-  }
-
-  getPromociones() {
     this.promocionService.getPromociones().subscribe((result) => {
+      console.log(result);
       this.promociones = result;
+      this.dtTrigger.next(this.dtOptions);
+    });
+
+    this.setSesionData();
+  }
+
+  getFormPromocionBulder() {
+    return this.formBuilder.group({
+      id_promociones: [null],
+      titulo: ['', Validators.required],
+      foto: [this.imgDefault],
+      descripcion: ['', Validators.required],
     });
   }
 
-  eliminarPromociones(id: number) {
-    // this.promocionService.deletePromocion(id).subscribe(
-    //   result => {
-    //     this.getPromociones()
-    //   }
-    // )
+  setSesionData() {
+    const sesionData = getPayloadEmpleado()!;
+    this.sesionData.isAdmin = sesionData.profile === 'admin';
   }
 
-  editarPromociones(data: any) {
-    this.ipromocion = data;
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 
-  limpiarModal() {
-    this.ipromocion.id_promociones = 0;
-    this.ipromocion.promociones = '';
-    this.ipromocion.descripcion = '';
-    this.ipromocion.foto = '';
+  getPromociones() {
+    this.promocionService.getPromociones().subscribe((promocionesResponse) => {
+      this.promociones = promocionesResponse.sort(this.sortPromocionesByid);
+    });
   }
 
-  guardarDatos() {
-    // if (!this.ipromocion.id_promociones) {
-    //   this.promocionService.create(this.ipromocion).subscribe(
-    //     datos => { this.getPromociones() }
-    //   )
-    //   //console.log('e')
+  sortPromocionesByid(a: Promocion, b: Promocion) {
+    if (a.id_promociones! > b.id_promociones!) return 1;
+    if (a.id_promociones! < b.id_promociones!) return -1;
+    return 0;
+  }
 
-    // }
-    // else {
-    //   this.promocionService.actualizarPromocion(this.ipromocion, this.ipromocion.id_promociones).subscribe(
-    //     datos => { this.getPromociones() }
-    //   )
-    //   //console.log('a')
-    // }
+  async btnEliminar(promocion: Promocion) {
+    const result = await alertConfirmation(`Eliminar '${promocion.titulo}'?`);
+
+    if (!result.isConfirmed) return;
+
+    this.promocionService
+      .deletePromocion(promocion.id_promociones)
+      .subscribe((_) => {
+        this.getPromociones();
+        alertNotification('', `Se eliminó ${promocion.titulo} con éxito`);
+      });
+  }
+
+  btnEditar(promocion: Promocion) {
+    this.isInsert = false;
+    // const formPromocion = this.formPromocion.value as Promocion
+    console.log({ promocion });
+
+    this.formPromocion.setValue({
+      id_promociones: promocion.id_promociones,
+      titulo: promocion.titulo,
+      descripcion: promocion.descripcion,
+      foto: promocion.foto,
+    });
+  }
+
+  btnNuevo() {
+    this.isInsert = true;
+    this.formPromocion.reset();
+    this.formPromocion.markAsUntouched();
+  }
+
+  async onSubmit() {
+    console.log('submit');
+
+    if (this.formPromocion.invalid) {
+      alertNotification('', 'Todos los campos son obligatorios', 'info');
+      return;
+    }
+    const formPromocion = this.formPromocion.value as Promocion;
+    formPromocion.foto = formPromocion.foto
+      ? formPromocion.foto
+      : this.imgDefault;
+
+    const isInsert = !formPromocion.id_promociones;
+    if (isInsert) {
+      const result = await alertConfirmation(
+        `Añadir promocion '${formPromocion.titulo}'?`
+      );
+
+      if (!result.isConfirmed) return;
+      this.promocionService
+        .savePromocion(formPromocion)
+        .subscribe((promocionResponse) => {
+          this.getPromociones();
+          alertNotification(
+            '',
+            `Se creó nueva promoción ${promocionResponse.titulo}.`
+          );
+        });
+    } else {
+      const result = await alertConfirmation(
+        `Actualizar '${formPromocion.titulo}'`
+      );
+
+      if (!result.isConfirmed) return;
+
+      this.promocionService
+        .updatePromocion(formPromocion)
+        .subscribe((promocionResponse) => {
+          this.getPromociones();
+          alertNotification(
+            '',
+            `Se actualizó la promocion ${promocionResponse.titulo}.`
+          );
+        });
+    }
   }
 }
-
-
-
-
