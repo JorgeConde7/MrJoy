@@ -74,4 +74,12 @@
     height: 70px;
   }
   
-
+  //animation modal
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

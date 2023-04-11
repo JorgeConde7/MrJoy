@@ -10,6 +10,7 @@ import { getPayload } from 'src/app/util/token.util';
 import * as moment from 'moment';
 import * as regex from 'src/app/util/regex.util';
 import { alertConfirmation, alertNotification } from 'src/app/util/notifications';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 
 import { error } from 'console';
@@ -17,7 +18,15 @@ import { error } from 'console';
 @Component({
   selector: 'app-editarreservas',
   templateUrl: './editarreservas.component.html',
-  styleUrls: ['./editarreservas.component.scss']
+  styleUrls: ['./editarreservas.component.scss'],
+  animations: [
+    trigger('fade', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter, :leave', [
+        animate('0.5s ease-in-out')
+      ])
+    ])
+  ]
 })
 export class EditarreservasComponent implements OnInit {
 
