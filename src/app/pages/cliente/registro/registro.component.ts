@@ -5,6 +5,7 @@ import { IRegistro } from '../../../core/models/client/registro';
 import { RegistroService } from '../../../core/apis/client/registro.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as regex from 'src/app/util/regex.util';
+import { alertNotification } from 'src/app/util/notifications';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -60,7 +61,7 @@ export class RegistroComponent implements OnInit {
 
     this.registroService.registroUsuario(dataRegistro).subscribe({
       next: this.createEmpleadoNext.bind(this),
-      error: (err) => console.log('Error al crear registro: ', err),
+      error: (err) => alertNotification("", err.error.message, "error" ),
     });
   }
 
